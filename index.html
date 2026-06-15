@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Обожаю Языки</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @font-face {
       font-family: 'Factora';
@@ -23,11 +24,13 @@
     p.desc { color: #666; margin-bottom: 40px; font-size: 1.1em; }
     .links { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
     .links a {
-      display: block; padding: 16px 24px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; padding: 16px 24px; border-radius: 8px;
       text-decoration: none; font-size: 1.1em; font-weight: bold;
       transition: opacity 0.2s;
     }
     .links a:hover { opacity: 0.85; }
+    .links a i { font-size: 1.3em; }
     .fb { background: #1877f2; color: #fff; }
     .ig { background: #e1306c; color: #fff; }
     .tg { background: #0088cc; color: #fff; }
@@ -41,9 +44,15 @@
     <h1>Обожаю Языки</h1>
     <p class="desc">Блог о языках, лингвистике и всём, что с ними связано</p>
     <div class="links">
-      <a href="https://www.facebook.com/AdoreLanguages" class="fb">📘 Facebook</a>
-      <a href="https://www.instagram.com/adore_languages/" class="ig">📷 Instagram</a>
-      <a href="https://t.me/AdoreLanguages" class="tg">✈️ Telegram</a>
+      <a href="https://www.facebook.com/AdoreLanguages" class="fb">
+        <i class="fa-brands fa-facebook"></i> Facebook
+      </a>
+      <a href="https://www.instagram.com/adore_languages/" class="ig">
+        <i class="fa-brands fa-instagram"></i> Instagram
+      </a>
+      <a href="https://t.me/AdoreLanguages" class="tg">
+        <i class="fa-brands fa-telegram"></i> Telegram
+      </a>
     </div>
     <p class="contact">Связаться: <a href="mailto:adore.languages@gmail.com">adore.languages@gmail.com</a></p>
   </div>
