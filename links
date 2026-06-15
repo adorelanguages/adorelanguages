@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мои ссылки</title>
+  <style>
+    @font-face { font-family: 'Factora'; src: url('../FACTORA-REGULAR.OTF'); font-weight: normal; }
+    @font-face { font-family: 'Factora'; src: url('../FACTORA-BOLD.OTF'); font-weight: bold; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+    h1 { font-size: 1.8em; margin-bottom: 24px; }
+    input {
+      width: 100%; max-width: 600px; padding: 12px 16px;
+      font-size: 1em; border: 2px solid rgb(45, 44, 91);
+      border-radius: 8px; margin-bottom: 32px;
+      font-family: 'Factora', Georgia, serif;
+      color: rgb(45, 44, 91); outline: none;
+    }
+    .list { max-width: 600px; display: flex; flex-direction: column; gap: 16px; }
+    .item { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
+    .item a { font-size: 1.1em; font-weight: bold; color: rgb(45, 44, 91); text-decoration: none; }
+    .item a:hover { text-decoration: underline; }
+    .title { margin: 4px 0 8px; font-size: 0.95em; }
+    .tags { font-size: 0.85em; color: #888; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Мои ссылки</h1>
+  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+  <div class="list" id="list">
+    <div class="item" data-tags="верлан сленг французскийсленг жаргон французскийжаргон французский">
+      <a href="https://adorelanguages.com/verlan">adorelanguages.com/verlan</a>
+      <p class="title">верлан</p>
+      <p class="tags">#верлан #сленг #французскийсленг #жаргон #французскийжаргон #французский</p>
+    </div>
+    <div class="item" data-tags="инфиксы тагальский тагальскийязык секретныеязыки">
+      <a href="https://adorelanguages.com/infix">adorelanguages.com/infix</a>
+      <p class="title">инфиксы</p>
+      <p class="tags">#инфиксы #тагальский #тагальскийязык #секретныеязыки</p>
+    </div>
+    <div class="item" data-tags="спунеризм спунеризмы">
+      <a href="https://adorelanguages.com/spunerism">adorelanguages.com/spunerism</a>
+      <p class="title">спунеризмы</p>
+      <p class="tags">#спунеризм #спунеризмы</p>
+    </div>
+    <div class="item" data-tags="спунеризм спунеризмы">
+      <a href="https://adorelanguages.com/spunerism1">adorelanguages.com/spunerism1</a>
+      <p class="title">субботняя работа</p>
+      <p class="tags">#спунеризм #спунеризмы</p>
+    </div>
+  </div>
+  <script>
+    function filter() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      document.querySelectorAll('.item').forEach(item => {
+        const tags = item.dataset.tags.toLowerCase();
+        const title = item.querySelector('.title').textContent.toLowerCase();
+        item.classList.toggle('hidden', q && !tags.includes(q) && !title.includes(q));
+      });
+    }
+  </script>
+</body>
+</html>
