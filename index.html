@@ -20,8 +20,8 @@
     body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: #222; }
     .banner { width: 100%; max-height: 300px; object-fit: contain; display: block; }
     .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-    h1 { font-size: 2em; font-weight: bold; margin-bottom: 10px; color: #222; }
-    p.desc { color: #666; margin-bottom: 40px; font-size: 1.1em; }
+    h1 { font-size: 2em; font-weight: bold; margin-bottom: 10px; color: rgb(45, 44, 91); }
+    p.desc { color: rgb(45, 44, 91); margin-bottom: 40px; font-size: 1.1em; }
     .links { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
     .links a {
       display: flex; align-items: center; justify-content: center;
@@ -34,14 +34,18 @@
     .fb { background: #1877f2; color: #fff; }
     .ig { background: #e1306c; color: #fff; }
     .tg { background: #0088cc; color: #fff; }
-    .contact { color: #888; font-size: 0.95em; }
-    .contact a { color: #1877f2; text-decoration: none; }
+    .contact { color: rgb(45, 44, 91); font-size: 0.95em; margin-bottom: 12px; }
+    .contact a { color: rgb(45, 44, 91); text-decoration: none; }
+    .support a {
+      color: rgb(45, 44, 91); text-decoration: none; font-size: 0.95em;
+    }
+    .support a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <img src="dog.jpg" alt="Обожаю Языки" class="banner">
   <div class="container">
-    <h1>Обожаю Языки</h1>
+    <h1>#ОбожаюЯзыки</h1>
     <p class="desc">Блог о языках, лингвистике и всём, что с ними связано</p>
     <div class="links">
       <a href="https://www.facebook.com/AdoreLanguages" class="fb">
@@ -55,6 +59,7 @@
       </a>
     </div>
     <p class="contact">Связаться: <a href="mailto:adore.languages@gmail.com">adore.languages@gmail.com</a></p>
+    <p class="support">Поддержать: <a href="https://buymeacoffee.com/adorelanguages">buymeacoffee.com/adorelanguages</a></p>
   </div>
 </body>
 </html>
