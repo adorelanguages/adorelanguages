@@ -52,7 +52,7 @@
       document.querySelectorAll('.item').forEach(item => {
         const tags = item.dataset.tags.toLowerCase();
         const title = item.querySelector('.title').textContent.toLowerCase();
-        item.classList.toggle('hidden', q && !tags.includes(q) && !title.includes(q));
+        item.classList.toggle('hidden', q && !tags.includes(q) && !title.includes(q)); 
       });
     }
   </script>
