@@ -40,16 +40,16 @@
 
     p.desc {
       color: rgb(45, 44, 91);
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       font-size: 1.35em;
       text-align: center;
     }
 
-    /* центрируем блок поиска под описанием */
+    /* centered search button */
     .search-row {
       display: flex;
       justify-content: center;
-      margin-bottom: 30px;
+      margin-bottom: 60px; /* bigger distance */
     }
 
     .search-wrapper {
@@ -78,7 +78,7 @@
     .search-menu {
       display: none;
       position: absolute;
-      top: 100%;
+      top: 110%;
       left: 50%;
       transform: translateX(-50%);
       background: white;
@@ -119,13 +119,13 @@
       text-align: left;
     }
 
-    /* горизонтальные соцсети: FB, Insta, TG */
+    /* horizontal social buttons */
     .social-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .links {
@@ -141,14 +141,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 16px;
+      padding: 10px 12px; /* shorter buttons */
       border-radius: 8px;
       text-decoration: none;
-      font-size: 1em;
+      font-size: 0.95em;
       font-weight: bold;
       transition: opacity 0.2s;
       white-space: nowrap;
-      flex: 1;
+      width: 30%; /* equal width, fits on phone */
+      min-width: 90px;
     }
 
     .links a:hover { opacity: 0.85; }
@@ -158,7 +159,7 @@
     .ig { background: rgb(233, 206, 242); color: rgb(45, 44, 91); }
     .tg { background: rgb(70, 19, 89); color: rgb(129, 239, 135); }
 
-    /* контакт и поддержка на одной линии внизу */
+    /* contact + support on same line */
     .bottom-row {
       display: flex;
       justify-content: space-between;
