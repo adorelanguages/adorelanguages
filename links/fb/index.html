@@ -37,6 +37,11 @@
       font-size: 0.9em;
     }
     .tagrow .name::before { content: "#"; color: #888; }
+    .tagrow .name {
+  cursor: pointer;
+  text-decoration: underline;
+}
+``
     .tagrow .count {
       background: rgb(45, 44, 91); color: #fff; font-size: 0.8em;
       padding: 1px 8px; border-radius: 10px; min-width: 20px; text-align: center;
@@ -176,8 +181,14 @@ function renderTagFrequency() {
 
     row.className = 'tagrow';
 
-    row.innerHTML =
-      `<span class="name">${tag}</span><span class="count">${count}</span>`;
+   row.innerHTML =
+  `<span class="name">${tag}</span><span class="count">${count}</span>`;
+
+row.querySelector('.name').addEventListener('click', () => {
+  const search = document.getElementById('search');
+  search.value = tag;
+  filter();
+});
 
     panel.appendChild(row);
   });
