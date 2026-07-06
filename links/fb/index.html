@@ -24,7 +24,16 @@
     .item { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
     .item a { font-size: 1.1em; font-weight: bold; color: rgb(45, 44, 91); text-decoration: none; }
     .item a:hover { text-decoration: underline; }
-    .title { margin: 4px 0 8px; font-size: 0.95em; }
+    
+.title {
+  margin: 0 0 8px;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+.postlink {
+  font-size: 0.9em;
+  font-weight: normal;
+}
     .tags { font-size: 0.85em; color: #888; }
     .hidden { display: none; }
 
@@ -181,12 +190,12 @@ sortedPosts.forEach(post => {
     item.dataset.tags = post.tags.join(' ');
 
     item.innerHTML = `
-      <a href="https://adorelanguages.com/fb/${post.slug}">
-        adorelanguages.com/fb/${post.slug}
-      </a>
-      <p class="title">${post.title}</p>
-      <p class="tags">${post.tags.map(t => '#' + t).join(' ')}</p>
-    `;
+  <p class="title">${post.title}</p>
+
+  <a class="postlink" href="https://adorelanguages.com/fb/${post.slug}">
+    adorelanguages.com/fb/${post.slug}
+  </a>
+`;
 
     list.appendChild(item);
   });
