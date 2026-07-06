@@ -54,9 +54,7 @@
 
     .social-row {
       display: flex;
-      justify-content: flex-start;
       align-items: flex-start;
-      gap: 40px;          /* distance between socials and search */
       margin-bottom: 30px;
     }
 
@@ -79,7 +77,7 @@
       font-weight: bold;
       transition: opacity 0.2s;
       white-space: nowrap;
-      width: 180px;
+      width: 200px;
     }
 
     .links a:hover { opacity: 0.85; }
@@ -92,8 +90,9 @@
     /* search button block */
     .search-wrapper {
       position: relative;
+      margin-left: 90px;   /* horizontal distance from socials */
+      margin-top: 56px;    /* roughly center across Insta */
       display: inline-block;
-      margin-top: 52px;   /* roughly align with Insta */
     }
 
     .search-button {
