@@ -54,8 +54,13 @@
   <h1>Посты в ФБ</h1>
   <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
   <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
-  <p id="clearFilter" style="display:none; margin-top:-20px; margin-bottom:20px;">
-  <a href="#" onclick="clearFilter(); return false;">✖ Сбросить фильтр</
+  
+<p id="clearFilter" style="display:none; margin-top:-20px; margin-bottom:20px;">
+  <button type="button" onclick="clearFilter()">
+    ✖ Сбросить фильтр
+  </button>
+</p>
+
   <div class="layout">
     <div class="list" id="list">
       <div class="item" data-tags="инфиксы тагальский тагальскийязык секретныеязыки грамматика особенностиязыков филиппины">
