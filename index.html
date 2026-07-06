@@ -49,12 +49,15 @@
     .search-row {
       display: flex;
       justify-content: center;
-      margin-bottom: 60px; /* bigger distance */
+      margin-bottom: 60px;
+      position: relative;
     }
 
     .search-wrapper {
       position: relative;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
     .search-button {
@@ -75,37 +78,32 @@
 
     .search-button:hover { opacity: 0.7; }
 
+    /* menu appears left and right of the button */
     .search-menu {
       display: none;
       position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 10px;
-      white-space: nowrap;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none; /* prevents accidental hover issues */
     }
 
-    .search-wrapper:hover .search-menu,
-    .search-menu:hover {
+    .search-menu.visible {
       display: flex;
-      gap: 12px;
+      pointer-events: auto;
     }
 
     .search-menu a {
-      display: inline-block;
-      padding: 10px 16px;
+      padding: 8px 12px;
       text-decoration: none;
       color: rgb(45,44,91);
-      font-size: 1em;
-      border: 1px solid #eee;
+      font-size: 0.9em;
+      border: 1px solid #ddd;
       border-radius: 6px;
       background: rgb(244,244,255);
-      min-width: 130px;
-      text-align: center;
+      white-space: nowrap;
     }
 
     .search-menu a:hover {
@@ -141,14 +139,14 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 12px; /* shorter buttons */
+      padding: 10px 12px;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 0.95em;
+      font-size: 0.9em;
       font-weight: bold;
       transition: opacity 0.2s;
       white-space: nowrap;
-      width: 30%; /* equal width, fits on phone */
+      width: 30%;
       min-width: 90px;
     }
 
@@ -174,6 +172,14 @@
       text-decoration: underline;
     }
   </style>
+
+  <script>
+    function toggleSearchMenu() {
+      const menu = document.getElementById("search-menu");
+      menu.classList.toggle("visible");
+    }
+  </script>
+
 </head>
 
 <body>
@@ -187,11 +193,12 @@
 
     <div class="search-row">
       <div class="search-wrapper">
-        <div class="search-button">Поиск</div>
-        <div class="search-menu">
+        <div class="search-menu" id="search-menu">
           <a href="/links/site/">На сайте</a>
           <a href="/links/fb/">В Facebook</a>
         </div>
+
+        <div class="search-button" onclick="toggleSearchMenu()">Поиск</div>
       </div>
     </div>
 
