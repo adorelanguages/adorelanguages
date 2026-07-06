@@ -54,6 +54,8 @@
   <h1>Посты в ФБ</h1>
   <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
   <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+  <p id="clearFilter" style="display:none; margin-top:-20px; margin-bottom:20px;">
+  <a href="#" onclick="clearFilter(); return false;">✖ Сбросить фильтр</
   <div class="layout">
     <div class="list" id="list">
       <div class="item" data-tags="инфиксы тагальский тагальскийязык секретныеязыки грамматика особенностиязыков филиппины">
@@ -146,6 +148,9 @@ function renderPosts() {
 
 function filter() {
   const q = document.getElementById('search').value.toLowerCase().trim();
+  const clear = document.getElementById('clearFilter');
+
+  clear.style.display = q ? 'block' : 'none';
 
   document.querySelectorAll('.item').forEach(item => {
     const tags = item.dataset.tags.toLowerCase();
@@ -157,7 +162,12 @@ function filter() {
     );
   });
 }
+function clearFilter() {
+  const search = document.getElementById('search');
 
+  search.value = '';
+  filter();
+}
 function renderTagFrequency() {
   const counts = {};
 
