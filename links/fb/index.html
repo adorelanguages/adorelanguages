@@ -170,7 +170,11 @@ function renderPosts() {
 
   document.querySelectorAll('#list .item').forEach(el => el.remove());
 
-  allPosts.forEach(post => {
+ const sortedPosts = [...allPosts].sort((a, b) =>
+  a.title.localeCompare(b.title, 'ru')
+);
+
+sortedPosts.forEach(post => {
     const item = document.createElement('div');
 
     item.className = 'item';
