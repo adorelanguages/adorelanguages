@@ -57,7 +57,9 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 40px; /* equal spacing left and right */
+      justify-content: center;
+      width: 320px;
+      max-width: 90vw;
     }
 
     .search-button {
@@ -83,9 +85,9 @@
       display: none;
       position: absolute;
       top: 50%;
+      left: 0;
+      right: 0;
       transform: translateY(-50%);
-      width: 100%;
-      display: flex;
       justify-content: space-between;
       pointer-events: none;
     }
