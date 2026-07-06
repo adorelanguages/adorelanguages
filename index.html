@@ -31,7 +31,7 @@
     }
 
     h1 {
-      font-size: 2.6em; /* larger */
+      font-size: 2.6em;
       font-weight: bold;
       margin-bottom: 10px;
       color: rgb(45, 44, 91);
@@ -41,7 +41,7 @@
     p.desc {
       color: rgb(45, 44, 91);
       margin-bottom: 40px;
-      font-size: 1.35em; /* larger */
+      font-size: 1.35em;
       text-align: center;
     }
 
@@ -55,7 +55,7 @@
     .social-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       margin-bottom: 30px;
     }
 
@@ -94,19 +94,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-right: 20px; /* bring closer */
     }
 
     .search-button {
-      width: 100px;   /* bigger */
-      height: 100px;  /* bigger */
-      background: transparent; /* transparent */
-      color: rgb(45,44,91); /* blue text */
+      width: 100px;
+      height: 100px;
+      background: transparent;
+      color: rgb(45,44,91);
       border: 3px solid rgb(45,44,91);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2em; /* bigger text */
+      font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
       transition: opacity 0.2s;
@@ -114,12 +115,12 @@
 
     .search-button:hover { opacity: 0.7; }
 
-    /* horizontal menu */
+    /* menu stays open when hovered OR when cursor is inside */
     .search-menu {
       display: none;
       position: absolute;
       top: 110px;
-      right: 0;
+      left: 0; /* align under button */
       background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -128,7 +129,8 @@
       white-space: nowrap;
     }
 
-    .search-wrapper:hover .search-menu {
+    .search-wrapper:hover .search-menu,
+    .search-menu:hover {
       display: flex;
       gap: 12px;
     }
@@ -142,7 +144,7 @@
       border: 1px solid #eee;
       border-radius: 6px;
       background: rgb(244,244,255);
-      min-width: 120px; /* wide enough */
+      min-width: 120px;
       text-align: center;
     }
 
