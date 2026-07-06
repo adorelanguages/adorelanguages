@@ -87,7 +87,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      pointer-events: none; /* prevents accidental hover issues */
+      pointer-events: none;
     }
 
     .search-menu.visible {
@@ -193,12 +193,14 @@
 
     <div class="search-row">
       <div class="search-wrapper">
+
         <div class="search-menu" id="search-menu">
           <a href="/links/site/">На сайте</a>
           <a href="/links/fb/">В Facebook</a>
         </div>
 
         <div class="search-button" onclick="toggleSearchMenu()">Поиск</div>
+
       </div>
     </div>
 
