@@ -45,6 +45,39 @@
       background: rgb(45, 44, 91); color: #fff; font-size: 0.8em;
       padding: 1px 8px; border-radius: 10px; min-width: 20px; text-align: center;
     }
+    .searchRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.searchRow input {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+#clearFilter {
+  display: none;
+  margin: 0;
+}
+
+#clearFilter button {
+  font-family: 'Factora', Georgia, serif;
+  font-size: 1em;
+  padding: 12px 18px;
+  border: 2px solid rgb(45, 44, 91);
+  border-radius: 8px;
+  background: white;
+  color: rgb(45, 44, 91);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#clearFilter button:hover {
+  background: rgb(45, 44, 91);
+  color: white;
+}
     @media (max-width: 700px) {
       .tagpanel { max-width: 100%; order: -1; }
     }
@@ -53,13 +86,17 @@
 <body>
   <h1>Посты в ФБ</h1>
   <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
-  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
   
-<p id="clearFilter" style="display:none; margin-top:-20px; margin-bottom:20px;">
-  <button type="button" onclick="clearFilter()">
-    ✖ Сбросить фильтр
-  </button>
-</p>
+<div class="searchRow">
+  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+
+  <p id="clearFilter">
+    <button type="button" onclick="clearFilter()">
+      ✖ Сбросить фильтр
+    </button>
+  </p>
+</div>
+
 
   <div class="layout">
     <div class="list" id="list">
