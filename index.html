@@ -54,8 +54,9 @@
 
     .social-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
+      gap: 40px;          /* distance between socials and search */
       margin-bottom: 30px;
     }
 
@@ -88,13 +89,11 @@
     .ig { background: rgb(233, 206, 242); color: rgb(45, 44, 91); }
     .tg { background: rgb(70, 19, 89); color: rgb(129, 239, 135); }
 
-    /* search button */
+    /* search button block */
     .search-wrapper {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-right: 20px; /* bring closer */
+      display: inline-block;
+      margin-top: 52px;   /* roughly align with Insta */
     }
 
     .search-button {
@@ -115,12 +114,13 @@
 
     .search-button:hover { opacity: 0.7; }
 
-    /* menu stays open when hovered OR when cursor is inside */
+    /* menu directly under button, stays open while hovered */
     .search-menu {
       display: none;
       position: absolute;
-      top: 110px;
-      left: 0; /* align under button */
+      top: 100%;          /* directly under button */
+      left: 50%;
+      transform: translateX(-50%);
       background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -144,7 +144,7 @@
       border: 1px solid #eee;
       border-radius: 6px;
       background: rgb(244,244,255);
-      min-width: 120px;
+      min-width: 130px;   /* enough for "В Facebook" */
       text-align: center;
     }
 
