@@ -58,8 +58,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 320px;
-      max-width: 90vw;
+      gap: 18px;
     }
 
     .search-button {
@@ -76,28 +75,28 @@
       font-weight: bold;
       cursor: pointer;
       transition: opacity 0.2s;
+      flex-shrink: 0;
     }
 
     .search-button:hover { opacity: 0.7; }
 
-    /* menu appears left and right of the button */
-    .search-menu {
+    /* links and arrows are hidden by default; JS toggles .visible on the wrapper */
+    .search-link, .search-arrow {
       display: none;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      transform: translateY(-50%);
-      justify-content: space-between;
-      pointer-events: none;
     }
 
-    .search-menu.visible {
-      display: flex;
-      pointer-events: auto;
+    .search-wrapper.visible .search-link,
+    .search-wrapper.visible .search-arrow {
+      display: inline-flex;
+      align-items: center;
     }
 
-    .search-menu a {
+    .search-arrow {
+      color: rgb(45,44,91);
+      font-size: 1.3em;
+    }
+
+    .search-link {
       padding: 8px 12px;
       text-decoration: none;
       color: rgb(45,44,91);
@@ -108,7 +107,7 @@
       white-space: nowrap;
     }
 
-    .search-menu a:hover {
+    .search-link:hover {
       background: rgb(230,230,255);
     }
 
@@ -177,8 +176,8 @@
 
   <script>
     function toggleSearchMenu() {
-      const menu = document.getElementById("search-menu");
-      menu.classList.toggle("visible");
+      const wrapper = document.getElementById("search-wrapper");
+      wrapper.classList.toggle("visible");
     }
   </script>
 
@@ -194,15 +193,12 @@
     <p class="desc">Блог о языках, лингвистике и всём, что с ними связано</p>
 
     <div class="search-row">
-      <div class="search-wrapper">
-
-        <div class="search-menu" id="search-menu">
-          <a href="/links/site/">На сайте</a>
-          <a href="/links/fb/">В Facebook</a>
-        </div>
-
+      <div class="search-wrapper" id="search-wrapper">
+        <a class="search-link" href="/links/site/">На сайте</a>
+        <span class="search-arrow">→</span>
         <div class="search-button" onclick="toggleSearchMenu()">Поиск</div>
-
+        <span class="search-arrow">→</span>
+        <a class="search-link" href="/links/fb/">В Facebook</a>
       </div>
     </div>
 
