@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Посты в ФБ</title>
+  <style>
+    @font-face { font-family: 'Factora'; src: url('../../FACTORA-REGULAR.OTF'); font-weight: normal; }
+    @font-face { font-family: 'Factora'; src: url('../../FACTORA-BOLD.OTF'); font-weight: bold; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+    h1 { font-size: 1.8em; margin-bottom: 8px; }
+    .switch { margin-bottom: 24px; font-size: 0.95em; }
+    .switch a { color: rgb(45, 44, 91); }
+    input {
+      width: 100%; max-width: 600px; padding: 12px 16px;
+      font-size: 1em; border: 2px solid rgb(45, 44, 91);
+      border-radius: 8px; margin-bottom: 32px;
+      font-family: 'Factora', Georgia, serif;
+      color: rgb(45, 44, 91); outline: none;
+    }
+    .layout { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .list { max-width: 600px; flex: 1 1 500px; display: flex; flex-direction: column; gap: 16px; }
+    .item { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
+    .item a { font-size: 1.1em; font-weight: bold; color: rgb(45, 44, 91); text-decoration: none; }
+    .item a:hover { text-decoration: underline; }
+    .title { margin: 4px 0 8px; font-size: 0.95em; }
+    .tags { font-size: 0.85em; color: #888; }
+    .hidden { display: none; }
+
+    .tagpanel { flex: 0 0 260px; max-width: 260px; }
+    .tagpanel h2 { font-size: 1.1em; margin-bottom: 12px; }
+    .tagfreq { display: flex; flex-direction: column; gap: 6px; }
+    .tagrow {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px;
+      font-size: 0.9em;
+    }
+    .tagrow .name::before { content: "#"; color: #888; }
+    .tagrow .count {
+      background: rgb(45, 44, 91); color: #fff; font-size: 0.8em;
+      padding: 1px 8px; border-radius: 10px; min-width: 20px; text-align: center;
+    }
+    @media (max-width: 700px) {
+      .tagpanel { max-width: 100%; order: -1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Посты в ФБ</h1>
+  <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
+  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+  <div class="layout">
+    <div class="list" id="list">
+      <div class="item" data-tags="инфиксы тагальский тагальскийязык секретныеязыки грамматика особенностиязыков филиппины">
+        <a href="https://adorelanguages.com/fb/infix">adorelanguages.com/fb/infix</a>
+        <p class="title">Инфиксы</p>
+        <p class="tags">#инфиксы #тагальский #тагальскийязык #секретныеязыки #грамматика #особенностиязыков #филиппины</p>
+      </div>
+      <div class="item" data-tags="кофевиталии кофе эспрессо италия макиато макьято маккиато видыкофе итальянский итальянскийязык запятнанныйкофе запятнанный исправленныйкофе исправленный ограниченныйкофе ограниченный кофесалкоголем">
+        <a href="https://adorelanguages.com/fb/kofevitalii">adorelanguages.com/fb/kofevitalii</a>
+        <p class="title">Кофе в Италии</p>
+        <p class="tags">#кофевиталии #кофе #эспрессо #италия #макиато #макьято #маккиато #видыкофе #итальянский #итальянскийязык #запятнанныйкофе #запятнанный #исправленныйкофе #исправленный #ограниченныйкофе #ограниченный #кофесалкоголем</p>
+      </div>
+      <div class="item" data-tags="языковыешутки метатеза солнышко слонышко тарелка футляр мрамор итальянскийязык испанскийязык немецкийязык латынь перестановказвуков">
+        <a href="https://adorelanguages.com/fb/metateza">adorelanguages.com/fb/metateza</a>
+        <p class="title">Метатеза</p>
+        <p class="tags">#языковыешутки #метатеза #солнышко #слонышко #тарелка #футляр #мрамор #итальянскийязык #испанскийязык #немецкийязык #латынь #перестановказвуков</p>
+      </div>
+      <div class="item" data-tags="агрессивныйпоросёнок поросёнок венгерский венгерскийязык венгрия юмор абстрактныеанекдоты венгерскийюмор анекдоты венгерскиеанекдоты">
+        <a href="https://adorelanguages.com/fb/agressivnyiporosyonok">adorelanguages.com/fb/agressivnyiporosyonok</a>
+        <p class="title">Агрессивный поросёнок</p>
+        <p class="tags">#агрессивныйпоросёнок #поросёнок #венгерский #венгерскийязык #венгрия #юмор #абстрактныеанекдоты #венгерскийюмор #анекдоты #венгерскиеанекдоты</p>
+      </div>
+      <div class="item" data-tags="эспрессо экспрессо экспресс выжатый кофе италия итальянский итальянскийязык причастиепрошедшеговремени причастие">
+        <a href="https://adorelanguages.com/fb/espresso">adorelanguages.com/fb/espresso</a>
+        <p class="title">Эспрессо</p>
+        <p class="tags">#эспрессо #экспрессо #экспресс #выжатый #кофе #италия #итальянский #итальянскийязык #причастиепрошедшеговремени #причастие</p>
+      </div>
+      <div class="item" data-tags="посыпатьголовупеплом каяться сожалеть раскаяние сожаление пепел обожаюязыки обожаюязыкознание языкознание лингвистика идиомы идиоматическиевыражения устойчивыевыражения">
+        <a href="https://adorelanguages.com/fb/golovupeplom">adorelanguages.com/fb/golovupeplom</a>
+        <p class="title">Посыпать голову пеплом</p>
+        <p class="tags">#посыпатьголовупеплом #каяться #сожалеть #раскаяние #сожаление #пепел #обожаюязыки #обожаюязыкознание #языкознание #лингвистика #идиомы #идиоматическиевыражения #устойчивыевыражения</p>
+      </div>
+      <div class="item" data-tags="мы местоимения инклюзивностьместоимений эксклюзивностьместоимений инклюзивность эксклюзивность инклюзивноемы эксклюзивноемы особенностиязыков малайскийязык малайский">
+        <a href="https://adorelanguages.com/fb/mydanemy">adorelanguages.com/fb/mydanemy</a>
+        <p class="title">Мы, да не мы</p>
+        <p class="tags">#мы #местоимения #инклюзивностьместоимений #эксклюзивностьместоимений #инклюзивность #эксклюзивность #инклюзивноемы #эксклюзивноемы #особенностиязыков #малайскийязык #малайский</p>
+      </div>
+      <div class="item" data-tags="дёргатьзаногу дёрнутьзаногу английскиеидиомы шутить невсерьёз идиомы идиоматическиевыражения английскийязык английский учиманглийский разговорныйанглийский">
+        <a href="https://adorelanguages.com/fb/dyorgatzanogu">adorelanguages.com/fb/dyorgatzanogu</a>
+        <p class="title">Дёргать за ногу</p>
+        <p class="tags">#дёргатьзаногу #дёрнутьзаногу #английскиеидиомы #шутить #невсерьёз #идиомы #идиоматическиевыражения #английскийязык #английский #учиманглийский #разговорныйанглийский</p>
+      </div>
+      <div class="item" data-tags="верлан сленг французскийсленг жаргон французскийжаргон французский">
+        <a href="https://adorelanguages.com/fb/verlan">adorelanguages.com/fb/verlan</a>
+        <p class="title">верлан</p>
+        <p class="tags">#верлан #сленг #французскийсленг #жаргон #французскийжаргон #французский</p>
+      </div>
+    </div>
+
+    <div class="tagpanel">
+      <h2>Все тэги</h2>
+      <div class="tagfreq" id="tagfreq"></div>
+    </div>
+  </div>
+
+  <script>
+    function filter() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      document.querySelectorAll('.item').forEach(item => {
+        const tags = item.dataset.tags.toLowerCase();
+        const title = item.querySelector('.title').textContent.toLowerCase();
+        item.classList.toggle('hidden', q && !tags.includes(q) && !title.includes(q));
+      });
+    }
+
+    // Динамический подсчёт частоты тэгов на основе data-tags каждого поста в списке.
+    // Никаких отдельных источников данных — при добавлении нового поста в .list
+    // счётчик справа обновится сам собой.
+    function renderTagFrequency() {
+      const counts = {};
+      document.querySelectorAll('#list .item').forEach(item => {
+        item.dataset.tags.trim().split(/\s+/).forEach(tag => {
+          if (!tag) return;
+          counts[tag] = (counts[tag] || 0) + 1;
+        });
+      });
+
+      const sorted = Object.entries(counts).sort((a, b) => {
+        if (b[1] !== a[1]) return b[1] - a[1];
+        return a[0].localeCompare(b[0], 'ru');
+      });
+
+      const panel = document.getElementById('tagfreq');
+      panel.innerHTML = '';
+      sorted.forEach(([tag, count]) => {
+        const row = document.createElement('div');
+        row.className = 'tagrow';
+        row.innerHTML = `<span class="name">${tag}</span><span class="count">${count}</span>`;
+        panel.appendChild(row);
+      });
+    }
+
+    renderTagFrequency();
+  </script>
+</body>
+</html>
