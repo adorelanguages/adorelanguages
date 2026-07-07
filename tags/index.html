@@ -9,10 +9,23 @@
     @font-face { font-family: 'Factora'; src: url('../FACTORA-BOLD.OTF'); font-weight: bold; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .home-button {
+      font-family: 'Factora', Georgia, serif;
+      font-size: 0.9em;
+      color: #fff;
+      background: rgb(45, 44, 91);
+      padding: 9px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
     h1 { font-size: 1.8em; margin-bottom: 8px; }
     h2 { font-size: 1.2em; margin: 32px 0 12px; }
     .switch { margin-bottom: 24px; font-size: 0.95em; }
     .switch a { color: rgb(45, 44, 91); }
+    .panels { display: flex; gap: 40px; flex-wrap: wrap; }
+    .panel { flex: 1 1 300px; }
     .tagfreq { max-width: 400px; display: flex; flex-direction: column; gap: 6px; }
     .tagrow {
       display: flex; justify-content: space-between; align-items: center;
@@ -27,14 +40,22 @@
   </style>
 </head>
 <body>
-  <h1>Тэги</h1>
+  <div class="topbar">
+    <h1>Тэги</h1>
+    <a class="home-button" href="https://www.adorelanguages.com">На главную страницу</a>
+  </div>
   <p class="switch">→ <a href="/links/fb">Посмотреть посты в ФБ</a></p>
 
-  <h2>Facebook</h2>
-  <div class="tagfreq" id="tagfreq-fb"></div>
-
-  <h2>Сайт</h2>
-  <div class="tagfreq" id="tagfreq-site"></div>
+  <div class="panels">
+    <div class="panel">
+      <h2>Facebook</h2>
+      <div class="tagfreq" id="tagfreq-fb"></div>
+    </div>
+    <div class="panel">
+      <h2>Сайт</h2>
+      <div class="tagfreq" id="tagfreq-site"></div>
+    </div>
+  </div>
 
   <script>
     function renderCounts(panelId, tagLists) {
