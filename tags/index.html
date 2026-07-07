@@ -90,12 +90,9 @@
     }
 
     async function loadSiteTags() {
-      const response = await fetch('../links/site/');
-      const html = await response.text();
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const items = doc.querySelectorAll('.item[data-tags]');
-      const tagLists = Array.from(items).map(item => item.dataset.tags.trim().split(/\s+/));
-      renderCounts('tagfreq-site', tagLists);
+      const response = await fetch('../links/site/posts.json');
+      const posts = await response.json();
+      renderCounts('tagfreq-site', posts.map(post => post.tags));
     }
 
     loadFacebookTags();

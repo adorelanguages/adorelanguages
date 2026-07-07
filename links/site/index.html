@@ -30,13 +30,54 @@
       font-family: 'Factora', Georgia, serif;
       color: rgb(45, 44, 91); outline: none;
     }
-    .list { max-width: 600px; display: flex; flex-direction: column; gap: 16px; }
-    .item { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
-    .item a { font-size: 1.1em; font-weight: bold; color: rgb(45, 44, 91); text-decoration: none; }
-    .item a:hover { text-decoration: underline; }
-    .title { margin: 4px 0 8px; font-size: 0.95em; }
-    .tags { font-size: 0.85em; color: #888; }
+    .list { max-width: 600px; display: flex; flex-direction: column; gap: 2px; }
+    .item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 4px;
+    }
+    .bullet {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgb(45, 44, 91); flex-shrink: 0;
+    }
+    .item .title { flex: 1; font-size: 1em; }
+    .item .title a { color: rgb(45, 44, 91); text-decoration: none; }
+    .item .title a:hover { text-decoration: underline; }
+    .copy-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1em; color: rgb(45, 44, 91);
+      padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
+    }
+    .copy-btn:hover { background: rgb(244,244,255); }
     .hidden { display: none; }
+    .searchRow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .searchRow input {
+      margin-bottom: 0;
+      flex: 1;
+    }
+    #clearFilter {
+      display: none;
+      margin: 0;
+    }
+    #clearFilter button {
+      font-family: 'Factora', Georgia, serif;
+      font-size: 1em;
+      padding: 12px 18px;
+      border: 2px solid rgb(45, 44, 91);
+      border-radius: 8px;
+      background: white;
+      color: rgb(45, 44, 91);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #clearFilter button:hover {
+      background: rgb(45, 44, 91);
+      color: white;
+    }
     .empty-note { font-size: 0.9em; color: #888; margin-top: 12px; }
   </style>
 </head>
@@ -46,29 +87,80 @@
     <a class="home-button" href="https://www.adorelanguages.com">← На главную страницу</a>
   </div>
   <p class="switch">→ <a href="/links/fb">Посмотреть все посты в ФБ</a></p>
-  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
-  <div class="list" id="list">
-    <div class="item" data-tags="верлан сленг французскийсленг жаргон французскийжаргон французский">
-      <a href="https://adorelanguages.com/site/verlan">adorelanguages.com/site/verlan</a>
-      <p class="title">верлан</p>
-      <p class="tags">#верлан #сленг #французскийсленг #жаргон #французскийжаргон #французский</p>
-    </div>
-    <div class="item" data-tags="навахо языкикоренныхнародов индейскиеязыки языкииндейцев языкиамерики языкисевернойамерики коренныенародыамерики коднавахо шифрование">
-      <a href="https://adorelanguages.com/site/navajo">adorelanguages.com/site/navajo</a>
-      <p class="title">код навахо</p>
-      <p class="tags">#Навахо #ЯзыкиКоренныхНародов #ИндейскиеЯзыки #ЯзыкиИндейцев #ЯзыкиАмерики #ЯзыкиСевернойАмерики #КоренныеНародыАмерики #КодНавахо #Шифрование</p>
-    </div>
+
+  <div class="searchRow">
+    <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+    <p id="clearFilter">
+      <button type="button" onclick="clearFilter()">✖ Сбросить фильтр</button>
+    </p>
   </div>
+
+  <div class="list" id="list"></div>
   <p class="empty-note">Остальные посты пока существуют только в ФБ — по мере переноса они будут появляться здесь.</p>
+
   <script>
-    function filter() {
-      const q = document.getElementById('search').value.toLowerCase().trim();
-      document.querySelectorAll('.item').forEach(item => {
-        const tags = item.dataset.tags.toLowerCase();
-        const title = item.querySelector('.title').textContent.toLowerCase();
-        item.classList.toggle('hidden', q && !tags.includes(q) && !title.includes(q)); 
+    let allPosts = [];
+
+    async function loadPosts() {
+      const response = await fetch('./posts.json');
+      allPosts = await response.json();
+      renderPosts();
+    }
+
+    function renderPosts() {
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+
+      const sortedPosts = [...allPosts].sort((a, b) =>
+        a.title.localeCompare(b.title, 'ru')
+      );
+
+      sortedPosts.forEach(post => {
+        const item = document.createElement('div');
+        item.className = 'item hidden';
+        item.dataset.tags = post.tags.join(' ');
+        item.dataset.title = post.title.toLowerCase();
+
+        const url = `https://adorelanguages.com/site/${post.slug}`;
+
+        item.innerHTML = `
+          <span class="bullet"></span>
+          <span class="title"><a href="${url}">${post.title}</a></span>
+          <button class="copy-btn" title="Скопировать ссылку" onclick="copyLink('${url}', this)">📋</button>
+        `;
+
+        list.appendChild(item);
       });
     }
+
+    function filter() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      const clear = document.getElementById('clearFilter');
+      clear.style.display = q ? 'block' : 'none';
+
+      document.querySelectorAll('.item').forEach(item => {
+        const tags = item.dataset.tags.toLowerCase();
+        const title = item.dataset.title;
+        const matches = q && (tags.includes(q) || title.includes(q));
+        item.classList.toggle('hidden', !matches);
+      });
+    }
+
+    function clearFilter() {
+      const search = document.getElementById('search');
+      search.value = '';
+      filter();
+    }
+
+    function copyLink(url, btn) {
+      navigator.clipboard.writeText(url).then(() => {
+        const original = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = original; }, 1200);
+      });
+    }
+
+    loadPosts();
   </script>
 </body>
 </html>
