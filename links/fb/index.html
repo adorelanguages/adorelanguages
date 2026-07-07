@@ -19,137 +19,125 @@
       font-family: 'Factora', Georgia, serif;
       color: rgb(45, 44, 91); outline: none;
     }
-    .layout { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
-    .list { max-width: 600px; flex: 1 1 500px; display: flex; flex-direction: column; gap: 16px; }
-    .item { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
-    .item a { font-size: 1.1em; font-weight: bold; color: rgb(45, 44, 91); text-decoration: none; }
-    .item a:hover { text-decoration: underline; }
-    
-.title {
-  margin: 0 0 8px;
-  font-size: 1.15em;
-  font-weight: bold;
-}
-.postlink {
-  font-size: 0.9em;
-  font-weight: normal !important;
-}
-    .tags { font-size: 0.85em; color: #888; }
+    .list { max-width: 600px; display: flex; flex-direction: column; gap: 10px; }
+    .item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px;
+    }
+    .item .title { font-size: 1.05em; }
+    .copy-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.2em; color: rgb(45, 44, 91);
+      padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
+    }
+    .copy-btn:hover { background: rgb(244,244,255); }
     .hidden { display: none; }
     .searchRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-.searchRow input {
-  margin-bottom: 0;
-  flex: 1;
-}
-
-#clearFilter {
-  display: none;
-  margin: 0;
-}
-
-#clearFilter button {
-  font-family: 'Factora', Georgia, serif;
-  font-size: 1em;
-  padding: 12px 18px;
-  border: 2px solid rgb(45, 44, 91);
-  border-radius: 8px;
-  background: white;
-  color: rgb(45, 44, 91);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-#clearFilter button:hover {
-  background: rgb(45, 44, 91);
-  color: white;
-}
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .searchRow input {
+      margin-bottom: 0;
+      flex: 1;
+    }
+    #clearFilter {
+      display: none;
+      margin: 0;
+    }
+    #clearFilter button {
+      font-family: 'Factora', Georgia, serif;
+      font-size: 1em;
+      padding: 12px 18px;
+      border: 2px solid rgb(45, 44, 91);
+      border-radius: 8px;
+      background: white;
+      color: rgb(45, 44, 91);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #clearFilter button:hover {
+      background: rgb(45, 44, 91);
+      color: white;
+    }
   </style>
 </head>
 <body>
   <h1>Посты в ФБ</h1>
   <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
-  
-<div class="searchRow">
-  <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
 
-  <p id="clearFilter">
-    <button type="button" onclick="clearFilter()">
-      ✖ Сбросить фильтр
-    </button>
-  </p>
-</div>
-
-
-  <div class="layout">
-    <div class="list" id="list">
-    </div>
+  <div class="searchRow">
+    <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
+    <p id="clearFilter">
+      <button type="button" onclick="clearFilter()">✖ Сбросить фильтр</button>
+    </p>
   </div>
 
-  
-<script>
-let allPosts = [];
+  <div class="list" id="list"></div>
 
-async function loadPosts() {
-  const response = await fetch('./posts.json');
-  allPosts = await response.json();
+  <script>
+    let allPosts = [];
 
-  renderPosts();
-}
+    async function loadPosts() {
+      const response = await fetch('./posts.json');
+      allPosts = await response.json();
+      renderPosts();
+    }
 
-function renderPosts() {
-  const list = document.getElementById('list');
+    function renderPosts() {
+      const list = document.getElementById('list');
+      list.innerHTML = '';
 
-  document.querySelectorAll('#list .item').forEach(el => el.remove());
+      const sortedPosts = [...allPosts].sort((a, b) =>
+        a.title.localeCompare(b.title, 'ru')
+      );
 
- const sortedPosts = [...allPosts].sort((a, b) =>
-  a.title.localeCompare(b.title, 'ru')
-);
+      sortedPosts.forEach(post => {
+        const item = document.createElement('div');
+        item.className = 'item hidden';
+        item.dataset.tags = post.tags.join(' ');
+        item.dataset.title = post.title.toLowerCase();
 
-sortedPosts.forEach(post => {
-    const item = document.createElement('div');
+        const url = `https://adorelanguages.com/fb/${post.slug}`;
 
-    item.className = 'item';
-    item.dataset.tags = post.tags.join(' ');
+        item.innerHTML = `
+          <span class="title">${post.title}</span>
+          <button class="copy-btn" title="Скопировать ссылку" onclick="copyLink('${url}', this)">📋</button>
+        `;
 
-    item.innerHTML = `
-  <p class="title">${post.title}</p>
+        list.appendChild(item);
+      });
+    }
 
-  <a class="postlink" href="https://adorelanguages.com/fb/${post.slug}">
-    adorelanguages.com/fb/${post.slug}
-  </a>
-`;
+    function filter() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      const clear = document.getElementById('clearFilter');
+      clear.style.display = q ? 'block' : 'none';
 
-    list.appendChild(item);
-  });
-}
+      document.querySelectorAll('.item').forEach(item => {
+        const tags = item.dataset.tags.toLowerCase();
+        const title = item.dataset.title;
+        const matches = q && (tags.includes(q) || title.includes(q));
+        item.classList.toggle('hidden', !matches);
+      });
+    }
 
-function filter() {
-  const q = document.getElementById('search').value.toLowerCase().trim();
-  const clear = document.getElementById('clearFilter');
+    function clearFilter() {
+      const search = document.getElementById('search');
+      search.value = '';
+      filter();
+    }
 
-  clear.style.display = q ? 'block' : 'none';
+    function copyLink(url, btn) {
+      navigator.clipboard.writeText(url).then(() => {
+        const original = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = original; }, 1200);
+      });
+    }
 
-  document.querySelectorAll('.item').forEach(item => {
-    const tags = item.dataset.tags.toLowerCase();
-    const title = item.querySelector('.title').textContent.toLowerCase();
-
-    item.classList.toggle(
-      'hidden',
-      q && !tags.includes(q) && !title.includes(q)
-    );
-  });
-}
-function clearFilter() {
-  const search = document.getElementById('search');
-
-  search.value = '';
-  filter();
-}
-loadPosts();
-</script>
+    loadPosts();
+  </script>
+</body>
+</html>
