@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тэги — Обожаю Языки</title>
+  <style>
+    @font-face { font-family: 'Factora'; src: url('../FACTORA-REGULAR.OTF'); font-weight: normal; }
+    @font-face { font-family: 'Factora'; src: url('../FACTORA-BOLD.OTF'); font-weight: bold; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+    h1 { font-size: 1.8em; margin-bottom: 8px; }
+    h2 { font-size: 1.2em; margin: 32px 0 12px; }
+    .switch { margin-bottom: 24px; font-size: 0.95em; }
+    .switch a { color: rgb(45, 44, 91); }
+    .tagfreq { max-width: 400px; display: flex; flex-direction: column; gap: 6px; }
+    .tagrow {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px;
+      font-size: 0.9em;
+    }
+    .tagrow .name::before { content: "#"; color: #888; }
+    .tagrow .count {
+      background: rgb(45, 44, 91); color: #fff; font-size: 0.8em;
+      padding: 1px 8px; border-radius: 10px; min-width: 20px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Тэги</h1>
+  <p class="switch">→ <a href="/links/fb">Посмотреть посты в ФБ</a></p>
+
+  <h2>Facebook</h2>
+  <div class="tagfreq" id="tagfreq-fb"></div>
+
+  <script>
+    async function loadAndRender() {
+      const response = await fetch('../links/fb/posts.json');
+      const posts = await response.json();
+
+      const counts = {};
+      posts.forEach(post => {
+        post.tags.forEach(tag => {
+          counts[tag] = (counts[tag] || 0) + 1;
+        });
+      });
+
+      const sorted = Object.entries(counts).sort((a, b) => {
+        if (b[1] !== a[1]) return b[1] - a[1];
+        return a[0].localeCompare(b[0], 'ru');
+      });
+
+      const panel = document.getElementById('tagfreq-fb');
+      panel.innerHTML = '';
+      sorted.forEach(([tag, count]) => {
+        const row = document.createElement('div');
+        row.className = 'tagrow';
+        row.innerHTML = `<span class="name">${tag}</span><span class="count">${count}</span>`;
+        panel.appendChild(row);
+      });
+    }
+
+    loadAndRender();
+  </script>
+</body>
+</html>
