@@ -9,6 +9,17 @@
     @font-face { font-family: 'Factora'; src: url('../../FACTORA-BOLD.OTF'); font-weight: bold; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .home-button {
+      font-family: 'Factora', Georgia, serif;
+      font-size: 0.9em;
+      color: #fff;
+      background: rgb(45, 44, 91);
+      padding: 9px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
     h1 { font-size: 1.8em; margin-bottom: 8px; }
     .switch { margin-bottom: 24px; font-size: 0.95em; }
     .switch a { color: rgb(45, 44, 91); }
@@ -64,7 +75,10 @@
   </style>
 </head>
 <body>
-  <h1>Посты в ФБ</h1>
+  <div class="topbar">
+    <h1>Посты в ФБ</h1>
+    <a class="home-button" href="https://www.adorelanguages.com">← На главную страницу</a>
+  </div>
   <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
 
   <div class="searchRow">
