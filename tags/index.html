@@ -33,15 +33,16 @@
   <h2>Facebook</h2>
   <div class="tagfreq" id="tagfreq-fb"></div>
 
-  <script>
-    async function loadAndRender() {
-      const response = await fetch('../links/fb/posts.json');
-      const posts = await response.json();
+  <h2>Сайт</h2>
+  <div class="tagfreq" id="tagfreq-site"></div>
 
+  <script>
+    function renderCounts(panelId, tagLists) {
       const counts = {};
-      posts.forEach(post => {
-        post.tags.forEach(tag => {
-          counts[tag] = (counts[tag] || 0) + 1;
+      tagLists.forEach(tags => {
+        tags.forEach(tag => {
+          const t = tag.toLowerCase();
+          counts[t] = (counts[t] || 0) + 1;
         });
       });
 
@@ -50,7 +51,7 @@
         return a[0].localeCompare(b[0], 'ru');
       });
 
-      const panel = document.getElementById('tagfreq-fb');
+      const panel = document.getElementById(panelId);
       panel.innerHTML = '';
       sorted.forEach(([tag, count]) => {
         const row = document.createElement('div');
@@ -60,7 +61,23 @@
       });
     }
 
-    loadAndRender();
+    async function loadFacebookTags() {
+      const response = await fetch('../links/fb/posts.json');
+      const posts = await response.json();
+      renderCounts('tagfreq-fb', posts.map(post => post.tags));
+    }
+
+    async function loadSiteTags() {
+      const response = await fetch('../links/site/');
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const items = doc.querySelectorAll('.item[data-tags]');
+      const tagLists = Array.from(items).map(item => item.dataset.tags.trim().split(/\s+/));
+      renderCounts('tagfreq-site', tagLists);
+    }
+
+    loadFacebookTags();
+    loadSiteTags();
   </script>
 </body>
 </html>
