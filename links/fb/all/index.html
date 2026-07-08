@@ -49,6 +49,28 @@
   }
   ul { padding-left: 20px; }
   h2 { margin: 0 0 8px; }
+
+  .letter-group { margin-top: 28px; }
+  .letter-group:first-of-type { margin-top: 12px; }
+
+  .letter-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Factora', Georgia, serif;
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-bottom: 8px;
+  }
+
+  .letter-group ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .letter-group li { margin-bottom: 4px; }
 </style>
 </head>
 
@@ -65,22 +87,61 @@
     <a href="/links/fb/all/" style="background: rgb(45,44,91); color: #fff;">Все посты</a>
   </div>
 
-  <ul id="post-list"></ul>
+  <div id="post-list"></div>
 
 </div>
 
 <script>
+  const ALPHABET = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+  const BADGE_COLORS = [
+    { bg: '#F4DBCE', text: 'rgb(45,44,91)' },   // 1: розовый
+    { bg: '#E9CEF2', text: 'rgb(45,44,91)' },   // 2: сиреневый
+    { bg: '#461359', text: 'rgb(129,239,135)' },// 3: тёмно-фиолетовый
+    { bg: '#F0F7CD', text: 'rgb(45,44,91)' }    // 4: светло-зелёный
+  ];
+
+  function colorForLetter(letter) {
+    const idx = ALPHABET.indexOf(letter);
+    const colorIndex = idx === -1 ? 0 : idx % 4;
+    return BADGE_COLORS[colorIndex];
+  }
+
   fetch('/links/fb/posts.json')
     .then(r => r.json())
     .then(posts => {
       posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
 
-      const ul = document.getElementById('post-list');
-
+      const groups = {};
       posts.forEach(p => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="/fb/${p.slug}/">${p.title}</a>`;
-        ul.appendChild(li);
+        const letter = p.title.trim()[0].toUpperCase();
+        if (!groups[letter]) groups[letter] = [];
+        groups[letter].push(p);
+      });
+
+      const container = document.getElementById('post-list');
+
+      Object.keys(groups).forEach(letter => {
+        const color = colorForLetter(letter);
+
+        const section = document.createElement('div');
+        section.className = 'letter-group';
+
+        const badge = document.createElement('div');
+        badge.className = 'letter-badge';
+        badge.textContent = letter;
+        badge.style.background = color.bg;
+        badge.style.color = color.text;
+        section.appendChild(badge);
+
+        const ul = document.createElement('ul');
+        groups[letter].forEach(p => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="/fb/${p.slug}/">${p.title}</a>`;
+          ul.appendChild(li);
+        });
+        section.appendChild(ul);
+
+        container.appendChild(section);
       });
     });
 </script>
