@@ -34,4 +34,74 @@
 
   .back {
     font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 13px
+    font-size: 13px;
+    color: #fff;
+    background: rgb(45,44,91);
+    padding: 9px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  img.post-img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  /* Новый переключатель */
+  .toggle {
+    margin: 24px 0 24px;
+    font-size: 0.95em;
+  }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: inline-block;
+  }
+  .toggle a:hover {
+    background: rgb(45,44,91);
+    color: white;
+  }
+
+  .tags { margin-bottom: 22px; display: none; }
+  .tags span {
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #d8d6e8;
+    color: rgb(45,44,91);
+    display: inline-block;
+    margin: 0 6px 6px 0;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <a class="back" href="https://www.adorelanguages.com">← На главную страницу</a>
+
+  <img class="post-img" src="/images/posts/azyibuki.png" alt="Азы и буки">
+
+  <!-- Новый переключатель вместо старой кнопки -->
+  <div class="toggle">
+    <a href="/links/site/">Поиск</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
+
+  <div class="tags">
+    <span>#азы</span><span>#аз</span><span>#буки</span><span>#алфавит</span><span>#азбука</span><span>#абевега</span><span>#словообразование</span><span>#происхождениеслов</span><span>#этимология</span><span>#русскийязык</span><span>#греческийалфавит</span>
+  </div>
+
+</div>
+</body>
+</html>
