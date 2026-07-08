@@ -89,7 +89,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1>Обзор постов в Фейсбуке</h1>
+    <h1>Обзор постов в Фейсбуке <span id="postCount"></span></h1>
     <a class="home-button" href="https://www.adorelanguages.com">
       <span class="arrow">←</span>На главную<br>страницу
     </a>
@@ -124,6 +124,9 @@
     .then(r => r.json())
     .then(posts => {
       posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
+
+      /* ⭐ Счётчик — как на /links/fb/ */
+      document.getElementById('postCount').textContent = `(${posts.length})`;
 
       const groups = {};
       posts.forEach(p => {
