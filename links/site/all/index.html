@@ -6,36 +6,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+  @font-face { font-family: 'Factora'; src: url('../../../FACTORA-REGULAR.OTF'); font-weight: normal; }
+  @font-face { font-family: 'Factora'; src: url('../../../FACTORA-BOLD.OTF'); font-weight: bold; }
+
   body {
-    font-family: -apple-system, Segoe UI, sans-serif;
-    background: #faf9f7;
-    color: #1f1e2e;
-    margin: 0;
-    padding: 32px 20px 60px;
+    font-family: 'Factora', Georgia, serif;
+    background: #ffffff;
+    color: rgb(45, 44, 91);
+    padding: 40px 20px;
   }
+
   .wrap { max-width: 640px; margin: 0 auto; }
-  a { color: rgb(45,44,91); text-decoration: none; }
-  .toggle { margin-bottom: 20px; }
+
+  h1 {
+    font-size: 1.8em;
+    font-family: 'Factora', Georgia, serif;
+    margin-bottom: 8px;
+  }
+
+  .toggle {
+    margin: 20px 0 24px;
+    font-size: 0.95em;
+  }
   .toggle a {
     padding: 8px 14px;
     border-radius: 999px;
-    border: 1px solid #d8d6e8;
+    border: 1px solid rgb(45, 44, 91);
     margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45, 44, 91);
     display: inline-block;
   }
+  .toggle a.active {
+    background: rgb(45, 44, 91);
+    color: white;
+  }
+
   ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  a { color: rgb(45, 44, 91); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
+  <h1 id="title">Все посты</h1>
+
   <div class="toggle">
     <a href="/links/site/">Поиск</a>
-    <a href="/links/site/all/" style="background: rgb(45,44,91); color: #fff;">Все посты</a>
+    <a href="/links/site/all/" class="active">Все посты</a>
   </div>
-
-  <h2>Все посты (алфавитный список)</h2>
 
   <ul id="post-list"></ul>
 
@@ -45,10 +67,16 @@
   fetch('/posts.json')
     .then(r => r.json())
     .then(posts => {
+      // сортировка по алфавиту
       posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
 
-      const ul = document.getElementById('post-list');
+      // динамический заголовок
+      const count = posts.length;
+      document.getElementById('title').textContent =
+        `Все посты (${count} по алфавиту)`;
 
+      // вывод списка
+      const ul = document.getElementById('post-list');
       posts.forEach(p => {
         const li = document.createElement('li');
         li.innerHTML = `<a href="/site/${p.slug}/">${p.title}</a>`;
