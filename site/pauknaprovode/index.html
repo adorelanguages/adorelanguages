@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <title>Паук на проводе — Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <meta name="description" content="ПАУК НА ПРОВОДЕ — На острове Норфолк, затерянном между Австралией и Новой Зеландией, живёт чуть больше двух тысяч человек. Предки многих из них – преступники, сосланные туда из Англии и Австралии. Из-за каторжного прошлого и повторяющихся имён и фамилий появилась традиция давать людям клички. В телефонной книге после имени в скобках указана кличка: Паук, Опоссум, Морковка, Радуга, Говядина.">
 
 <script type="application/ld+json">
@@ -12,7 +11,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Паук на проводе",
-  "description": "На острове Норфолк, затерянном между Австралией и Новой Зеландией, живёт чуть больше двух тысяч человек. Предки многих из них – преступники, сосланные туда из Англии и Австралии. Из-за каторжного прошлого и повторяющихся имён и фамилий появилась традиция давать людям клички. В телефонной книге после имени в скобках указана кличка: Паук, Опоссум, Морковка, Радуга, Говядина.",
+  "description": "На острове Норфолк, затерянном между Австралией и Новой Зеландией, живёт чуть больше двух тысяч человек. Предки многих из них – преступники, сосланные туда из Англии и Австралии. Из-за каторжного прошлого и повторяющихся имён и фамилий появилась традиция давать людям клички.",
   "image": "https://www.adorelanguages.com/images/posts/pauknaprovode.png",
   "keywords": "норфолк, норфолкский, клички, австралия, паук, говядина, креольскийязык, креольскиеязыки, норфолкскийязык, прозвища",
   "inLanguage": "ru",
@@ -54,6 +53,7 @@
     margin-bottom: 24px;
   }
 
+  /* Bullet list — единый стиль */
   ul.bullets {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     font-size: 15px;
@@ -63,8 +63,26 @@
     padding-left: 20px;
   }
 
-  .tags { margin-bottom: 22px; display: none; }
+  /* Переключатель */
+  .toggle {
+    margin: 24px 0 24px;
+    font-size: 0.95em;
+  }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: inline-block;
+  }
+  .toggle a:hover {
+    background: rgb(45,44,91);
+    color: white;
+  }
 
+  .tags { margin-bottom: 22px; display: none; }
   .tags span {
     font-family: -apple-system, Segoe UI, sans-serif;
     font-size: 12px;
@@ -98,6 +116,12 @@
 
     <li>Кроме английского, статус официального языка на острове имеет креольский язык, известный как норфолкский. Он возник в 1700-х годах как смесь английского и таитянского.</li>
   </ul>
+
+  <!-- Переключатель -->
+  <div class="toggle">
+    <a href="/links/site/">Поиск</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
 
   <div class="tags">
     <span>#норфолк</span><span>#норфолкский</span><span>#клички</span><span>#австралия</span><span>#паук</span><span>#говядина</span><span>#креольскийязык</span><span>#креольскиеязыки</span><span>#норфолкскийязык</span><span>#прозвища</span>
