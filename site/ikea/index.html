@@ -17,9 +17,11 @@
   "url": "https://www.adorelanguages.com/site/ikea/"
 }
 </script>
+
 <style>
   @font-face { font-family: 'Factora'; src: url('../../FACTORA-REGULAR.OTF'); font-weight: normal; }
   @font-face { font-family: 'Factora'; src: url('../../FACTORA-BOLD.OTF'); font-weight: bold; }
+
   body {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     background: #faf9f7;
@@ -27,7 +29,9 @@
     margin: 0;
     padding: 32px 20px 60px;
   }
+
   .wrap { max-width: 640px; margin: 0 auto; }
+
   .back {
     font-family: -apple-system, Segoe UI, sans-serif;
     font-size: 13px;
@@ -39,6 +43,7 @@
     display: inline-block;
     margin-bottom: 20px;
   }
+
   img.post-img {
     width: 100%;
     max-width: 420px;
@@ -46,6 +51,7 @@
     display: block;
     margin-bottom: 20px;
   }
+
   p.comment-text {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     font-size: 15px;
@@ -54,14 +60,26 @@
     font-style: italic;
     margin: 0 0 24px;
   }
-  .fb-link {
-    font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 13px;
-    color: rgb(45,44,91);
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 24px;
+
+  /* Новый переключатель */
+  .toggle {
+    margin: 24px 0 24px;
+    font-size: 0.95em;
   }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: inline-block;
+  }
+  .toggle a:hover {
+    background: rgb(45,44,91);
+    color: white;
+  }
+
   .tags { margin-bottom: 22px; display: none; }
   .tags span {
     font-family: -apple-system, Segoe UI, sans-serif;
@@ -75,21 +93,28 @@
   }
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
   <a class="back" href="https://www.adorelanguages.com">← На главную страницу</a>
 
   <img class="post-img" src="/images/posts/ikea.png" alt="ИКЕА – это акроним. Фирму в 1943 году основал 17-летний швед. Ингвар было его имя. Кампрад была его фамилия. Ельмтарюд – ферма его родителей. Агуннарюд – деревушка, где он вырос.">
 
-  <p class="comment-text">Вообще-то название фермы следовало бы писать через букву «Э»: Эльмтарюд. Но я здесь сохраняю верность принятому акрониму.</p>
+  <p class="comment-text">
+    Вообще-то название фермы следовало бы писать через букву «Э»: Эльмтарюд. Но я здесь сохраняю верность принятому акрониму.
+  </p>
 
-  <a class="fb-link" href="https://www.adorelanguages.com/links/site">
-    Искать другие посты на сайте
-  </a>
+  <!-- Новый переключатель -->
+  <div class="toggle">
+    <a href="/links/site/">Поиск</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
 
   <div class="tags">
     <span>#икеа</span><span>#бренды</span><span>#шведскиебренды</span><span>#историябрендов</span><span>#акронимы</span><span>#аббревиатуры</span><span>#акроним</span><span>#аббревиатура</span><span>#этимология</span><span>#происхождениеслов</span><span>#швеция</span>
   </div>
+
 </div>
 </body>
 </html>
