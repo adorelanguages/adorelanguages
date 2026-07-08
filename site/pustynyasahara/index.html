@@ -46,13 +46,23 @@
     display: block;
     margin-bottom: 20px;
   }
-  .fb-link {
-    font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 13px;
-    color: rgb(45,44,91);
+  /* Переключатель */
+  .toggle {
+    margin: 24px 0 24px;
+    font-size: 0.95em;
+  }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    margin-right: 10px;
     text-decoration: none;
+    color: rgb(45,44,91);
     display: inline-block;
-    margin-bottom: 24px;
+  }
+  .toggle a:hover {
+    background: rgb(45,44,91);
+    color: white;
   }
   .tags { margin-bottom: 22px; display: none; }
   .tags span {
@@ -73,9 +83,11 @@
 
   <img class="post-img" src="/images/posts/pustynyasahara.png" alt="«Пустыня Сахара» – это масло масляное. По-арабски уже само слово صحراء (произносится «сахрà») обозначает «пустыня».">
 
-  <a class="fb-link" href="https://www.adorelanguages.com/links/site">
-    Искать другие посты на сайте
-  </a>
+  <!-- Переключатель -->
+  <div class="toggle">
+    <a href="/links/site/">Поиск</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
 
   <div class="tags">
     <span>#сахара</span><span>#пустынясахара</span><span>#масломасляное</span><span>#арабский</span><span>#арабскийязык</span><span>#африка</span><span>#севернаяафрика</span><span>#топонимы</span>
