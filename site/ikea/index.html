@@ -49,19 +49,20 @@
     max-width: 420px;
     border-radius: 10px;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
-  p.comment-text {
+  /* Bullet list — единый стиль */
+  ul.bullets {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     font-size: 15px;
     line-height: 1.55;
-    color: #55536b;
-    font-style: italic;
-    margin: 0 0 24px;
+    color: #1f1e2e;
+    margin: 0 0 22px;
+    padding-left: 20px;
   }
 
-  /* Новый переключатель */
+  /* Переключатель */
   .toggle {
     margin: 24px 0 24px;
     font-size: 0.95em;
@@ -99,13 +100,14 @@
 
   <a class="back" href="https://www.adorelanguages.com">← На главную страницу</a>
 
-  <img class="post-img" src="/images/posts/ikea.png" alt="ИКЕА – это акроним. Фирму в 1943 году основал 17-летний швед. Ингвар было его имя. Кампрад была его фамилия. Ельмтарюд – ферма его родителей. Агуннарюд – деревушка, где он вырос.">
+  <img class="post-img" src="/images/posts/ikea.png" alt="ИКЕА – это акроним.">
 
-  <p class="comment-text">
-    Вообще-то название фермы следовало бы писать через букву «Э»: Эльмтарюд. Но я здесь сохраняю верность принятому акрониму.
-  </p>
+  <!-- Комментарий теперь bullet point -->
+  <ul class="bullets">
+    <li>Вообще-то название фермы следовало бы писать через букву «Э»: Эльмтарюд. Но я здесь сохраняю верность принятому акрониму.</li>
+  </ul>
 
-  <!-- Новый переключатель -->
+  <!-- Переключатель -->
   <div class="toggle">
     <a href="/links/site/">Поиск</a>
     <a href="/links/site/all/">Все посты</a>
