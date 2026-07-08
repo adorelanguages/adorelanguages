@@ -3,13 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Посты в ФБ</title>
+  <title>Посты в Фейсбуке</title>
+
   <style>
     @font-face { font-family: 'Factora'; src: url('../../FACTORA-REGULAR.OTF'); font-weight: normal; }
     @font-face { font-family: 'Factora'; src: url('../../FACTORA-BOLD.OTF'); font-weight: bold; }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
-    .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+
+    body {
+      font-family: 'Factora', Georgia, serif;
+      background: #ffffff;
+      color: rgb(45, 44, 91);
+      padding: 40px 20px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
     .home-button {
       font-family: 'Factora', Georgia, serif;
       font-size: 1em;
@@ -26,13 +41,28 @@
       flex-shrink: 0;
       white-space: nowrap;
     }
+
     .home-button .arrow { margin-right: 4px; }
-    h1 { font-size: 1.8em; display: inline; }
-    .count { font-size: 1em; font-weight: bold; color: rgb(45, 44, 91); }
+
+    /* Заголовок теперь многострочный */
+    h1 {
+      font-size: 1.8em;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .count {
+      font-size: 1em;
+      font-weight: bold;
+      color: rgb(45, 44, 91);
+    }
+
     .toggle {
       margin: 20px 0 24px;
       font-size: 0.95em;
     }
+
     .toggle a {
       padding: 8px 14px;
       border-radius: 999px;
@@ -42,50 +72,78 @@
       color: rgb(45, 44, 91);
       display: inline-block;
     }
+
     .toggle a.active {
       background: rgb(45, 44, 91);
       color: white;
     }
+
     input {
-      width: 100%; max-width: 600px; padding: 12px 16px;
-      font-size: 1em; border: 2px solid rgb(45, 44, 91);
-      border-radius: 8px; margin-bottom: 32px;
+      width: 100%;
+      max-width: 600px;
+      padding: 12px 16px;
+      font-size: 1em;
+      border: 2px solid rgb(45, 44, 91);
+      border-radius: 8px;
+      margin-bottom: 32px;
       font-family: 'Factora', Georgia, serif;
-      color: rgb(45, 44, 91); outline: none;
+      color: rgb(45, 44, 91);
+      outline: none;
     }
+
     .list { max-width: 600px; display: flex; flex-direction: column; gap: 2px; }
+
     .item {
-      display: flex; align-items: center; gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 7px 4px;
     }
+
     .bullet {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgb(45, 44, 91); flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgb(45, 44, 91);
+      flex-shrink: 0;
     }
+
     .item .title { flex: 1; font-size: 1em; }
     .item .title a { color: rgb(45, 44, 91); text-decoration: none; }
     .item .title a:hover { text-decoration: underline; }
+
     .copy-btn {
-      background: none; border: none; cursor: pointer;
-      font-size: 1.1em; color: rgb(45, 44, 91);
-      padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1em;
+      color: rgb(45, 44, 91);
+      padding: 4px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
     }
+
     .copy-btn:hover { background: rgb(244,244,255); }
+
     .hidden { display: none; }
+
     .searchRow {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 32px;
     }
+
     .searchRow input {
       margin-bottom: 0;
       flex: 1;
     }
+
     #clearFilter {
       display: none;
       margin: 0;
     }
+
     #clearFilter button {
       font-family: 'Factora', Georgia, serif;
       font-size: 1em;
@@ -97,16 +155,25 @@
       cursor: pointer;
       white-space: nowrap;
     }
+
     #clearFilter button:hover {
       background: rgb(45, 44, 91);
       color: white;
     }
   </style>
 </head>
+
 <body>
+
   <div class="topbar">
-    <h1>Посты в фейсбуке <span class="count" id="postCount"></span></h1>
-    <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
+    <h1>
+      Посты в<br>
+      фейсбуке <span class="count" id="postCount"></span>
+    </h1>
+
+    <a class="home-button" href="https://www.adorelanguages.com">
+      <span class="arrow">←</span>На главную<br>страницу
+    </a>
   </div>
 
   <div class="toggle">
@@ -188,5 +255,6 @@
 
     loadPosts();
   </script>
+
 </body>
 </html>
