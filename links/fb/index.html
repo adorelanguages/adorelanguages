@@ -27,10 +27,25 @@
       white-space: nowrap;
     }
     .home-button .arrow { margin-right: 4px; }
-    h1 { font-size: 1.8em; }
-    .count { font-size: 1.8em; font-weight: bold; color: rgb(45, 44, 91); margin-bottom: 8px; }
-    .switch { margin-bottom: 24px; font-size: 0.95em; }
-    .switch a { color: rgb(45, 44, 91); }
+    h1 { font-size: 1.8em; display: inline; }
+    .count { font-size: 1.8em; font-weight: bold; color: rgb(45, 44, 91); }
+    .toggle {
+      margin: 20px 0 24px;
+      font-size: 0.95em;
+    }
+    .toggle a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgb(45, 44, 91);
+      margin-right: 10px;
+      text-decoration: none;
+      color: rgb(45, 44, 91);
+      display: inline-block;
+    }
+    .toggle a.active {
+      background: rgb(45, 44, 91);
+      color: white;
+    }
     input {
       width: 100%; max-width: 600px; padding: 12px 16px;
       font-size: 1em; border: 2px solid rgb(45, 44, 91);
@@ -90,13 +105,14 @@
 </head>
 <body>
   <div class="topbar">
-    <div>
-      <h1>Посты в Фейсбуке</h1>
-      <p class="count" id="postCount"></p>
-    </div>
+    <h1>Посты в Фейсбуке <span class="count" id="postCount"></span></h1>
     <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
-  <p class="switch">→ <a href="/links/site">Посмотреть посты на сайте</a></p>
+
+  <div class="toggle">
+    <a href="/links/fb/" class="active">Поиск</a>
+    <a href="/links/fb/all/">Все посты</a>
+  </div>
 
   <div class="searchRow">
     <input type="text" id="search" placeholder="Поиск по тегам или названию..." oninput="filter()">
