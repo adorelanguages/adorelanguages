@@ -25,7 +25,9 @@
       flex-shrink: 0;
       white-space: nowrap;
     }
-    h1 { font-size: 1.8em; margin-bottom: 8px; }
+    .home-button .arrow { margin-right: 4px; }
+    h1 { font-size: 1.8em; }
+    .count { font-size: 0.95em; color: rgb(45, 44, 91); opacity: 0.7; margin-bottom: 8px; }
     .switch { margin-bottom: 24px; font-size: 0.95em; }
     .switch a { color: rgb(45, 44, 91); }
     input {
@@ -88,8 +90,11 @@
 </head>
 <body>
   <div class="topbar">
-    <h1>Посты на сайте</h1>
-    <a class="home-button" href="https://www.adorelanguages.com">← На главную<br>страницу</a>
+    <div>
+      <h1>Посты на сайте</h1>
+      <p class="count" id="postCount"></p>
+    </div>
+    <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
   <p class="switch">→ <a href="/links/fb">Посмотреть посты в Фейсбуке</a></p>
 
@@ -109,6 +114,7 @@
     async function loadPosts() {
       const response = await fetch('./posts.json');
       allPosts = await response.json();
+      document.getElementById('postCount').textContent = `(${allPosts.length})`;
       renderPosts();
     }
 
