@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.adorelanguages.com/</loc>
+  </url>
+
+  <!-- Catalog pages -->
+  <url>
+    <loc>https://www.adorelanguages.com/links/site/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/tags/</loc>
+  </url>
+
+  <!-- Site posts -->
+  <url>
+    <loc>https://www.adorelanguages.com/site/vodava/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/veterinirovat/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/azyibuki/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/pryamikom/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/verlan/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/navajo/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/site/pauknaprovode/</loc>
+  </url>
+
+  <!-- Facebook redirect pages -->
+  <url>
+    <loc>https://www.adorelanguages.com/fb/vodava/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/veterinirovat/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/azyibuki/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/pryamikom/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/verlan/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/navajo/</loc>
+  </url>
+  <url>
+    <loc>https://www.adorelanguages.com/fb/pauknaprovode/</loc>
+  </url>
+
+</urlset>
