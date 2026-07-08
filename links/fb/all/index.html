@@ -42,7 +42,7 @@
 </div>
 
 <script>
-  fetch('/posts.json')
+  fetch('/links/fb/posts.json')
     .then(r => r.json())
     .then(posts => {
       posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));

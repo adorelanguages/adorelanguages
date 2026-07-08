@@ -149,7 +149,7 @@
     let allPosts = [];
 
     async function loadPosts() {
-      const response = await fetch('/posts.json');
+      const response = await fetch('./posts.json');
       allPosts = await response.json();
       document.getElementById('postCount').textContent = `(${allPosts.length})`;
       renderPosts();
