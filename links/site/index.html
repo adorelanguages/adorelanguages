@@ -9,7 +9,9 @@
     @font-face { font-family: 'Factora'; src: url('../../FACTORA-BOLD.OTF'); font-weight: bold; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Factora', Georgia, serif; background: #ffffff; color: rgb(45, 44, 91); padding: 40px 20px; }
+
     .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+
     .home-button {
       font-family: 'Factora', Georgia, serif;
       font-size: 1em;
@@ -27,10 +29,29 @@
       white-space: nowrap;
     }
     .home-button .arrow { margin-right: 4px; }
+
     h1 { font-size: 1.8em; }
     .count { font-size: 1.8em; font-weight: bold; color: rgb(45, 44, 91); margin-bottom: 8px; }
-    .switch { margin-bottom: 24px; font-size: 0.95em; }
-    .switch a { color: rgb(45, 44, 91); }
+
+    /* Переключатель */
+    .toggle {
+      margin: 20px 0 24px;
+      font-size: 0.95em;
+    }
+    .toggle a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgb(45, 44, 91);
+      margin-right: 10px;
+      text-decoration: none;
+      color: rgb(45, 44, 91);
+      display: inline-block;
+    }
+    .toggle a.active {
+      background: rgb(45, 44, 91);
+      color: white;
+    }
+
     input {
       width: 100%; max-width: 600px; padding: 12px 16px;
       font-size: 1em; border: 2px solid rgb(45, 44, 91);
@@ -38,25 +59,32 @@
       font-family: 'Factora', Georgia, serif;
       color: rgb(45, 44, 91); outline: none;
     }
+
     .list { max-width: 600px; display: flex; flex-direction: column; gap: 2px; }
+
     .item {
       display: flex; align-items: center; gap: 10px;
       padding: 7px 4px;
     }
+
     .bullet {
       width: 6px; height: 6px; border-radius: 50%;
       background: rgb(45, 44, 91); flex-shrink: 0;
     }
+
     .item .title { flex: 1; font-size: 1em; }
     .item .title a { color: rgb(45, 44, 91); text-decoration: none; }
     .item .title a:hover { text-decoration: underline; }
+
     .copy-btn {
       background: none; border: none; cursor: pointer;
       font-size: 1.1em; color: rgb(45, 44, 91);
       padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
     }
     .copy-btn:hover { background: rgb(244,244,255); }
+
     .hidden { display: none; }
+
     .searchRow {
       display: flex;
       align-items: center;
@@ -67,6 +95,7 @@
       margin-bottom: 0;
       flex: 1;
     }
+
     #clearFilter {
       display: none;
       margin: 0;
@@ -86,9 +115,11 @@
       background: rgb(45, 44, 91);
       color: white;
     }
+
     .empty-note { font-size: 0.9em; color: #888; margin-top: 12px; }
   </style>
 </head>
+
 <body>
   <div class="topbar">
     <div>
@@ -97,6 +128,13 @@
     </div>
     <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
+
+  <!-- Переключатель -->
+  <div class="toggle">
+    <a href="/links/site/" class="active">Поиск</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
+
   <p class="switch">→ <a href="/links/fb">Посмотреть посты в Фейсбуке</a></p>
 
   <div class="searchRow">
@@ -113,7 +151,7 @@
     let allPosts = [];
 
     async function loadPosts() {
-      const response = await fetch('./posts.json');
+      const response = await fetch('/posts.json');
       allPosts = await response.json();
       document.getElementById('postCount').textContent = `(${allPosts.length})`;
       renderPosts();
@@ -133,7 +171,7 @@
         item.dataset.tags = post.tags.join(' ');
         item.dataset.title = post.title.toLowerCase();
 
-        const url = `https://adorelanguages.com/site/${post.slug}`;
+        const url = `https://adorelanguages.com/site/${post.slug}/`;
 
         item.innerHTML = `
           <span class="bullet"></span>
