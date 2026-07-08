@@ -64,18 +64,15 @@
 </div>
 
 <script>
-  fetch('/posts.json')
+  fetch('/links/site/posts.json')
     .then(r => r.json())
     .then(posts => {
-      // сортировка по алфавиту
       posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
 
-      // динамический заголовок
       const count = posts.length;
       document.getElementById('title').textContent =
         `Все посты (${count} по алфавиту)`;
 
-      // вывод списка
       const ul = document.getElementById('post-list');
       posts.forEach(p => {
         const li = document.createElement('li');
