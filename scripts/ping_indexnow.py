@@ -33,11 +33,7 @@ def load_slugs(posts_json_path):
 
 def build_url_list():
     site_slugs = load_slugs(ROOT / "links/site/posts.json")
-    fb_slugs = load_slugs(ROOT / "links/fb/posts.json")
-
-    urls = [f"{BASE}/site/{slug}/" for slug in site_slugs]
-    urls += [f"{BASE}/fb/{slug}/" for slug in fb_slugs]
-    return urls
+    return [f"{BASE}/site/{slug}/" for slug in site_slugs]
 
 
 def ping_indexnow(urls):

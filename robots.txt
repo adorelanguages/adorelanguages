@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /fb/
 
 Sitemap: https://www.adorelanguages.com/sitemap.xml

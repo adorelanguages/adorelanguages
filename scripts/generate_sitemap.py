@@ -28,7 +28,6 @@ def load_slugs(posts_json_path):
 
 def build_sitemap():
     site_slugs = load_slugs(ROOT / "links/site/posts.json")
-    fb_slugs = load_slugs(ROOT / "links/fb/posts.json")
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -45,10 +44,6 @@ def build_sitemap():
     lines += ["", "  <!-- Site posts -->"]
     for slug in site_slugs:
         lines.append(f"  <url>\n    <loc>{BASE}/site/{slug}/</loc>\n  </url>")
-
-    lines += ["", "  <!-- Facebook redirect pages -->"]
-    for slug in fb_slugs:
-        lines.append(f"  <url>\n    <loc>{BASE}/fb/{slug}/</loc>\n  </url>")
 
     lines += ["", "</urlset>", ""]
     return "\n".join(lines)
