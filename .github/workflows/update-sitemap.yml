@@ -32,12 +32,12 @@ jobs:
 
       - name: Commit changes if any
         run: |
-          if git diff --quiet -- sitemap.xml; then
-            echo "sitemap.xml unchanged, nothing to commit."
+          if git diff --quiet -- sitemap.xml scripts/.indexnow_state.json; then
+            echo "Nothing to commit."
           else
             git config user.name "sitemap-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add sitemap.xml
-            git commit -m "Auto-update sitemap.xml"
+            git add sitemap.xml scripts/.indexnow_state.json
+            git commit -m "Auto-update sitemap.xml and IndexNow state"
             git push
           fi
