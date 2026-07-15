@@ -31,6 +31,12 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px;
       font-size: 0.9em;
+      text-decoration: none;
+      color: inherit;
+    }
+    .tagrow:hover {
+      background: rgb(244,244,255);
+      border-color: rgb(45, 44, 91);
     }
     .tagrow .name::before { content: "#"; color: #888; }
     .tagrow .count {
@@ -59,7 +65,7 @@
   </div>
 
   <script>
-    function renderCounts(panelId, tagLists) {
+    function renderCounts(panelId, tagLists, baseUrl) {
       const counts = {};
       tagLists.forEach(tags => {
         tags.forEach(tag => {
@@ -76,8 +82,9 @@
       const panel = document.getElementById(panelId);
       panel.innerHTML = '';
       sorted.forEach(([tag, count]) => {
-        const row = document.createElement('div');
+        const row = document.createElement('a');
         row.className = 'tagrow';
+        row.href = `${baseUrl}?tag=${encodeURIComponent(tag)}`;
         row.innerHTML = `<span class="name">${tag}</span><span class="count">${count}</span>`;
         panel.appendChild(row);
       });
@@ -86,13 +93,13 @@
     async function loadFacebookTags() {
       const response = await fetch('../links/fb/posts.json');
       const posts = await response.json();
-      renderCounts('tagfreq-fb', posts.map(post => post.tags));
+      renderCounts('tagfreq-fb', posts.map(post => post.tags), '/links/fb/');
     }
 
     async function loadSiteTags() {
       const response = await fetch('../links/site/posts.json');
       const posts = await response.json();
-      renderCounts('tagfreq-site', posts.map(post => post.tags));
+      renderCounts('tagfreq-site', posts.map(post => post.tags), '/links/site/');
     }
 
     loadFacebookTags();

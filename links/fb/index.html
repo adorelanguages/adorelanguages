@@ -253,7 +253,14 @@
       });
     }
 
-    loadPosts();
+    loadPosts().then(() => {
+      const params = new URLSearchParams(location.search);
+      const tag = params.get('tag');
+      if (tag) {
+        document.getElementById('search').value = tag;
+        filter();
+      }
+    });
   </script>
 
 </body>
