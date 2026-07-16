@@ -19,6 +19,10 @@
     "title": "Языки",
     "slugs": ["sorbskiy", "shiptarskiy"]
   },
+  "illyustraciiayu": {
+    "title": "Иллюстрации Анны Юдиной",
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi"]
+  },
   "idiomy": {
     "title": "Идиомы",
     "languages": {
