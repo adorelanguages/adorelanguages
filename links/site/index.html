@@ -117,6 +117,22 @@
     }
 
     .empty-note { font-size: 0.9em; color: #888; margin-top: 12px; }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 26px;
+    }
+    .sections a {
+      font-family: 'Factora', Georgia, serif;
+      font-size: 0.95em;
+      padding: 10px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: rgb(45,44,91);
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -140,6 +156,15 @@
     <p id="clearFilter">
       <button type="button" onclick="clearFilter()">✖ Сбросить фильтр</button>
     </p>
+  </div>
+
+  <div class="sections">
+    <a href="/links/site/section/brendy/" style="background:#F4DBCE;">Бренды</a>
+    <a href="/links/site/section/idiomy/" style="background:#E9CEF2;">Идиомы</a>
+    <a href="/links/site/section/osobyeslova/" style="background:#461359; color:rgb(129,239,135);">Особые слова</a>
+    <a href="/links/site/section/strany/" style="background:#F0F7CD;">Страны</a>
+    <a href="/links/site/section/etimologiya/" style="background:#F4DBCE;">Этимология</a>
+    <a href="/links/site/section/yazyki/" style="background:#E9CEF2;">Языки</a>
   </div>
 
   <div class="list" id="list"></div>

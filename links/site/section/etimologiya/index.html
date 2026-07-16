@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Этимология — Обожаю Языки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-BOLD.OTF'); font-weight: bold; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Factora', Georgia, serif;
+    background: #ffffff;
+    color: rgb(45, 44, 91);
+    padding: 40px 20px;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+
+  .home-button {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: #fff;
+    background: rgb(45, 44, 91);
+    padding: 14px 10px;
+    border-radius: 18px;
+    text-decoration: none;
+    display: inline-block;
+    width: 130px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.3;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .home-button .arrow { margin-right: 4px; }
+
+  h1 {
+    font-size: 1.8em;
+    font-family: 'Factora', Georgia, serif;
+    margin: 0 0 8px;
+  }
+
+  .toggle {
+    margin: 20px 0 24px;
+    font-size: 0.95em;
+  }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45, 44, 91);
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45, 44, 91);
+    display: inline-block;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .card {
+    text-decoration: none;
+    color: rgb(45, 44, 91);
+    display: block;
+  }
+
+  .card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    background: #f2f1f8;
+    box-shadow: 0 2px 6px rgba(45, 44, 91, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(45, 44, 91, 0.25);
+  }
+
+  .empty {
+    font-size: 0.95em;
+    opacity: 0.7;
+    margin-top: 20px;
+  }
+
+  .to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgb(45, 44, 91);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(45, 44, 91, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <h1 id="title">Этимология</h1>
+    <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
+  </div>
+
+  <div class="toggle">
+    <a href="/links/site/">← Все разделы</a>
+    <a href="/links/site/all/">Все посты</a>
+  </div>
+
+  <div class="grid" id="post-grid"></div>
+  <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов — скоро появятся!</p>
+
+</div>
+
+<a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
+
+<script>
+  const toTopBtn = document.getElementById('to-top');
+  window.addEventListener('scroll', () => {
+    toTopBtn.classList.toggle('visible', window.scrollY > 300);
+  });
+  toTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<script>
+  const COLOR_ORDER = ['pink', 'lilac', 'blue', 'green'];
+
+  function colorRespectingShuffle(posts) {
+    const buckets = { pink: [], lilac: [], blue: [], green: [] };
+    posts.forEach(p => buckets[p.bg].push(p));
+    Object.values(buckets).forEach(arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    });
+    const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
+    const result = [];
+    let colorIdx = 0;
+    let remaining = posts.length;
+    while (remaining > 0) {
+      let placed = false;
+      for (let attempt = 0; attempt < 4; attempt++) {
+        const color = COLOR_ORDER[colorIdx % 4];
+        colorIdx++;
+        if (pointers[color] < buckets[color].length) {
+          result.push(buckets[color][pointers[color]++]);
+          remaining--;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) break;
+    }
+    return result;
+  }
+
+  Promise.all([
+    fetch('/links/site/sections.json').then(r => r.json()),
+    fetch('/links/site/posts.json').then(r => r.json())
+  ]).then(([sections, allPosts]) => {
+    const section = sections['etimologiya'];
+    const slugs = section.slugs || [];
+    const posts = allPosts.filter(p => slugs.includes(p.slug));
+
+    document.getElementById('title').textContent = `Этимология (${posts.length})`;
+
+    if (posts.length === 0) {
+      document.getElementById('empty-msg').style.display = 'block';
+      return;
+    }
+
+    const ordered = colorRespectingShuffle(posts);
+    const grid = document.getElementById('post-grid');
+    ordered.forEach(p => {
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = `/site/${p.slug}/`;
+      card.innerHTML = `<img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">`;
+      grid.appendChild(card);
+    });
+  });
+</script>
+
+</body>
+</html>

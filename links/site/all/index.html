@@ -94,10 +94,7 @@
   }
 
   .card .title {
-    margin-top: 8px;
-    font-size: 0.95em;
-    text-align: center;
-    line-height: 1.25;
+    display: none;
   }
 
   .to-top {
@@ -159,24 +156,53 @@
 </script>
 
 <script>
+  const COLOR_ORDER = ['pink', 'lilac', 'blue', 'green'];
+
+  function colorRespectingShuffle(posts) {
+    const buckets = { pink: [], lilac: [], blue: [], green: [] };
+    posts.forEach(p => buckets[p.bg].push(p));
+    Object.values(buckets).forEach(arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    });
+    const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
+    const result = [];
+    let colorIdx = 0;
+    let remaining = posts.length;
+    while (remaining > 0) {
+      let placed = false;
+      for (let attempt = 0; attempt < 4; attempt++) {
+        const color = COLOR_ORDER[colorIdx % 4];
+        colorIdx++;
+        if (pointers[color] < buckets[color].length) {
+          result.push(buckets[color][pointers[color]++]);
+          remaining--;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) break;
+    }
+    return result;
+  }
+
   fetch('/links/site/posts.json')
     .then(r => r.json())
     .then(posts => {
-      posts.sort((a, b) => a.title.localeCompare(b.title, 'ru'));
+      const ordered = colorRespectingShuffle(posts);
 
       const count = posts.length;
       document.getElementById('title').textContent =
         `Все посты на сайте (${count})`;
 
       const grid = document.getElementById('post-grid');
-      posts.forEach(p => {
+      ordered.forEach(p => {
         const card = document.createElement('a');
         card.className = 'card';
         card.href = `/site/${p.slug}/`;
-        card.innerHTML = `
-          <img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">
-          <div class="title">${p.title}</div>
-        `;
+        card.innerHTML = `<img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">`;
         grid.appendChild(card);
       });
     });

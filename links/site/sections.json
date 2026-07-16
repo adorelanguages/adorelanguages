@@ -1,0 +1,35 @@
+{
+  "brendy": {
+    "title": "Бренды",
+    "slugs": ["adik", "dublbukva", "ikea", "krossulya", "pryamikom", "spam"]
+  },
+  "osobyeslova": {
+    "title": "Особые слова",
+    "slugs": ["verlan", "babushkatsia", "veterinirovat"]
+  },
+  "strany": {
+    "title": "Страны",
+    "slugs": ["latinskayashveytsariya"]
+  },
+  "etimologiya": {
+    "title": "Этимология",
+    "slugs": []
+  },
+  "yazyki": {
+    "title": "Языки",
+    "slugs": ["sorbskiy", "shiptarskiy"]
+  },
+  "idiomy": {
+    "title": "Идиомы",
+    "languages": {
+      "английский": ["divannayakartoshka", "pryamikom", "bazovyymyach"],
+      "испанский": ["zabiratvolosy"],
+      "итальянский": ["dvuhnezaitsev", "udachi"],
+      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat"],
+      "норвежский": ["dvuhnezaitsev"],
+      "польский": ["dvuhnezaitsev"],
+      "турецкий": ["dvuhnezaitsev"],
+      "французский": ["kakashektebe"]
+    }
+  }
+}
