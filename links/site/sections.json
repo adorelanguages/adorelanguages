@@ -21,7 +21,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel"]
   },
   "lingvistika": {
     "title": "Лингвистика",
@@ -33,7 +33,7 @@
       "английский": ["divannayakartoshka", "pryamikom", "bazovyymyach"],
       "испанский": ["zabiratvolosy"],
       "итальянский": ["dvuhnezaitsev", "udachi"],
-      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka"],
+      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel"],
       "норвежский": ["dvuhnezaitsev"],
       "польский": ["dvuhnezaitsev"],
       "турецкий": ["dvuhnezaitsev"],
