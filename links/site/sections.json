@@ -5,7 +5,7 @@
   },
   "osobyeslova": {
     "title": "Особые слова",
-    "slugs": ["verlan", "babushkatsia", "veterinirovat"]
+    "slugs": ["verlan", "babushkatsia", "veterinirovat", "komi"]
   },
   "strany": {
     "title": "Страны",
@@ -17,7 +17,7 @@
   },
   "yazyki": {
     "title": "Языки",
-    "slugs": ["sorbskiy", "shiptarskiy"]
+    "slugs": ["sorbskiy", "shiptarskiy", "komi"]
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
