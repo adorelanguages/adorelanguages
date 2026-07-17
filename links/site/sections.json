@@ -27,6 +27,10 @@
     "title": "Лингвистика",
     "slugs": ["retronimy"]
   },
+  "igraslov": {
+    "title": "Игра слов",
+    "slugs": ["bessmyslitsa"]
+  },
   "idiomy": {
     "title": "Идиомы",
     "languages": {
