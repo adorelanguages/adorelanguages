@@ -47,7 +47,7 @@
   }
 
   .toggle {
-    margin: 20px 0 24px;
+    margin: 20px 0 16px;
     font-size: 0.95em;
   }
   .toggle a {
@@ -60,30 +60,54 @@
     display: inline-block;
   }
 
-  .lang-list {
+  .languages {
+    margin: 0 0 24px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 320px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .languages button {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.9em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45, 44, 91);
+    background: #fff;
+    color: rgb(45, 44, 91);
+    cursor: pointer;
+  }
+  .languages button.active {
+    background: rgb(45, 44, 91);
+    color: #fff;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
     margin-top: 8px;
   }
 
-  .lang-list a {
-    font-family: 'Factora', Georgia, serif;
-    font-size: 1.05em;
-    font-weight: bold;
+  .card {
     text-decoration: none;
-    padding: 14px 22px;
-    border-radius: 999px;
-    text-align: center;
+    color: rgb(45, 44, 91);
     display: block;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 2px 6px rgba(45, 44, 91, 0.12);
   }
 
-  .lang-list a:hover {
+  .card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    background: #f2f1f8;
+    box-shadow: 0 2px 6px rgba(45, 44, 91, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .card:hover img {
     transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(45, 44, 91, 0.2);
+    box-shadow: 0 4px 12px rgba(45, 44, 91, 0.25);
   }
 
   .empty {
@@ -133,8 +157,10 @@
     <a href="/links/site/all/">Все посты</a>
   </div>
 
-  <div class="lang-list" id="lang-list"></div>
-  <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет языков — скоро появятся!</p>
+  <div class="languages" id="languages"></div>
+
+  <div class="grid" id="post-grid"></div>
+  <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
 
 </div>
 
@@ -152,38 +178,103 @@
 </script>
 
 <script>
-  const BADGE_COLORS = [
-    { bg: '#F4DBCE', text: 'rgb(45,44,91)' },
-    { bg: '#E9CEF2', text: 'rgb(45,44,91)' },
-    { bg: '#461359', text: 'rgb(129,239,135)' },
-    { bg: '#F0F7CD', text: 'rgb(45,44,91)' }
-  ];
+  const COLOR_ORDER = ['pink', 'lilac', 'blue', 'green'];
 
-  fetch('/links/site/sections.json')
-    .then(r => r.json())
-    .then(sections => {
-      const languages = sections.yazyki.languages || {};
-      const langNames = Object.keys(languages).sort((a, b) => a.localeCompare(b, 'ru'));
-
-      document.getElementById('title').textContent = `Языки (${langNames.length})`;
-
-      const list = document.getElementById('lang-list');
-      document.getElementById('empty-msg').style.display = langNames.length === 0 ? 'block' : 'none';
-
-      langNames.forEach((lang, i) => {
-        const slugs = languages[lang];
-        if (!slugs || !slugs.length) return;
-        const color = BADGE_COLORS[i % 4];
-
-        const a = document.createElement('a');
-        a.href = `/site/${slugs[0]}/`;
-        a.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-        a.style.background = color.bg;
-        a.style.color = color.text;
-
-        list.appendChild(a);
-      });
+  function colorRespectingShuffle(posts) {
+    const buckets = { pink: [], lilac: [], blue: [], green: [] };
+    posts.forEach(p => buckets[p.bg].push(p));
+    Object.values(buckets).forEach(arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
     });
+    const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
+    const result = [];
+    let colorIdx = 0;
+    let remaining = posts.length;
+    while (remaining > 0) {
+      let placed = false;
+      for (let attempt = 0; attempt < 4; attempt++) {
+        const color = COLOR_ORDER[colorIdx % 4];
+        colorIdx++;
+        if (pointers[color] < buckets[color].length) {
+          result.push(buckets[color][pointers[color]++]);
+          remaining--;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) break;
+    }
+    return result;
+  }
+
+  let LANGUAGES = {};
+  let ALL_POSTS = [];
+
+  function renderGrid(lang) {
+    let slugs;
+    if (lang && LANGUAGES[lang]) {
+      slugs = LANGUAGES[lang];
+    } else {
+      slugs = [...new Set(Object.values(LANGUAGES).flat())];
+    }
+    const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
+
+    document.getElementById('title').textContent =
+      lang ? `Языки: ${lang} (${posts.length})` : `Языки (${posts.length})`;
+
+    const grid = document.getElementById('post-grid');
+    grid.innerHTML = '';
+    document.getElementById('empty-msg').style.display = posts.length === 0 ? 'block' : 'none';
+
+    const ordered = colorRespectingShuffle(posts);
+    ordered.forEach(p => {
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = `/site/${p.slug}/`;
+      card.innerHTML = `<img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">`;
+      grid.appendChild(card);
+    });
+  }
+
+  Promise.all([
+    fetch('/links/site/sections.json').then(r => r.json()),
+    fetch('/links/site/posts.json').then(r => r.json())
+  ]).then(([sections, allPosts]) => {
+    LANGUAGES = sections.yazyki.languages;
+    ALL_POSTS = allPosts;
+
+    const langNames = Object.keys(LANGUAGES).sort((a, b) => a.localeCompare(b, 'ru'));
+    const params = new URLSearchParams(location.search);
+    const currentLang = params.get('lang');
+
+    const langContainer = document.getElementById('languages');
+    langNames.forEach(lang => {
+      const btn = document.createElement('button');
+      btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
+      if (lang === currentLang) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        const url = new URL(location.href);
+        if (btn.classList.contains('active')) {
+          btn.classList.remove('active');
+          url.searchParams.delete('lang');
+          history.pushState({}, '', url);
+          renderGrid(null);
+        } else {
+          [...langContainer.children].forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          url.searchParams.set('lang', lang);
+          history.pushState({}, '', url);
+          renderGrid(lang);
+        }
+      });
+      langContainer.appendChild(btn);
+    });
+
+    renderGrid(currentLang);
+  });
 </script>
 
 </body>
