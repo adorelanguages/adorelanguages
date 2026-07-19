@@ -128,6 +128,33 @@
   .related a {
     color: rgb(45,44,91);
   }
+
+  .answer-spoiler {
+    margin: 0 0 22px;
+    border: 1px solid rgb(45,44,91);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .answer-spoiler summary {
+    cursor: pointer;
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(45,44,91);
+    list-style: none;
+  }
+  .answer-spoiler summary::-webkit-details-marker {
+    display: none;
+  }
+  .answer-spoiler summary::after {
+    content: ' \25BE';
+  }
+  .answer-spoiler[open] summary::after {
+    content: ' \25B4';
+  }
+  .answer-spoiler ul.bullets {
+    margin: 12px 0 0;
+  }
 </style>
 </head>
 
@@ -138,7 +165,13 @@
 
   <img class="post-img" src="/images/posts/zagadkasuahili2.png" alt="Загадка суахили-2 — лингвистическая головоломка про даты на суахили">
 
-  <!-- Нет комментария — SEO‑текст скрыт -->
+  <details class="answer-spoiler">
+    <summary>Показать правильные ответы</summary>
+    <ul class="bullets">
+      <li>3 апреля, среда – tarehe tatu Aprili jumatano</li>
+      <li>2 декабря, воскресенье – tarehe pili Disemba jumapili</li>
+    </ul>
+  </details>
 
   <!--SECTIONS-->
 
