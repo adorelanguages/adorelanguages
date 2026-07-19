@@ -27,7 +27,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob"]
   },
   "lingvistika": {
     "title": "Лингвистика",
@@ -47,6 +47,7 @@
       "норвежский": ["dvuhnezaitsev"],
       "польский": ["dvuhnezaitsev"],
       "турецкий": ["dvuhnezaitsev", "tseluyu"],
+      "финский": ["mozgivgarderob"],
       "французский": ["kakashektebe"]
     }
   }
