@@ -41,6 +41,10 @@
     "title": "Игра слов",
     "slugs": ["bessmyslitsa"]
   },
+  "zagadki": {
+    "title": "Загадки",
+    "slugs": ["zagadkasuahili2"]
+  },
   "idiomy": {
     "title": "Идиомы",
     "languages": {
