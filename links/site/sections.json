@@ -25,7 +25,7 @@
     "languages": {
       "албанский": ["shiptarskiy"],
       "армянский": ["armyanktuaciya"],
-      "венгерский": ["trisobaka"],
+      "венгерский": ["trisobaka", "glazzakroy"],
       "коми": ["komi"],
       "сербский": ["srpskopismo"],
       "сорбский": ["sorbskiy"],
@@ -34,7 +34,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy"]
   },
   "lingvistika": {
     "title": "Лингвистика",
