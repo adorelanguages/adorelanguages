@@ -9,7 +9,10 @@
   },
   "strany": {
     "title": "Страны",
-    "slugs": ["latinskayashveytsariya"]
+    "languages": {
+      "сша": ["ulitsyssha"],
+      "швейцария": ["latinskayashveytsariya"]
+    }
   },
   "etimologiya": {
     "title": "Этимология",
