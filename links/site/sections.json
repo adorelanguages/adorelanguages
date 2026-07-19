@@ -21,7 +21,8 @@
       "албанский": ["shiptarskiy"],
       "венгерский": ["trisobaka"],
       "коми": ["komi"],
-      "сорбский": ["sorbskiy"]
+      "сорбский": ["sorbskiy"],
+      "чешский": ["zabavlyadlo"]
     }
   },
   "illyustraciiayu": {
@@ -45,7 +46,7 @@
       "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel"],
       "норвежский": ["dvuhnezaitsev"],
       "польский": ["dvuhnezaitsev"],
-      "турецкий": ["dvuhnezaitsev"],
+      "турецкий": ["dvuhnezaitsev", "tseluyu"],
       "французский": ["kakashektebe"]
     }
   }
