@@ -133,20 +133,12 @@
 <a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
 
 <script>
-  const ALPHABET = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
-
   const BADGE_COLORS = [
     { bg: '#F4DBCE', text: 'rgb(45,44,91)' },
     { bg: '#E9CEF2', text: 'rgb(45,44,91)' },
     { bg: '#461359', text: 'rgb(129,239,135)' },
     { bg: '#F0F7CD', text: 'rgb(45,44,91)' }
   ];
-
-  function colorForLetter(letter) {
-    const idx = ALPHABET.indexOf(letter);
-    const colorIndex = idx === -1 ? 0 : idx % 4;
-    return BADGE_COLORS[colorIndex];
-  }
 
   fetch('/links/fb/posts.json')
     .then(r => r.json())
@@ -165,8 +157,10 @@
 
       const container = document.getElementById('post-list');
 
-      Object.keys(groups).forEach(letter => {
-        const color = colorForLetter(letter);
+      const presentLetters = Object.keys(groups).sort((a, b) => a.localeCompare(b, 'ru'));
+
+      presentLetters.forEach((letter, i) => {
+        const color = BADGE_COLORS[i % 4];
 
         const section = document.createElement('div');
         section.className = 'letter-group';
