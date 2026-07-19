@@ -17,7 +17,12 @@
   },
   "yazyki": {
     "title": "Языки",
-    "slugs": ["sorbskiy", "shiptarskiy", "komi"]
+    "languages": {
+      "албанский": ["shiptarskiy"],
+      "венгерский": ["trisobaka"],
+      "коми": ["komi"],
+      "сорбский": ["sorbskiy"]
+    }
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
