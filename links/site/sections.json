@@ -38,7 +38,7 @@
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota"]
+    "slugs": ["retronimy", "subbochayarabota", "pangramma"]
   },
   "igraslov": {
     "title": "Игра слов",
