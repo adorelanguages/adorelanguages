@@ -11,13 +11,14 @@
     "title": "Страны",
     "languages": {
       "США": ["ulitsyssha"],
+      "ирландия": ["prostoirlandtsy"],
       "туркменистан": ["turkmenskie"],
       "швейцария": ["latinskayashveytsariya"]
     }
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho"]
+    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut"]
   },
   "yazyki": {
     "title": "Языки",
@@ -25,6 +26,7 @@
       "албанский": ["shiptarskiy"],
       "венгерский": ["trisobaka"],
       "коми": ["komi"],
+      "сербский": ["srpskopismo"],
       "сорбский": ["sorbskiy"],
       "чешский": ["zabavlyadlo"]
     }
