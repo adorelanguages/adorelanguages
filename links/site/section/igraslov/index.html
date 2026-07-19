@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Игра слов — Обожаю Языки</title>
+<title>Языковые шутки — Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -127,7 +127,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1 id="title">Игра слов</h1>
+    <h1 id="title">Языковые шутки</h1>
     <a class="home-button" href="https://www.adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
@@ -195,7 +195,7 @@
     const slugs = section.slugs || [];
     const posts = allPosts.filter(p => slugs.includes(p.slug));
 
-    document.getElementById('title').textContent = `Игра слов (${posts.length})`;
+    document.getElementById('title').textContent = `Языковые шутки (${posts.length})`;
 
     if (posts.length === 0) {
       document.getElementById('empty-msg').style.display = 'block';
