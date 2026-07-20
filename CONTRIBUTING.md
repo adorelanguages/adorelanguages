@@ -18,7 +18,7 @@
 
 ## Структура репозитория
 
-- `index.html` — главная страница сайта (www.adorelanguages.com), с большой картинкой собаки,
+- `index.html` — главная страница сайта (adorelanguages.com), с большой картинкой собаки,
   круглой кнопкой «Поиск» и ссылками на ФБ/сайт/Instagram/Telegram.
 - `fb/<slug>/index.html` — просто редирект (`meta http-equiv="refresh"`) на конкретный пост в Facebook.
 - `site/<slug>/index.html` — полноценная страница поста: картинка, мета-теги, JSON-LD, блок разделов, теги.
