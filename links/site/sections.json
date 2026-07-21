@@ -10,7 +10,7 @@
   "strany": {
     "title": "Страны",
     "languages": {
-      "США": ["ulitsyssha"],
+      "США": ["ulitsyssha", "iyunnadcatoe"],
       "ирландия": ["prostoirlandtsy"],
       "испания": ["neprostomariya"],
       "туркменистан": ["turkmenskie"],
@@ -25,6 +25,7 @@
     "title": "Языки",
     "languages": {
       "албанский": ["shiptarskiy"],
+      "английский": ["iyunnadcatoe"],
       "армянский": ["armyanktuaciya"],
       "бурятский": ["tyrboga"],
       "венгерский": ["trisobaka", "glazzakroy"],
