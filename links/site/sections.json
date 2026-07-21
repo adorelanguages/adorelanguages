@@ -19,19 +19,23 @@
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele"]
+    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga"]
   },
   "yazyki": {
     "title": "Языки",
     "languages": {
       "албанский": ["shiptarskiy"],
       "армянский": ["armyanktuaciya"],
+      "бурятский": ["tyrboga"],
       "венгерский": ["trisobaka", "glazzakroy"],
       "коми": ["komi"],
+      "кыргызский": ["tyrboga"],
+      "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
       "русский": ["ovospriyatii"],
       "сербский": ["srpskopismo"],
       "сорбский": ["sorbskiy"],
+      "турецкий": ["tyrboga"],
       "удмуртский": ["udmurtprivet"],
       "чешский": ["zabavlyadlo"]
     }
