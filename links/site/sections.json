@@ -19,7 +19,7 @@
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy"]
+    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele"]
   },
   "yazyki": {
     "title": "Языки",
@@ -59,6 +59,7 @@
       "китайский": ["yaytsoibanan"],
       "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel", "uvasestkozyol"],
       "норвежский": ["dvuhnezaitsev"],
+      "осетинский": ["sedmayavodanakisele"],
       "польский": ["dvuhnezaitsev"],
       "турецкий": ["dvuhnezaitsev", "tseluyu"],
       "фарси": ["lyuboviorgany"],
