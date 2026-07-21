@@ -32,6 +32,7 @@
       "кыргызский": ["tyrboga"],
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
+      "немецкий": ["dvoyako"],
       "русский": ["ovospriyatii"],
       "сербский": ["srpskopismo"],
       "сорбский": ["sorbskiy"],
@@ -46,7 +47,7 @@
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis"]
+    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis", "dvoyako"]
   },
   "igraslov": {
     "title": "Языковые шутки",
