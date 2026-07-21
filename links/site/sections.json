@@ -41,7 +41,7 @@
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt"]
+    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis"]
   },
   "igraslov": {
     "title": "Языковые шутки",
