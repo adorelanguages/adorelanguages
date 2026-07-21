@@ -40,7 +40,7 @@
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota", "pangramma"]
+    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt"]
   },
   "igraslov": {
     "title": "Языковые шутки",
