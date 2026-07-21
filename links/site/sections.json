@@ -5,7 +5,7 @@
   },
   "osobyeslova": {
     "title": "Особые слова",
-    "slugs": ["verlan", "babushkatsia", "veterinirovat", "komi", "kafune", "chechenskost"]
+    "slugs": ["verlan", "babushkatsia", "veterinirovat", "komi", "kafune", "chechenskost", "tametogde"]
   },
   "strany": {
     "title": "Страны",
@@ -36,7 +36,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde"]
   },
   "lingvistika": {
     "title": "Лингвистика",
