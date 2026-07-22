@@ -306,7 +306,7 @@
     const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
 
     document.getElementById('title').textContent =
-      lang ? `Языки: ${lang} (${posts.length})` : `Языки (${posts.length})`;
+      lang ? `Языки: ${lang}` : `Языки`;
 
     const grid = document.getElementById('post-grid');
     grid.innerHTML = '';

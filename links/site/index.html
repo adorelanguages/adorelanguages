@@ -140,7 +140,6 @@
   <div class="topbar">
     <div>
       <h1>Посты на сайте</h1>
-      <p class="count" id="postCount"></p>
     </div>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
@@ -180,7 +179,6 @@
     async function loadPosts() {
       const response = await fetch('./posts.json');
       allPosts = await response.json();
-      document.getElementById('postCount').textContent = `(${allPosts.length})`;
       renderPosts();
     }
 

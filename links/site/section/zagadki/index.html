@@ -195,7 +195,7 @@
     const slugs = section.slugs || [];
     const posts = allPosts.filter(p => slugs.includes(p.slug));
 
-    document.getElementById('title').textContent = `Загадки (${posts.length})`;
+    document.getElementById('title').textContent = `Загадки`;
 
     if (posts.length === 0) {
       document.getElementById('empty-msg').style.display = 'block';

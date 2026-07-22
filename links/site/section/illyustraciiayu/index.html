@@ -195,7 +195,7 @@
     const slugs = section.slugs || [];
     const posts = allPosts.filter(p => slugs.includes(p.slug));
 
-    document.getElementById('title').textContent = `Иллюстрации Анны Юдиной (${posts.length})`;
+    document.getElementById('title').textContent = `Иллюстрации Анны Юдиной`;
 
     if (posts.length === 0) {
       document.getElementById('empty-msg').style.display = 'block';

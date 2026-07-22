@@ -223,7 +223,7 @@
     const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
 
     document.getElementById('title').textContent =
-      lang ? `Идиомы: ${lang} (${posts.length})` : `Идиомы (${posts.length})`;
+      lang ? `Идиомы: ${lang}` : `Идиомы`;
 
     const grid = document.getElementById('post-grid');
     grid.innerHTML = '';
