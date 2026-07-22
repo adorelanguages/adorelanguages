@@ -21,14 +21,16 @@
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga"]
+    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga", "pustynyasahara"]
   },
   "yazyki": {
     "title": "Языки",
     "languages": {
+      "абхазский": ["ppts"],
       "аварский": ["tametogde"],
       "албанский": ["shiptarskiy"],
       "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach"],
+      "арабский": ["pustynyasahara"],
       "армянский": ["armyanktuaciya"],
       "африкаанс": ["krossulya"],
       "бурятский": ["tyrboga"],
@@ -45,6 +47,7 @@
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
       "польский": ["hlebnoeuho", "dvuhnezaitsev"],
+      "португальский": ["kafune"],
       "русский": ["ovospriyatii"],
       "сербский": ["srpskopismo"],
       "словацкий": ["trampova"],
@@ -94,5 +97,9 @@
       "финский": ["mozgivgarderob"],
       "французский": ["kakashektebe"]
     }
+  },
+  "toponimy": {
+    "title": "Топонимы",
+    "slugs": ["pustynyasahara"]
   }
 }
