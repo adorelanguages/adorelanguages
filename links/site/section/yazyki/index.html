@@ -89,21 +89,31 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    pointer-events: none;
-    z-index: 2;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .reel-arrow.up {
-    left: 14px;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 8px solid rgb(45, 44, 91);
+    left: calc(50% - 82px);
   }
   .reel-arrow.down {
-    right: 14px;
+    right: calc(50% - 82px);
+  }
+  .reel-arrow::before {
+    content: '';
+    width: 0;
+    height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
+  }
+  .reel-arrow.up::before {
+    border-bottom: 8px solid rgb(45, 44, 91);
+  }
+  .reel-arrow.down::before {
     border-top: 8px solid rgb(45, 44, 91);
   }
   .reel {
@@ -305,8 +315,18 @@
 
   const reel = document.getElementById('reel');
   const searchInput = document.getElementById('lang-search');
+  const arrowUp = document.querySelector('.reel-arrow.up');
+  const arrowDown = document.querySelector('.reel-arrow.down');
+  const ITEM_HEIGHT = 44;
   let reelItems = [];
   let suppressAutoSelect = false;
+
+  arrowUp.addEventListener('click', () => {
+    reel.scrollBy({ top: -ITEM_HEIGHT, behavior: 'smooth' });
+  });
+  arrowDown.addEventListener('click', () => {
+    reel.scrollBy({ top: ITEM_HEIGHT, behavior: 'smooth' });
+  });
 
   function displayName(lang) {
     return lang.charAt(0).toUpperCase() + lang.slice(1);
