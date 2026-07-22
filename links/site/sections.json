@@ -39,7 +39,8 @@
       "кыргызский": ["tyrboga"],
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
-      "немецкий": ["dvoyako", "kruchonkisrynka"],
+      "навахо": ["navajo"],
+      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah"],
       "норвежский": ["dvuhnezaitsev"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
@@ -52,8 +53,11 @@
       "турецкий": ["tyrboga", "tseluyu", "dvuhnezaitsev"],
       "удмуртский": ["udmurtprivet", "hlebnoeuho"],
       "фарси": ["lyuboviorgany"],
+      "финский": ["mozgivgarderob"],
+      "французский": ["kakashektebe", "kodali"],
       "чеченский": ["chechenskost"],
-      "чешский": ["zabavlyadlo", "trampova"]
+      "чешский": ["zabavlyadlo", "trampova"],
+      "шведский": ["babushkatsia"]
     }
   },
   "illyustraciiayu": {
