@@ -87,21 +87,21 @@
   }
   .reel-arrow {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translateY(-50%);
     width: 0;
     height: 0;
     pointer-events: none;
     z-index: 2;
   }
   .reel-arrow.up {
-    top: 33px;
+    left: 14px;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 8px solid rgb(45, 44, 91);
   }
   .reel-arrow.down {
-    top: 91px;
+    right: 14px;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 8px solid rgb(45, 44, 91);
@@ -137,23 +137,6 @@
   }
   .reel-item.dim {
     opacity: 0.12;
-  }
-
-  .reel-hint {
-    font-size: 0.85em;
-    opacity: 0.7;
-    text-align: center;
-    margin: 0 0 6px;
-  }
-
-  .reel-reset {
-    text-align: center;
-    margin: 0 0 20px;
-  }
-  .reel-reset a {
-    font-size: 0.85em;
-    color: rgb(45, 44, 91);
-    text-decoration: underline;
   }
 
   .grid {
@@ -239,8 +222,6 @@
     <div class="reel-arrow down"></div>
     <div class="reel" id="reel"></div>
   </div>
-  <p class="reel-hint" id="reel-hint">Крутите барабан для обзора или начните печатать</p>
-  <p class="reel-reset"><a href="#" id="reset-lang">Показать все языки</a></p>
 
   <div class="grid" id="post-grid"></div>
   <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
@@ -324,9 +305,6 @@
 
   const reel = document.getElementById('reel');
   const searchInput = document.getElementById('lang-search');
-  const reelHint = document.getElementById('reel-hint');
-  const resetLink = document.getElementById('reset-lang');
-  const DEFAULT_HINT = 'Крутите барабан для обзора или начните печатать';
   let reelItems = [];
   let suppressAutoSelect = false;
 
@@ -371,27 +349,6 @@
     markActive(activeItem);
   }
 
-  function resetToAll(updateHistory) {
-    searchInput.value = '';
-    reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
-    reelHint.textContent = DEFAULT_HINT;
-    suppressAutoSelect = true;
-    reel.scrollTo({ top: 0, behavior: 'auto' });
-    markActive(null);
-    renderGrid(null);
-    if (updateHistory) {
-      const url = new URL(location.href);
-      url.searchParams.delete('lang');
-      history.pushState({}, '', url);
-    }
-    setTimeout(() => { suppressAutoSelect = false; }, 300);
-  }
-
-  resetLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    resetToAll(true);
-  });
-
   function centeredItem() {
     const reelRect = reel.getBoundingClientRect();
     const centerY = reelRect.top + reelRect.height / 2;
@@ -422,7 +379,6 @@
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {
       reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
-      reelHint.textContent = DEFAULT_HINT;
       return;
     }
     let firstMatch = null;
@@ -436,10 +392,7 @@
       suppressAutoSelect = true;
       firstMatch.scrollIntoView({ block: 'center', behavior: 'smooth' });
       selectLang(firstMatch.dataset.lang, true);
-      reelHint.textContent = 'Совпадения подсвечены, остальное затемнено';
       setTimeout(() => { suppressAutoSelect = false; }, 400);
-    } else {
-      reelHint.textContent = 'Ничего не найдено';
     }
   });
 
