@@ -29,7 +29,7 @@
       "абхазский": ["ppts"],
       "аварский": ["tametogde"],
       "албанский": ["shiptarskiy"],
-      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach"],
+      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka"],
       "арабский": ["pustynyasahara"],
       "армянский": ["armyanktuaciya"],
       "африкаанс": ["krossulya"],
@@ -43,7 +43,7 @@
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
       "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah"],
-      "норвежский": ["dvuhnezaitsev"],
+      "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
       "польский": ["hlebnoeuho", "dvuhnezaitsev"],
@@ -56,11 +56,11 @@
       "турецкий": ["tyrboga", "tseluyu", "dvuhnezaitsev"],
       "удмуртский": ["udmurtprivet", "hlebnoeuho"],
       "фарси": ["lyuboviorgany"],
-      "финский": ["mozgivgarderob"],
+      "финский": ["mozgivgarderob", "divannayakartoshka"],
       "французский": ["kakashektebe", "kodali", "verlan"],
       "чеченский": ["chechenskost"],
       "чешский": ["zabavlyadlo", "trampova"],
-      "шведский": ["babushkatsia"]
+      "шведский": ["babushkatsia", "divannayakartoshka"]
     }
   },
   "illyustraciiayu": {
