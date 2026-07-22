@@ -78,31 +78,40 @@
 
   .reel-wrap {
     position: relative;
-    height: 210px;
+    height: 132px;
     border: 1px solid rgb(45, 44, 91);
     border-radius: 14px;
     overflow: hidden;
     background: #faf9f7;
     margin-bottom: 10px;
   }
-  .reel-marker {
+  .reel-arrow {
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 42px;
-    transform: translateY(-50%);
-    border-top: 1px solid rgb(45, 44, 91);
-    border-bottom: 1px solid rgb(45, 44, 91);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
     pointer-events: none;
     z-index: 2;
+  }
+  .reel-arrow.up {
+    top: 33px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid rgb(45, 44, 91);
+  }
+  .reel-arrow.down {
+    top: 91px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid rgb(45, 44, 91);
   }
   .reel {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
-    padding: 84px 0;
+    padding: 44px 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -110,7 +119,7 @@
 
   .reel-item {
     scroll-snap-align: center;
-    height: 42px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,7 +143,17 @@
     font-size: 0.85em;
     opacity: 0.7;
     text-align: center;
+    margin: 0 0 6px;
+  }
+
+  .reel-reset {
+    text-align: center;
     margin: 0 0 20px;
+  }
+  .reel-reset a {
+    font-size: 0.85em;
+    color: rgb(45, 44, 91);
+    text-decoration: underline;
   }
 
   .grid {
@@ -216,10 +235,12 @@
   <input type="text" class="lang-search" id="lang-search" placeholder="Найти язык...">
 
   <div class="reel-wrap">
-    <div class="reel-marker"></div>
+    <div class="reel-arrow up"></div>
+    <div class="reel-arrow down"></div>
     <div class="reel" id="reel"></div>
   </div>
   <p class="reel-hint" id="reel-hint">Крутите барабан для обзора или начните печатать</p>
+  <p class="reel-reset"><a href="#" id="reset-lang">Показать все языки</a></p>
 
   <div class="grid" id="post-grid"></div>
   <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
@@ -301,10 +322,11 @@
     });
   }
 
-  const ALL_KEY = '__all__';
   const reel = document.getElementById('reel');
   const searchInput = document.getElementById('lang-search');
   const reelHint = document.getElementById('reel-hint');
+  const resetLink = document.getElementById('reset-lang');
+  const DEFAULT_HINT = 'Крутите барабан для обзора или начните печатать';
   let reelItems = [];
   let suppressAutoSelect = false;
 
@@ -315,13 +337,6 @@
   function buildReel(langNames) {
     reel.innerHTML = '';
     reelItems = [];
-
-    const allDiv = document.createElement('div');
-    allDiv.className = 'reel-item';
-    allDiv.textContent = 'Все языки';
-    allDiv.dataset.lang = ALL_KEY;
-    reel.appendChild(allDiv);
-    reelItems.push(allDiv);
 
     langNames.forEach(lang => {
       const div = document.createElement('div');
@@ -346,18 +361,36 @@
   }
 
   function selectLang(lang, updateHistory) {
-    const url = new URL(location.href);
-    if (lang === ALL_KEY) {
-      url.searchParams.delete('lang');
-      renderGrid(null);
-    } else {
+    renderGrid(lang);
+    if (updateHistory) {
+      const url = new URL(location.href);
       url.searchParams.set('lang', lang);
-      renderGrid(lang);
+      history.pushState({}, '', url);
     }
-    if (updateHistory) history.pushState({}, '', url);
     const activeItem = reelItems.find(item => item.dataset.lang === lang);
     markActive(activeItem);
   }
+
+  function resetToAll(updateHistory) {
+    searchInput.value = '';
+    reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
+    reelHint.textContent = DEFAULT_HINT;
+    suppressAutoSelect = true;
+    reel.scrollTo({ top: 0, behavior: 'auto' });
+    markActive(null);
+    renderGrid(null);
+    if (updateHistory) {
+      const url = new URL(location.href);
+      url.searchParams.delete('lang');
+      history.pushState({}, '', url);
+    }
+    setTimeout(() => { suppressAutoSelect = false; }, 300);
+  }
+
+  resetLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetToAll(true);
+  });
 
   function centeredItem() {
     const reelRect = reel.getBoundingClientRect();
@@ -389,15 +422,11 @@
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {
       reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
-      reelHint.textContent = 'Крутите барабан для обзора или начните печатать';
+      reelHint.textContent = DEFAULT_HINT;
       return;
     }
     let firstMatch = null;
     reelItems.forEach(item => {
-      if (item.dataset.lang === ALL_KEY) {
-        item.style.display = 'none';
-        return;
-      }
       const matches = item.textContent.toLowerCase().includes(q);
       item.style.display = 'flex';
       item.classList.toggle('dim', !matches);
@@ -426,13 +455,20 @@
 
     const params = new URLSearchParams(location.search);
     const currentLang = params.get('lang');
-    const targetLang = (currentLang && LANGUAGES[currentLang]) ? currentLang : ALL_KEY;
-    const targetItem = reelItems.find(item => item.dataset.lang === targetLang);
+    const targetItem = (currentLang && LANGUAGES[currentLang])
+      ? reelItems.find(item => item.dataset.lang === currentLang)
+      : null;
 
     suppressAutoSelect = true;
-    if (targetItem) targetItem.scrollIntoView({ block: 'center', behavior: 'instant' });
-    markActive(targetItem);
-    renderGrid(targetLang === ALL_KEY ? null : targetLang);
+    if (targetItem) {
+      targetItem.scrollIntoView({ block: 'center', behavior: 'instant' });
+      markActive(targetItem);
+      renderGrid(currentLang);
+    } else {
+      reel.scrollTo({ top: 0, behavior: 'auto' });
+      markActive(null);
+      renderGrid(null);
+    }
     setTimeout(() => { suppressAutoSelect = false; }, 300);
   });
 </script>
