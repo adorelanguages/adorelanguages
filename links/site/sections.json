@@ -35,14 +35,14 @@
       "африкаанс": ["krossulya"],
       "бурятский": ["tyrboga"],
       "венгерский": ["trisobaka", "glazzakroy"],
-      "итальянский": ["tiramenyasu", "dvuhnezaitsev"],
+      "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho"],
       "китайский": ["yaytsoibanan"],
       "коми": ["komi", "hlebnoeuho", "vodava"],
       "кыргызский": ["tyrboga"],
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
-      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah"],
+      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel"],
       "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
@@ -50,7 +50,7 @@
       "португальский": ["kafune"],
       "русский": ["ovospriyatii"],
       "сербский": ["srpskopismo"],
-      "словацкий": ["trampova"],
+      "словацкий": ["trampova", "poryadokbukv"],
       "сорбский": ["sorbskiy"],
       "таджикский": ["zagadkatadzhikskiy"],
       "турецкий": ["tyrboga", "tseluyu", "dvuhnezaitsev"],
@@ -59,7 +59,7 @@
       "финский": ["mozgivgarderob", "divannayakartoshka"],
       "французский": ["kakashektebe", "kodali", "verlan"],
       "чеченский": ["chechenskost"],
-      "чешский": ["zabavlyadlo", "trampova"],
+      "чешский": ["zabavlyadlo", "trampova", "poryadokbukv"],
       "шведский": ["babushkatsia", "divannayakartoshka"]
     }
   },
@@ -73,7 +73,7 @@
   },
   "igraslov": {
     "title": "Языковые шутки",
-    "slugs": ["bessmyslitsa", "nahnah", "okroshka"]
+    "slugs": ["bessmyslitsa", "nahnah", "okroshka", "azbukauchit"]
   },
   "zagadki": {
     "title": "Загадки",
