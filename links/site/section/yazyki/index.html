@@ -60,25 +60,81 @@
     display: inline-block;
   }
 
-  .languages {
-    margin: 0 0 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .languages button {
-    font-family: 'Factora', Georgia, serif;
-    font-size: 0.9em;
-    padding: 8px 14px;
+  .lang-search {
+    width: 100%;
+    height: 40px;
     border-radius: 999px;
     border: 1px solid rgb(45, 44, 91);
-    background: #fff;
+    padding: 0 18px;
+    font-size: 0.95em;
     color: rgb(45, 44, 91);
-    cursor: pointer;
+    font-family: 'Factora', Georgia, serif;
+    margin: 8px 0 12px;
   }
-  .languages button.active {
-    background: rgb(45, 44, 91);
-    color: #fff;
+  .lang-search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(45, 44, 91, 0.15);
+  }
+
+  .reel-wrap {
+    position: relative;
+    height: 210px;
+    border: 1px solid rgb(45, 44, 91);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #faf9f7;
+    margin-bottom: 10px;
+  }
+  .reel-marker {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 42px;
+    transform: translateY(-50%);
+    border-top: 1px solid rgb(45, 44, 91);
+    border-bottom: 1px solid rgb(45, 44, 91);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .reel {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    padding: 84px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .reel::-webkit-scrollbar { display: none; }
+
+  .reel-item {
+    scroll-snap-align: center;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color: rgb(45, 44, 91);
+    opacity: 0.35;
+    transition: opacity 0.15s ease, font-size 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .reel-item.active {
+    opacity: 1;
+    font-size: 1.15em;
+    font-weight: bold;
+  }
+  .reel-item.dim {
+    opacity: 0.12;
+  }
+
+  .reel-hint {
+    font-size: 0.85em;
+    opacity: 0.7;
+    text-align: center;
+    margin: 0 0 20px;
   }
 
   .grid {
@@ -157,7 +213,13 @@
     <a href="/links/site/all/">Все посты</a>
   </div>
 
-  <div class="languages" id="languages"></div>
+  <input type="text" class="lang-search" id="lang-search" placeholder="Найти язык...">
+
+  <div class="reel-wrap">
+    <div class="reel-marker"></div>
+    <div class="reel" id="reel"></div>
+  </div>
+  <p class="reel-hint" id="reel-hint">Крутите барабан для обзора или начните печатать</p>
 
   <div class="grid" id="post-grid"></div>
   <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
@@ -239,6 +301,119 @@
     });
   }
 
+  const ALL_KEY = '__all__';
+  const reel = document.getElementById('reel');
+  const searchInput = document.getElementById('lang-search');
+  const reelHint = document.getElementById('reel-hint');
+  let reelItems = [];
+  let suppressAutoSelect = false;
+
+  function displayName(lang) {
+    return lang.charAt(0).toUpperCase() + lang.slice(1);
+  }
+
+  function buildReel(langNames) {
+    reel.innerHTML = '';
+    reelItems = [];
+
+    const allDiv = document.createElement('div');
+    allDiv.className = 'reel-item';
+    allDiv.textContent = 'Все языки';
+    allDiv.dataset.lang = ALL_KEY;
+    reel.appendChild(allDiv);
+    reelItems.push(allDiv);
+
+    langNames.forEach(lang => {
+      const div = document.createElement('div');
+      div.className = 'reel-item';
+      div.textContent = displayName(lang);
+      div.dataset.lang = lang;
+      reel.appendChild(div);
+      reelItems.push(div);
+    });
+
+    reelItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        selectLang(item.dataset.lang, true);
+      });
+    });
+  }
+
+  function markActive(activeItem) {
+    reelItems.forEach(item => item.classList.remove('active'));
+    if (activeItem) activeItem.classList.add('active');
+  }
+
+  function selectLang(lang, updateHistory) {
+    const url = new URL(location.href);
+    if (lang === ALL_KEY) {
+      url.searchParams.delete('lang');
+      renderGrid(null);
+    } else {
+      url.searchParams.set('lang', lang);
+      renderGrid(lang);
+    }
+    if (updateHistory) history.pushState({}, '', url);
+    const activeItem = reelItems.find(item => item.dataset.lang === lang);
+    markActive(activeItem);
+  }
+
+  function centeredItem() {
+    const reelRect = reel.getBoundingClientRect();
+    const centerY = reelRect.top + reelRect.height / 2;
+    let closest = null;
+    let minDist = Infinity;
+    reelItems.forEach(item => {
+      if (item.style.display === 'none') return;
+      const r = item.getBoundingClientRect();
+      const itemCenter = r.top + r.height / 2;
+      const dist = Math.abs(itemCenter - centerY);
+      if (dist < minDist) { minDist = dist; closest = item; }
+    });
+    return closest;
+  }
+
+  let scrollEndTimer;
+  reel.addEventListener('scroll', () => {
+    if (suppressAutoSelect) return;
+    const closest = centeredItem();
+    markActive(closest);
+    clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(() => {
+      if (closest) selectLang(closest.dataset.lang, true);
+    }, 180);
+  });
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (!q) {
+      reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
+      reelHint.textContent = 'Крутите барабан для обзора или начните печатать';
+      return;
+    }
+    let firstMatch = null;
+    reelItems.forEach(item => {
+      if (item.dataset.lang === ALL_KEY) {
+        item.style.display = 'none';
+        return;
+      }
+      const matches = item.textContent.toLowerCase().includes(q);
+      item.style.display = 'flex';
+      item.classList.toggle('dim', !matches);
+      if (matches && !firstMatch) firstMatch = item;
+    });
+    if (firstMatch) {
+      suppressAutoSelect = true;
+      firstMatch.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      selectLang(firstMatch.dataset.lang, true);
+      reelHint.textContent = 'Совпадения подсвечены, остальное затемнено';
+      setTimeout(() => { suppressAutoSelect = false; }, 400);
+    } else {
+      reelHint.textContent = 'Ничего не найдено';
+    }
+  });
+
   Promise.all([
     fetch('/links/site/sections.json').then(r => r.json()),
     fetch('/links/site/posts.json').then(r => r.json())
@@ -247,33 +422,18 @@
     ALL_POSTS = allPosts;
 
     const langNames = Object.keys(LANGUAGES).sort((a, b) => a.localeCompare(b, 'ru'));
+    buildReel(langNames);
+
     const params = new URLSearchParams(location.search);
     const currentLang = params.get('lang');
+    const targetLang = (currentLang && LANGUAGES[currentLang]) ? currentLang : ALL_KEY;
+    const targetItem = reelItems.find(item => item.dataset.lang === targetLang);
 
-    const langContainer = document.getElementById('languages');
-    langNames.forEach(lang => {
-      const btn = document.createElement('button');
-      btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-      if (lang === currentLang) btn.classList.add('active');
-      btn.addEventListener('click', () => {
-        const url = new URL(location.href);
-        if (btn.classList.contains('active')) {
-          btn.classList.remove('active');
-          url.searchParams.delete('lang');
-          history.pushState({}, '', url);
-          renderGrid(null);
-        } else {
-          [...langContainer.children].forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          url.searchParams.set('lang', lang);
-          history.pushState({}, '', url);
-          renderGrid(lang);
-        }
-      });
-      langContainer.appendChild(btn);
-    });
-
-    renderGrid(currentLang);
+    suppressAutoSelect = true;
+    if (targetItem) targetItem.scrollIntoView({ block: 'center', behavior: 'instant' });
+    markActive(targetItem);
+    renderGrid(targetLang === ALL_KEY ? null : targetLang);
+    setTimeout(() => { suppressAutoSelect = false; }, 300);
   });
 </script>
 
