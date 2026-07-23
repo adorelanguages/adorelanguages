@@ -135,7 +135,6 @@
     margin: 8px 0 28px;
   }
   .vote-cta {
-    position: relative;
     display: inline-block;
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     font-size: 1.05em;
@@ -148,22 +147,15 @@
   }
   .vote-cta-ring {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
+    top: 0;
+    left: 0;
     pointer-events: none;
+    overflow: visible;
   }
   .vote-cta-ring rect {
-    x: 1px;
-    y: 1px;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    rx: 999px;
-    ry: 999px;
     fill: none;
     stroke: rgb(45,44,91);
-    stroke-width: 2px;
+    stroke-width: 2;
     stroke-dasharray: 7 6;
     animation: march 0.7s linear infinite;
   }
@@ -181,8 +173,8 @@
   <img class="post-img" src="/images/posts/odnimslovom.png" alt="Одним словом — игра в ассоциации с национальностями">
 
   <div class="vote-cta-wrap">
-    <a class="vote-cta" href="https://adorelanguages.com/golosovania/odnimslovom/">Голосовать →</a>
-    <svg class="vote-cta-ring"><rect/></svg>
+    <a class="vote-cta" id="vote-cta-btn" href="https://adorelanguages.com/golosovania/odnimslovom/">Голосовать →</a>
+    <svg class="vote-cta-ring" id="vote-cta-ring"><rect id="vote-cta-rect"/></svg>
   </div>
 
   <!-- Нет комментария — SEO‑текст скрыт -->
@@ -196,5 +188,29 @@
   </div>
 
 </div>
+
+<script>
+  function sizeVoteCtaRing() {
+    var btn = document.getElementById('vote-cta-btn');
+    var svg = document.getElementById('vote-cta-ring');
+    var rect = document.getElementById('vote-cta-rect');
+    if (!btn || !svg || !rect) return;
+    var w = btn.offsetWidth;
+    var h = btn.offsetHeight;
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    rect.setAttribute('x', 1);
+    rect.setAttribute('y', 1);
+    rect.setAttribute('width', Math.max(w - 2, 0));
+    rect.setAttribute('height', Math.max(h - 2, 0));
+    rect.setAttribute('rx', h / 2);
+    rect.setAttribute('ry', h / 2);
+  }
+  sizeVoteCtaRing();
+  window.addEventListener('resize', sizeVoteCtaRing);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sizeVoteCtaRing);
+  }
+</script>
 </body>
 </html>
