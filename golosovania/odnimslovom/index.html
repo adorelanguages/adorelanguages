@@ -24,7 +24,7 @@
 
   .wrap { max-width: 640px; margin: 0 auto; }
 
-  .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 
   .home-button {
     font-family: 'Factora', Georgia, serif;
@@ -44,16 +44,12 @@
   }
   .home-button .arrow { margin-right: 4px; }
 
-  h1 { font-size: 1.8em; margin: 0 0 8px; }
-
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border: 0;
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+    padding: 0 12px;
   }
 
   .thumb-link {
@@ -209,10 +205,10 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1 id="title" class="sr-only">Одним словом</h1>
     <a class="thumb-link" id="thumb-link">
       <img class="thumb" src="/images/posts/odnimslovom.png" alt="Одним словом — миниатюра поста, нажми, чтобы увеличить">
     </a>
+    <h1 id="title">Одним словом</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 

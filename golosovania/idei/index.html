@@ -24,7 +24,7 @@
 
   .wrap { max-width: 640px; margin: 0 auto; }
 
-  .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 
   .home-button {
     font-family: 'Factora', Georgia, serif;
@@ -44,7 +44,52 @@
   }
   .home-button .arrow { margin-right: 4px; }
 
-  h1 { font-size: 1.8em; margin: 0 0 8px; }
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .thumb-link {
+    display: block;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    box-shadow: 0 2px 8px rgba(45,44,91,0.25);
+    transition: transform 0.15s ease;
+  }
+  .thumb-link:hover .thumb {
+    transform: scale(1.03);
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,19,40,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  .lightbox-overlay.visible {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
 
   p.lead {
     font-size: 1.05em;
@@ -161,7 +206,10 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1>Идеи читателей</h1>
+    <a class="thumb-link" id="thumb-link">
+      <img class="thumb" src="/images/logo.jpg" alt="Обожаю Языки — логотип, нажми, чтобы увеличить">
+    </a>
+    <h1 id="title">Идеи читателей</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
@@ -181,7 +229,24 @@
 
 </div>
 
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <img src="/images/logo.jpg" alt="Обожаю Языки — логотип">
+</div>
+
 <script>
+  const thumbLink = document.getElementById('thumb-link');
+  const lightbox = document.getElementById('lightbox-overlay');
+  thumbLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    lightbox.classList.add('visible');
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('visible');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('visible');
+  });
+
   const API_URL = 'https://script.google.com/macros/s/AKfycbwo0yIv4Fa69mDJJKjdn3w-cUJsvP-XCCJnSAeydgvMBuFhVRxS2qo8fmUk3n3hqBNHjA/exec';
   const VOTED_KEY = 'adore_voted_ideas';
 
