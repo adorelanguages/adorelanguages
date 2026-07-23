@@ -135,6 +135,44 @@
       color: rgb(45,44,91);
       font-weight: bold;
     }
+
+    .vote-cta-row {
+      display: flex;
+      justify-content: center;
+      margin: 4px 0 26px;
+    }
+    .vote-cta-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .vote-cta {
+      display: inline-block;
+      font-family: 'Factora', Georgia, serif;
+      font-size: 0.95em;
+      font-weight: bold;
+      color: rgb(45,44,91);
+      background: rgb(244,219,206);
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+    .vote-cta-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .vote-cta-ring rect {
+      fill: none;
+      stroke: rgb(45,44,91);
+      stroke-width: 2;
+      stroke-dasharray: 7 6;
+      animation: march 0.7s linear infinite;
+    }
+    @keyframes march {
+      to { stroke-dashoffset: -13; }
+    }
   </style>
 </head>
 
@@ -175,6 +213,39 @@
     <a href="/links/site/section/yazyki/" style="background:#E9CEF2;">Языки</a>
     <a href="/links/site/section/igraslov/" style="background:#461359; color:rgb(129,239,135);">Языковые шутки</a>
   </div>
+
+  <div class="vote-cta-row">
+    <div class="vote-cta-wrap">
+      <a class="vote-cta" id="vote-cta-btn" href="https://adorelanguages.com/golosovania/">Голосования →</a>
+      <svg class="vote-cta-ring" id="vote-cta-ring"><rect id="vote-cta-rect"/></svg>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function sizeVoteCtaRing() {
+        var btn = document.getElementById('vote-cta-btn');
+        var svg = document.getElementById('vote-cta-ring');
+        var rect = document.getElementById('vote-cta-rect');
+        if (!btn || !svg || !rect) return;
+        var w = btn.offsetWidth;
+        var h = btn.offsetHeight;
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', h);
+        rect.setAttribute('x', 1);
+        rect.setAttribute('y', 1);
+        rect.setAttribute('width', Math.max(w - 2, 0));
+        rect.setAttribute('height', Math.max(h - 2, 0));
+        rect.setAttribute('rx', h / 2);
+        rect.setAttribute('ry', h / 2);
+      }
+      sizeVoteCtaRing();
+      window.addEventListener('resize', sizeVoteCtaRing);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeVoteCtaRing);
+      }
+    })();
+  </script>
 
   <script>
     let allPosts = [];
