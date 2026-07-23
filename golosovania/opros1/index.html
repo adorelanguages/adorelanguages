@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Тестовый опрос — Обожаю Языки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Голосование читателей блога «Обожаю Языки»: предложи свой вариант и проголосуй за понравившиеся варианты других читателей.">
+<link rel="canonical" href="https://adorelanguages.com/golosovania/opros1/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<style>
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-BOLD.OTF'); font-weight: bold; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Factora', Georgia, serif;
+    background: #ffffff;
+    color: rgb(45, 44, 91);
+    padding: 40px 20px 80px;
+    margin: 0;
+  }
+
+  .wrap { max-width: 640px; margin: 0 auto; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+
+  .home-button {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: #fff;
+    background: rgb(45, 44, 91);
+    padding: 14px 10px;
+    border-radius: 18px;
+    text-decoration: none;
+    display: inline-block;
+    width: 130px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.3;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .home-button .arrow { margin-right: 4px; }
+
+  h1 { font-size: 1.8em; margin: 0 0 8px; }
+
+  p.lead {
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin: 0 0 28px;
+  }
+
+  .submit-box {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 36px;
+  }
+
+  .submit-box h2 {
+    font-size: 1.1em;
+    margin: 0 0 12px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    font-size: 1em;
+    font-family: 'Factora', Georgia, serif;
+    color: rgb(45,44,91);
+    border: 2px solid rgb(45,44,91);
+    border-radius: 10px;
+    resize: vertical;
+    outline: none;
+    margin-bottom: 12px;
+  }
+
+  .btn {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.95em;
+    font-weight: bold;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    background: rgb(45,44,91);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+
+  .status-msg {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  .status-msg.ok { color: #2f7d4f; }
+  .status-msg.err { color: #b33; }
+
+  .idea-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .idea-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: #faf9f7;
+    box-shadow: 0 2px 6px rgba(45,44,91,0.1);
+  }
+
+  .idea-text {
+    flex: 1;
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .vote-btn {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 2px solid rgb(45,44,91);
+    background: #fff;
+    color: rgb(45,44,91);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .vote-btn:hover:not(:disabled) {
+    background: rgb(45,44,91);
+    color: #fff;
+  }
+  .vote-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .vote-count {
+    font-weight: bold;
+  }
+
+  .empty, .loading {
+    font-size: 0.95em;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+
+  .toggle {
+    margin: 32px 0 0;
+    font-size: 0.95em;
+  }
+  .toggle a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45, 44, 91);
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(45, 44, 91);
+    display: inline-block;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <h1 id="title">Тестовый опрос</h1>
+    <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
+  </div>
+
+  <p class="lead">Предложи свой вариант — а пока он на модерации, проголосуй за варианты других читателей ниже.</p>
+
+  <div class="submit-box">
+    <h2>Предложить вариант</h2>
+    <textarea id="idea-input" maxlength="300" placeholder="Напиши свой вариант..."></textarea>
+    <br>
+    <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
+    <div class="status-msg" id="submit-status"></div>
+  </div>
+
+  <div class="idea-list" id="idea-list">
+    <p class="loading">Загружаю варианты…</p>
+  </div>
+
+  <div class="toggle">
+    <a href="/golosovania/">Все голосования</a>
+    <a href="/links/site/">Поиск по постам</a>
+  </div>
+
+</div>
+
+<script>
+  // ЭТО ШАБЛОН. Чтобы создать новое голосование:
+  // 1. Скопируй эту папку в golosovania/oprosN/
+  // 2. Поменяй POLL_ID на уникальный slug (совпадает с именем папки и с листом в таблице)
+  // 3. Поменяй <title>, <h1 id="title">, meta description и <p class="lead"> на свой вопрос
+  // 4. Добавь запись в реестр в golosovania/index.html
+
+  const POLL_ID = 'opros1';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbwo0yIv4Fa69mDJJKjdn3w-cUJsvP-XCCJnSAeydgvMBuFhVRxS2qo8fmUk3n3hqBNHjA/exec';
+  const VOTED_KEY = 'adore_voted_' + POLL_ID;
+
+  function getVoted() {
+    try {
+      return JSON.parse(localStorage.getItem(VOTED_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function markVoted(id) {
+    const voted = getVoted();
+    voted.push(id);
+    localStorage.setItem(VOTED_KEY, JSON.stringify(voted));
+  }
+
+  function renderIdeas(ideas) {
+    const list = document.getElementById('idea-list');
+    list.innerHTML = '';
+
+    if (!ideas.length) {
+      list.innerHTML = '<p class="empty">Пока нет одобренных вариантов — станьте первым, кто предложит свой!</p>';
+      return;
+    }
+
+    const voted = getVoted();
+
+    ideas.forEach(idea => {
+      const card = document.createElement('div');
+      card.className = 'idea-card';
+
+      const alreadyVoted = voted.includes(idea.id);
+
+      card.innerHTML = `
+        <span class="idea-text"></span>
+        <button class="vote-btn" ${alreadyVoted ? 'disabled' : ''}>
+          <span class="vote-count">${idea.votes}</span> ${alreadyVoted ? '✓' : '👍 Голосовать'}
+        </button>
+      `;
+      card.querySelector('.idea-text').textContent = idea.text;
+
+      const btn = card.querySelector('.vote-btn');
+      if (!alreadyVoted) {
+        btn.addEventListener('click', () => vote(idea.id, btn));
+      }
+
+      list.appendChild(card);
+    });
+  }
+
+  function loadIdeas() {
+    fetch(`${API_URL}?poll=${encodeURIComponent(POLL_ID)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          renderIdeas(data.ideas);
+        } else {
+          document.getElementById('idea-list').innerHTML = '<p class="empty">Не удалось загрузить варианты.</p>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('idea-list').innerHTML = '<p class="empty">Не удалось загрузить варианты.</p>';
+      });
+  }
+
+  function vote(id, btn) {
+    btn.disabled = true;
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'vote', poll: POLL_ID, id: id })
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          markVoted(id);
+          const countEl = btn.querySelector('.vote-count');
+          countEl.textContent = data.votes;
+          btn.innerHTML = `<span class="vote-count">${data.votes}</span> ✓`;
+        } else {
+          btn.disabled = false;
+        }
+      })
+      .catch(() => { btn.disabled = false; });
+  }
+
+  function submitIdea() {
+    const input = document.getElementById('idea-input');
+    const status = document.getElementById('submit-status');
+    const btn = document.getElementById('submit-btn');
+    const text = input.value.trim();
+
+    if (!text) {
+      status.textContent = 'Сначала напиши вариант.';
+      status.className = 'status-msg err';
+      return;
+    }
+
+    btn.disabled = true;
+    status.textContent = 'Отправляю…';
+    status.className = 'status-msg';
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'submit', poll: POLL_ID, text: text })
+    })
+      .then(r => r.json())
+      .then(data => {
+        btn.disabled = false;
+        if (data.ok) {
+          input.value = '';
+          status.textContent = 'Спасибо! Вариант отправлен на модерацию.';
+          status.className = 'status-msg ok';
+        } else {
+          status.textContent = 'Что-то пошло не так, попробуй ещё раз.';
+          status.className = 'status-msg err';
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        status.textContent = 'Не удалось отправить, попробуй ещё раз.';
+        status.className = 'status-msg err';
+      });
+  }
+
+  loadIdeas();
+</script>
+
+</body>
+</html>
