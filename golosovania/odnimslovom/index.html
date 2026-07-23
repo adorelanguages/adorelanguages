@@ -296,7 +296,7 @@
       row.innerHTML = `
         <td class="idea-text"></td>
         <td class="vote-cell">
-          <span class="vote-trigger ${alreadyVoted ? 'disabled' : ''}"><span class="vote-icon">${alreadyVoted ? '✓' : '👍'}</span> <span class="vote-count">${idea.votes}</span></span>
+          <span class="vote-trigger ${alreadyVoted ? 'disabled' : ''}"><span class="vote-icon">👍</span> <span class="vote-count">${idea.votes}</span></span>
         </td>
       `;
       row.querySelector('.idea-text').textContent = idea.text;
@@ -338,7 +338,7 @@
       .then(data => {
         if (data.ok) {
           markVoted(id);
-          trigger.innerHTML = `<span class="vote-icon">✓</span> <span class="vote-count">${data.votes}</span>`;
+          trigger.querySelector('.vote-count').textContent = data.votes;
         } else {
           trigger.classList.remove('disabled');
         }
