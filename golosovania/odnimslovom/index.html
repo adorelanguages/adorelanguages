@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Тестовый опрос — Обожаю Языки</title>
+<title>Одним словом — Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Голосование читателей блога «Обожаю Языки»: предложи свой вариант и проголосуй за понравившиеся варианты других читателей.">
-<link rel="canonical" href="https://adorelanguages.com/golosovania/opros1/">
+<meta name="description" content="Голосование к посту «Одним словом»: назови национальность одним словом (без топонимов, этнонимов и глоттонимов) и проголосуй за варианты других читателей.">
+<link rel="canonical" href="https://adorelanguages.com/golosovania/odnimslovom/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 <style>
@@ -172,15 +172,15 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1 id="title">Тестовый опрос</h1>
+    <h1 id="title">Одним словом</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
-  <p class="lead">Предложи свой вариант — а пока он на модерации, проголосуй за варианты других читателей ниже.</p>
+  <p class="lead">Правила игры: назови национальность одним словом, не называя топонимы, этнонимы или глоттонимы напрямую (например: суши, гейзеры, пирамиды). Предложи свой вариант — а пока он на модерации, проголосуй за варианты других читателей ниже.</p>
 
   <div class="submit-box">
     <h2>Предложить вариант</h2>
-    <textarea id="idea-input" maxlength="300" placeholder="Напиши свой вариант..."></textarea>
+    <textarea id="idea-input" maxlength="300" placeholder="Например: бургер, сакэ, кенгуру..."></textarea>
     <br>
     <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
     <div class="status-msg" id="submit-status"></div>
@@ -191,20 +191,14 @@
   </div>
 
   <div class="toggle">
+    <a href="/site/odnimslovom/">Читать пост</a>
     <a href="/golosovania/">Все голосования</a>
-    <a href="/links/site/">Поиск по постам</a>
   </div>
 
 </div>
 
 <script>
-  // ЭТО ШАБЛОН. Чтобы создать новое голосование:
-  // 1. Скопируй эту папку в golosovania/oprosN/
-  // 2. Поменяй POLL_ID на уникальный slug (совпадает с именем папки и с листом в таблице)
-  // 3. Поменяй <title>, <h1 id="title">, meta description и <p class="lead"> на свой вопрос
-  // 4. Добавь запись в реестр в golosovania/index.html
-
-  const POLL_ID = 'opros1';
+  const POLL_ID = 'odnimslovom';
   const API_URL = 'https://script.google.com/macros/s/AKfycbwo0yIv4Fa69mDJJKjdn3w-cUJsvP-XCCJnSAeydgvMBuFhVRxS2qo8fmUk3n3hqBNHjA/exec';
   const VOTED_KEY = 'adore_voted_' + POLL_ID;
 
