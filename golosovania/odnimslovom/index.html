@@ -153,10 +153,9 @@
   }
   .idea-table th {
     text-align: left;
-    font-size: 0.85em;
+    font-size: 1em;
     font-weight: bold;
     color: rgb(45,44,91);
-    opacity: 0.7;
     padding: 0 10px 6px;
     border-bottom: 1px solid rgb(230,229,240);
   }
@@ -183,6 +182,11 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
+  }
+  .vote-icon {
+    display: inline-block;
+    width: 18px;
+    text-align: center;
   }
   .vote-trigger.disabled {
     cursor: default;
@@ -292,7 +296,7 @@
       row.innerHTML = `
         <td class="idea-text"></td>
         <td class="vote-cell">
-          <span class="vote-trigger ${alreadyVoted ? 'disabled' : ''}">👍 <span class="vote-count">${idea.votes}</span></span>
+          <span class="vote-trigger ${alreadyVoted ? 'disabled' : ''}"><span class="vote-icon">${alreadyVoted ? '✓' : '👍'}</span> <span class="vote-count">${idea.votes}</span></span>
         </td>
       `;
       row.querySelector('.idea-text').textContent = idea.text;
@@ -334,7 +338,7 @@
       .then(data => {
         if (data.ok) {
           markVoted(id);
-          trigger.innerHTML = `✓ <span class="vote-count">${data.votes}</span>`;
+          trigger.innerHTML = `<span class="vote-icon">✓</span> <span class="vote-count">${data.votes}</span>`;
         } else {
           trigger.classList.remove('disabled');
         }
