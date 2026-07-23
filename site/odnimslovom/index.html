@@ -129,7 +129,13 @@
     color: rgb(45,44,91);
   }
 
+  .vote-cta-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 8px 0 28px;
+  }
   .vote-cta {
+    position: relative;
     display: inline-block;
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
     font-size: 1.05em;
@@ -139,18 +145,29 @@
     padding: 14px 30px;
     border-radius: 999px;
     text-decoration: none;
-    margin: 2px 0 26px;
-    animation: vote-pulse 2.4s ease-in-out infinite;
   }
-  @keyframes vote-pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(244,219,206,0.7);
-      transform: scale(1);
-    }
-    50% {
-      box-shadow: 0 0 0 12px rgba(244,219,206,0);
-      transform: scale(1.03);
-    }
+  .vote-cta-ring {
+    position: absolute;
+    inset: -7px;
+    width: calc(100% + 14px);
+    height: calc(100% + 14px);
+    pointer-events: none;
+  }
+  .vote-cta-ring rect {
+    x: 1px;
+    y: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    rx: 999px;
+    ry: 999px;
+    fill: none;
+    stroke: rgb(45,44,91);
+    stroke-width: 2px;
+    stroke-dasharray: 7 6;
+    animation: march 0.7s linear infinite;
+  }
+  @keyframes march {
+    to { stroke-dashoffset: -13; }
   }
 </style>
 </head>
@@ -162,8 +179,9 @@
 
   <img class="post-img" src="/images/posts/odnimslovom.png" alt="Одним словом — игра в ассоциации с национальностями">
 
-  <div>
+  <div class="vote-cta-wrap">
     <a class="vote-cta" href="https://adorelanguages.com/golosovania/odnimslovom/">Голосовать →</a>
+    <svg class="vote-cta-ring"><rect/></svg>
   </div>
 
   <!-- Нет комментария — SEO‑текст скрыт -->
