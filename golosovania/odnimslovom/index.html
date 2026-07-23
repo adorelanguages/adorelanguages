@@ -113,16 +113,14 @@
     margin: 0 0 12px;
   }
 
-  textarea {
+  #idea-input {
     width: 100%;
-    min-height: 90px;
-    padding: 12px 14px;
+    padding: 10px 14px;
     font-size: 1em;
     font-family: 'Factora', Georgia, serif;
     color: rgb(45,44,91);
     border: 2px solid rgb(45,44,91);
     border-radius: 10px;
-    resize: vertical;
     outline: none;
     margin-bottom: 12px;
   }
@@ -149,47 +147,47 @@
   .status-msg.ok { color: #2f7d4f; }
   .status-msg.err { color: #b33; }
 
-  .idea-list { display: flex; flex-direction: column; gap: 12px; }
-
-  .idea-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 18px;
-    border-radius: 14px;
-    background: #faf9f7;
-    box-shadow: 0 2px 6px rgba(45,44,91,0.1);
+  .idea-table {
+    width: 100%;
+    border-collapse: collapse;
   }
-
-  .idea-text {
-    flex: 1;
-    font-size: 1em;
-    line-height: 1.4;
-  }
-
-  .vote-btn {
-    font-family: 'Factora', Georgia, serif;
-    font-size: 0.9em;
+  .idea-table th {
+    text-align: left;
+    font-size: 0.85em;
     font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 999px;
-    border: 2px solid rgb(45,44,91);
-    background: #fff;
     color: rgb(45,44,91);
+    opacity: 0.7;
+    padding: 0 10px 6px;
+    border-bottom: 1px solid rgb(230,229,240);
+  }
+  .idea-table th.votes-col {
+    text-align: right;
+  }
+  .idea-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgb(240,239,247);
+    font-size: 1em;
+  }
+  .idea-table tr:last-child td {
+    border-bottom: none;
+  }
+  .idea-text {
+    line-height: 1.35;
+  }
+  .vote-cell {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .vote-trigger {
     cursor: pointer;
-    flex-shrink: 0;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: background 0.15s, color 0.15s;
+    gap: 5px;
   }
-  .vote-btn:hover:not(:disabled) {
-    background: rgb(45,44,91);
-    color: #fff;
-  }
-  .vote-btn:disabled {
-    opacity: 0.6;
+  .vote-trigger.disabled {
     cursor: default;
+    opacity: 0.6;
+    pointer-events: none;
   }
   .vote-count {
     font-weight: bold;
@@ -201,19 +199,6 @@
     margin-top: 8px;
   }
 
-  .toggle {
-    margin: 32px 0 0;
-    font-size: 0.95em;
-  }
-  .toggle a {
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: 1px solid rgb(45, 44, 91);
-    margin-right: 10px;
-    text-decoration: none;
-    color: rgb(45, 44, 91);
-    display: inline-block;
-  }
 </style>
 </head>
 
@@ -228,11 +213,11 @@
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
-  <p class="lead">Предложи свой вариант — а пока он на модерации, проголосуй за варианты других читателей ниже.</p>
+  <p class="lead">Предложи свой вариант – а пока он на модерации, проголосуй за варианты других читателей ниже.</p>
 
   <div class="submit-box">
     <h2>Предложить вариант</h2>
-    <textarea id="idea-input" maxlength="300" placeholder="Например: бургер, сакэ, кенгуру..."></textarea>
+    <input type="text" id="idea-input" maxlength="40" placeholder="Например: бургер, сакэ, кенгуру...">
     <br>
     <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
     <div class="status-msg" id="submit-status"></div>
@@ -240,11 +225,6 @@
 
   <div class="idea-list" id="idea-list">
     <p class="loading">Загружаю варианты…</p>
-  </div>
-
-  <div class="toggle">
-    <a href="/site/odnimslovom/">Читать пост</a>
-    <a href="/golosovania/">Все голосования</a>
   </div>
 
 </div>
@@ -296,27 +276,36 @@
 
     const voted = getVoted();
 
+    const table = document.createElement('table');
+    table.className = 'idea-table';
+    table.innerHTML = `
+      <thead>
+        <tr><th>Варианты</th><th class="votes-col">Голоса</th></tr>
+      </thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector('tbody');
+
     ideas.forEach(idea => {
-      const card = document.createElement('div');
-      card.className = 'idea-card';
-
       const alreadyVoted = voted.includes(idea.id);
-
-      card.innerHTML = `
-        <span class="idea-text"></span>
-        <button class="vote-btn" ${alreadyVoted ? 'disabled' : ''}>
-          <span class="vote-count">${idea.votes}</span> ${alreadyVoted ? '✓' : '👍 Голосовать'}
-        </button>
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="idea-text"></td>
+        <td class="vote-cell">
+          <span class="vote-trigger ${alreadyVoted ? 'disabled' : ''}">👍 <span class="vote-count">${idea.votes}</span></span>
+        </td>
       `;
-      card.querySelector('.idea-text').textContent = idea.text;
+      row.querySelector('.idea-text').textContent = idea.text;
 
-      const btn = card.querySelector('.vote-btn');
+      const trigger = row.querySelector('.vote-trigger');
       if (!alreadyVoted) {
-        btn.addEventListener('click', () => vote(idea.id, btn));
+        trigger.addEventListener('click', () => vote(idea.id, trigger));
       }
 
-      list.appendChild(card);
+      tbody.appendChild(row);
     });
+
+    list.appendChild(table);
   }
 
   function loadIdeas() {
@@ -334,8 +323,8 @@
       });
   }
 
-  function vote(id, btn) {
-    btn.disabled = true;
+  function vote(id, trigger) {
+    trigger.classList.add('disabled');
     fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -345,14 +334,12 @@
       .then(data => {
         if (data.ok) {
           markVoted(id);
-          const countEl = btn.querySelector('.vote-count');
-          countEl.textContent = data.votes;
-          btn.innerHTML = `<span class="vote-count">${data.votes}</span> ✓`;
+          trigger.innerHTML = `✓ <span class="vote-count">${data.votes}</span>`;
         } else {
-          btn.disabled = false;
+          trigger.classList.remove('disabled');
         }
       })
-      .catch(() => { btn.disabled = false; });
+      .catch(() => { trigger.classList.remove('disabled'); });
   }
 
   function submitIdea() {
