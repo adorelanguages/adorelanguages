@@ -52,60 +52,38 @@
     margin: 0 0 28px;
   }
 
-  .poll-list { display: flex; flex-direction: column; gap: 12px; }
+  .poll-list { display: flex; flex-direction: column; gap: 20px; }
 
-  .poll-card {
-    display: block;
+  .poll-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     text-decoration: none;
     color: rgb(45,44,91);
-    padding: 18px 20px;
-    border-radius: 14px;
-    background: #faf9f7;
-    box-shadow: 0 2px 6px rgba(45,44,91,0.1);
-    transition: box-shadow 0.15s ease;
   }
-  .poll-card:hover {
-    box-shadow: 0 4px 12px rgba(45,44,91,0.2);
+
+  .poll-thumb {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(45,44,91,0.25);
+    flex-shrink: 0;
+    display: block;
+    transition: transform 0.15s ease;
+  }
+  .poll-row:hover .poll-thumb {
+    transform: scale(1.03);
   }
 
   .poll-title {
-    font-size: 1.1em;
+    font-size: 1.3em;
     font-weight: bold;
-    margin: 0 0 4px;
-  }
-
-  .poll-status {
-    font-size: 0.85em;
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
-  .poll-status.open {
-    background: rgb(230,243,251);
-    color: rgb(12,68,124);
-  }
-  .poll-status.closed {
-    background: #eee;
-    color: #777;
   }
 
   .empty {
     font-size: 0.95em;
     opacity: 0.7;
-  }
-
-  .toggle {
-    margin: 32px 0 0;
-    font-size: 0.95em;
-  }
-  .toggle a {
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: 1px solid rgb(45, 44, 91);
-    margin-right: 10px;
-    text-decoration: none;
-    color: rgb(45, 44, 91);
-    display: inline-block;
   }
 </style>
 </head>
@@ -120,41 +98,37 @@
 
   <p class="lead">Здесь собраны все голосования читателей блога «Обожаю Языки» – предлагай свои варианты и голосуй за понравившиеся.</p>
 
-  <div class="poll-list" id="poll-list"></div>
-
-  <div class="toggle">
-    <a href="/idei/">Идеи для постов</a>
-    <a href="/links/site/">Поиск по постам</a>
+  <div class="poll-list" id="poll-list">
+    <a class="poll-row" href="/golosovania/idei/">
+      <img class="poll-thumb" src="/images/logo.jpg" alt="Обожаю Языки — логотип">
+      <span class="poll-title">Идеи для постов</span>
+    </a>
   </div>
 
 </div>
 
 <script>
-  // Реестр голосований. Чтобы добавить новое, впиши сюда объект
-  // { slug: 'oprosN', title: '...', status: 'open' | 'closed' }
-  // и создай страницу golosovania/oprosN/index.html (по образцу golosovania/opros1/).
+  // Реестр голосований. Чтобы добавить новое, впиши сюда объект { slug: 'oprosN', title: '...' }
+  // и создай страницу golosovania/oprosN/index.html (по образцу golosovania/odnimslovom/).
+  // Миниатюра берётся автоматически из /images/posts/<slug>.png
   const POLLS = [
-    { slug: 'odnimslovom', title: 'Одним словом', status: 'open' },
+    { slug: 'odnimslovom', title: 'Одним словом' },
   ];
 
   const list = document.getElementById('poll-list');
 
-  if (!POLLS.length) {
-    list.innerHTML = '<p class="empty">Пока нет активных голосований.</p>';
-  } else {
-    POLLS.forEach(poll => {
-      const card = document.createElement('a');
-      card.className = 'poll-card';
-      card.href = `/golosovania/${poll.slug}/`;
-      const statusLabel = poll.status === 'open' ? 'Идёт голосование' : 'Голосование завершено';
-      card.innerHTML = `
-        <p class="poll-title"></p>
-        <span class="poll-status ${poll.status === 'open' ? 'open' : 'closed'}">${statusLabel}</span>
-      `;
-      card.querySelector('.poll-title').textContent = poll.title;
-      list.appendChild(card);
-    });
-  }
+  POLLS.forEach(poll => {
+    const row = document.createElement('a');
+    row.className = 'poll-row';
+    row.href = `/golosovania/${poll.slug}/`;
+    row.innerHTML = `
+      <img class="poll-thumb" src="/images/posts/${poll.slug}.png" alt="">
+      <span class="poll-title"></span>
+    `;
+    row.querySelector('img').alt = `${poll.title} — миниатюра поста`;
+    row.querySelector('.poll-title').textContent = poll.title;
+    list.appendChild(row);
+  });
 </script>
 
 </body>
