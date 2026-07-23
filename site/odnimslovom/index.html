@@ -128,6 +128,30 @@
   .related a {
     color: rgb(45,44,91);
   }
+
+  .vote-cta {
+    display: inline-block;
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #fff;
+    background: #d6336c;
+    padding: 14px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    margin: 2px 0 26px;
+    animation: vote-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes vote-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(214,51,108,0.45);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 0 12px rgba(214,51,108,0);
+      transform: scale(1.03);
+    }
+  }
 </style>
 </head>
 
@@ -137,6 +161,10 @@
   <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
 
   <img class="post-img" src="/images/posts/odnimslovom.png" alt="Одним словом — игра в ассоциации с национальностями">
+
+  <div>
+    <a class="vote-cta" href="https://adorelanguages.com/golosovania/odnimslovom/">Голосовать →</a>
+  </div>
 
   <!-- Нет комментария — SEO‑текст скрыт -->
 
