@@ -316,7 +316,10 @@
     list.appendChild(table);
   }
 
+  let pendingRequests = 0;
+
   function loadIdeas() {
+    if (pendingRequests > 0) return; // не перезатирать оптимистичное обновление во время голосования/отправки
     fetch(`${API_URL}?poll=${encodeURIComponent(POLL_ID)}&_=${Date.now()}`, { cache: 'no-store' })
       .then(r => r.json())
       .then(data => {
@@ -338,6 +341,7 @@
     countEl.textContent = originalVotes + 1;
     markVoted(id);
 
+    pendingRequests++;
     fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -357,7 +361,8 @@
         countEl.textContent = originalVotes;
         trigger.classList.remove('disabled');
         unmarkVoted(id);
-      });
+      })
+      .finally(() => { pendingRequests--; });
   }
 
   function submitIdea() {
@@ -377,6 +382,7 @@
     status.textContent = 'Спасибо! Вариант отправлен на модерацию.';
     status.className = 'status-msg ok';
 
+    pendingRequests++;
     fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -396,7 +402,8 @@
         status.textContent = 'Не удалось отправить, попробуй ещё раз.';
         status.className = 'status-msg err';
         input.value = text;
-      });
+      })
+      .finally(() => { pendingRequests--; });
   }
 
   loadIdeas();
