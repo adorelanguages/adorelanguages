@@ -317,7 +317,7 @@
   }
 
   function loadIdeas() {
-    fetch(`${API_URL}?poll=${encodeURIComponent(POLL_ID)}`)
+    fetch(`${API_URL}?poll=${encodeURIComponent(POLL_ID)}&_=${Date.now()}`, { cache: 'no-store' })
       .then(r => r.json())
       .then(data => {
         if (data.ok) {
