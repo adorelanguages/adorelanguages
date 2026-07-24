@@ -90,6 +90,8 @@
   }
   .hitlist-btn .star {
     color: #d4af37;
+    font-size: 1.3em;
+    line-height: 1;
     animation: star-blink 1.6s ease-in-out infinite;
   }
   .hitlist-btn .star-2 {
@@ -98,6 +100,19 @@
   @keyframes star-blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.15; }
+  }
+  .hitlist-btn.sending {
+    opacity: 0.7;
+    cursor: default;
+  }
+  .hitlist-btn.voted {
+    cursor: default;
+    background: rgb(45,44,91);
+    color: #fff;
+  }
+  .hitlist-btn.voted .star {
+    animation: none;
+    opacity: 0.9;
   }
 
   img.post-img {
@@ -173,7 +188,7 @@
 
   <div class="top-row">
     <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
-    <a class="hitlist-btn" href="#" onclick="return false;"><span class="star star-1">&#9733;</span>Добавить этот пост в хит-лист<span class="star star-2">&#9733;</span></a>
+    <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Добавить этот пост в хит-лист</span><span class="star star-2">&#9733;</span></a>
   </div>
 
   <img class="post-img" src="/images/posts/kak-dela.png" alt="Как дела — буквальные значения этого вопроса в разных языках">
@@ -208,5 +223,54 @@
   </div>
 
 </div>
+
+<script>
+(function() {
+  var API_URL = 'https://script.google.com/macros/s/AKfycbwo0yIv4Fa69mDJJKjdn3w-cUJsvP-XCCJnSAeydgvMBuFhVRxS2qo8fmUk3n3hqBNHjA/exec';
+  var POST_TITLE = 'Как дела?';
+  var VOTED_KEY = 'adore_hitlist_voted_posts';
+  var btn = document.getElementById('hitlist-btn');
+  var label = btn.querySelector('.label');
+
+  function getVoted() {
+    try { return JSON.parse(localStorage.getItem(VOTED_KEY) || '[]'); } catch (e) { return []; }
+  }
+  function markVoted(title) {
+    var voted = getVoted();
+    if (voted.indexOf(title) === -1) {
+      voted.push(title);
+      localStorage.setItem(VOTED_KEY, JSON.stringify(voted));
+    }
+  }
+
+  if (getVoted().indexOf(POST_TITLE) !== -1) {
+    btn.classList.add('voted');
+    label.textContent = 'Уже в хит-листе!';
+  }
+
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (btn.classList.contains('voted') || btn.classList.contains('sending')) return;
+    btn.classList.add('sending');
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'submit', poll: 'hitlist', text: POST_TITLE })
+    })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        btn.classList.remove('sending');
+        if (data.ok) {
+          markVoted(POST_TITLE);
+          btn.classList.add('voted');
+          label.textContent = 'Добавлено в хит-лист!';
+        }
+      })
+      .catch(function() {
+        btn.classList.remove('sending');
+      });
+  });
+})();
+</script>
 </body>
 </html>
