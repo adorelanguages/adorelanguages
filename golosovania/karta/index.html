@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Карта читателей — Обожаю Языки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Карта читателей блога «Обожаю Языки»: отметь свою страну и город, чтобы появиться на карте.">
+<link rel="canonical" href="https://adorelanguages.com/golosovania/karta/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<style>
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-BOLD.OTF'); font-weight: bold; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Factora', Georgia, serif;
+    background: #ffffff;
+    color: rgb(45, 44, 91);
+    padding: 40px 20px 80px;
+    margin: 0;
+  }
+
+  .wrap { max-width: 640px; margin: 0 auto; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+  .home-button {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: #fff;
+    background: rgb(45, 44, 91);
+    padding: 14px 10px;
+    border-radius: 18px;
+    text-decoration: none;
+    display: inline-block;
+    width: 130px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.3;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .home-button .arrow { margin-right: 4px; }
+
+  h1 {
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .thumb-link {
+    display: block;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    box-shadow: 0 2px 8px rgba(45,44,91,0.25);
+    transition: transform 0.15s ease;
+  }
+  .thumb-link:hover .thumb {
+    transform: scale(1.03);
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,19,40,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  .lightbox-overlay.visible {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  p.lead {
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+
+  .submit-box {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 8px;
+  }
+
+  .submit-box h2 {
+    font-size: 1.1em;
+    margin: 0 0 12px;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  #country-select, #city-input {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: rgb(45,44,91);
+    border: 2px solid rgb(45,44,91);
+    border-radius: 10px;
+    padding: 10px 14px;
+    outline: none;
+    background: #fff;
+  }
+
+  #country-select { flex: 1 1 220px; }
+  #city-input { flex: 1 1 180px; }
+
+  .btn {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.95em;
+    font-weight: bold;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    background: rgb(45,44,91);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+
+  .btn.btn-small {
+    font-size: 0.85em;
+    padding: 7px 16px;
+  }
+
+  .status-msg {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  .status-msg.ok { color: #2f7d4f; }
+  .status-msg.err { color: #b33; }
+
+  .map-wrap {
+    margin-top: 4px;
+  }
+
+  #map-svg-container {
+    line-height: 0;
+  }
+  #map-svg-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #map-svg-container path.country-empty {
+    fill: rgb(230,229,240);
+    stroke: #ffffff;
+    stroke-width: 0.6;
+  }
+  #map-svg-container path.country-active {
+    stroke: #ffffff;
+    stroke-width: 0.6;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  #map-svg-container path.country-active:hover {
+    opacity: 0.8;
+  }
+
+  .map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    min-height: 32px;
+  }
+
+  .back-btn {
+    display: none;
+  }
+  .back-btn.visible {
+    display: inline-block;
+  }
+
+  .map-hint {
+    font-size: 0.85em;
+    opacity: 0.65;
+  }
+
+  .city-panel {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-top: 10px;
+    display: none;
+  }
+  .city-panel.visible { display: block; }
+  .city-panel h3 {
+    margin: 0 0 4px;
+    font-size: 1.15em;
+  }
+  .city-panel .total {
+    font-size: 0.9em;
+    opacity: 0.75;
+    margin: 0 0 10px;
+  }
+  .city-panel ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .city-panel li {
+    margin-bottom: 5px;
+  }
+  .city-panel .city-count {
+    font-weight: bold;
+  }
+
+  .attribution {
+    font-size: 0.78em;
+    opacity: 0.55;
+    margin-top: 18px;
+    line-height: 1.5;
+  }
+  .attribution a {
+    color: inherit;
+  }
+
+  .empty, .loading {
+    font-size: 0.95em;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="thumb-link" id="thumb-link">
+      <img class="thumb" src="/images/posts/karta.png" alt="Карта читателей — миниатюра, нажми, чтобы увеличить">
+    </a>
+    <h1 id="title">Карта читателей</h1>
+    <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
+  </div>
+
+  <p class="lead">Отметь свою страну и город – и появись на карте читателей блога «Обожаю Языки».</p>
+
+  <div class="submit-box">
+    <h2>Отметиться на карте</h2>
+    <div class="field-row">
+      <select id="country-select">
+        <option value="" disabled selected>Выбери страну</option>
+      </select>
+      <input type="text" id="city-input" maxlength="60" placeholder="Город">
+    </div>
+    <button class="btn" id="submit-btn" onclick="submitLocation()">Отметиться</button>
+    <div class="status-msg" id="submit-status"></div>
+  </div>
+
+  <div class="map-wrap">
+    <div id="map-svg-container">
+      <p class="loading">Загружаю карту…</p>
+    </div>
+    <div class="map-controls">
+      <span class="map-hint">Нажми на выделенную страну, чтобы увидеть города</span>
+      <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Ко всей карте</button>
+    </div>
+    <div class="city-panel" id="city-panel">
+      <h3 id="city-panel-title"></h3>
+      <p class="total" id="city-panel-total"></p>
+      <ul id="city-panel-list"></ul>
+    </div>
+  </div>
+
+  <p class="attribution">
+    Карта: <a href="https://github.com/VictorCazanave/svg-maps" target="_blank" rel="noopener">svg-maps</a> (Victor Cazanave), лицензия <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+  </p>
+
+</div>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <img src="/images/posts/karta.png" alt="Карта читателей">
+</div>
+
+<script>
+  const thumbLink = document.getElementById('thumb-link');
+  const lightbox = document.getElementById('lightbox-overlay');
+  thumbLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    lightbox.classList.add('visible');
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('visible');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('visible');
+  });
+</script>
+
+<script>
+  const API_URL = 'https://script.google.com/macros/s/AKfycbwo0yIv4Fa69mDJJKjdn3w-cUJsvP-XCCJnSAeydgvMBuFhVRxS2qo8fmUk3n3hqBNHjA/exec';
+
+  const COUNTRIES = [{"id":"au","ru":"Австралия"},{"id":"at","ru":"Австрия"},{"id":"az","ru":"Азербайджан"},{"id":"ax","ru":"Аландские о-ва"},{"id":"al","ru":"Албания"},{"id":"dz","ru":"Алжир"},{"id":"as","ru":"Американское Самоа"},{"id":"ai","ru":"Ангилья"},{"id":"ao","ru":"Ангола"},{"id":"ad","ru":"Андорра"},{"id":"ag","ru":"Антигуа и Барбуда"},{"id":"ar","ru":"Аргентина"},{"id":"am","ru":"Армения"},{"id":"aw","ru":"Аруба"},{"id":"um-jq","ru":"Атолл Джонстон"},{"id":"af","ru":"Афганистан"},{"id":"bs","ru":"Багамы"},{"id":"bd","ru":"Бангладеш"},{"id":"bb","ru":"Барбадос"},{"id":"bh","ru":"Бахрейн"},{"id":"by","ru":"Беларусь"},{"id":"bz","ru":"Белиз"},{"id":"be","ru":"Бельгия"},{"id":"bj","ru":"Бенин"},{"id":"bm","ru":"Бермудские о-ва"},{"id":"bg","ru":"Болгария"},{"id":"bo","ru":"Боливия"},{"id":"bq","ru":"Бонэйр, Синт-Эстатиус и Саба"},{"id":"ba","ru":"Босния и Герцеговина"},{"id":"bw","ru":"Ботсвана"},{"id":"br","ru":"Бразилия"},{"id":"io","ru":"Британская территория в Индийском океане"},{"id":"bn","ru":"Бруней-Даруссалам"},{"id":"bf","ru":"Буркина-Фасо"},{"id":"bi","ru":"Бурунди"},{"id":"bt","ru":"Бутан"},{"id":"vu","ru":"Вануату"},{"id":"va","ru":"Ватикан"},{"id":"gb","ru":"Великобритания"},{"id":"hu","ru":"Венгрия"},{"id":"ve","ru":"Венесуэла"},{"id":"vg","ru":"Виргинские о-ва (Великобритания)"},{"id":"vi","ru":"Виргинские о-ва (США)"},{"id":"tl","ru":"Восточный Тимор"},{"id":"vn","ru":"Вьетнам"},{"id":"ga","ru":"Габон"},{"id":"ht","ru":"Гаити"},{"id":"gy","ru":"Гайана"},{"id":"gm","ru":"Гамбия"},{"id":"gh","ru":"Гана"},{"id":"gp","ru":"Гваделупа"},{"id":"gt","ru":"Гватемала"},{"id":"gn","ru":"Гвинея"},{"id":"gw","ru":"Гвинея-Бисау"},{"id":"de","ru":"Германия"},{"id":"gg","ru":"Гернси"},{"id":"gi","ru":"Гибралтар"},{"id":"hn","ru":"Гондурас"},{"id":"hk","ru":"Гонконг (САР)"},{"id":"gd","ru":"Гренада"},{"id":"gl","ru":"Гренландия"},{"id":"gr","ru":"Греция"},{"id":"ge","ru":"Грузия"},{"id":"gu","ru":"Гуам"},{"id":"dk","ru":"Дания"},{"id":"je","ru":"Джерси"},{"id":"dj","ru":"Джибути"},{"id":"dm","ru":"Доминика"},{"id":"do","ru":"Доминиканская Республика"},{"id":"eg","ru":"Египет"},{"id":"ju","ru":"Жуан-де-Нова"},{"id":"zm","ru":"Замбия"},{"id":"eh","ru":"Западная Сахара"},{"id":"zw","ru":"Зимбабве"},{"id":"il","ru":"Израиль"},{"id":"in","ru":"Индия"},{"id":"id","ru":"Индонезия"},{"id":"jo","ru":"Иордания"},{"id":"iq","ru":"Ирак"},{"id":"ir","ru":"Иран"},{"id":"ie","ru":"Ирландия"},{"id":"is","ru":"Исландия"},{"id":"es","ru":"Испания"},{"id":"it","ru":"Италия"},{"id":"ye","ru":"Йемен"},{"id":"kp","ru":"КНДР"},{"id":"cv","ru":"Кабо-Верде"},{"id":"kz","ru":"Казахстан"},{"id":"kh","ru":"Камбоджа"},{"id":"cm","ru":"Камерун"},{"id":"ca","ru":"Канада"},{"id":"qa","ru":"Катар"},{"id":"ke","ru":"Кения"},{"id":"cy","ru":"Кипр"},{"id":"kg","ru":"Киргизия"},{"id":"ki","ru":"Кирибати"},{"id":"cn","ru":"Китай"},{"id":"cc","ru":"Кокосовые о-ва"},{"id":"co","ru":"Колумбия"},{"id":"km","ru":"Коморы"},{"id":"cg","ru":"Конго - Браззавиль"},{"id":"cd","ru":"Конго - Киншаса"},{"id":"xk","ru":"Косово"},{"id":"cr","ru":"Коста-Рика"},{"id":"ci","ru":"Кот-д’Ивуар"},{"id":"cu","ru":"Куба"},{"id":"kw","ru":"Кувейт"},{"id":"cw","ru":"Кюрасао"},{"id":"la","ru":"Лаос"},{"id":"lv","ru":"Латвия"},{"id":"ls","ru":"Лесото"},{"id":"lr","ru":"Либерия"},{"id":"lb","ru":"Ливан"},{"id":"ly","ru":"Ливия"},{"id":"lt","ru":"Литва"},{"id":"li","ru":"Лихтенштейн"},{"id":"lu","ru":"Люксембург"},{"id":"mu","ru":"Маврикий"},{"id":"mr","ru":"Мавритания"},{"id":"mg","ru":"Мадагаскар"},{"id":"yt","ru":"Майотта"},{"id":"mo","ru":"Макао (САР)"},{"id":"mw","ru":"Малави"},{"id":"my","ru":"Малайзия"},{"id":"ml","ru":"Мали"},{"id":"mv","ru":"Мальдивы"},{"id":"mt","ru":"Мальта"},{"id":"ma","ru":"Марокко"},{"id":"mq","ru":"Мартиника"},{"id":"mh","ru":"Маршалловы Острова"},{"id":"mx","ru":"Мексика"},{"id":"mz","ru":"Мозамбик"},{"id":"md","ru":"Молдова"},{"id":"mc","ru":"Монако"},{"id":"mn","ru":"Монголия"},{"id":"ms","ru":"Монтсеррат"},{"id":"mm","ru":"Мьянма (Бирма)"},{"id":"na","ru":"Намибия"},{"id":"nr","ru":"Науру"},{"id":"np","ru":"Непал"},{"id":"ne","ru":"Нигер"},{"id":"ng","ru":"Нигерия"},{"id":"nl","ru":"Нидерланды"},{"id":"ni","ru":"Никарагуа"},{"id":"nu","ru":"Ниуэ"},{"id":"nz","ru":"Новая Зеландия"},{"id":"nc","ru":"Новая Каледония"},{"id":"no","ru":"Норвегия"},{"id":"ae","ru":"ОАЭ"},{"id":"om","ru":"Оман"},{"id":"um-fq","ru":"Остров Бейкер"},{"id":"um-dq","ru":"Остров Джарвис"},{"id":"um-wq","ru":"Остров Уэйк"},{"id":"um-hq","ru":"Остров Хауленд"},{"id":"go","ru":"Острова Глорьёз"},{"id":"ky","ru":"Острова Кайман"},{"id":"ck","ru":"Острова Кука"},{"id":"um-mq","ru":"Острова Мидуэй"},{"id":"pk","ru":"Пакистан"},{"id":"pw","ru":"Палау"},{"id":"ps","ru":"Палестинские территории"},{"id":"pa","ru":"Панама"},{"id":"pg","ru":"Папуа — Новая Гвинея"},{"id":"py","ru":"Парагвай"},{"id":"pe","ru":"Перу"},{"id":"pl","ru":"Польша"},{"id":"pt","ru":"Португалия"},{"id":"pr","ru":"Пуэрто-Рико"},{"id":"kr","ru":"Республика Корея"},{"id":"re","ru":"Реюньон"},{"id":"ru","ru":"Россия"},{"id":"rw","ru":"Руанда"},{"id":"ro","ru":"Румыния"},{"id":"sv","ru":"Сальвадор"},{"id":"ws","ru":"Самоа"},{"id":"sm","ru":"Сан-Марино"},{"id":"st","ru":"Сан-Томе и Принсипи"},{"id":"sa","ru":"Саудовская Аравия"},{"id":"mk","ru":"Северная Македония"},{"id":"mp","ru":"Северные Марианские о-ва"},{"id":"sc","ru":"Сейшельские Острова"},{"id":"bl","ru":"Сен-Бартелеми"},{"id":"mf","ru":"Сен-Мартен"},{"id":"pm","ru":"Сен-Пьер и Микелон"},{"id":"sn","ru":"Сенегал"},{"id":"vc","ru":"Сент-Винсент и Гренадины"},{"id":"kn","ru":"Сент-Китс и Невис"},{"id":"lc","ru":"Сент-Люсия"},{"id":"rs","ru":"Сербия"},{"id":"sg","ru":"Сингапур"},{"id":"sx","ru":"Синт-Мартен"},{"id":"sy","ru":"Сирия"},{"id":"sk","ru":"Словакия"},{"id":"si","ru":"Словения"},{"id":"us","ru":"Соединенные Штаты"},{"id":"sb","ru":"Соломоновы Острова"},{"id":"so","ru":"Сомали"},{"id":"sd","ru":"Судан"},{"id":"sr","ru":"Суринам"},{"id":"sl","ru":"Сьерра-Леоне"},{"id":"tj","ru":"Таджикистан"},{"id":"th","ru":"Таиланд"},{"id":"tw","ru":"Тайвань"},{"id":"tz","ru":"Танзания"},{"id":"tg","ru":"Того"},{"id":"tk","ru":"Токелау"},{"id":"to","ru":"Тонга"},{"id":"tt","ru":"Тринидад и Тобаго"},{"id":"tv","ru":"Тувалу"},{"id":"tn","ru":"Тунис"},{"id":"tm","ru":"Туркменистан"},{"id":"tr","ru":"Турция"},{"id":"ug","ru":"Уганда"},{"id":"uz","ru":"Узбекистан"},{"id":"ua","ru":"Украина"},{"id":"wf","ru":"Уоллис и Футуна"},{"id":"uy","ru":"Уругвай"},{"id":"fo","ru":"Фарерские о-ва"},{"id":"fm","ru":"Федеративные Штаты Микронезии"},{"id":"fj","ru":"Фиджи"},{"id":"ph","ru":"Филиппины"},{"id":"fi","ru":"Финляндия"},{"id":"fk","ru":"Фолклендские о-ва"},{"id":"fr","ru":"Франция"},{"id":"gf","ru":"Французская Гвиана"},{"id":"pf","ru":"Французская Полинезия"},{"id":"tf","ru":"Французские Южные территории"},{"id":"hr","ru":"Хорватия"},{"id":"cf","ru":"Центрально-Африканская Республика"},{"id":"td","ru":"Чад"},{"id":"me","ru":"Черногория"},{"id":"cz","ru":"Чехия"},{"id":"cl","ru":"Чили"},{"id":"ch","ru":"Швейцария"},{"id":"se","ru":"Швеция"},{"id":"sj","ru":"Шпицберген и Ян-Майен"},{"id":"lk","ru":"Шри-Ланка"},{"id":"ec","ru":"Эквадор"},{"id":"gq","ru":"Экваториальная Гвинея"},{"id":"er","ru":"Эритрея"},{"id":"sz","ru":"Эсватини"},{"id":"ee","ru":"Эстония"},{"id":"et","ru":"Эфиопия"},{"id":"gs","ru":"Южная Георгия и Южные Сандвичевы о-ва"},{"id":"za","ru":"Южно-Африканская Республика"},{"id":"ss","ru":"Южный Судан"},{"id":"jm","ru":"Ямайка"},{"id":"jp","ru":"Япония"},{"id":"bv","ru":"о-в Буве"},{"id":"im","ru":"о-в Мэн"},{"id":"nf","ru":"о-в Норфолк"},{"id":"cx","ru":"о-в Рождества"},{"id":"sh","ru":"о-в Св. Елены"},{"id":"pn","ru":"о-ва Питкэрн"},{"id":"tc","ru":"о-ва Тёркс и Кайкос"},{"id":"hm","ru":"о-ва Херд и Макдональд"}];
+
+  const COUNTRY_NAME = {};
+  COUNTRIES.forEach(c => { COUNTRY_NAME[c.id] = c.ru; });
+
+  const countrySelect = document.getElementById('country-select');
+  COUNTRIES.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.ru;
+    countrySelect.appendChild(opt);
+  });
+
+  let svgEl = null;
+  let originalViewBox = '0 0 1010 666';
+
+  function submitLocation() {
+    const country = countrySelect.value;
+    const cityInput = document.getElementById('city-input');
+    const city = cityInput.value.trim();
+    const status = document.getElementById('submit-status');
+    const btn = document.getElementById('submit-btn');
+
+    if (!country) {
+      status.textContent = 'Сначала выбери страну.';
+      status.className = 'status-msg err';
+      return;
+    }
+    if (!city) {
+      status.textContent = 'Напиши свой город.';
+      status.className = 'status-msg err';
+      return;
+    }
+
+    btn.disabled = true;
+    status.textContent = 'Спасибо! Скоро появишься на карте.';
+    status.className = 'status-msg ok';
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'submit_location', country: country, city: city })
+    })
+      .then(r => r.json())
+      .then(data => {
+        btn.disabled = false;
+        if (data.ok) {
+          cityInput.value = '';
+          loadMap();
+        } else {
+          status.textContent = 'Что-то пошло не так, попробуй ещё раз.';
+          status.className = 'status-msg err';
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        status.textContent = 'Не удалось отправить, попробуй ещё раз.';
+        status.className = 'status-msg err';
+      });
+  }
+
+  function colorForCount(count) {
+    const opacity = Math.min(1, 0.35 + Math.log2(count + 1) * 0.18);
+    return `rgba(45,44,91,${opacity.toFixed(2)})`;
+  }
+
+  function applyLocationData(countries) {
+    if (!svgEl) return;
+    const paths = svgEl.querySelectorAll('path[id]');
+    paths.forEach(path => {
+      const info = countries[path.id];
+      path.classList.remove('country-empty', 'country-active');
+      path.onclick = null;
+      if (info && info.count > 0) {
+        path.classList.add('country-active');
+        path.style.fill = colorForCount(info.count);
+        path.addEventListener('click', () => showCountry(path.id, info));
+      } else {
+        path.classList.add('country-empty');
+        path.style.fill = '';
+      }
+    });
+  }
+
+  function showCountry(id, info) {
+    if (!svgEl) return;
+    const path = svgEl.querySelector(`path[id="${id}"]`);
+    if (!path) return;
+
+    const bbox = path.getBBox();
+    const padX = Math.max(bbox.width * 0.25, 6);
+    const padY = Math.max(bbox.height * 0.25, 6);
+    svgEl.setAttribute('viewBox', `${bbox.x - padX} ${bbox.y - padY} ${bbox.width + padX * 2} ${bbox.height + padY * 2}`);
+
+    document.getElementById('back-btn').classList.add('visible');
+
+    const panel = document.getElementById('city-panel');
+    document.getElementById('city-panel-title').textContent = COUNTRY_NAME[id] || path.getAttribute('aria-label') || '';
+    document.getElementById('city-panel-total').textContent = `Читателей: ${info.count}`;
+
+    const list = document.getElementById('city-panel-list');
+    list.innerHTML = '';
+    const cities = Object.keys(info.cities).map(name => ({ name, count: info.cities[name] }));
+    cities.sort((a, b) => b.count - a.count);
+    cities.forEach(c => {
+      const li = document.createElement('li');
+      li.innerHTML = `${c.name} <span class="city-count"></span>`;
+      li.querySelector('.city-count').textContent = c.count > 1 ? `(${c.count})` : '';
+      list.appendChild(li);
+    });
+
+    panel.classList.add('visible');
+  }
+
+  function resetMap() {
+    if (svgEl) svgEl.setAttribute('viewBox', originalViewBox);
+    document.getElementById('back-btn').classList.remove('visible');
+    document.getElementById('city-panel').classList.remove('visible');
+  }
+
+  function loadMapSvg() {
+    return fetch('/maps/world.svg')
+      .then(r => r.text())
+      .then(svgText => {
+        const container = document.getElementById('map-svg-container');
+        container.innerHTML = svgText;
+        svgEl = container.querySelector('svg');
+        if (svgEl) {
+          originalViewBox = svgEl.getAttribute('viewBox') || originalViewBox;
+          svgEl.removeAttribute('height');
+          svgEl.removeAttribute('width');
+        }
+      });
+  }
+
+  function loadLocationData() {
+    return fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          applyLocationData(data.countries || {});
+        }
+      });
+  }
+
+  function loadMap() {
+    if (!svgEl) {
+      loadMapSvg().then(loadLocationData);
+    } else {
+      loadLocationData();
+    }
+  }
+
+  loadMap();
+</script>
+
+</body>
+</html>
