@@ -129,31 +129,25 @@
   .post-result-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    padding: 8px 10px;
+    padding: 6px 10px;
     background: #fff;
     border-radius: 10px;
+    text-decoration: none;
+  }
+  .post-result-item:hover .post-result-link { text-decoration: underline; }
+  .post-result-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
   }
   .post-result-link {
     color: rgb(45,44,91);
-    text-decoration: none;
     font-size: 0.98em;
   }
-  .post-result-link:hover { text-decoration: underline; }
-  .post-result-vote {
-    font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 0.85em;
-    font-weight: bold;
-    color: rgb(45,44,91);
-    background: rgb(244,219,206);
-    padding: 6px 14px;
-    border-radius: 999px;
-    text-decoration: none;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .post-result-vote:hover { opacity: 0.85; }
   .post-results .empty {
     font-size: 0.9em;
     opacity: 0.7;
@@ -251,7 +245,7 @@
 
   <div class="search-box">
     <h2>Найти пост</h2>
-    <input type="text" id="post-search" maxlength="80" placeholder="Поиск по тегам или названию...">
+    <input type="text" id="post-search" maxlength="80" placeholder="Поиск по ключевым словам">
     <div class="post-results" id="post-results"></div>
   </div>
 
@@ -426,11 +420,12 @@
     }
     matches.forEach(post => {
       const url = `https://adorelanguages.com/site/${post.slug}/`;
-      const item = document.createElement('div');
+      const item = document.createElement('a');
       item.className = 'post-result-item';
+      item.href = url;
       item.innerHTML = `
-        <a class="post-result-link" href="${url}">${post.title}</a>
-        <a class="post-result-vote" href="${url}">Голосовать →</a>
+        <img class="post-result-thumb" src="/images/posts/${post.slug}.png" alt="">
+        <span class="post-result-link">${post.title}</span>
       `;
       results.appendChild(item);
     });
