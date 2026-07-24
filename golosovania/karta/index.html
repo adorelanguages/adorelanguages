@@ -246,6 +246,62 @@
     line-height: 1.5;
   }
 
+  .country-list-toggle {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: rgb(45,44,91);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .country-list-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .country-list-panel {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 14px 20px;
+    margin-top: 10px;
+    display: none;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  .country-list-panel.visible { display: block; }
+  .country-list-panel ul {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 20px;
+  }
+  .country-list-panel li {
+    margin-bottom: 5px;
+    break-inside: avoid;
+  }
+  .country-list-panel a {
+    color: rgb(45,44,91);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .country-list-panel a:hover {
+    text-decoration: underline;
+  }
+  .country-list-panel .count {
+    font-weight: bold;
+    opacity: 0.75;
+  }
+  .country-list-panel li.country-list-empty {
+    list-style: none;
+    font-size: 0.95em;
+    opacity: 0.7;
+    margin-left: -20px;
+  }
+
   .city-panel {
     background: rgb(244,244,255);
     border-radius: 16px;
@@ -331,6 +387,10 @@
       <span class="map-hint">Нажми на свою страну – и увидишь города</span>
       <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Ко всей карте</button>
     </div>
+    <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
+    <div class="country-list-panel" id="country-list-panel">
+      <ul id="country-list-ul"></ul>
+    </div>
     <div class="city-panel" id="city-panel">
       <h3 id="city-panel-title"></h3>
       <p class="total" id="city-panel-total"></p>
@@ -381,6 +441,7 @@
 
   let svgEl = null;
   let mapContainer = null;
+  let latestCountries = {};
   let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
   let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
   const MIN_VB_WIDTH = 12;
@@ -699,10 +760,55 @@
       .then(r => r.json())
       .then(data => {
         if (data.ok) {
-          applyLocationData(data.countries || {});
+          latestCountries = data.countries || {};
+          applyLocationData(latestCountries);
+          renderCountryList();
         }
       });
   }
+
+  function renderCountryList() {
+    const ul = document.getElementById('country-list-ul');
+    const entries = Object.keys(latestCountries)
+      .map(id => ({ id: id, count: latestCountries[id].count, name: COUNTRY_NAME[id] || id }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+
+    ul.innerHTML = '';
+    if (!entries.length) {
+      const li = document.createElement('li');
+      li.className = 'country-list-empty';
+      li.textContent = 'Пока никто не отметился.';
+      ul.appendChild(li);
+      return;
+    }
+
+    entries.forEach(entry => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = entry.name + ' ';
+      const span = document.createElement('span');
+      span.className = 'count';
+      span.textContent = `(${entry.count})`;
+      a.appendChild(span);
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        showCountry(entry.id, latestCountries[entry.id]);
+        document.getElementById('country-list-panel').classList.remove('visible');
+        document.getElementById('country-list-toggle-btn').textContent = 'Список стран';
+      });
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+  }
+
+  document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
+    const panel = document.getElementById('country-list-panel');
+    const btn = document.getElementById('country-list-toggle-btn');
+    const willShow = !panel.classList.contains('visible');
+    panel.classList.toggle('visible', willShow);
+    btn.textContent = willShow ? 'Скрыть список стран' : 'Список стран';
+  });
 
   function loadMap() {
     if (!svgEl) {
