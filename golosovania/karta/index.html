@@ -183,7 +183,7 @@
 
   .zoom-controls {
     position: absolute;
-    right: 10px;
+    left: 10px;
     bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -254,7 +254,7 @@
     background: none;
     font-family: 'Factora', Georgia, serif;
     font-size: 1.05em;
-    font-weight: bold;
+    font-weight: normal;
     color: rgb(45,44,91);
     text-decoration: underline;
     cursor: pointer;
@@ -274,6 +274,22 @@
   }
   .country-list-panel.visible { display: block; }
 
+  .country-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 0.85em;
+    color: rgb(45,44,91);
+    opacity: 0.65;
+    border-bottom: 1px solid rgb(230,229,240);
+  }
+  .country-list-header .col-readers {
+    min-width: 60px;
+    text-align: right;
+    padding-right: 22px;
+  }
+
   .country-row {
     display: flex;
     justify-content: space-between;
@@ -286,13 +302,23 @@
   .country-row:last-of-type {
     border-bottom: none;
   }
+  .country-row .name {
+    flex: 1;
+  }
+  .country-row .row-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 60px;
+    justify-content: flex-end;
+  }
   .country-row .count {
     font-weight: bold;
-    opacity: 0.75;
-    margin-left: 4px;
   }
   .country-row .chevron {
     display: inline-block;
+    width: 14px;
+    text-align: center;
     flex-shrink: 0;
     transition: transform 0.15s ease;
   }
@@ -312,11 +338,18 @@
     padding-left: 16px;
   }
   .city-sublist li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 4px;
     font-size: 0.95em;
   }
-  .city-sublist .city-count {
+  .city-sublist li .city-count {
     font-weight: bold;
+    min-width: 60px;
+    padding-right: 22px;
+    text-align: right;
   }
 
   .country-list-empty {
@@ -413,6 +446,10 @@
     </div>
     <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
     <div class="country-list-panel" id="country-list-panel">
+      <div class="country-list-header">
+        <span>Страна / город</span>
+        <span class="col-readers">Читателей</span>
+      </div>
       <div id="country-accordion"></div>
     </div>
     <div class="city-panel" id="city-panel">
@@ -789,10 +826,12 @@
     cities.sort((a, b) => b.count - a.count);
     return cities.map(c => {
       const li = document.createElement('li');
-      li.appendChild(document.createTextNode(c.name + ' '));
+      const nameSpan = document.createElement('span');
+      nameSpan.appendChild(document.createTextNode(c.name));
+      li.appendChild(nameSpan);
       const countSpan = document.createElement('span');
       countSpan.className = 'city-count';
-      countSpan.textContent = c.count > 1 ? `(${c.count})` : '';
+      countSpan.textContent = c.count;
       li.appendChild(countSpan);
       return li;
     });
@@ -819,16 +858,21 @@
       const row = document.createElement('div');
       row.className = 'country-row';
       const nameSpan = document.createElement('span');
-      nameSpan.appendChild(document.createTextNode(entry.name + ' '));
+      nameSpan.className = 'name';
+      nameSpan.textContent = entry.name;
+      row.appendChild(nameSpan);
+
+      const rightSpan = document.createElement('span');
+      rightSpan.className = 'row-right';
       const countSpan = document.createElement('span');
       countSpan.className = 'count';
-      countSpan.textContent = `(${entry.count})`;
-      nameSpan.appendChild(countSpan);
-      row.appendChild(nameSpan);
+      countSpan.textContent = entry.count;
+      rightSpan.appendChild(countSpan);
       const chevron = document.createElement('span');
       chevron.className = 'chevron';
       chevron.textContent = '\u203a';
-      row.appendChild(chevron);
+      rightSpan.appendChild(chevron);
+      row.appendChild(rightSpan);
 
       const sub = document.createElement('div');
       sub.className = 'city-sublist';
@@ -853,6 +897,9 @@
     const willShow = !panel.classList.contains('visible');
     panel.classList.toggle('visible', willShow);
     btn.textContent = willShow ? 'Скрыть список стран' : 'Список стран';
+    if (willShow) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   });
 
   function loadMap() {
