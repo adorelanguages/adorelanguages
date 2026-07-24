@@ -83,19 +83,21 @@
     align-items: center;
     gap: 6px;
     white-space: nowrap;
-    animation: hitlist-pulse 2.4s ease-in-out infinite;
   }
   .hitlist-btn:hover {
     background: rgb(45,44,91);
     color: #fff;
-    animation: none;
   }
   .hitlist-btn .star {
     color: #d4af37;
+    animation: star-blink 1.6s ease-in-out infinite;
   }
-  @keyframes hitlist-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
-    50% { box-shadow: 0 0 0 6px rgba(212,175,55,0); }
+  .hitlist-btn .star-2 {
+    animation-delay: 0.8s;
+  }
+  @keyframes star-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.15; }
   }
 
   img.post-img {
@@ -171,7 +173,7 @@
 
   <div class="top-row">
     <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
-    <a class="hitlist-btn" href="#" onclick="return false;"><span class="star">&#9733;</span>Добавить этот пост в хит-лист</a>
+    <a class="hitlist-btn" href="#" onclick="return false;"><span class="star star-1">&#9733;</span>Добавить этот пост в хит-лист<span class="star star-2">&#9733;</span></a>
   </div>
 
   <img class="post-img" src="/images/posts/kak-dela.png" alt="Как дела — буквальные значения этого вопроса в разных языках">
