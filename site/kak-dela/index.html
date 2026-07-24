@@ -250,25 +250,23 @@
 
   btn.addEventListener('click', function(e) {
     e.preventDefault();
-    if (btn.classList.contains('voted') || btn.classList.contains('sending')) return;
-    btn.classList.add('sending');
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ action: 'submit', poll: 'hitlist', text: POST_TITLE })
-    })
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        if (data.ok) {
-          markVoted(POST_TITLE);
-          window.location.href = 'https://adorelanguages.com/golosovania/hitlist/';
-        } else {
-          btn.classList.remove('sending');
-        }
-      })
-      .catch(function() {
-        btn.classList.remove('sending');
-      });
+    if (btn.classList.contains('voted')) return;
+    // Мобильные браузеры часто блокируют переход, если он происходит уже
+    // после того, как асинхронный fetch успел завершиться (жест пользователя
+    // к этому моменту как бы "устарел"). Поэтому переходим сразу же, синхронно
+    // по клику, а сам запрос отправляем с keepalive: true — он гарантированно
+    // долетит до сервера, даже если страница в этот момент уже начала уходить.
+    btn.classList.add('voted');
+    markVoted(POST_TITLE);
+    try {
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        keepalive: true,
+        body: JSON.stringify({ action: 'submit', poll: 'hitlist', text: POST_TITLE })
+      }).catch(function() {});
+    } catch (err) {}
+    window.location.href = 'https://adorelanguages.com/golosovania/hitlist/';
   });
 })();
 </script>
