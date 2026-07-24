@@ -757,6 +757,14 @@
     listPanel.classList.add('visible');
     updateToggleBtnText();
 
+    // Клик по стране на карте - однозначное намерение увидеть города именно этой
+    // страны, поэтому сворачиваем все остальные ранее открытые строки, чтобы не
+    // показывать вперемешку города нескольких стран сразу.
+    document.querySelectorAll('.country-row.expanded').forEach(r => {
+      r.classList.remove('expanded');
+      if (r.nextElementSibling) r.nextElementSibling.classList.remove('expanded');
+    });
+
     const row = document.querySelector(`.country-row[data-country-id="${id}"]`);
     if (row) {
       const sub = row.nextElementSibling;
