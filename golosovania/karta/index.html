@@ -127,8 +127,8 @@
     background: #fff;
   }
 
-  #country-select { flex: 1 1 220px; }
-  #city-input { flex: 1 1 180px; }
+  #country-select { flex: 1 1 0; }
+  #city-input { flex: 1 1 0; }
 
   .btn {
     font-family: 'Factora', Georgia, serif;
@@ -161,13 +161,54 @@
     margin-top: 4px;
   }
 
+  .map-stage {
+    position: relative;
+  }
+
   #map-svg-container {
     line-height: 0;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #map-svg-container.dragging {
+    cursor: grabbing;
   }
   #map-svg-container svg {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+  }
+  .zoom-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(45,44,91,0.85);
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .zoom-btn:hover {
+    opacity: 0.85;
   }
   #map-svg-container path.country-empty {
     fill: rgb(230,229,240);
@@ -188,8 +229,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     margin-top: 10px;
     min-height: 32px;
+    flex-wrap: wrap;
   }
 
   .back-btn {
@@ -200,8 +243,8 @@
   }
 
   .map-hint {
-    font-size: 0.85em;
-    opacity: 0.65;
+    font-size: 1.05em;
+    line-height: 1.5;
   }
 
   .city-panel {
@@ -261,7 +304,7 @@
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
-  <p class="lead">Отметь свою страну и город – и появись на карте читателей блога «Обожаю Языки».</p>
+  <p class="lead">А где ты обожаешь языки? Отметь свою страну и город – и появись на карте читателей блога.</p>
 
   <div class="submit-box">
     <h2>Отметиться на карте</h2>
@@ -276,11 +319,17 @@
   </div>
 
   <div class="map-wrap">
-    <div id="map-svg-container">
-      <p class="loading">Загружаю карту…</p>
+    <div class="map-stage">
+      <div id="map-svg-container">
+        <p class="loading">Загружаю карту…</p>
+      </div>
+      <div class="zoom-controls">
+        <button type="button" class="zoom-btn" id="zoom-in-btn" aria-label="Приблизить">+</button>
+        <button type="button" class="zoom-btn" id="zoom-out-btn" aria-label="Отдалить">&minus;</button>
+      </div>
     </div>
     <div class="map-controls">
-      <span class="map-hint">Нажми на выделенную страну, чтобы увидеть города</span>
+      <span class="map-hint">Нажми на свою страну – и увидишь города</span>
       <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Ко всей карте</button>
     </div>
     <div class="city-panel" id="city-panel">
@@ -332,7 +381,196 @@
   });
 
   let svgEl = null;
-  let originalViewBox = '0 0 1010 666';
+  let mapContainer = null;
+  let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
+  let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
+  const MIN_VB_WIDTH = 12;
+  let wasDragged = false;
+  let listenersAttached = false;
+
+  function parseViewBox(str) {
+    const parts = (str || '0 0 1010 666').trim().split(/\s+/).map(Number);
+    return { x: parts[0], y: parts[1], w: parts[2], h: parts[3] };
+  }
+
+  function viewBoxString(vb) {
+    return `${vb.x} ${vb.y} ${vb.w} ${vb.h}`;
+  }
+
+  function applyViewBox() {
+    if (!svgEl) return;
+    svgEl.setAttribute('viewBox', viewBoxString(currentVB));
+    const changed = Math.abs(currentVB.x - originalVB.x) > 0.5 ||
+      Math.abs(currentVB.y - originalVB.y) > 0.5 ||
+      Math.abs(currentVB.w - originalVB.w) > 0.5;
+    document.getElementById('back-btn').classList.toggle('visible', changed);
+  }
+
+  function clampPan() {
+    const marginX = currentVB.w * 0.9;
+    const marginY = currentVB.h * 0.9;
+    const minX = originalVB.x - marginX;
+    const maxX = originalVB.x + originalVB.w - currentVB.w + marginX;
+    const minY = originalVB.y - marginY;
+    const maxY = originalVB.y + originalVB.h - currentVB.h + marginY;
+    currentVB.x = Math.max(minX, Math.min(currentVB.x, maxX));
+    currentVB.y = Math.max(minY, Math.min(currentVB.y, maxY));
+  }
+
+  function zoomBy(factor, cx, cy) {
+    let newW = currentVB.w * factor;
+    newW = Math.max(MIN_VB_WIDTH, Math.min(newW, originalVB.w));
+    const newH = newW * (originalVB.h / originalVB.w);
+    const ratio = newW / currentVB.w;
+    currentVB = {
+      x: cx - (cx - currentVB.x) * ratio,
+      y: cy - (cy - currentVB.y) * ratio,
+      w: newW,
+      h: newH
+    };
+    clampPan();
+    applyViewBox();
+  }
+
+  function svgPointFromEvent(clientX, clientY) {
+    const rect = svgEl.getBoundingClientRect();
+    const scale = currentVB.w / rect.width;
+    return {
+      x: currentVB.x + (clientX - rect.left) * scale,
+      y: currentVB.y + (clientY - rect.top) * scale
+    };
+  }
+
+  function dist(t1, t2) {
+    return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+  }
+
+  function attachMapInteractions() {
+    if (listenersAttached || !mapContainer) return;
+    listenersAttached = true;
+
+    document.getElementById('zoom-in-btn').addEventListener('click', () => {
+      zoomBy(1 / 1.4, currentVB.x + currentVB.w / 2, currentVB.y + currentVB.h / 2);
+    });
+    document.getElementById('zoom-out-btn').addEventListener('click', () => {
+      zoomBy(1.4, currentVB.x + currentVB.w / 2, currentVB.y + currentVB.h / 2);
+    });
+
+    mapContainer.addEventListener('wheel', (e) => {
+      if (!svgEl) return;
+      e.preventDefault();
+      const p = svgPointFromEvent(e.clientX, e.clientY);
+      const factor = e.deltaY > 0 ? 1.15 : 1 / 1.15;
+      zoomBy(factor, p.x, p.y);
+    }, { passive: false });
+
+    mapContainer.addEventListener('dblclick', (e) => {
+      if (!svgEl) return;
+      const p = svgPointFromEvent(e.clientX, e.clientY);
+      zoomBy(1 / 1.8, p.x, p.y);
+    });
+
+    let dragging = false;
+    let dragStartClient = null;
+    let dragStartVB = null;
+    let dragMoved = 0;
+
+    mapContainer.addEventListener('mousedown', (e) => {
+      if (!svgEl) return;
+      dragging = true;
+      dragMoved = 0;
+      dragStartClient = { x: e.clientX, y: e.clientY };
+      dragStartVB = { ...currentVB };
+      mapContainer.classList.add('dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging || !svgEl) return;
+      const rect = svgEl.getBoundingClientRect();
+      const scale = dragStartVB.w / rect.width;
+      const dx = (e.clientX - dragStartClient.x) * scale;
+      const dy = (e.clientY - dragStartClient.y) * scale;
+      dragMoved = Math.max(dragMoved, Math.hypot(e.clientX - dragStartClient.x, e.clientY - dragStartClient.y));
+      currentVB.x = dragStartVB.x - dx;
+      currentVB.y = dragStartVB.y - dy;
+      clampPan();
+      applyViewBox();
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      mapContainer.classList.remove('dragging');
+      wasDragged = dragMoved > 5;
+    });
+
+    let touchMode = null;
+    let touchStartClient = null;
+    let touchStartVB = null;
+    let pinchStartDist = null;
+    let pinchMidSvg = null;
+    let touchMoved = 0;
+
+    mapContainer.addEventListener('touchstart', (e) => {
+      if (!svgEl) return;
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        touchMoved = 0;
+        touchStartClient = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        touchStartVB = { ...currentVB };
+      } else if (e.touches.length === 2) {
+        touchMode = 'pinch';
+        const [t1, t2] = e.touches;
+        pinchStartDist = dist(t1, t2);
+        touchStartVB = { ...currentVB };
+        const midX = (t1.clientX + t2.clientX) / 2;
+        const midY = (t1.clientY + t2.clientY) / 2;
+        pinchMidSvg = svgPointFromEvent(midX, midY);
+      }
+    }, { passive: false });
+
+    mapContainer.addEventListener('touchmove', (e) => {
+      if (!svgEl) return;
+      e.preventDefault();
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        const rect = svgEl.getBoundingClientRect();
+        const scale = touchStartVB.w / rect.width;
+        const dx = (e.touches[0].clientX - touchStartClient.x) * scale;
+        const dy = (e.touches[0].clientY - touchStartClient.y) * scale;
+        touchMoved = Math.max(touchMoved, Math.hypot(e.touches[0].clientX - touchStartClient.x, e.touches[0].clientY - touchStartClient.y));
+        currentVB.x = touchStartVB.x - dx;
+        currentVB.y = touchStartVB.y - dy;
+        clampPan();
+        applyViewBox();
+      } else if (touchMode === 'pinch' && e.touches.length === 2) {
+        const [t1, t2] = e.touches;
+        const d = dist(t1, t2);
+        const factor = pinchStartDist / d;
+        let newW = Math.max(MIN_VB_WIDTH, Math.min(touchStartVB.w * factor, originalVB.w));
+        const newH = newW * (originalVB.h / originalVB.w);
+        const ratio = newW / touchStartVB.w;
+        currentVB = {
+          x: pinchMidSvg.x - (pinchMidSvg.x - touchStartVB.x) * ratio,
+          y: pinchMidSvg.y - (pinchMidSvg.y - touchStartVB.y) * ratio,
+          w: newW,
+          h: newH
+        };
+        touchMoved = 999;
+        clampPan();
+        applyViewBox();
+      }
+    }, { passive: false });
+
+    mapContainer.addEventListener('touchend', (e) => {
+      wasDragged = touchMoved > 5;
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        touchMoved = 0;
+        touchStartClient = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        touchStartVB = { ...currentVB };
+      } else if (e.touches.length === 0) {
+        touchMode = null;
+      }
+    });
+  }
 
   function submitLocation() {
     const country = countrySelect.value;
@@ -380,8 +618,7 @@
   }
 
   function colorForCount(count) {
-    const opacity = Math.min(1, 0.35 + Math.log2(count + 1) * 0.18);
-    return `rgba(45,44,91,${opacity.toFixed(2)})`;
+    return 'rgb(45,44,91)';
   }
 
   function applyLocationData(countries) {
@@ -394,7 +631,10 @@
       if (info && info.count > 0) {
         path.classList.add('country-active');
         path.style.fill = colorForCount(info.count);
-        path.addEventListener('click', () => showCountry(path.id, info));
+        path.addEventListener('click', () => {
+          if (wasDragged) { wasDragged = false; return; }
+          showCountry(path.id, info);
+        });
       } else {
         path.classList.add('country-empty');
         path.style.fill = '';
@@ -410,9 +650,8 @@
     const bbox = path.getBBox();
     const padX = Math.max(bbox.width * 0.25, 6);
     const padY = Math.max(bbox.height * 0.25, 6);
-    svgEl.setAttribute('viewBox', `${bbox.x - padX} ${bbox.y - padY} ${bbox.width + padX * 2} ${bbox.height + padY * 2}`);
-
-    document.getElementById('back-btn').classList.add('visible');
+    currentVB = { x: bbox.x - padX, y: bbox.y - padY, w: bbox.width + padX * 2, h: bbox.height + padY * 2 };
+    applyViewBox();
 
     const panel = document.getElementById('city-panel');
     document.getElementById('city-panel-title').textContent = COUNTRY_NAME[id] || path.getAttribute('aria-label') || '';
@@ -433,8 +672,8 @@
   }
 
   function resetMap() {
-    if (svgEl) svgEl.setAttribute('viewBox', originalViewBox);
-    document.getElementById('back-btn').classList.remove('visible');
+    currentVB = { ...originalVB };
+    applyViewBox();
     document.getElementById('city-panel').classList.remove('visible');
   }
 
@@ -442,13 +681,15 @@
     return fetch('/maps/world.svg')
       .then(r => r.text())
       .then(svgText => {
-        const container = document.getElementById('map-svg-container');
-        container.innerHTML = svgText;
-        svgEl = container.querySelector('svg');
+        mapContainer = document.getElementById('map-svg-container');
+        mapContainer.innerHTML = svgText;
+        svgEl = mapContainer.querySelector('svg');
         if (svgEl) {
-          originalViewBox = svgEl.getAttribute('viewBox') || originalViewBox;
+          originalVB = parseViewBox(svgEl.getAttribute('viewBox'));
+          currentVB = { ...originalVB };
           svgEl.removeAttribute('height');
           svgEl.removeAttribute('width');
+          attachMapInteractions();
         }
       });
   }
