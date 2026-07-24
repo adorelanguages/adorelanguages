@@ -251,9 +251,16 @@
     line-height: 1.5;
   }
 
+  .country-list-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
   .country-list-toggle {
     display: inline-block;
-    margin-top: 8px;
     padding: 0;
     margin-left: 0;
     margin-right: 0;
@@ -271,6 +278,14 @@
   }
   .country-list-toggle:hover {
     opacity: 0.8;
+  }
+
+  .total-readers {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: rgb(45,44,91);
+    opacity: 0.85;
   }
 
   .country-list-panel {
@@ -426,7 +441,10 @@
       <span class="map-hint">Нажми на страну – и увидишь список городов</span>
       <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Показать всю карту</button>
     </div>
-    <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
+    <div class="country-list-toggle-row">
+      <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
+      <span class="total-readers" id="total-readers-label">Всего читателей: 0</span>
+    </div>
     <div class="country-list-panel" id="country-list-panel">
       <div class="country-list-header">
         <span>Страна / город</span>
@@ -894,6 +912,9 @@
       const count = Object.keys(latestCountries).length;
       btn.textContent = 'Список стран: ' + count;
     }
+
+    const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
+    document.getElementById('total-readers-label').textContent = 'Всего читателей: ' + totalReaders;
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
