@@ -215,10 +215,21 @@
     }
 
     .bottom-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 1.1em;
       font-weight: bold;
       color: rgb(45, 44, 91);
+      text-decoration: none;
+    }
+
+    .bottom-row a span {
       text-decoration: underline;
+    }
+
+    .bottom-row a i {
+      color: rgb(45, 44, 91);
     }
   </style>
 
@@ -267,8 +278,9 @@
     </div>
 
     <div class="bottom-row">
-      <a href="mailto:adore.languages@gmail.com">Связаться</a>
-      <a href="https://buymeacoffee.com/adorelanguages" target="_blank">Поддержать</a>
+      <a href="mailto:adore.languages@gmail.com"><i class="fa-solid fa-envelope"></i> <span>Связь</span></a>
+      <a href="/golosovania/"><i class="fa-solid fa-check-to-slot"></i> <span>Участие</span></a>
+      <a href="https://buymeacoffee.com/adorelanguages" target="_blank"><i class="fa-solid fa-coins"></i> <span>Поддержка</span></a>
     </div>
 
   </div>

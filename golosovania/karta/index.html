@@ -210,14 +210,13 @@
   .zoom-btn:hover {
     opacity: 0.85;
   }
-  #map-svg-container path.country-empty {
+  #map-svg-container path {
     fill: rgb(230,229,240);
     stroke: #ffffff;
     stroke-width: 0.6;
+    transition: fill 0.2s;
   }
   #map-svg-container path.country-active {
-    stroke: #ffffff;
-    stroke-width: 0.6;
     cursor: pointer;
     transition: opacity 0.15s;
   }
