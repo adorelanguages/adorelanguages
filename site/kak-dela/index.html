@@ -52,6 +52,15 @@
 
   .wrap { max-width: 640px; margin: 0 auto; }
 
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
   .back {
     font-family: -apple-system, Segoe UI, sans-serif;
     font-size: 13px;
@@ -61,7 +70,32 @@
     border-radius: 999px;
     text-decoration: none;
     display: inline-block;
-    margin-bottom: 20px;
+  }
+
+  .hitlist-btn {
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 0.95em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .hitlist-btn:hover {
+    background: rgb(45,44,91);
+    color: #fff;
+  }
+  .hitlist-btn .star {
+    color: #d4af37;
+    animation: star-shimmer 1.8s ease-in-out infinite;
+  }
+  @keyframes star-shimmer {
+    0%, 100% { text-shadow: 0 0 2px rgba(212,175,55,0.4); opacity: 0.85; }
+    50% { text-shadow: 0 0 8px rgba(255,215,0,0.95), 0 0 14px rgba(255,215,0,0.55); opacity: 1; }
   }
 
   img.post-img {
@@ -135,7 +169,10 @@
 <body>
 <div class="wrap">
 
-  <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
+  <div class="top-row">
+    <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
+    <a class="hitlist-btn" href="#" onclick="return false;"><span class="star">&#9733;</span>Добавить этот пост в хит-лист</a>
+  </div>
 
   <img class="post-img" src="/images/posts/kak-dela.png" alt="Как дела — буквальные значения этого вопроса в разных языках">
 
