@@ -259,11 +259,11 @@
     })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        btn.classList.remove('sending');
         if (data.ok) {
           markVoted(POST_TITLE);
-          btn.classList.add('voted');
-          label.textContent = 'Добавлено в хит-лист!';
+          window.location.href = 'https://adorelanguages.com/golosovania/hitlist/';
+        } else {
+          btn.classList.remove('sending');
         }
       })
       .catch(function() {
