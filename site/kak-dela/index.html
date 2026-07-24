@@ -54,10 +54,9 @@
 
   .top-row {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
-    flex-wrap: wrap;
     margin-bottom: 20px;
   }
 
@@ -84,18 +83,19 @@
     align-items: center;
     gap: 6px;
     white-space: nowrap;
+    animation: hitlist-pulse 2.4s ease-in-out infinite;
   }
   .hitlist-btn:hover {
     background: rgb(45,44,91);
     color: #fff;
+    animation: none;
   }
   .hitlist-btn .star {
     color: #d4af37;
-    animation: star-shimmer 1.8s ease-in-out infinite;
   }
-  @keyframes star-shimmer {
-    0%, 100% { text-shadow: 0 0 2px rgba(212,175,55,0.4); opacity: 0.85; }
-    50% { text-shadow: 0 0 8px rgba(255,215,0,0.95), 0 0 14px rgba(255,215,0,0.55); opacity: 1; }
+  @keyframes hitlist-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
+    50% { box-shadow: 0 0 0 6px rgba(212,175,55,0); }
   }
 
   img.post-img {
