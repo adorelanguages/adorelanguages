@@ -263,7 +263,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         keepalive: true,
-        body: JSON.stringify({ action: 'submit', poll: 'hitlist', text: POST_TITLE })
+        body: JSON.stringify({ action: 'vote_post', poll: 'hitlist', text: POST_TITLE })
       }).catch(function() {});
     } catch (err) {}
     window.location.href = 'https://adorelanguages.com/golosovania/hitlist/';
