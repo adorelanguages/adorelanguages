@@ -198,6 +198,19 @@
   .rank-badge.gold { background: #C9A227; }
   .rank-badge.silver { background: #A8A8B3; }
   .rank-badge.bronze { background: #B07436; }
+  .idea-link {
+    color: rgb(45,44,91);
+    text-decoration: none;
+  }
+  .idea-link:hover { text-decoration: underline; }
+  .idea-thumb {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+  }
   .vote-cell {
     text-align: center;
     white-space: nowrap;
@@ -340,7 +353,27 @@
         badge.textContent = rank.label;
         textCell.appendChild(badge);
       }
-      textCell.appendChild(document.createTextNode(idea.text));
+
+      const matchedPost = allSitePosts.find(
+        p => p.title.trim().toLowerCase() === idea.text.trim().toLowerCase()
+      );
+
+      if (matchedPost) {
+        const url = `https://adorelanguages.com/site/${matchedPost.slug}/`;
+        const link = document.createElement('a');
+        link.className = 'idea-link';
+        link.href = url;
+        link.textContent = idea.text;
+        textCell.appendChild(link);
+
+        const thumb = document.createElement('img');
+        thumb.className = 'idea-thumb';
+        thumb.src = `/images/posts/${matchedPost.slug}.png`;
+        thumb.alt = '';
+        textCell.appendChild(thumb);
+      } else {
+        textCell.appendChild(document.createTextNode(idea.text));
+      }
 
       const trigger = row.querySelector('.vote-trigger');
       if (!alreadyVoted) {
