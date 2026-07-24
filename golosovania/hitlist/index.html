@@ -210,6 +210,10 @@
     object-fit: cover;
     flex-shrink: 0;
     display: block;
+    transition: transform 0.15s ease;
+  }
+  a:hover > .idea-thumb {
+    transform: scale(1.1);
   }
   .vote-cell {
     text-align: center;
@@ -366,11 +370,14 @@
         link.textContent = idea.text;
         textCell.appendChild(link);
 
+        const thumbLink = document.createElement('a');
+        thumbLink.href = url;
         const thumb = document.createElement('img');
         thumb.className = 'idea-thumb';
         thumb.src = `/images/posts/${matchedPost.slug}.png`;
         thumb.alt = '';
-        textCell.appendChild(thumb);
+        thumbLink.appendChild(thumb);
+        textCell.appendChild(thumbLink);
       } else {
         textCell.appendChild(document.createTextNode(idea.text));
       }
