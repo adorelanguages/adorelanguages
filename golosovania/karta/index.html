@@ -908,8 +908,12 @@
     const btn = document.getElementById('country-list-toggle-btn');
     const panel = document.getElementById('country-list-panel');
     const isVisible = panel.classList.contains('visible');
-    const count = Object.keys(latestCountries).length;
-    btn.textContent = (isVisible ? 'Скрыть список стран' : 'Список стран') + ': ' + count;
+    if (isVisible) {
+      btn.textContent = 'Скрыть список стран';
+    } else {
+      const count = Object.keys(latestCountries).length;
+      btn.textContent = 'Список стран: ' + count;
+    }
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
