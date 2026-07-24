@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Хит-лист — Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Хит-лист блога «Обожаю Языки»: предложи любимый пост и проголосуй за посты других читателей.">
+<meta name="description" content="Хит-лист блога «Обожаю Языки»: найди любимый пост через поиск и проголосуй за него на его странице.">
 <link rel="canonical" href="https://adorelanguages.com/golosovania/hitlist/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
@@ -97,19 +97,19 @@
     margin: 0 0 8px;
   }
 
-  .submit-box {
+  .search-box {
     background: rgb(244,244,255);
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 8px;
   }
 
-  .submit-box h2 {
+  .search-box h2 {
     font-size: 1.1em;
     margin: 0 0 12px;
   }
 
-  #idea-input {
+  #post-search {
     width: 100%;
     padding: 10px 14px;
     font-size: 1em;
@@ -118,30 +118,47 @@
     border: 2px solid rgb(45,44,91);
     border-radius: 10px;
     outline: none;
-    margin-bottom: 12px;
   }
 
-  .btn {
-    font-family: 'Factora', Georgia, serif;
-    font-size: 0.95em;
+  .post-results {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .post-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    background: #fff;
+    border-radius: 10px;
+  }
+  .post-result-link {
+    color: rgb(45,44,91);
+    text-decoration: none;
+    font-size: 0.98em;
+  }
+  .post-result-link:hover { text-decoration: underline; }
+  .post-result-vote {
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 0.85em;
     font-weight: bold;
-    padding: 10px 22px;
+    color: rgb(45,44,91);
+    background: rgb(244,219,206);
+    padding: 6px 14px;
     border-radius: 999px;
-    border: none;
-    background: rgb(45,44,91);
-    color: #fff;
-    cursor: pointer;
-    transition: opacity 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
-  .btn:hover { opacity: 0.85; }
-  .btn:disabled { opacity: 0.5; cursor: default; }
-
-  .status-msg {
-    margin-top: 10px;
+  .post-result-vote:hover { opacity: 0.85; }
+  .post-results .empty {
     font-size: 0.9em;
+    opacity: 0.7;
+    margin: 0;
   }
-  .status-msg.ok { color: #2f7d4f; }
-  .status-msg.err { color: #b33; }
 
   .idea-table {
     width: 100%;
@@ -230,14 +247,12 @@
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
-  <p class="lead">Какой пост тебе больше всего понравился? Предлагай свои варианты и голосуй за предложения других читателей.</p>
+  <p class="lead">Какой пост тебе больше всего понравился? Найди его через поиск и проголосуй прямо на его странице.</p>
 
-  <div class="submit-box">
-    <h2>Предложить пост</h2>
-    <input type="text" id="idea-input" maxlength="80" placeholder="Например: Одним словом">
-    <br>
-    <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
-    <div class="status-msg" id="submit-status"></div>
+  <div class="search-box">
+    <h2>Найти пост</h2>
+    <input type="text" id="post-search" maxlength="80" placeholder="Поиск по тегам или названию...">
+    <div class="post-results" id="post-results"></div>
   </div>
 
   <div class="idea-list" id="idea-list">
@@ -393,52 +408,49 @@
       .finally(() => { pendingRequests--; });
   }
 
-  function submitIdea() {
-    const input = document.getElementById('idea-input');
-    const status = document.getElementById('submit-status');
-    const btn = document.getElementById('submit-btn');
-    const text = input.value.trim();
+  let allSitePosts = [];
 
-    if (!text) {
-      status.textContent = 'Сначала напиши название поста.';
-      status.className = 'status-msg err';
+  function loadSitePosts() {
+    fetch('/links/site/posts.json')
+      .then(r => r.json())
+      .then(posts => { allSitePosts = posts; })
+      .catch(() => { allSitePosts = []; });
+  }
+
+  function renderPostResults(matches) {
+    const results = document.getElementById('post-results');
+    results.innerHTML = '';
+    if (!matches.length) {
+      results.innerHTML = '<p class="empty">Ничего не найдено.</p>';
       return;
     }
-
-    btn.disabled = true;
-    input.value = '';
-    status.textContent = 'Спасибо! Голос учтён.';
-    status.className = 'status-msg ok';
-
-    pendingRequests++;
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ action: 'submit', poll: POLL_ID, text: text })
-    })
-      .then(r => r.json())
-      .then(data => {
-        btn.disabled = false;
-        if (data.ok) {
-          status.textContent = data.merged
-            ? 'Этот пост уже предлагали – твой голос добавлен к нему!'
-            : 'Спасибо! Пост отправлен на модерацию.';
-          status.className = 'status-msg ok';
-          loadIdeas();
-        } else {
-          status.textContent = 'Что-то пошло не так, попробуй ещё раз.';
-          status.className = 'status-msg err';
-          input.value = text;
-        }
-      })
-      .catch(() => {
-        btn.disabled = false;
-        status.textContent = 'Не удалось отправить, попробуй ещё раз.';
-        status.className = 'status-msg err';
-        input.value = text;
-      })
-      .finally(() => { pendingRequests--; });
+    matches.forEach(post => {
+      const url = `https://adorelanguages.com/site/${post.slug}/`;
+      const item = document.createElement('div');
+      item.className = 'post-result-item';
+      item.innerHTML = `
+        <a class="post-result-link" href="${url}">${post.title}</a>
+        <a class="post-result-vote" href="${url}">Голосовать →</a>
+      `;
+      results.appendChild(item);
+    });
   }
+
+  function filterSitePosts() {
+    const q = document.getElementById('post-search').value.toLowerCase().trim();
+    const results = document.getElementById('post-results');
+    if (!q) {
+      results.innerHTML = '';
+      return;
+    }
+    const matches = allSitePosts
+      .filter(post => post.title.toLowerCase().includes(q) || post.tags.join(' ').toLowerCase().includes(q))
+      .sort((a, b) => a.title.localeCompare(b.title, 'ru'));
+    renderPostResults(matches);
+  }
+
+  document.getElementById('post-search').addEventListener('input', filterSitePosts);
+  loadSitePosts();
 
   loadIdeas();
 
