@@ -369,34 +369,6 @@
     margin: 0;
   }
 
-  .city-panel {
-    background: rgb(244,244,255);
-    border-radius: 16px;
-    padding: 18px 20px;
-    margin-top: 10px;
-    display: none;
-  }
-  .city-panel.visible { display: block; }
-  .city-panel h3 {
-    margin: 0 0 4px;
-    font-size: 1.15em;
-  }
-  .city-panel .total {
-    font-size: 0.9em;
-    opacity: 0.75;
-    margin: 0 0 10px;
-  }
-  .city-panel ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  .city-panel li {
-    margin-bottom: 5px;
-  }
-  .city-panel .city-count {
-    font-weight: bold;
-  }
-
   .attribution {
     font-size: 0.78em;
     opacity: 0.55;
@@ -461,11 +433,6 @@
         <span class="col-readers">Читателей</span>
       </div>
       <div id="country-accordion"></div>
-    </div>
-    <div class="city-panel" id="city-panel">
-      <h3 id="city-panel-title"></h3>
-      <p class="total" id="city-panel-total"></p>
-      <ul id="city-panel-list"></ul>
     </div>
   </div>
 
@@ -784,22 +751,26 @@
     currentVB = { x: bbox.x - padX, y: bbox.y - padY, w: bbox.width + padX * 2, h: bbox.height + padY * 2 };
     applyViewBox();
 
-    const panel = document.getElementById('city-panel');
-    document.getElementById('city-panel-title').textContent = COUNTRY_NAME[id] || path.getAttribute('aria-label') || '';
-    document.getElementById('city-panel-total').textContent = `Читателей: ${info.count}`;
+    // Города этой страны показываем не в отдельной панели, а сразу в общем списке
+    // стран ниже - открываем его и разворачиваем/прокручиваем к нужной стране.
+    const listPanel = document.getElementById('country-list-panel');
+    listPanel.classList.add('visible');
+    updateToggleBtnText();
 
-    const list = document.getElementById('city-panel-list');
-    list.innerHTML = '';
-    buildCityListItems(info).forEach(li => list.appendChild(li));
-
-    panel.classList.add('visible');
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const row = document.querySelector(`.country-row[data-country-id="${id}"]`);
+    if (row) {
+      const sub = row.nextElementSibling;
+      row.classList.add('expanded');
+      if (sub) sub.classList.add('expanded');
+      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      listPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
   function resetMap() {
     currentVB = { ...originalVB };
     applyViewBox();
-    document.getElementById('city-panel').classList.remove('visible');
   }
 
   function loadMapSvg() {
@@ -868,6 +839,7 @@
 
       const row = document.createElement('div');
       row.className = 'country-row';
+      row.dataset.countryId = entry.id;
       const nameSpan = document.createElement('span');
       nameSpan.className = 'name';
       nameSpan.textContent = entry.name;
