@@ -127,8 +127,8 @@
     background: #fff;
   }
 
-  #country-select { flex: 1 1 0; }
-  #city-input { flex: 1 1 0; }
+  #country-select { flex: 1 1 0; min-width: 0; }
+  #city-input { flex: 1 1 0; min-width: 0; }
 
   .btn {
     font-family: 'Factora', Georgia, serif;
@@ -669,6 +669,7 @@
     });
 
     panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function resetMap() {
