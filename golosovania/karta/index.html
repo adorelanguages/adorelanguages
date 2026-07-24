@@ -859,6 +859,7 @@
       p.className = 'country-list-empty';
       p.textContent = 'Пока никто не отметился.';
       container.appendChild(p);
+      updateToggleBtnText();
       return;
     }
 
@@ -899,14 +900,23 @@
       container.appendChild(row);
       container.appendChild(sub);
     });
+
+    updateToggleBtnText();
+  }
+
+  function updateToggleBtnText() {
+    const btn = document.getElementById('country-list-toggle-btn');
+    const panel = document.getElementById('country-list-panel');
+    const isVisible = panel.classList.contains('visible');
+    const count = Object.keys(latestCountries).length;
+    btn.textContent = (isVisible ? 'Скрыть список стран' : 'Список стран') + ': ' + count;
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
     const panel = document.getElementById('country-list-panel');
-    const btn = document.getElementById('country-list-toggle-btn');
     const willShow = !panel.classList.contains('visible');
     panel.classList.toggle('visible', willShow);
-    btn.textContent = willShow ? 'Скрыть список стран' : 'Список стран';
+    updateToggleBtnText();
     if (willShow) {
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
