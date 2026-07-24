@@ -449,6 +449,16 @@
 
   loadIdeas();
 
+  // Сразу после захода на страницу (в т.ч. по переходу со звезды на посте) опрашиваем сервер
+  // чаще обычного - Apps Script иногда не успевает записать голос за 1-2 секунды, а ждать
+  // здесь обычные 15 секунд до следующего опроса слишком долго.
+  let fastPollCount = 0;
+  const fastPollTimer = setInterval(() => {
+    loadIdeas();
+    fastPollCount++;
+    if (fastPollCount >= 8) clearInterval(fastPollTimer);
+  }, 2000);
+
   setInterval(loadIdeas, 15000);
 
   document.addEventListener('visibilitychange', () => {
