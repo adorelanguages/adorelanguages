@@ -45,7 +45,7 @@
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
-      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka"],
+      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka"],
       "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
@@ -74,7 +74,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka"]
   },
   "lingvistika": {
     "title": "Лингвистика",
@@ -95,7 +95,7 @@
       "испанский": ["zabiratvolosy"],
       "итальянский": ["dvuhnezaitsev", "udachi"],
       "китайский": ["yaytsoibanan"],
-      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel", "uvasestkozyol"],
+      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel", "uvasestkozyol", "svinosobaka"],
       "норвежский": ["dvuhnezaitsev"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
