@@ -266,40 +266,64 @@
   .country-list-panel {
     background: rgb(244,244,255);
     border-radius: 16px;
-    padding: 14px 20px;
+    padding: 6px 20px;
     margin-top: 10px;
     display: none;
-    max-height: 260px;
+    max-height: 340px;
     overflow-y: auto;
   }
   .country-list-panel.visible { display: block; }
-  .country-list-panel ul {
-    margin: 0;
-    padding-left: 20px;
-    columns: 2;
-    column-gap: 20px;
-  }
-  .country-list-panel li {
-    margin-bottom: 5px;
-    break-inside: avoid;
-  }
-  .country-list-panel a {
-    color: rgb(45,44,91);
+
+  .country-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(230,229,240);
     cursor: pointer;
-    text-decoration: none;
   }
-  .country-list-panel a:hover {
-    text-decoration: underline;
+  .country-row:last-of-type {
+    border-bottom: none;
   }
-  .country-list-panel .count {
+  .country-row .count {
     font-weight: bold;
     opacity: 0.75;
+    margin-left: 4px;
   }
-  .country-list-panel li.country-list-empty {
-    list-style: none;
+  .country-row .chevron {
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+  .country-row.expanded .chevron {
+    transform: rotate(90deg);
+  }
+
+  .city-sublist {
+    display: none;
+    padding: 0 0 12px 18px;
+  }
+  .city-sublist.expanded {
+    display: block;
+  }
+  .city-sublist ul {
+    margin: 0;
+    padding-left: 16px;
+  }
+  .city-sublist li {
+    margin-bottom: 4px;
+    font-size: 0.95em;
+  }
+  .city-sublist .city-count {
+    font-weight: bold;
+  }
+
+  .country-list-empty {
     font-size: 0.95em;
     opacity: 0.7;
-    margin-left: -20px;
+    padding: 10px 0;
+    margin: 0;
   }
 
   .city-panel {
@@ -389,7 +413,7 @@
     </div>
     <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
     <div class="country-list-panel" id="country-list-panel">
-      <ul id="country-list-ul"></ul>
+      <div id="country-accordion"></div>
     </div>
     <div class="city-panel" id="city-panel">
       <h3 id="city-panel-title"></h3>
@@ -719,14 +743,7 @@
 
     const list = document.getElementById('city-panel-list');
     list.innerHTML = '';
-    const cities = Object.keys(info.cities).map(name => ({ name, count: info.cities[name] }));
-    cities.sort((a, b) => b.count - a.count);
-    cities.forEach(c => {
-      const li = document.createElement('li');
-      li.innerHTML = `${c.name} <span class="city-count"></span>`;
-      li.querySelector('.city-count').textContent = c.count > 1 ? `(${c.count})` : '';
-      list.appendChild(li);
-    });
+    buildCityListItems(info).forEach(li => list.appendChild(li));
 
     panel.classList.add('visible');
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -767,38 +784,66 @@
       });
   }
 
+  function buildCityListItems(info) {
+    const cities = Object.keys(info.cities).map(name => ({ name: name, count: info.cities[name] }));
+    cities.sort((a, b) => b.count - a.count);
+    return cities.map(c => {
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode(c.name + ' '));
+      const countSpan = document.createElement('span');
+      countSpan.className = 'city-count';
+      countSpan.textContent = c.count > 1 ? `(${c.count})` : '';
+      li.appendChild(countSpan);
+      return li;
+    });
+  }
+
   function renderCountryList() {
-    const ul = document.getElementById('country-list-ul');
+    const container = document.getElementById('country-accordion');
     const entries = Object.keys(latestCountries)
       .map(id => ({ id: id, count: latestCountries[id].count, name: COUNTRY_NAME[id] || id }))
       .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
 
-    ul.innerHTML = '';
+    container.innerHTML = '';
     if (!entries.length) {
-      const li = document.createElement('li');
-      li.className = 'country-list-empty';
-      li.textContent = 'Пока никто не отметился.';
-      ul.appendChild(li);
+      const p = document.createElement('p');
+      p.className = 'country-list-empty';
+      p.textContent = 'Пока никто не отметился.';
+      container.appendChild(p);
       return;
     }
 
     entries.forEach(entry => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = '#';
-      a.textContent = entry.name + ' ';
-      const span = document.createElement('span');
-      span.className = 'count';
-      span.textContent = `(${entry.count})`;
-      a.appendChild(span);
-      a.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        showCountry(entry.id, latestCountries[entry.id]);
-        document.getElementById('country-list-panel').classList.remove('visible');
-        document.getElementById('country-list-toggle-btn').textContent = 'Список стран';
+      const info = latestCountries[entry.id];
+
+      const row = document.createElement('div');
+      row.className = 'country-row';
+      const nameSpan = document.createElement('span');
+      nameSpan.appendChild(document.createTextNode(entry.name + ' '));
+      const countSpan = document.createElement('span');
+      countSpan.className = 'count';
+      countSpan.textContent = `(${entry.count})`;
+      nameSpan.appendChild(countSpan);
+      row.appendChild(nameSpan);
+      const chevron = document.createElement('span');
+      chevron.className = 'chevron';
+      chevron.textContent = '\u203a';
+      row.appendChild(chevron);
+
+      const sub = document.createElement('div');
+      sub.className = 'city-sublist';
+      const ul = document.createElement('ul');
+      buildCityListItems(info).forEach(li => ul.appendChild(li));
+      sub.appendChild(ul);
+
+      row.addEventListener('click', () => {
+        const willExpand = !sub.classList.contains('expanded');
+        sub.classList.toggle('expanded', willExpand);
+        row.classList.toggle('expanded', willExpand);
       });
-      li.appendChild(a);
-      ul.appendChild(li);
+
+      container.appendChild(row);
+      container.appendChild(sub);
     });
   }
 
