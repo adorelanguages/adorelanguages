@@ -187,7 +187,7 @@
 
   <div class="top-row">
     <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
-    <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Добавить этот пост в хит-лист</span><span class="star star-2">&#9733;</span></a>
+    <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Добавить этот пост в любимые посты</span><span class="star star-2">&#9733;</span></a>
   </div>
 
   <img class="post-img" src="/images/posts/udmurtprivet.png" alt="Удмурт-привет — удмуртские приветствия ӟечбур, чырткем и кужмо кариськы">
@@ -239,7 +239,7 @@
 
   if (getVoted().indexOf(POST_TITLE) !== -1) {
     btn.classList.add('voted');
-    label.textContent = 'Уже в хит-листе!';
+    label.textContent = 'Уже в любимых постах!';
   }
 
   btn.addEventListener('click', function(e) {
