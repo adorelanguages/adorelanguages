@@ -422,9 +422,19 @@
     transform: translateY(0);
   }
 
+  .mobile-badge {
+    display: none;
+  }
+
   @media (max-width: 480px) {
     .thumb-link {
       display: none;
+    }
+    .mobile-badge {
+      display: block;
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
     }
   }
 </style>
@@ -437,6 +447,7 @@
     <a class="thumb-link" id="thumb-link">
       <img class="thumb" src="/images/posts/karta.png" alt="Карта читателей — миниатюра, нажми, чтобы увеличить">
     </a>
+    <img class="mobile-badge" src="/images/icons/serdce-sinee.png" alt="">
     <h1 id="title">Карта Обожателей Языков</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
