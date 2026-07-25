@@ -273,7 +273,6 @@
     line-height: 1.5;
     font-weight: normal;
     color: rgb(45,44,91);
-    text-decoration: underline;
     cursor: pointer;
   }
   .country-list-toggle:hover {
@@ -465,7 +464,7 @@
       <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Показать всю карту</button>
     </div>
     <div class="country-list-toggle-row">
-      <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
+      <button type="button" class="country-list-toggle" id="country-list-toggle-btn"><span style="text-decoration: underline;">Список стран</span></button>
       <span class="total-readers" id="total-readers-label">Всего Обожателей Языков: 0</span>
     </div>
     <div class="country-list-panel" id="country-list-panel">
@@ -932,10 +931,10 @@
     const panel = document.getElementById('country-list-panel');
     const isVisible = panel.classList.contains('visible');
     if (isVisible) {
-      btn.textContent = 'Скрыть список стран';
+      btn.innerHTML = '<span style="text-decoration: underline;">Скрыть список стран</span>';
     } else {
       const count = Object.keys(latestCountries).length;
-      btn.innerHTML = 'Список стран<span style="text-decoration: none;">: ' + count + '</span>';
+      btn.innerHTML = '<span style="text-decoration: underline;">Список стран</span>: ' + count;
     }
 
     const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
