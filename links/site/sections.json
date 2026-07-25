@@ -34,9 +34,10 @@
       "арабский": ["pustynyasahara"],
       "армянский": ["armyanktuaciya"],
       "африкаанс": ["krossulya"],
+      "болгарский": ["moyushchiymedved"],
       "бурятский": ["tyrboga"],
       "венгерский": ["trisobaka", "glazzakroy"],
-      "голландский": ["dikiiobraz"],
+      "голландский": ["dikiiobraz", "moyushchiymedved"],
       "греческий": ["kak-dela"],
       "испанский": ["zanimatelnoesovpadenie", "zabiratvolosy"],
       "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie", "voodushevlenie"],
@@ -48,7 +49,7 @@
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
       "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka", "voodushevlenie", "dikiiobraz"],
-      "нидерландский": ["dikiiobraz"],
+      "нидерландский": ["dikiiobraz", "moyushchiymedved"],
       "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
@@ -70,9 +71,9 @@
       "черкесский": ["kak-dela"],
       "чеченский": ["chechenskost"],
       "чешский": ["zabavlyadlo", "trampova", "poryadokbukv", "svsmbzglsnh", "listopad"],
-      "шведский": ["babushkatsia", "divannayakartoshka", "dikiiobraz"],
+      "шведский": ["babushkatsia", "divannayakartoshka", "dikiiobraz", "moyushchiymedved"],
       "эсперанто": ["zanimatelnoesovpadenie"],
-      "эстонский": ["kak-dela"]
+      "эстонский": ["kak-dela", "moyushchiymedved"]
     }
   },
   "illyustraciiayu": {
