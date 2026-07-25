@@ -244,6 +244,31 @@
     margin-top: 8px;
   }
 
+  .to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgb(45, 44, 91);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(45, 44, 91, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 </style>
 </head>
 
@@ -271,6 +296,8 @@
   </div>
 
 </div>
+
+<a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
 
 <div class="lightbox-overlay" id="lightbox-overlay">
   <img src="/images/posts/hitlist.png" alt="Любимые посты">
@@ -505,6 +532,17 @@
     if (document.visibilityState === 'visible') {
       loadIdeas();
     }
+  });
+</script>
+
+<script>
+  const toTopBtn = document.getElementById('to-top');
+  window.addEventListener('scroll', () => {
+    toTopBtn.classList.toggle('visible', window.scrollY > 300);
+  });
+  toTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
 
