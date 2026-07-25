@@ -935,7 +935,7 @@
       btn.textContent = 'Скрыть список стран';
     } else {
       const count = Object.keys(latestCountries).length;
-      btn.textContent = 'Список стран: ' + count;
+      btn.innerHTML = 'Список стран<span style="text-decoration: none;">: ' + count + '</span>';
     }
 
     const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
