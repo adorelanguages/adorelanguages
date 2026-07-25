@@ -447,10 +447,12 @@
   window.addEventListener('scroll', () => {
     toTopBtn.classList.toggle('visible', window.scrollY > 300);
   });
-  toTopBtn.addEventListener('click', (e) => {
+  function scrollToTop(e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  }
+  toTopBtn.addEventListener('click', scrollToTop);
+  toTopBtn.addEventListener('touchend', scrollToTop);
 </script>
 
 </body>
