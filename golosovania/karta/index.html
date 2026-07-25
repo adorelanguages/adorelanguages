@@ -465,7 +465,7 @@
     </div>
     <div class="country-list-toggle-row">
       <button type="button" class="country-list-toggle" id="country-list-toggle-btn"><span style="text-decoration: underline;">Список стран</span></button>
-      <span class="total-readers" id="total-readers-label">Всего Обожателей Языков: 0</span>
+      <span class="total-readers" id="total-readers-label">Всего Обожателей Языков: <strong>0</strong></span>
     </div>
     <div class="country-list-panel" id="country-list-panel">
       <div class="country-list-header">
@@ -934,11 +934,11 @@
       btn.innerHTML = '<span style="text-decoration: underline;">Скрыть список стран</span>';
     } else {
       const count = Object.keys(latestCountries).length;
-      btn.innerHTML = '<span style="text-decoration: underline;">Список стран</span>: ' + count;
+      btn.innerHTML = '<span style="text-decoration: underline;">Список стран</span>: <strong>' + count + '</strong>';
     }
 
     const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
-    document.getElementById('total-readers-label').textContent = 'Всего Обожателей Языков: ' + totalReaders;
+    document.getElementById('total-readers-label').innerHTML = 'Всего Обожателей Языков: <strong>' + totalReaders + '</strong>';
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
