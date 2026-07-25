@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Карта читателей — Обожаю Языки</title>
+<title>Карта Обожателей Языков — Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Карта читателей блога «Обожаю Языки»: отметь свою страну и город, чтобы появиться на карте.">
 <link rel="canonical" href="https://adorelanguages.com/golosovania/karta/">
@@ -432,7 +432,7 @@
     <a class="thumb-link" id="thumb-link">
       <img class="thumb" src="/images/posts/karta.png" alt="Карта читателей — миниатюра, нажми, чтобы увеличить">
     </a>
-    <h1 id="title">Карта читателей</h1>
+    <h1 id="title">Карта Обожателей Языков</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
@@ -466,7 +466,7 @@
     </div>
     <div class="country-list-toggle-row">
       <button type="button" class="country-list-toggle" id="country-list-toggle-btn">Список стран</button>
-      <span class="total-readers" id="total-readers-label">Всего читателей: 0</span>
+      <span class="total-readers" id="total-readers-label">Всего Обожателей Языков: 0</span>
     </div>
     <div class="country-list-panel" id="country-list-panel">
       <div class="country-list-header">
@@ -939,7 +939,7 @@
     }
 
     const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
-    document.getElementById('total-readers-label').textContent = 'Всего читателей: ' + totalReaders;
+    document.getElementById('total-readers-label').textContent = 'Всего Обожателей Языков: ' + totalReaders;
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
