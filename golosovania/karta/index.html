@@ -423,18 +423,25 @@
   }
 
   @media (max-width: 480px) {
+    .topbar {
+      align-items: flex-start;
+    }
     .thumb {
-      width: 64px;
-      height: 64px;
+      width: 56px;
+      height: 56px;
     }
     .home-button {
-      width: 96px;
-      font-size: 0.85em;
-      padding: 10px 6px;
+      width: 92px;
+      font-size: 0.8em;
+      padding: 8px 4px;
+      white-space: normal;
     }
     h1 {
-      font-size: 1.3em;
-      padding: 0 6px;
+      font-size: 1.2em;
+      padding: 0 4px;
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
   }
 </style>
