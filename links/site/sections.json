@@ -30,7 +30,7 @@
       "аварский": ["tametogde"],
       "адыгский": ["kak-dela"],
       "албанский": ["shiptarskiy"],
-      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka", "kak-dela", "zanimatelnoesovpadenie"],
+      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie"],
       "арабский": ["pustynyasahara"],
       "армянский": ["armyanktuaciya"],
       "африкаанс": ["krossulya"],
@@ -38,14 +38,14 @@
       "венгерский": ["trisobaka", "glazzakroy"],
       "греческий": ["kak-dela"],
       "испанский": ["zanimatelnoesovpadenie", "zabiratvolosy"],
-      "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie"],
+      "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie", "voodushevlenie"],
       "китайский": ["yaytsoibanan"],
       "коми": ["komi", "hlebnoeuho", "vodava"],
       "кыргызский": ["tyrboga"],
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
-      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka"],
+      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka", "voodushevlenie"],
       "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
       "персидский": ["lyuboviorgany"],
@@ -62,7 +62,7 @@
       "украинский": ["kak-dela", "listopad"],
       "фарси": ["lyuboviorgany"],
       "финский": ["mozgivgarderob", "divannayakartoshka"],
-      "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie"],
+      "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie"],
       "хорватский": ["listopad"],
       "черкесский": ["kak-dela"],
       "чеченский": ["chechenskost"],
@@ -74,7 +74,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka", "voodushevlenie"]
   },
   "lingvistika": {
     "title": "Лингвистика",
