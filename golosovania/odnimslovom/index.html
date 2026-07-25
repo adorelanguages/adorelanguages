@@ -216,7 +216,7 @@
 
   <div class="submit-box">
     <h2>Предложить вариант</h2>
-    <input type="text" id="idea-input" maxlength="40" placeholder="Например: бургер, сакэ, кенгуру...">
+    <input type="text" id="idea-input" maxlength="40" placeholder="Например: бургер, сакэ, кенгуру..." onkeydown="if (event.key === 'Enter') submitIdea();">
     <br>
     <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
     <div class="status-msg" id="submit-status"></div>
