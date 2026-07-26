@@ -303,13 +303,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 0;
-    font-size: 1em;
+    font-size: 1.05em;
     font-weight: bold;
     color: rgb(45,44,91);
     border-bottom: 1px solid rgb(230,229,240);
   }
   .country-list-header .col-readers {
-    width: 94px;
+    width: 142px;
     text-align: center;
   }
 
@@ -319,8 +319,9 @@
     align-items: center;
     gap: 10px;
     padding: 10px 0;
-    border-bottom: 1px solid rgb(230,229,240);
+    border-bottom: 1px solid rgba(45,44,91,0.18);
     cursor: pointer;
+    font-size: 1.05em;
   }
   .country-row:last-of-type {
     border-bottom: none;
@@ -331,7 +332,7 @@
   .country-row .row-right {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 32px;
     min-width: 60px;
     justify-content: flex-end;
   }
@@ -372,9 +373,9 @@
   }
   .city-sublist li .city-count {
     font-weight: bold;
-    min-width: 60px;
-    padding-right: 22px;
-    text-align: right;
+    width: 22px;
+    text-align: center;
+    margin-right: -4px;
   }
 
   .country-list-empty {
@@ -423,21 +424,6 @@
     transform: translateY(0);
   }
 
-  .mobile-badge {
-    display: none;
-  }
-
-  @media (max-width: 480px) {
-    .thumb-link {
-      display: none;
-    }
-    .mobile-badge {
-      display: block;
-      width: 56px;
-      height: 56px;
-      flex-shrink: 0;
-    }
-  }
 </style>
 </head>
 
@@ -446,9 +432,8 @@
 
   <div class="topbar">
     <a class="thumb-link" id="thumb-link">
-      <img class="thumb" src="/images/posts/karta.png" alt="Карта читателей — миниатюра, нажми, чтобы увеличить">
+      <img class="thumb" src="/images/icons/serdce-sinee.png" alt="Карта Обожателей Языков — миниатюра, нажми, чтобы увеличить">
     </a>
-    <img class="mobile-badge" src="/images/icons/serdce-sinee.png" alt="">
     <h1 id="title">Карта Обожателей Языков</h1>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
@@ -487,7 +472,7 @@
     </div>
     <div class="country-list-panel" id="country-list-panel">
       <div class="country-list-header">
-        <span>Страна / город</span>
+        <span>Страны и<br>города</span>
         <span class="col-readers">Обожателей Языков</span>
       </div>
       <div id="country-accordion"></div>
@@ -503,7 +488,7 @@
 <a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
 
 <div class="lightbox-overlay" id="lightbox-overlay">
-  <img src="/images/posts/karta.png" alt="Карта читателей">
+  <img src="/images/icons/serdce-sinee.png" alt="Карта Обожателей Языков">
 </div>
 
 <script>
