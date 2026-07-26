@@ -30,7 +30,7 @@
       "аварский": ["tametogde"],
       "адыгский": ["kak-dela"],
       "албанский": ["shiptarskiy"],
-      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie", "dikiiobraz"],
+      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie", "dikiiobraz", "shibbolet"],
       "арабский": ["pustynyasahara"],
       "армянский": ["armyanktuaciya"],
       "африкаанс": ["krossulya"],
@@ -39,6 +39,7 @@
       "венгерский": ["trisobaka", "glazzakroy"],
       "голландский": ["dikiiobraz", "moyushchiymedved"],
       "греческий": ["kak-dela"],
+      "иврит": ["shibbolet"],
       "испанский": ["zanimatelnoesovpadenie", "zabiratvolosy"],
       "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie", "voodushevlenie"],
       "китайский": ["yaytsoibanan"],
@@ -63,7 +64,7 @@
       "таджикский": ["zagadkatadzhikskiy"],
       "турецкий": ["tyrboga", "tseluyu", "dvuhnezaitsev"],
       "удмуртский": ["udmurtprivet", "hlebnoeuho"],
-      "украинский": ["kak-dela", "listopad"],
+      "украинский": ["kak-dela", "listopad", "shibbolet"],
       "фарси": ["lyuboviorgany"],
       "финский": ["mozgivgarderob", "divannayakartoshka"],
       "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie"],
@@ -82,7 +83,7 @@
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis", "dvoyako"]
+    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis", "dvoyako", "shibbolet"]
   },
   "igraslov": {
     "title": "Языковые шутки",
