@@ -7,6 +7,7 @@
 <meta name="description" content="Предложи свою идею для нового поста в блоге «Обожаю Языки» и проголосуй за идеи других читателей.">
 <link rel="canonical" href="https://adorelanguages.com/golosovania/idei/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
   @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
@@ -138,6 +139,32 @@
   .btn:hover { opacity: 0.85; }
   .btn:disabled { opacity: 0.5; cursor: default; }
 
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn-secondary {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.95em;
+    font-weight: bold;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 2px solid rgb(45,44,91);
+    background: transparent;
+    color: rgb(45,44,91);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-secondary:hover { opacity: 0.7; }
+
   .status-msg {
     margin-top: 10px;
     font-size: 0.9em;
@@ -242,7 +269,10 @@
     <h2>Предложить идею</h2>
     <textarea id="idea-input" maxlength="300" placeholder="Например: идиома, слово или языковой факт, о котором интересно узнать..."></textarea>
     <br>
-    <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
+    <div class="btn-row">
+      <button class="btn" id="submit-btn" onclick="submitIdea()">Отправить</button>
+      <a class="btn-secondary" href="mailto:adore.languages@gmail.com"><i class="fa-solid fa-envelope"></i>Написать письмо</a>
+    </div>
     <div class="status-msg" id="submit-status"></div>
   </div>
 
