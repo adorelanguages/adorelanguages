@@ -61,13 +61,19 @@
     width: 96px;
     height: 96px;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 50%;
     display: block;
     box-shadow: 0 2px 8px rgba(45,44,91,0.25);
     transition: transform 0.15s ease;
   }
   .thumb-link:hover .thumb {
     transform: scale(1.03);
+  }
+  @media (max-width: 480px) {
+    .thumb {
+      width: 56px;
+      height: 56px;
+    }
   }
 
   .lightbox-overlay {
@@ -308,6 +314,9 @@
     color: rgb(45,44,91);
     border-bottom: 1px solid rgb(230,229,240);
   }
+  .country-list-header .col-country {
+    text-align: center;
+  }
   .country-list-header .col-readers {
     width: 142px;
     text-align: center;
@@ -355,6 +364,7 @@
   .city-sublist {
     display: none;
     padding: 0 0 12px 18px;
+    border-bottom: 1px solid rgba(45,44,91,0.18);
   }
   .city-sublist.expanded {
     display: block;
@@ -472,7 +482,7 @@
     </div>
     <div class="country-list-panel" id="country-list-panel">
       <div class="country-list-header">
-        <span>Страны и<br>города</span>
+        <span class="col-country">Страны и<br>города</span>
         <span class="col-readers">Обожателей Языков</span>
       </div>
       <div id="country-accordion"></div>
