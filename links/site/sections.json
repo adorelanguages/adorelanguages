@@ -21,7 +21,7 @@
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga", "pustynyasahara", "shlyapohlop"]
+    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga", "pustynyasahara", "shlyapohlop", "igraho"]
   },
   "yazyki": {
     "title": "Языки",
@@ -39,6 +39,7 @@
       "венгерский": ["trisobaka", "glazzakroy"],
       "голландский": ["dikiiobraz", "moyushchiymedved"],
       "греческий": ["kak-dela"],
+      "датский": ["igraho"],
       "иврит": ["shibbolet"],
       "испанский": ["zanimatelnoesovpadenie", "zabiratvolosy"],
       "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie", "voodushevlenie"],
