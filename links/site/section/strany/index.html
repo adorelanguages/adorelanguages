@@ -224,7 +224,7 @@
     const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
 
     document.getElementById('title').textContent =
-      lang ? `Страны: ${lang}` : `Страны`;
+      lang ? `Страны: ${lang.charAt(0).toUpperCase() + lang.slice(1)}` : `Страны`;
 
     const grid = document.getElementById('post-grid');
     grid.innerHTML = '';
