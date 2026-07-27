@@ -50,7 +50,7 @@
       "монгольский": ["tyrboga"],
       "мэнский": ["yazykfeniks"],
       "навахо": ["navajo"],
-      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka", "voodushevlenie", "dikiiobraz"],
+      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka", "voodushevlenie", "dikiiobraz", "rukoobuv"],
       "нидерландский": ["dikiiobraz", "moyushchiymedved"],
       "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
       "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
@@ -68,7 +68,7 @@
       "украинский": ["kak-dela", "listopad", "shibbolet"],
       "фарси": ["lyuboviorgany"],
       "финский": ["mozgivgarderob", "divannayakartoshka"],
-      "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie"],
+      "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie", "upastvyabloki"],
       "хорватский": ["listopad"],
       "черкесский": ["kak-dela"],
       "чеченский": ["chechenskost"],
@@ -80,7 +80,7 @@
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka", "voodushevlenie"]
+    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka", "voodushevlenie", "rukoobuv", "upastvyabloki"]
   },
   "lingvistika": {
     "title": "Лингвистика",
@@ -110,7 +110,7 @@
       "удмуртский": ["udmurtprivet"],
       "фарси": ["lyuboviorgany"],
       "финский": ["mozgivgarderob"],
-      "французский": ["kakashektebe"]
+      "французский": ["kakashektebe", "upastvyabloki"]
     }
   },
   "toponimy": {
