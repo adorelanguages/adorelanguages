@@ -16,7 +16,7 @@
       "туркменистан": ["turkmenskie"],
       "турция": ["tseluyu"],
       "швейцария": ["latinskayashveytsariya"],
-      "швеция": ["synkarla"]
+      "швеция": ["synkarla", "medvedberyoza"]
     }
   },
   "etimologiya": {
@@ -73,7 +73,7 @@
       "черкесский": ["kak-dela"],
       "чеченский": ["chechenskost"],
       "чешский": ["zabavlyadlo", "trampova", "poryadokbukv", "svsmbzglsnh", "listopad"],
-      "шведский": ["babushkatsia", "divannayakartoshka", "dikiiobraz", "moyushchiymedved"],
+      "шведский": ["babushkatsia", "divannayakartoshka", "dikiiobraz", "moyushchiymedved", "medvedberyoza"],
       "эсперанто": ["zanimatelnoesovpadenie"],
       "эстонский": ["kak-dela", "moyushchiymedved"]
     }
