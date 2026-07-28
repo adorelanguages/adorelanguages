@@ -962,33 +962,51 @@
 
   function loadMap() {
     if (!svgEl) {
-      // Раньше карта (SVG ~1.2MB) и данные о читателях (Apps Script) грузились
-      // последовательно (сначала карта, потом только запускался запрос за
-      // данными) - это давало ~5 секунд суммарного ожидания. Теперь оба запроса
-      // стартуют одновременно, а применяем результаты только когда оба готовы -
-      // так общее время ожидания примерно равно самому медленному из двух
-      // запросов (обычно это Apps Script), а не их сумме.
-      const svgPromise = fetch('/maps/world.svg').then(r => r.text());
-      const locPromise = fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' }).then(r => r.json());
+      // Карта (SVG ~1.2MB) и данные о читателях (Apps Script) запускаются
+      // одновременно (оба запроса стартуют сразу, никто не ждёт своей очереди),
+      // но каждый результат применяется СРАЗУ, как только он готов - а не когда
+      // готовы оба. Раньше (Promise.all на оба сразу) человек не видел вообще
+      // ничего, пока не ответят оба запроса - а Apps Script на мобильном может
+      // быть медленным и непредсказуемым, из-за чего казалось, что всё стало
+      // работать заметно медленнее. Теперь карта появляется сразу же, как только
+      // скачался SVG (обычно это быстрее), а раскраска стран и список городов
+      // добавляются следом, когда/если Apps Script ответит - независимо от
+      // того, в каком порядке пришли ответы (см. tryApplyLocations ниже).
+      let locationsReady = false;
 
-      Promise.all([svgPromise, locPromise]).then(([svgText, data]) => {
-        mapContainer = document.getElementById('map-svg-container');
-        mapContainer.innerHTML = svgText;
-        svgEl = mapContainer.querySelector('svg');
-        if (svgEl) {
-          originalVB = parseViewBox(svgEl.getAttribute('viewBox'));
-          currentVB = { ...originalVB };
-          svgEl.removeAttribute('height');
-          svgEl.removeAttribute('width');
-          attachMapInteractions();
-          document.querySelector('.map-stage').classList.add('loaded');
-        }
-        if (data.ok) {
-          latestCountries = data.countries || {};
+      function tryApplyLocations() {
+        if (svgEl && locationsReady) {
           applyLocationData(latestCountries);
-          renderCountryList();
         }
-      });
+      }
+
+      fetch('/maps/world.svg')
+        .then(r => r.text())
+        .then(svgText => {
+          mapContainer = document.getElementById('map-svg-container');
+          mapContainer.innerHTML = svgText;
+          svgEl = mapContainer.querySelector('svg');
+          if (svgEl) {
+            originalVB = parseViewBox(svgEl.getAttribute('viewBox'));
+            currentVB = { ...originalVB };
+            svgEl.removeAttribute('height');
+            svgEl.removeAttribute('width');
+            attachMapInteractions();
+            document.querySelector('.map-stage').classList.add('loaded');
+            tryApplyLocations();
+          }
+        });
+
+      fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
+        .then(r => r.json())
+        .then(data => {
+          if (data.ok) {
+            latestCountries = data.countries || {};
+            renderCountryList();
+            locationsReady = true;
+            tryApplyLocations();
+          }
+        });
     } else {
       loadLocationData();
     }
