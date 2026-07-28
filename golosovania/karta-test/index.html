@@ -598,7 +598,6 @@
   let svgEl = null;
   let mapContainer = null;
   let latestCountries = {};
-  let capitalXY = {};
   let selectedCountryId = null;
   let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
   let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
@@ -839,6 +838,24 @@
     return 'rgb(45,44,91)';
   }
 
+  function thinBordersForTinyCountries() {
+    // Обводка между странами - 0.3 юнита фиксированно (см. CSS). Для очень
+    // маленьких стран (Сан-Марино, Ватикан, Лихтенштейн и т.п.) эта обводка
+    // сама по себе шире всей страны и полностью перекрывает её заливку. Здесь
+    // сужаем обводку персонально для таких стран - не больше 15% от меньшей
+    // стороны bbox страны - чтобы при зуме была видна синяя заливка.
+    if (!svgEl) return;
+    const paths = svgEl.querySelectorAll('path[id]');
+    paths.forEach(path => {
+      const b = path.getBBox();
+      const minDim = Math.min(b.width, b.height);
+      const cap = minDim * 0.15;
+      if (cap < 0.3) {
+        path.style.strokeWidth = Math.max(cap, 0.02);
+      }
+    });
+  }
+
   function applyLocationData(countries) {
     if (!svgEl) return;
     const paths = svgEl.querySelectorAll('path[id]');
@@ -858,39 +875,6 @@
         path.style.fill = '';
       }
     });
-  }
-
-  function showCapitalHeart(id, info) {
-    if (!svgEl) return;
-    let heart = svgEl.querySelector('#capital-heart');
-    if (heart) heart.remove();
-    const xy = capitalXY[id];
-    if (!xy || !info || !info.count) return;
-    const NS = 'http://www.w3.org/2000/svg';
-    const heartPath = "M16 29 C16 29 2 20 2 10 C2 4 7 0 12 0 C14 0 16 1 16 4 C16 1 18 0 20 0 C25 0 30 4 30 10 C30 20 16 29 16 29 Z";
-    // Одинаковый фиксированный размер для всех стран (в родных SVG-юнитах
-    // карты) - в полтора раза меньше, чем был размер сердечка на Франции при
-    // прежней (зависящей от зума) логике.
-    const nativeHeartW = 28;
-    const FIXED_HEART_WIDTH = 5.52;
-    const scale = FIXED_HEART_WIDTH / nativeHeartW;
-    const g = document.createElementNS(NS, 'g');
-    g.setAttribute('id', 'capital-heart');
-    g.setAttribute('transform', 'translate(' + xy.x + ',' + xy.y + ')');
-    const hg = document.createElementNS(NS, 'g');
-    hg.setAttribute('transform', 'translate(' + (-16 * scale) + ',' + (-14.5 * scale) + ') scale(' + scale + ')');
-    const hp = document.createElementNS(NS, 'path');
-    hp.setAttribute('d', heartPath);
-    hp.setAttribute('style', 'fill:#461359');
-    hg.appendChild(hp);
-    g.appendChild(hg);
-    svgEl.appendChild(g);
-  }
-
-  function hideCapitalHeart() {
-    if (!svgEl) return;
-    const heart = svgEl.querySelector('#capital-heart');
-    if (heart) heart.remove();
   }
 
   function showCountry(id, info) {
@@ -913,7 +897,6 @@
     const padY = Math.max(bbox.height * 0.25, 6);
     currentVB = { x: bbox.x - padX, y: bbox.y - padY, w: bbox.width + padX * 2, h: bbox.height + padY * 2 };
     applyViewBox();
-    showCapitalHeart(id, info);
 
     // Города этой страны показываем не в отдельной панели, а сразу в общем списке
     // стран ниже - открываем его и разворачиваем/прокручиваем к нужной стране.
@@ -951,7 +934,6 @@
     }
     currentVB = { ...originalVB };
     applyViewBox();
-    hideCapitalHeart();
   }
 
   function loadLocationData() {
@@ -1089,11 +1071,6 @@
         }
       }
 
-      fetch('/maps/capitals-xy.json')
-        .then(r => r.json())
-        .then(data => { capitalXY = data || {}; })
-        .catch(() => {});
-
       fetch('/maps/world.svg')
         .then(r => r.text())
         .then(svgText => {
@@ -1106,6 +1083,7 @@
             svgEl.removeAttribute('height');
             svgEl.removeAttribute('width');
             attachMapInteractions();
+            thinBordersForTinyCountries();
             document.querySelector('.map-stage').classList.add('loaded');
             tryApplyLocations();
           }
