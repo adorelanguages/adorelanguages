@@ -8,17 +8,17 @@
   },
   "ae": {
     "capital": "Abu Dhabi",
-    "clearance": 1,
+    "clearance": 2.2,
     "ru": "ОАЭ",
-    "x": 630.4,
-    "y": 392.6
+    "x": 627.4,
+    "y": 395.6
   },
   "af": {
     "capital": "Kabul",
-    "clearance": 6.5,
+    "clearance": 3.5,
     "ru": "Афганистан",
-    "x": 668.4,
-    "y": 357.5
+    "x": 668.5,
+    "y": 359.7
   },
   "ag": {
     "capital": "St. John's",
@@ -38,29 +38,29 @@
     "capital": "Tirana",
     "clearance": 1.9,
     "ru": "Албания",
-    "x": 531.2,
-    "y": 338.2
+    "x": 531.1,
+    "y": 338.4
   },
   "am": {
     "capital": "Yerevan",
-    "clearance": 2.3,
+    "clearance": 2.4,
     "ru": "Армения",
     "x": 600.1,
-    "y": 338.9
+    "y": 339.1
   },
   "ao": {
     "capital": "Luanda",
-    "clearance": 3.5,
+    "clearance": 3.1,
     "ru": "Ангола",
-    "x": 515.2,
-    "y": 489
+    "x": 514.6,
+    "y": 488.5
   },
   "ar": {
     "capital": "Buenos Aires",
-    "clearance": 3.4,
+    "clearance": 4.8,
     "ru": "Аргентина",
-    "x": 309.8,
-    "y": 569.1
+    "x": 310.8,
+    "y": 572.1
   },
   "as": {
     "capital": "Pago Pago",
@@ -71,17 +71,17 @@
   },
   "at": {
     "capital": "Vienna",
-    "clearance": 3.8,
+    "clearance": 3,
     "ru": "Австрия",
-    "x": 517.7,
-    "y": 311.5
+    "x": 519.5,
+    "y": 309.5
   },
   "au": {
     "capital": "Canberra",
-    "clearance": 3.9,
+    "clearance": 14.9,
     "ru": "Австралия",
-    "x": 891.9,
-    "y": 572.1
+    "x": 882,
+    "y": 564.2
   },
   "aw": {
     "capital": "Oranjestad",
@@ -98,17 +98,17 @@
   },
   "az": {
     "capital": "Baku",
-    "clearance": 3.4,
+    "clearance": 3.5,
     "ru": "Азербайджан",
-    "x": 610.2,
-    "y": 339.3
+    "x": 610.4,
+    "y": 339.2
   },
   "ba": {
     "capital": "Sarajevo",
-    "clearance": 1.8,
+    "clearance": 2.7,
     "ru": "Босния и Герцеговина",
-    "x": 525.5,
-    "y": 328.1
+    "x": 526.4,
+    "y": 326.5
   },
   "bb": {
     "capital": "Bridgetown",
@@ -119,31 +119,31 @@
   },
   "bd": {
     "capital": "Dhaka",
-    "clearance": 3.3,
+    "clearance": 2.4,
     "ru": "Бангладеш",
-    "x": 728.1,
-    "y": 393.6
+    "x": 728.5,
+    "y": 394.4
   },
   "be": {
     "capital": "Brussels",
-    "clearance": 0.2,
+    "clearance": 2.2,
     "ru": "Бельгия",
-    "x": 486.7,
-    "y": 301.2
+    "x": 487.4,
+    "y": 297.5
   },
   "bf": {
     "capital": "Ouagadougou",
-    "clearance": 2.9,
+    "clearance": 3.6,
     "ru": "Буркина-Фасо",
-    "x": 472.3,
-    "y": 424
+    "x": 470.8,
+    "y": 428.5
   },
   "bg": {
     "capital": "Sofia",
-    "clearance": 3.4,
+    "clearance": 1.6,
     "ru": "Болгария",
-    "x": 541.3,
-    "y": 331
+    "x": 540.3,
+    "y": 330.8
   },
   "bh": {
     "capital": "Manama",
@@ -154,17 +154,17 @@
   },
   "bi": {
     "capital": "Bujumbura",
-    "clearance": 1.6,
+    "clearance": 1.7,
     "ru": "Бурунди",
-    "x": 558.8,
-    "y": 472.4
+    "x": 558.7,
+    "y": 472.2
   },
   "bj": {
     "capital": "Cotonou",
-    "clearance": 1.8,
+    "clearance": 3.1,
     "ru": "Бенин",
-    "x": 482.5,
-    "y": 435
+    "x": 481.7,
+    "y": 433.9
   },
   "bl": {
     "clearance": 0,
@@ -181,17 +181,17 @@
   },
   "bn": {
     "capital": "Bandar Seri Begawan",
-    "clearance": 0.3,
+    "clearance": 0.6,
     "ru": "Бруней-Даруссалам",
-    "x": 796.6,
-    "y": 451.3
+    "x": 796.4,
+    "y": 450.6
   },
   "bo": {
     "capital": "La Paz",
-    "clearance": 8,
+    "clearance": 2.3,
     "ru": "Боливия",
-    "x": 288.2,
-    "y": 511
+    "x": 283.5,
+    "y": 509.9
   },
   "bq": {
     "capital": "Kralendijk",
@@ -202,10 +202,10 @@
   },
   "br": {
     "capital": "Brasilia",
-    "clearance": 20.6,
+    "clearance": 24.2,
     "ru": "Бразилия",
-    "x": 344.7,
-    "y": 509.2
+    "x": 340.3,
+    "y": 510.1
   },
   "bs": {
     "capital": "Nassau",
@@ -216,10 +216,10 @@
   },
   "bt": {
     "capital": "Thimphu",
-    "clearance": 2,
+    "clearance": 2.3,
     "ru": "Бутан",
-    "x": 728,
-    "y": 382.7
+    "x": 727.7,
+    "y": 383.2
   },
   "bv": {
     "clearance": 0.1,
@@ -229,31 +229,31 @@
   },
   "bw": {
     "capital": "Gaborone",
-    "clearance": 5.2,
+    "clearance": 3.7,
     "ru": "Ботсвана",
-    "x": 546.6,
-    "y": 528.4
+    "x": 544.4,
+    "y": 533.4
   },
   "by": {
     "capital": "Minsk",
-    "clearance": 3.9,
+    "clearance": 6.7,
     "ru": "Беларусь",
-    "x": 551.8,
-    "y": 290.2
+    "x": 552.3,
+    "y": 283.4
   },
   "bz": {
     "capital": "Belmopan",
     "clearance": 1.3,
     "ru": "Белиз",
-    "x": 226,
-    "y": 413.4
+    "x": 225.9,
+    "y": 415.1
   },
   "ca": {
     "capital": "Ottawa",
-    "clearance": 3.1,
+    "clearance": 27.1,
     "ru": "Канада",
-    "x": 260.6,
-    "y": 321
+    "x": 262.4,
+    "y": 296.3
   },
   "cc": {
     "clearance": -1,
@@ -263,38 +263,38 @@
   },
   "cd": {
     "capital": "Kinshasa",
-    "clearance": 1.8,
+    "clearance": 3,
     "ru": "Конго - Киншаса",
-    "x": 520.7,
-    "y": 475.2
+    "x": 521.2,
+    "y": 476.2
   },
   "cf": {
     "capital": "Bangui",
-    "clearance": 3.1,
+    "clearance": 3.3,
     "ru": "Центрально-Африканская Республика",
-    "x": 527.7,
-    "y": 446.4
+    "x": 524.8,
+    "y": 449.6
   },
   "cg": {
     "capital": "Brazzaville",
-    "clearance": 3.2,
+    "clearance": 3.3,
     "ru": "Конго - Браззавиль",
-    "x": 518.8,
-    "y": 464.7
+    "x": 515.8,
+    "y": 472.4
   },
   "ch": {
     "capital": "Bern",
-    "clearance": 2.3,
+    "clearance": 1.8,
     "ru": "Швейцария",
-    "x": 497.5,
-    "y": 313.8
+    "x": 495.7,
+    "y": 314.1
   },
   "ci": {
     "capital": "Abidjan",
     "clearance": 3.5,
     "ru": "Кот-д’Ивуар",
-    "x": 462.3,
-    "y": 444.1
+    "x": 462,
+    "y": 445
   },
   "ck": {
     "capital": "Rarotonga",
@@ -305,45 +305,45 @@
   },
   "cl": {
     "capital": "Santiago",
-    "clearance": 2.7,
+    "clearance": 2.5,
     "ru": "Чили",
-    "x": 274.4,
-    "y": 569.6
+    "x": 272.6,
+    "y": 580.2
   },
   "cm": {
     "capital": "Yaounde",
-    "clearance": 6.4,
+    "clearance": 4.4,
     "ru": "Камерун",
-    "x": 509.5,
-    "y": 450.1
+    "x": 507.5,
+    "y": 452.1
   },
   "cn": {
     "capital": "Beijing",
-    "clearance": 9.7,
+    "clearance": 12.1,
     "ru": "Китай",
-    "x": 800,
-    "y": 341.8
+    "x": 801,
+    "y": 333.6
   },
   "co": {
     "capital": "Bogota",
-    "clearance": 4.3,
+    "clearance": 9,
     "ru": "Колумбия",
-    "x": 270,
-    "y": 446.4
+    "x": 266.9,
+    "y": 449.9
   },
   "cr": {
     "capital": "San Jose",
-    "clearance": 0.5,
+    "clearance": 1.9,
     "ru": "Коста-Рика",
-    "x": 239.7,
-    "y": 433.3
+    "x": 237.7,
+    "y": 434.1
   },
   "cu": {
     "capital": "Havana",
-    "clearance": 1.1,
+    "clearance": 1.3,
     "ru": "Куба",
-    "x": 250.7,
-    "y": 398.8
+    "x": 246.8,
+    "y": 398.4
   },
   "cv": {
     "capital": "Praia",
@@ -367,38 +367,38 @@
   },
   "cy": {
     "capital": "Nicosia",
-    "clearance": 1,
+    "clearance": 0.9,
     "ru": "Кипр",
-    "x": 567.4,
-    "y": 358.7
+    "x": 567.2,
+    "y": 358.8
   },
   "cz": {
     "capital": "Prague",
-    "clearance": 4.2,
+    "clearance": 3.4,
     "ru": "Чехия",
-    "x": 515.3,
-    "y": 301.6
+    "x": 515.1,
+    "y": 301
   },
   "de": {
     "capital": "Berlin",
-    "clearance": 4.4,
+    "clearance": 2.8,
     "ru": "Германия",
-    "x": 506.9,
-    "y": 305
+    "x": 512.5,
+    "y": 289.1
   },
   "dj": {
     "capital": "Djibouti",
-    "clearance": 1.4,
+    "clearance": 1.1,
     "ru": "Джибути",
     "x": 593.9,
-    "y": 430.6
+    "y": 429.7
   },
   "dk": {
     "capital": "Copenhagen",
-    "clearance": 0.6,
+    "clearance": 1.9,
     "ru": "Дания",
-    "x": 508.4,
-    "y": 277
+    "x": 502.4,
+    "y": 271.5
   },
   "dm": {
     "capital": "Roseau",
@@ -409,38 +409,38 @@
   },
   "do": {
     "capital": "Santo Domingo",
-    "clearance": 0.1,
+    "clearance": 2.1,
     "ru": "Доминиканская Республика",
-    "x": 278.7,
-    "y": 407.4
+    "x": 277.3,
+    "y": 409.1
   },
   "dz": {
     "capital": "Algiers",
-    "clearance": 4.5,
+    "clearance": 3.1,
     "ru": "Алжир",
-    "x": 484.5,
-    "y": 356.9
+    "x": 483.4,
+    "y": 355.5
   },
   "ec": {
     "capital": "Quito",
-    "clearance": 3.7,
+    "clearance": 3.6,
     "ru": "Эквадор",
-    "x": 257.3,
-    "y": 464.9
+    "x": 251.7,
+    "y": 467.3
   },
   "ee": {
     "capital": "Tallinn",
-    "clearance": 2.2,
+    "clearance": 3,
     "ru": "Эстония",
-    "x": 547.4,
-    "y": 261.2
+    "x": 544.6,
+    "y": 258.2
   },
   "eg": {
     "capital": "Cairo",
-    "clearance": 3,
+    "clearance": 4.6,
     "ru": "Египет",
-    "x": 562.1,
-    "y": 373.2
+    "x": 562.6,
+    "y": 374.7
   },
   "eh": {
     "capital": "El Aaiun",
@@ -451,31 +451,31 @@
   },
   "er": {
     "capital": "Asmara",
-    "clearance": 3.2,
+    "clearance": 1.7,
     "ru": "Эритрея",
-    "x": 581.7,
-    "y": 416.9
+    "x": 584.4,
+    "y": 419.7
   },
   "es": {
     "capital": "Madrid",
-    "clearance": 8.3,
+    "clearance": 3.3,
     "ru": "Испания",
-    "x": 464.1,
-    "y": 338.2
+    "x": 458.6,
+    "y": 349.1
   },
   "et": {
     "capital": "Addis Ababa",
-    "clearance": 10.3,
+    "clearance": 13.3,
     "ru": "Эфиопия",
-    "x": 585.2,
-    "y": 434.8
+    "x": 583.9,
+    "y": 437.6
   },
   "fi": {
     "capital": "Helsinki",
-    "clearance": 0.1,
+    "clearance": 3.6,
     "ru": "Финляндия",
-    "x": 547.7,
-    "y": 249.9
+    "x": 543.2,
+    "y": 248.1
   },
   "fj": {
     "capital": "Suva",
@@ -486,10 +486,10 @@
   },
   "fk": {
     "capital": "Stanley",
-    "clearance": 0.1,
+    "clearance": 1.2,
     "ru": "Фолклендские о-ва",
-    "x": 305.5,
-    "y": 632.9
+    "x": 310.8,
+    "y": 631.7
   },
   "fm": {
     "capital": "Palikir",
@@ -507,24 +507,24 @@
   },
   "fr": {
     "capital": "Paris",
-    "clearance": 12.5,
+    "clearance": 7.1,
     "ru": "Франция",
-    "x": 480.4,
-    "y": 312.5
+    "x": 481.8,
+    "y": 306.9
   },
   "ga": {
     "capital": "Libreville",
-    "clearance": 3.3,
+    "clearance": 3,
     "ru": "Габон",
-    "x": 504.5,
-    "y": 463.4
+    "x": 504.1,
+    "y": 463.5
   },
   "gb": {
     "capital": "London",
-    "clearance": 4.5,
+    "clearance": 4,
     "ru": "Великобритания",
-    "x": 471.5,
-    "y": 294
+    "x": 474.4,
+    "y": 291.5
   },
   "gd": {
     "capital": "St. George's",
@@ -535,9 +535,9 @@
   },
   "ge": {
     "capital": "Tbilisi",
-    "clearance": 2.8,
+    "clearance": 2.9,
     "ru": "Грузия",
-    "x": 599.5,
+    "x": 597.6,
     "y": 333.7
   },
   "gf": {
@@ -556,10 +556,10 @@
   },
   "gh": {
     "capital": "Accra",
-    "clearance": 3.4,
+    "clearance": 3.6,
     "ru": "Гана",
-    "x": 473,
-    "y": 443.5
+    "x": 472.9,
+    "y": 444.4
   },
   "gi": {
     "capital": "Gibraltar",
@@ -570,24 +570,24 @@
   },
   "gl": {
     "capital": "Nuuk",
-    "clearance": 6.9,
+    "clearance": 3.5,
     "ru": "Гренландия",
-    "x": 342.5,
-    "y": 239.7
+    "x": 331.4,
+    "y": 208.7
   },
   "gm": {
     "capital": "Banjul",
-    "clearance": 0.2,
+    "clearance": 0.6,
     "ru": "Гамбия",
-    "x": 429.9,
-    "y": 424.9
+    "x": 429.1,
+    "y": 425.3
   },
   "gn": {
     "capital": "Conakry",
-    "clearance": 3.3,
+    "clearance": 3.8,
     "ru": "Гвинея",
-    "x": 438.7,
-    "y": 432.3
+    "x": 439.1,
+    "y": 432.2
   },
   "go": {
     "clearance": 0,
@@ -604,17 +604,17 @@
   },
   "gq": {
     "capital": "Malabo",
-    "clearance": 1.5,
+    "clearance": 1.6,
     "ru": "Экваториальная Гвинея",
-    "x": 503.9,
+    "x": 504.6,
     "y": 458.4
   },
   "gr": {
     "capital": "Athens",
-    "clearance": 3.1,
+    "clearance": 3.3,
     "ru": "Греция",
-    "x": 539.7,
-    "y": 346.2
+    "x": 536.4,
+    "y": 344
   },
   "gs": {
     "clearance": -1,
@@ -624,10 +624,10 @@
   },
   "gt": {
     "capital": "Guatemala City",
-    "clearance": 3.4,
+    "clearance": 2,
     "ru": "Гватемала",
-    "x": 220.5,
-    "y": 420.3
+    "x": 220.8,
+    "y": 421.7
   },
   "gu": {
     "capital": "Hagatna",
@@ -638,17 +638,17 @@
   },
   "gw": {
     "capital": "Bissau",
-    "clearance": 1.5,
+    "clearance": 1.8,
     "ru": "Гвинея-Бисау",
-    "x": 433.7,
-    "y": 429.1
+    "x": 432.4,
+    "y": 429.3
   },
   "gy": {
     "capital": "Georgetown",
-    "clearance": 3,
+    "clearance": 3.1,
     "ru": "Гайана",
-    "x": 308.6,
-    "y": 444.8
+    "x": 310.1,
+    "y": 446.4
   },
   "hk": {
     "capital": "Hong Kong",
@@ -665,52 +665,52 @@
   },
   "hn": {
     "capital": "Tegucigalpa",
-    "clearance": 3.1,
+    "clearance": 2,
     "ru": "Гондурас",
-    "x": 231.9,
-    "y": 421.1
+    "x": 230.1,
+    "y": 422.7
   },
   "hr": {
     "capital": "Zagreb",
-    "clearance": 2.3,
+    "clearance": 2.5,
     "ru": "Хорватия",
-    "x": 521.6,
-    "y": 319.6
+    "x": 520.8,
+    "y": 318.9
   },
   "ht": {
     "capital": "Port-au-Prince",
-    "clearance": 1.8,
+    "clearance": 1.5,
     "ru": "Гаити",
-    "x": 271.7,
-    "y": 409.4
+    "x": 272.3,
+    "y": 408.4
   },
   "hu": {
     "capital": "Budapest",
-    "clearance": 3.1,
+    "clearance": 1.8,
     "ru": "Венгрия",
-    "x": 526.5,
-    "y": 315.8
+    "x": 528.4,
+    "y": 312
   },
   "id": {
     "capital": "Jakarta",
-    "clearance": 4.5,
+    "clearance": 5,
     "ru": "Индонезия",
-    "x": 787.1,
-    "y": 464.7
+    "x": 769,
+    "y": 471.6
   },
   "ie": {
     "capital": "Dublin",
-    "clearance": 0.7,
+    "clearance": 3.7,
     "ru": "Ирландия",
-    "x": 452.2,
-    "y": 292.2
+    "x": 454.1,
+    "y": 286.8
   },
   "il": {
     "capital": "Jerusalem",
-    "clearance": 0.8,
+    "clearance": 1.1,
     "ru": "Израиль",
-    "x": 574.5,
-    "y": 365.6
+    "x": 573,
+    "y": 372.2
   },
   "im": {
     "capital": "Douglas",
@@ -721,10 +721,10 @@
   },
   "in": {
     "capital": "New Delhi",
-    "clearance": 6.5,
+    "clearance": 8,
     "ru": "Индия",
-    "x": 691.3,
-    "y": 375.5
+    "x": 691.5,
+    "y": 378.5
   },
   "io": {
     "clearance": 0,
@@ -734,31 +734,31 @@
   },
   "iq": {
     "capital": "Baghdad",
-    "clearance": 3.3,
+    "clearance": 4.4,
     "ru": "Ирак",
-    "x": 599.2,
-    "y": 360.7
+    "x": 599.5,
+    "y": 363.9
   },
   "ir": {
     "capital": "Tehran",
-    "clearance": 3.1,
+    "clearance": 2.4,
     "ru": "Иран",
-    "x": 617.6,
-    "y": 355.3
+    "x": 619.1,
+    "y": 355.2
   },
   "is": {
     "capital": "Reykjavik",
-    "clearance": 3.8,
+    "clearance": 4,
     "ru": "Исландия",
-    "x": 424.2,
-    "y": 217.6
+    "x": 416.3,
+    "y": 224.4
   },
   "it": {
     "capital": "Rome",
-    "clearance": 3.3,
+    "clearance": 3.4,
     "ru": "Италия",
-    "x": 508.5,
-    "y": 330.2
+    "x": 510.4,
+    "y": 330.7
   },
   "je": {
     "capital": "St. Helier",
@@ -776,17 +776,17 @@
   },
   "jo": {
     "capital": "Amman",
-    "clearance": 2.1,
+    "clearance": 3.2,
     "ru": "Иордания",
-    "x": 576.5,
-    "y": 370
+    "x": 577.1,
+    "y": 373.1
   },
   "jp": {
     "capital": "Tokyo",
-    "clearance": 2.6,
+    "clearance": 3.1,
     "ru": "Япония",
-    "x": 865.5,
-    "y": 355.1
+    "x": 861.6,
+    "y": 354.7
   },
   "ju": {
     "clearance": -1,
@@ -796,24 +796,24 @@
   },
   "ke": {
     "capital": "Nairobi",
-    "clearance": 4.7,
+    "clearance": 3.3,
     "ru": "Кения",
-    "x": 580.6,
-    "y": 466.3
+    "x": 578.3,
+    "y": 466.5
   },
   "kg": {
     "capital": "Bishkek",
-    "clearance": 2.4,
+    "clearance": 3.6,
     "ru": "Киргизия",
-    "x": 682.9,
-    "y": 332.1
+    "x": 683.9,
+    "y": 332.9
   },
   "kh": {
     "capital": "Phnom Penh",
-    "clearance": 2.8,
+    "clearance": 2.3,
     "ru": "Камбоджа",
-    "x": 770.1,
-    "y": 428.2
+    "x": 769.3,
+    "y": 430.5
   },
   "ki": {
     "capital": "Tarawa",
@@ -838,24 +838,24 @@
   },
   "kp": {
     "capital": "Pyongyang",
-    "clearance": 3.6,
+    "clearance": 3.3,
     "ru": "КНДР",
-    "x": 829.2,
-    "y": 342.2
+    "x": 829.7,
+    "y": 344.6
   },
   "kr": {
     "capital": "Seoul",
-    "clearance": 4.3,
+    "clearance": 3.8,
     "ru": "Республика Корея",
-    "x": 833.9,
-    "y": 352.7
+    "x": 833,
+    "y": 352.1
   },
   "kw": {
     "capital": "Kuwait City",
-    "clearance": 1.5,
+    "clearance": 1.6,
     "ru": "Кувейт",
     "x": 608.4,
-    "y": 376.3
+    "y": 376.4
   },
   "ky": {
     "capital": "George Town",
@@ -866,24 +866,24 @@
   },
   "kz": {
     "capital": "Astana",
-    "clearance": 26.1,
+    "clearance": 11.8,
     "ru": "Казахстан",
-    "x": 673.4,
-    "y": 306.6
+    "x": 675.5,
+    "y": 294.1
   },
   "la": {
     "capital": "Vientiane",
-    "clearance": 3.6,
+    "clearance": 3.1,
     "ru": "Лаос",
-    "x": 763.1,
-    "y": 408.6
+    "x": 762.9,
+    "y": 409.3
   },
   "lb": {
     "capital": "Beirut",
     "clearance": 1,
     "ru": "Ливан",
-    "x": 576.2,
-    "y": 361.2
+    "x": 576,
+    "y": 361.3
   },
   "lc": {
     "capital": "Castries",
@@ -901,59 +901,59 @@
   },
   "lk": {
     "capital": "Colombo",
-    "clearance": 2.8,
+    "clearance": 2.6,
     "ru": "Шри-Ланка",
-    "x": 701.8,
-    "y": 443.2
+    "x": 701.4,
+    "y": 441.2
   },
   "lr": {
     "capital": "Monrovia",
-    "clearance": 2,
+    "clearance": 2.4,
     "ru": "Либерия",
-    "x": 446.9,
-    "y": 442.3
+    "x": 446.8,
+    "y": 443
   },
   "ls": {
     "capital": "Maseru",
-    "clearance": 2.1,
+    "clearance": 2.2,
     "ru": "Лесото",
-    "x": 554.1,
-    "y": 549.5
+    "x": 554.6,
+    "y": 549
   },
   "lt": {
     "capital": "Vilnius",
-    "clearance": 2.4,
+    "clearance": 3.8,
     "ru": "Литва",
-    "x": 544.1,
-    "y": 280.2
+    "x": 544,
+    "y": 278.4
   },
   "lu": {
     "capital": "Luxembourg",
-    "clearance": 0.5,
+    "clearance": 0.6,
     "ru": "Люксембург",
-    "x": 492,
-    "y": 302.1
+    "x": 491.8,
+    "y": 302.4
   },
   "lv": {
     "capital": "Riga",
-    "clearance": 3.4,
+    "clearance": 3.5,
     "ru": "Латвия",
     "x": 545.8,
-    "y": 268.8
+    "y": 268
   },
   "ly": {
     "capital": "Tripoli",
-    "clearance": 5.7,
+    "clearance": 3.6,
     "ru": "Ливия",
-    "x": 513.7,
-    "y": 371.9
+    "x": 511.9,
+    "y": 369.3
   },
   "ma": {
     "capital": "Rabat",
-    "clearance": 3.7,
+    "clearance": 1.9,
     "ru": "Марокко",
-    "x": 459.9,
-    "y": 361.2
+    "x": 459.7,
+    "y": 358.7
   },
   "mc": {
     "capital": "Monaco",
@@ -964,17 +964,17 @@
   },
   "md": {
     "capital": "Chisinau",
-    "clearance": 1.7,
+    "clearance": 1.8,
     "ru": "Молдова",
-    "x": 555.6,
-    "y": 313.3
+    "x": 556.1,
+    "y": 313.9
   },
   "me": {
     "capital": "Podgorica",
     "clearance": 1.7,
     "ru": "Черногория",
     "x": 528.5,
-    "y": 330.2
+    "y": 330.1
   },
   "mf": {
     "clearance": 0,
@@ -984,10 +984,10 @@
   },
   "mg": {
     "capital": "Antananarivo",
-    "clearance": 3.7,
+    "clearance": 4.3,
     "ru": "Мадагаскар",
     "x": 608.3,
-    "y": 519.1
+    "y": 517.1
   },
   "mh": {
     "capital": "Majuro",
@@ -1000,29 +1000,29 @@
     "capital": "Skopje",
     "clearance": 2.5,
     "ru": "Северная Македония",
-    "x": 535.9,
+    "x": 536,
     "y": 335
   },
   "ml": {
     "capital": "Bamako",
-    "clearance": 3.8,
+    "clearance": 3,
     "ru": "Мали",
-    "x": 454.2,
-    "y": 423
+    "x": 452.2,
+    "y": 427
   },
   "mm": {
     "capital": "Nay Pyi Taw",
-    "clearance": 6.3,
+    "clearance": 6.4,
     "ru": "Мьянма (Бирма)",
-    "x": 744.9,
-    "y": 403.1
+    "x": 744.5,
+    "y": 405.7
   },
   "mn": {
     "capital": "Ulaanbaatar",
-    "clearance": 15.9,
+    "clearance": 6.7,
     "ru": "Монголия",
-    "x": 772.8,
-    "y": 317.2
+    "x": 775.1,
+    "y": 308.9
   },
   "mo": {
     "capital": "Macao",
@@ -1047,10 +1047,10 @@
   },
   "mr": {
     "capital": "Nouakchott",
-    "clearance": 2.2,
+    "clearance": 3.5,
     "ru": "Мавритания",
-    "x": 431.5,
-    "y": 406.2
+    "x": 433.4,
+    "y": 411.2
   },
   "ms": {
     "capital": "Brades Estate",
@@ -1082,52 +1082,52 @@
   },
   "mw": {
     "capital": "Lilongwe",
-    "clearance": 2,
+    "clearance": 2.2,
     "ru": "Малави",
-    "x": 573.4,
-    "y": 506.9
+    "x": 570.3,
+    "y": 501.3
   },
   "mx": {
     "capital": "Mexico City",
-    "clearance": 1.9,
+    "clearance": 7.8,
     "ru": "Мексика",
-    "x": 198.8,
-    "y": 400.7
+    "x": 195.4,
+    "y": 407
   },
   "my": {
     "capital": "Kuala Lumpur",
-    "clearance": 2.3,
+    "clearance": 3,
     "ru": "Малайзия",
-    "x": 761.7,
-    "y": 453.9
+    "x": 761.3,
+    "y": 452.3
   },
   "mz": {
     "capital": "Maputo",
-    "clearance": 4.4,
+    "clearance": 3.3,
     "ru": "Мозамбик",
-    "x": 568.9,
-    "y": 531.2
+    "x": 568.1,
+    "y": 532.6
   },
   "na": {
     "capital": "Windhoek",
-    "clearance": 3.9,
+    "clearance": 7.3,
     "ru": "Намибия",
-    "x": 527.1,
-    "y": 531
+    "x": 523,
+    "y": 527.8
   },
   "nc": {
     "capital": "Noumea",
-    "clearance": 0.2,
+    "clearance": 0.5,
     "ru": "Новая Каледония",
-    "x": 939.5,
-    "y": 523.6
+    "x": 942.2,
+    "y": 525.9
   },
   "ne": {
     "capital": "Niamey",
-    "clearance": 3.6,
+    "clearance": 2.5,
     "ru": "Нигер",
-    "x": 482.9,
-    "y": 423.2
+    "x": 480.5,
+    "y": 424.6
   },
   "nf": {
     "clearance": 0,
@@ -1137,38 +1137,38 @@
   },
   "ng": {
     "capital": "Abuja",
-    "clearance": 8.5,
+    "clearance": 9.2,
     "ru": "Нигерия",
-    "x": 497.8,
-    "y": 434.2
+    "x": 496,
+    "y": 437.4
   },
   "ni": {
     "capital": "Managua",
     "clearance": 3.6,
     "ru": "Никарагуа",
-    "x": 235.9,
-    "y": 425.9
+    "x": 234.6,
+    "y": 427.1
   },
   "nl": {
     "capital": "Amsterdam",
-    "clearance": 2.6,
+    "clearance": 3,
     "ru": "Нидерланды",
-    "x": 490.1,
-    "y": 291.1
+    "x": 490.6,
+    "y": 290.8
   },
   "no": {
     "capital": "Oslo",
-    "clearance": 8.4,
+    "clearance": 4.1,
     "ru": "Норвегия",
-    "x": 498,
+    "x": 504.4,
     "y": 250.4
   },
   "np": {
     "capital": "Kathmandu",
-    "clearance": 2.8,
+    "clearance": 1.9,
     "ru": "Непал",
-    "x": 706.5,
-    "y": 378.6
+    "x": 714.3,
+    "y": 382.5
   },
   "nr": {
     "capital": "Nauru",
@@ -1186,31 +1186,31 @@
   },
   "nz": {
     "capital": "Wellington",
-    "clearance": 3.3,
+    "clearance": 3.6,
     "ru": "Новая Зеландия",
-    "x": 968.2,
-    "y": 583.5
+    "x": 948.1,
+    "y": 605
   },
   "om": {
     "capital": "Muscat",
-    "clearance": 3.4,
+    "clearance": 3.1,
     "ru": "Оман",
-    "x": 634.3,
-    "y": 399.7
+    "x": 637.7,
+    "y": 397.9
   },
   "pa": {
     "capital": "Panama City",
-    "clearance": 1.1,
+    "clearance": 1.9,
     "ru": "Панама",
-    "x": 255.4,
-    "y": 438.2
+    "x": 247.8,
+    "y": 440
   },
   "pe": {
     "capital": "Lima",
-    "clearance": 3.7,
+    "clearance": 3.4,
     "ru": "Перу",
-    "x": 263.1,
-    "y": 497.2
+    "x": 261.2,
+    "y": 494.7
   },
   "pf": {
     "capital": "Papeete",
@@ -1221,31 +1221,31 @@
   },
   "pg": {
     "capital": "Port Moresby",
-    "clearance": 3.5,
+    "clearance": 3.1,
     "ru": "Папуа — Новая Гвинея",
-    "x": 874.1,
-    "y": 479.8
+    "x": 882.1,
+    "y": 481.7
   },
   "ph": {
     "capital": "Manila",
-    "clearance": 2.8,
+    "clearance": 2.2,
     "ru": "Филиппины",
-    "x": 815.5,
-    "y": 415.4
+    "x": 814.2,
+    "y": 417.2
   },
   "pk": {
     "capital": "Islamabad",
-    "clearance": 3,
+    "clearance": 2.9,
     "ru": "Пакистан",
-    "x": 679.3,
-    "y": 360
+    "x": 679.8,
+    "y": 362.5
   },
   "pl": {
     "capital": "Warsaw",
-    "clearance": 3.4,
+    "clearance": 5.9,
     "ru": "Польша",
-    "x": 531.3,
-    "y": 300.9
+    "x": 534.1,
+    "y": 290.9
   },
   "pm": {
     "capital": "Saint-Pierre",
@@ -1264,15 +1264,15 @@
     "capital": "San Juan",
     "clearance": 0.7,
     "ru": "Пуэрто-Рико",
-    "x": 287.9,
+    "x": 288.6,
     "y": 411.2
   },
   "ps": {
     "capital": "Jerusalem",
-    "clearance": 0.8,
+    "clearance": 0.7,
     "ru": "Палестинские территории",
-    "x": 573.9,
-    "y": 368.1
+    "x": 573.7,
+    "y": 368
   },
   "pt": {
     "capital": "Lisbon",
@@ -1290,17 +1290,17 @@
   },
   "py": {
     "capital": "Asuncion",
-    "clearance": 3.2,
+    "clearance": 3.9,
     "ru": "Парагвай",
-    "x": 318.3,
-    "y": 538.1
+    "x": 315.4,
+    "y": 534.8
   },
   "qa": {
     "capital": "Doha",
-    "clearance": 1,
+    "clearance": 1.1,
     "ru": "Катар",
     "x": 618.5,
-    "y": 389.8
+    "y": 390.2
   },
   "re": {
     "capital": "Saint-Denis",
@@ -1311,45 +1311,45 @@
   },
   "ro": {
     "capital": "Bucharest",
-    "clearance": 3.9,
+    "clearance": 1.8,
     "ru": "Румыния",
-    "x": 546.5,
-    "y": 322.7
+    "x": 548.3,
+    "y": 324.1
   },
   "rs": {
     "capital": "Belgrade",
-    "clearance": 1.9,
+    "clearance": 2.5,
     "ru": "Сербия",
-    "x": 531.3,
-    "y": 325.2
+    "x": 532.3,
+    "y": 322.6
   },
   "ru": {
     "capital": "Moscow",
-    "clearance": 5.6,
+    "clearance": 17.8,
     "ru": "Россия",
     "x": 578.5,
-    "y": 292.1
+    "y": 228.9
   },
   "rw": {
     "capital": "Kigali",
     "clearance": 1.5,
     "ru": "Руанда",
-    "x": 558.7,
-    "y": 468.3
+    "x": 558.2,
+    "y": 468.4
   },
   "sa": {
     "capital": "Riyadh",
-    "clearance": 7.7,
+    "clearance": 10.4,
     "ru": "Саудовская Аравия",
-    "x": 606.3,
-    "y": 387.1
+    "x": 605.9,
+    "y": 391.1
   },
   "sb": {
     "capital": "Honiara",
     "clearance": 0.4,
     "ru": "Соломоновы Острова",
-    "x": 923.7,
-    "y": 490
+    "x": 929,
+    "y": 492.6
   },
   "sc": {
     "capital": "Victoria",
@@ -1360,17 +1360,17 @@
   },
   "sd": {
     "capital": "Khartoum",
-    "clearance": 11.4,
+    "clearance": 10.9,
     "ru": "Судан",
-    "x": 567.3,
-    "y": 414.8
+    "x": 566.4,
+    "y": 418.3
   },
   "se": {
     "capital": "Stockholm",
-    "clearance": 5.1,
+    "clearance": 3.8,
     "ru": "Швеция",
-    "x": 516.1,
-    "y": 268
+    "x": 523.8,
+    "y": 252.9
   },
   "sg": {
     "capital": "Singapore",
@@ -1388,10 +1388,10 @@
   },
   "si": {
     "capital": "Ljubljana",
-    "clearance": 2,
+    "clearance": 1.6,
     "ru": "Словения",
-    "x": 516.5,
-    "y": 318
+    "x": 514.9,
+    "y": 317.8
   },
   "sj": {
     "clearance": 3.3,
@@ -1401,17 +1401,17 @@
   },
   "sk": {
     "capital": "Bratislava",
-    "clearance": 2.2,
+    "clearance": 2.5,
     "ru": "Словакия",
-    "x": 525.5,
-    "y": 308.5
+    "x": 528.1,
+    "y": 306.1
   },
   "sl": {
     "capital": "Freetown",
-    "clearance": 3.2,
+    "clearance": 2.8,
     "ru": "Сьерра-Леоне",
-    "x": 441.8,
-    "y": 438.9
+    "x": 442.2,
+    "y": 437.9
   },
   "sm": {
     "capital": "San Marino",
@@ -1422,31 +1422,31 @@
   },
   "sn": {
     "capital": "Dakar",
-    "clearance": 4,
+    "clearance": 3.5,
     "ru": "Сенегал",
-    "x": 431.7,
-    "y": 420.1
+    "x": 430.7,
+    "y": 421.4
   },
   "so": {
     "capital": "Mogadishu",
-    "clearance": 3.4,
+    "clearance": 3.3,
     "ru": "Сомали",
-    "x": 601.3,
-    "y": 453.8
+    "x": 600.8,
+    "y": 454.3
   },
   "sr": {
     "capital": "Paramaribo",
-    "clearance": 1.4,
+    "clearance": 3.2,
     "ru": "Суринам",
-    "x": 320.1,
-    "y": 447.6
+    "x": 318.3,
+    "y": 449.5
   },
   "ss": {
     "capital": "Juba",
-    "clearance": 5.1,
+    "clearance": 3.1,
     "ru": "Южный Судан",
-    "x": 565.5,
-    "y": 447.5
+    "x": 563.7,
+    "y": 449.4
   },
   "st": {
     "capital": "Sao Tome",
@@ -1457,10 +1457,10 @@
   },
   "sv": {
     "capital": "San Salvador",
-    "clearance": 1.2,
+    "clearance": 1.1,
     "ru": "Сальвадор",
-    "x": 224.5,
-    "y": 423.8
+    "x": 225.6,
+    "y": 424.3
   },
   "sx": {
     "capital": "Philipsburg",
@@ -1471,17 +1471,17 @@
   },
   "sy": {
     "capital": "Damascus",
-    "clearance": 3.6,
+    "clearance": 3.4,
     "ru": "Сирия",
-    "x": 580.1,
-    "y": 358.7
+    "x": 579.3,
+    "y": 362.8
   },
   "sz": {
     "capital": "Mbabane",
     "clearance": 1.8,
     "ru": "Эсватини",
     "x": 563.2,
-    "y": 539.7
+    "y": 539.9
   },
   "tc": {
     "capital": "Cockburn Town",
@@ -1492,10 +1492,10 @@
   },
   "td": {
     "capital": "N'Djamena",
-    "clearance": 3.3,
+    "clearance": 3.7,
     "ru": "Чад",
-    "x": 518.7,
-    "y": 425
+    "x": 519.8,
+    "y": 426.8
   },
   "tf": {
     "clearance": -1,
@@ -1505,24 +1505,24 @@
   },
   "tg": {
     "capital": "Lome",
-    "clearance": 1.5,
+    "clearance": 1.4,
     "ru": "Того",
-    "x": 477.9,
-    "y": 442.1
+    "x": 478.1,
+    "y": 442.9
   },
   "th": {
     "capital": "Bangkok",
-    "clearance": 3.2,
+    "clearance": 5.2,
     "ru": "Таиланд",
     "x": 757.6,
-    "y": 421.6
+    "y": 423.2
   },
   "tj": {
     "capital": "Dushanbe",
-    "clearance": 3.7,
+    "clearance": 1.6,
     "ru": "Таджикистан",
-    "x": 669.7,
-    "y": 345.2
+    "x": 667.8,
+    "y": 346.1
   },
   "tk": {
     "capital": "Tokelau",
@@ -1533,24 +1533,24 @@
   },
   "tl": {
     "capital": "Dili",
-    "clearance": 0.8,
+    "clearance": 0.9,
     "ru": "Восточный Тимор",
-    "x": 828,
-    "y": 487.7
+    "x": 826.6,
+    "y": 488
   },
   "tm": {
     "capital": "Ashgabat",
-    "clearance": 2,
+    "clearance": 3.6,
     "ru": "Туркменистан",
-    "x": 637.9,
-    "y": 346.8
+    "x": 638.8,
+    "y": 345.7
   },
   "tn": {
     "capital": "Tunis",
-    "clearance": 3.4,
+    "clearance": 3.1,
     "ru": "Тунис",
-    "x": 501.9,
-    "y": 356.8
+    "x": 501.2,
+    "y": 356.1
   },
   "to": {
     "capital": "Nuku'alofa",
@@ -1561,17 +1561,17 @@
   },
   "tr": {
     "capital": "Ankara",
-    "clearance": 5,
+    "clearance": 5.9,
     "ru": "Турция",
-    "x": 566.4,
-    "y": 340.4
+    "x": 566.5,
+    "y": 341.1
   },
   "tt": {
     "capital": "Port of Spain",
-    "clearance": 0.6,
+    "clearance": 0.5,
     "ru": "Тринидад и Тобаго",
-    "x": 302.9,
-    "y": 433.9
+    "x": 303.1,
+    "y": 433.3
   },
   "tv": {
     "capital": "Funafuti",
@@ -1582,31 +1582,31 @@
   },
   "tw": {
     "capital": "Taipei",
-    "clearance": 0.7,
+    "clearance": 1.6,
     "ru": "Тайвань",
-    "x": 816.3,
-    "y": 391.1
+    "x": 814.8,
+    "y": 393.3
   },
   "tz": {
     "capital": "Dodoma",
-    "clearance": 6.7,
+    "clearance": 9.1,
     "ru": "Танзания",
-    "x": 578,
-    "y": 481.2
+    "x": 575.4,
+    "y": 480.3
   },
   "ua": {
     "capital": "Kyiv",
-    "clearance": 3.1,
+    "clearance": 4.7,
     "ru": "Украина",
-    "x": 559,
-    "y": 308.2
+    "x": 560.7,
+    "y": 298.7
   },
   "ug": {
     "capital": "Kampala",
-    "clearance": 2.1,
+    "clearance": 3.6,
     "ru": "Уганда",
-    "x": 568.6,
-    "y": 461.3
+    "x": 566.2,
+    "y": 462.1
   },
   "um-dq": {
     "clearance": 0,
@@ -1646,24 +1646,24 @@
   },
   "us": {
     "capital": "Washington D.C.",
-    "clearance": 7.3,
+    "clearance": 10.1,
     "ru": "Соединенные Штаты",
-    "x": 259.1,
-    "y": 341.6
+    "x": 212.4,
+    "y": 318
   },
   "uy": {
     "capital": "Montevideo",
-    "clearance": 4.2,
+    "clearance": 3.5,
     "ru": "Уругвай",
-    "x": 320.4,
-    "y": 562.5
+    "x": 317.4,
+    "y": 563.2
   },
   "uz": {
     "capital": "Tashkent",
-    "clearance": 3,
+    "clearance": 3.2,
     "ru": "Узбекистан",
-    "x": 663.9,
-    "y": 340.4
+    "x": 665.1,
+    "y": 340.1
   },
   "va": {
     "capital": "Vatican City",
@@ -1681,10 +1681,10 @@
   },
   "ve": {
     "capital": "Caracas",
-    "clearance": 5.8,
+    "clearance": 3.6,
     "ru": "Венесуэла",
-    "x": 287.9,
-    "y": 439
+    "x": 287,
+    "y": 436.7
   },
   "vg": {
     "capital": "Road Town",
@@ -1702,17 +1702,17 @@
   },
   "vn": {
     "capital": "Hanoi",
-    "clearance": 2.1,
+    "clearance": 2.7,
     "ru": "Вьетнам",
-    "x": 771.9,
-    "y": 399.3
+    "x": 772,
+    "y": 402.7
   },
   "vu": {
     "capital": "Port Vila",
-    "clearance": 0.3,
+    "clearance": 0.2,
     "ru": "Вануату",
-    "x": 943.7,
-    "y": 506.5
+    "x": 947.3,
+    "y": 512.9
   },
   "wf": {
     "capital": "Matu-Utu",
@@ -1737,10 +1737,10 @@
   },
   "ye": {
     "capital": "Sanaa",
-    "clearance": 2,
+    "clearance": 4.8,
     "ru": "Йемен",
-    "x": 600,
-    "y": 415.6
+    "x": 599.5,
+    "y": 420
   },
   "yt": {
     "capital": "Mamoudzou",
@@ -1751,23 +1751,23 @@
   },
   "za": {
     "capital": "Cape Town",
-    "clearance": 3,
+    "clearance": 5.8,
     "ru": "Южно-Африканская Республика",
-    "x": 531.2,
-    "y": 563
+    "x": 541.5,
+    "y": 558
   },
   "zm": {
     "capital": "Lusaka",
-    "clearance": 3.7,
+    "clearance": 2,
     "ru": "Замбия",
-    "x": 555.1,
-    "y": 504.6
+    "x": 554.6,
+    "y": 506.7
   },
   "zw": {
     "capital": "Harare",
-    "clearance": 3.2,
+    "clearance": 5,
     "ru": "Зимбабве",
-    "x": 564,
-    "y": 516.1
+    "x": 562.4,
+    "y": 513.9
   }
 }
