@@ -966,7 +966,32 @@
 
   function loadMap() {
     if (!svgEl) {
-      loadMapSvg().then(loadLocationData);
+      // Раньше карта (SVG ~1.2MB) и данные о читателях (Apps Script) грузились
+      // последовательно (сначала карта, потом только запускался запрос за
+      // данными) - это давало ~5 секунд суммарного ожидания. Теперь оба запроса
+      // стартуют одновременно, а применяем результаты только когда оба готовы -
+      // так общее время ожидания примерно равно самому медленному из двух
+      // запросов (обычно это Apps Script), а не их сумме.
+      const svgPromise = fetch('/maps/world.svg').then(r => r.text());
+      const locPromise = fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' }).then(r => r.json());
+
+      Promise.all([svgPromise, locPromise]).then(([svgText, data]) => {
+        mapContainer = document.getElementById('map-svg-container');
+        mapContainer.innerHTML = svgText;
+        svgEl = mapContainer.querySelector('svg');
+        if (svgEl) {
+          originalVB = parseViewBox(svgEl.getAttribute('viewBox'));
+          currentVB = { ...originalVB };
+          svgEl.removeAttribute('height');
+          svgEl.removeAttribute('width');
+          attachMapInteractions();
+        }
+        if (data.ok) {
+          latestCountries = data.countries || {};
+          applyLocationData(latestCountries);
+          renderCountryList();
+        }
+      });
     } else {
       loadLocationData();
     }
