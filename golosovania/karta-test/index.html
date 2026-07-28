@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Карта Обожателей Языков — Обожаю Языки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Карта читателей блога «Обожаю Языки»: отметь свою страну и город, чтобы появиться на карте.">
+<link rel="canonical" href="https://adorelanguages.com/golosovania/karta/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<style>
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
+  @font-face { font-family: 'Factora'; src: url('/FACTORA-BOLD.OTF'); font-weight: bold; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Factora', Georgia, serif;
+    background: #ffffff;
+    color: rgb(45, 44, 91);
+    padding: 40px 20px 80px;
+    margin: 0;
+  }
+
+  .wrap { max-width: 640px; margin: 0 auto; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+  .home-button {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: #fff;
+    background: rgb(45, 44, 91);
+    padding: 14px 10px;
+    border-radius: 18px;
+    text-decoration: none;
+    display: inline-block;
+    width: 130px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.3;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .home-button .arrow { margin-right: 4px; }
+
+  h1 {
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .thumb-link {
+    display: block;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 0 2px 8px rgba(45,44,91,0.25);
+    transition: transform 0.15s ease;
+  }
+  .thumb-link:hover .thumb {
+    transform: scale(1.03);
+  }
+  @media (max-width: 480px) {
+    .thumb {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,19,40,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  .lightbox-overlay.visible {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  p.lead {
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+
+  .submit-box {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 8px;
+  }
+
+  .submit-box h2 {
+    font-size: 1.1em;
+    margin: 0 0 12px;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  #country-select, #city-input {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1em;
+    color: rgb(45,44,91);
+    border: 2px solid rgb(45,44,91);
+    border-radius: 10px;
+    padding: 10px 14px;
+    outline: none;
+    background: #fff;
+  }
+
+  #country-select { flex: 1 1 0; min-width: 0; }
+  #city-input { flex: 1 1 0; min-width: 0; }
+
+  .btn {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.95em;
+    font-weight: bold;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    background: rgb(45,44,91);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+
+  .btn.btn-small {
+    font-size: 0.85em;
+    padding: 7px 16px;
+  }
+
+  .status-msg {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  .status-msg.ok { color: #2f7d4f; }
+  .status-msg.err { color: #b33; }
+
+  .map-wrap {
+    margin-top: 4px;
+  }
+
+  .map-stage {
+    position: relative;
+    /* Резервируем место под карту заранее, по реальным пропорциям её viewBox
+       (1010x666) - пока SVG (~1.2MB) ещё не загрузился, контейнер схлопывался
+       почти до нуля, а кнопки +/- (position:absolute) наезжали на кнопку
+       "Отметиться" над картой. Как только карта загрузилась, эти жёсткие
+       пропорции нужно снять (см. .map-stage.loaded ниже) - иначе при клике на
+       страну (viewBox меняется на силуэт этой страны, у которого СВОИ,
+       совершенно другие пропорции - например Канада намного "выше" всей карты
+       мира) контейнер держал старую форму насильно, и более высокая карта
+       вылезала за его пределы, наезжая на список стран под картой. */
+    aspect-ratio: 1010 / 666;
+  }
+  .map-stage.loaded {
+    aspect-ratio: auto;
+  }
+
+  #map-svg-container {
+    line-height: 0;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  /* Пока карта не загрузилась (текст "Загружаю карту..." внутри
+     зарезервированного места) - центрируем его по всей высоте блока. После
+     загрузки (.map-stage.loaded) убираем это, чтобы контейнер снова просто
+     облегал реальную SVG-карту по её фактическим пропорциям (как было
+     изначально) - иначе при смене пропорций (клик по стране) высота блока
+     осталась бы завязана на 100% через flex вместо содержимого. */
+  .map-stage:not(.loaded) #map-svg-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #map-svg-container.dragging {
+    cursor: grabbing;
+  }
+  #map-svg-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .zoom-controls {
+    display: none;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+  }
+  .map-stage.loaded .zoom-controls {
+    display: flex;
+  }
+  .zoom-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(45,44,91,0.85);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 34px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .zoom-btn:hover {
+    opacity: 0.85;
+  }
+  #map-svg-container path {
+    fill: rgb(230,229,240);
+    stroke: #ffffff;
+    stroke-width: 0.6;
+    transition: fill 0.2s;
+  }
+  #map-svg-container path.country-active {
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  #map-svg-container path.country-active:hover {
+    opacity: 0.8;
+  }
+
+  .map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    min-height: 32px;
+    flex-wrap: wrap;
+  }
+
+  .back-btn {
+    display: none;
+  }
+  .back-btn.visible {
+    display: inline-block;
+  }
+
+  .map-hint {
+    font-size: 1.05em;
+    line-height: 1.5;
+  }
+
+  .country-list-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .country-list-toggle {
+    display: inline-block;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+    background: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1.05em;
+    line-height: 1.5;
+    font-weight: normal;
+    color: rgb(45,44,91);
+    cursor: pointer;
+  }
+  .country-list-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .total-readers {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: rgb(45,44,91);
+    opacity: 0.85;
+  }
+
+  .country-list-panel {
+    background: rgb(244,244,255);
+    border-radius: 16px;
+    padding: 6px 20px;
+    margin-top: 10px;
+    display: none;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .country-list-panel.visible { display: block; }
+
+  .country-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: rgb(45,44,91);
+    border-bottom: 1px solid rgb(230,229,240);
+  }
+  .country-list-header .col-country {
+    text-align: center;
+  }
+  .country-list-header .col-readers {
+    width: 142px;
+    text-align: center;
+  }
+
+  .country-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(45,44,91,0.18);
+    cursor: pointer;
+    font-size: 1.05em;
+  }
+  .country-row:last-of-type {
+    border-bottom: none;
+  }
+  .country-row .name {
+    flex: 1;
+  }
+  .country-row .row-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    min-width: 60px;
+    justify-content: flex-end;
+  }
+  .country-row .count {
+    font-weight: bold;
+    width: 50px;
+    text-align: center;
+  }
+  .country-row .chevron {
+    display: inline-block;
+    width: 14px;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+  .country-row.expanded .chevron {
+    transform: rotate(90deg);
+  }
+
+  .city-sublist {
+    display: none;
+    padding: 0 0 12px 18px;
+    border-bottom: 1px solid rgba(45,44,91,0.18);
+  }
+  .city-sublist.expanded {
+    display: block;
+  }
+  .city-sublist ul {
+    margin: 0;
+    padding-left: 16px;
+  }
+  .city-sublist li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    font-size: 0.95em;
+  }
+  .city-sublist li .city-count {
+    font-weight: bold;
+    width: 22px;
+    text-align: center;
+    margin-right: -4px;
+  }
+
+  .country-list-empty {
+    font-size: 0.95em;
+    opacity: 0.7;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  .attribution {
+    font-size: 0.78em;
+    opacity: 0.55;
+    margin-top: 18px;
+    line-height: 1.5;
+  }
+  .attribution a {
+    color: inherit;
+  }
+
+  .empty, .loading {
+    font-size: 0.95em;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+  .to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgb(45, 44, 91);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(45, 44, 91, 0.35);
+    opacity: 0;
+    transform: translateY(90px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+<meta name="robots" content="noindex, nofollow">
+</head>
+
+<body>
+<div style="background:#461359; color:#fff; text-align:center; padding:8px 12px; font-family:Arial,sans-serif; font-size:14px;">
+  ТЕСТОВАЯ страница — данные и вся статистика здесь не настоящие, ссылку никому не передавай
+</div>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="thumb-link" id="thumb-link">
+      <img class="thumb" src="/images/icons/serdce-sinee.png" alt="Карта Обожателей Языков — миниатюра, нажми, чтобы увеличить">
+    </a>
+    <h1 id="title">Карта Обожателей Языков</h1>
+    <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
+  </div>
+
+  <p class="lead">А где ты обожаешь языки? Отметь свою страну и город – и покажи, как много нас по всему миру.</p>
+
+  <div class="submit-box">
+    <h2>Отметиться на карте</h2>
+    <div class="field-row">
+      <select id="country-select">
+        <option value="" disabled selected>Выбери страну</option>
+      </select>
+      <input type="text" id="city-input" maxlength="60" placeholder="Город">
+    </div>
+    <button class="btn" id="submit-btn" onclick="submitLocation()">Отметиться</button>
+    <div class="status-msg" id="submit-status"></div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-stage">
+      <div id="map-svg-container">
+        <p class="loading">Загружаю карту…</p>
+      </div>
+      <div class="zoom-controls">
+        <button type="button" class="zoom-btn" id="zoom-in-btn" aria-label="Приблизить">+</button>
+        <button type="button" class="zoom-btn" id="zoom-out-btn" aria-label="Отдалить">&minus;</button>
+      </div>
+    </div>
+    <div class="map-controls">
+      <span class="map-hint">Нажми на страну – и увидишь список городов</span>
+      <button class="btn btn-small back-btn" id="back-btn" onclick="resetMap()">← Показать всю карту</button>
+    </div>
+    <div class="country-list-toggle-row">
+      <button type="button" class="country-list-toggle" id="country-list-toggle-btn"><span style="text-decoration: underline;">Список стран</span></button>
+      <span class="total-readers" id="total-readers-label">Всего Обожателей Языков: <strong>0</strong></span>
+    </div>
+    <div class="country-list-panel" id="country-list-panel">
+      <div class="country-list-header">
+        <span class="col-country">Страны и<br>города</span>
+        <span class="col-readers">Обожателей Языков</span>
+      </div>
+      <div id="country-accordion"></div>
+    </div>
+  </div>
+
+  <p class="attribution">
+    Карта: <a href="https://github.com/VictorCazanave/svg-maps" target="_blank" rel="noopener">svg-maps</a> (Victor Cazanave), лицензия <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+  </p>
+
+</div>
+
+<a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <img src="/images/icons/serdce-sinee.png" alt="Карта Обожателей Языков">
+</div>
+
+<script>
+  const thumbLink = document.getElementById('thumb-link');
+  const lightbox = document.getElementById('lightbox-overlay');
+  thumbLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    lightbox.classList.add('visible');
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('visible');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('visible');
+  });
+</script>
+
+<script>
+  const API_URL = 'https://script.google.com/macros/s/AKfycby33F5PtvVIBBMC_AZIwpjj9GMLa-8oHkHCUWXputg_g4rheEr4vHw4BXQ1FSYLUi9c/exec';
+
+  // Apps Script (get_locations) отвечает медленно и непредсказуемо - по замерам
+  // через Performance API обычно 1.5-2 секунды, иногда до 5+ на "холодном
+  // старте". Это узкое место на стороне Google, не в коде страницы - ускорить
+  // его с фронтенда нельзя, но можно закэшировать результат на короткое время
+  // в sessionStorage, чтобы при повторной загрузке страницы в той же вкладке
+  // (например, случайно обновили страницу, или зашли ещё раз через минуту)
+  // список читателей появлялся мгновенно, без повторного ожидания Apps Script.
+  const LOCATIONS_CACHE_KEY = 'adore_karta_locations_cache';
+  const LOCATIONS_CACHE_TTL_MS = 30000;
+
+  function getCachedLocations() {
+    try {
+      const raw = sessionStorage.getItem(LOCATIONS_CACHE_KEY);
+      if (!raw) return null;
+      const cached = JSON.parse(raw);
+      if (!cached || (Date.now() - cached.ts) > LOCATIONS_CACHE_TTL_MS) return null;
+      return cached.countries;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setCachedLocations(countries) {
+    try {
+      sessionStorage.setItem(LOCATIONS_CACHE_KEY, JSON.stringify({ ts: Date.now(), countries: countries }));
+    } catch (e) {
+      // sessionStorage может быть недоступен (приватный режим и т.п.) - не критично, просто не кэшируем
+    }
+  }
+
+  const COUNTRIES = [{"id":"au","ru":"Австралия"},{"id":"at","ru":"Австрия"},{"id":"az","ru":"Азербайджан"},{"id":"ax","ru":"Аландские о-ва"},{"id":"al","ru":"Албания"},{"id":"dz","ru":"Алжир"},{"id":"as","ru":"Американское Самоа"},{"id":"ai","ru":"Ангилья"},{"id":"ao","ru":"Ангола"},{"id":"ad","ru":"Андорра"},{"id":"ag","ru":"Антигуа и Барбуда"},{"id":"ar","ru":"Аргентина"},{"id":"am","ru":"Армения"},{"id":"aw","ru":"Аруба"},{"id":"um-jq","ru":"Атолл Джонстон"},{"id":"af","ru":"Афганистан"},{"id":"bs","ru":"Багамы"},{"id":"bd","ru":"Бангладеш"},{"id":"bb","ru":"Барбадос"},{"id":"bh","ru":"Бахрейн"},{"id":"by","ru":"Беларусь"},{"id":"bz","ru":"Белиз"},{"id":"be","ru":"Бельгия"},{"id":"bj","ru":"Бенин"},{"id":"bm","ru":"Бермудские о-ва"},{"id":"bg","ru":"Болгария"},{"id":"bo","ru":"Боливия"},{"id":"bq","ru":"Бонэйр, Синт-Эстатиус и Саба"},{"id":"ba","ru":"Босния и Герцеговина"},{"id":"bw","ru":"Ботсвана"},{"id":"br","ru":"Бразилия"},{"id":"io","ru":"Британская территория в Индийском океане"},{"id":"bn","ru":"Бруней-Даруссалам"},{"id":"bf","ru":"Буркина-Фасо"},{"id":"bi","ru":"Бурунди"},{"id":"bt","ru":"Бутан"},{"id":"vu","ru":"Вануату"},{"id":"va","ru":"Ватикан"},{"id":"gb","ru":"Великобритания"},{"id":"hu","ru":"Венгрия"},{"id":"ve","ru":"Венесуэла"},{"id":"vg","ru":"Виргинские о-ва (Великобритания)"},{"id":"vi","ru":"Виргинские о-ва (США)"},{"id":"tl","ru":"Восточный Тимор"},{"id":"vn","ru":"Вьетнам"},{"id":"ga","ru":"Габон"},{"id":"ht","ru":"Гаити"},{"id":"gy","ru":"Гайана"},{"id":"gm","ru":"Гамбия"},{"id":"gh","ru":"Гана"},{"id":"gp","ru":"Гваделупа"},{"id":"gt","ru":"Гватемала"},{"id":"gn","ru":"Гвинея"},{"id":"gw","ru":"Гвинея-Бисау"},{"id":"de","ru":"Германия"},{"id":"gg","ru":"Гернси"},{"id":"gi","ru":"Гибралтар"},{"id":"hn","ru":"Гондурас"},{"id":"hk","ru":"Гонконг (САР)"},{"id":"gd","ru":"Гренада"},{"id":"gl","ru":"Гренландия"},{"id":"gr","ru":"Греция"},{"id":"ge","ru":"Грузия"},{"id":"gu","ru":"Гуам"},{"id":"dk","ru":"Дания"},{"id":"je","ru":"Джерси"},{"id":"dj","ru":"Джибути"},{"id":"dm","ru":"Доминика"},{"id":"do","ru":"Доминиканская Республика"},{"id":"eg","ru":"Египет"},{"id":"ju","ru":"Жуан-де-Нова"},{"id":"zm","ru":"Замбия"},{"id":"eh","ru":"Западная Сахара"},{"id":"zw","ru":"Зимбабве"},{"id":"il","ru":"Израиль"},{"id":"in","ru":"Индия"},{"id":"id","ru":"Индонезия"},{"id":"jo","ru":"Иордания"},{"id":"iq","ru":"Ирак"},{"id":"ir","ru":"Иран"},{"id":"ie","ru":"Ирландия"},{"id":"is","ru":"Исландия"},{"id":"es","ru":"Испания"},{"id":"it","ru":"Италия"},{"id":"ye","ru":"Йемен"},{"id":"kp","ru":"КНДР"},{"id":"cv","ru":"Кабо-Верде"},{"id":"kz","ru":"Казахстан"},{"id":"kh","ru":"Камбоджа"},{"id":"cm","ru":"Камерун"},{"id":"ca","ru":"Канада"},{"id":"qa","ru":"Катар"},{"id":"ke","ru":"Кения"},{"id":"cy","ru":"Кипр"},{"id":"kg","ru":"Киргизия"},{"id":"ki","ru":"Кирибати"},{"id":"cn","ru":"Китай"},{"id":"cc","ru":"Кокосовые о-ва"},{"id":"co","ru":"Колумбия"},{"id":"km","ru":"Коморы"},{"id":"cg","ru":"Конго - Браззавиль"},{"id":"cd","ru":"Конго - Киншаса"},{"id":"xk","ru":"Косово"},{"id":"cr","ru":"Коста-Рика"},{"id":"ci","ru":"Кот-д’Ивуар"},{"id":"cu","ru":"Куба"},{"id":"kw","ru":"Кувейт"},{"id":"cw","ru":"Кюрасао"},{"id":"la","ru":"Лаос"},{"id":"lv","ru":"Латвия"},{"id":"ls","ru":"Лесото"},{"id":"lr","ru":"Либерия"},{"id":"lb","ru":"Ливан"},{"id":"ly","ru":"Ливия"},{"id":"lt","ru":"Литва"},{"id":"li","ru":"Лихтенштейн"},{"id":"lu","ru":"Люксембург"},{"id":"mu","ru":"Маврикий"},{"id":"mr","ru":"Мавритания"},{"id":"mg","ru":"Мадагаскар"},{"id":"yt","ru":"Майотта"},{"id":"mo","ru":"Макао (САР)"},{"id":"mw","ru":"Малави"},{"id":"my","ru":"Малайзия"},{"id":"ml","ru":"Мали"},{"id":"mv","ru":"Мальдивы"},{"id":"mt","ru":"Мальта"},{"id":"ma","ru":"Марокко"},{"id":"mq","ru":"Мартиника"},{"id":"mh","ru":"Маршалловы Острова"},{"id":"mx","ru":"Мексика"},{"id":"mz","ru":"Мозамбик"},{"id":"md","ru":"Молдова"},{"id":"mc","ru":"Монако"},{"id":"mn","ru":"Монголия"},{"id":"ms","ru":"Монтсеррат"},{"id":"mm","ru":"Мьянма (Бирма)"},{"id":"na","ru":"Намибия"},{"id":"nr","ru":"Науру"},{"id":"np","ru":"Непал"},{"id":"ne","ru":"Нигер"},{"id":"ng","ru":"Нигерия"},{"id":"nl","ru":"Нидерланды"},{"id":"ni","ru":"Никарагуа"},{"id":"nu","ru":"Ниуэ"},{"id":"nz","ru":"Новая Зеландия"},{"id":"nc","ru":"Новая Каледония"},{"id":"no","ru":"Норвегия"},{"id":"ae","ru":"ОАЭ"},{"id":"om","ru":"Оман"},{"id":"um-fq","ru":"Остров Бейкер"},{"id":"um-dq","ru":"Остров Джарвис"},{"id":"um-wq","ru":"Остров Уэйк"},{"id":"um-hq","ru":"Остров Хауленд"},{"id":"go","ru":"Острова Глорьёз"},{"id":"ky","ru":"Острова Кайман"},{"id":"ck","ru":"Острова Кука"},{"id":"um-mq","ru":"Острова Мидуэй"},{"id":"pk","ru":"Пакистан"},{"id":"pw","ru":"Палау"},{"id":"ps","ru":"Палестинские территории"},{"id":"pa","ru":"Панама"},{"id":"pg","ru":"Папуа — Новая Гвинея"},{"id":"py","ru":"Парагвай"},{"id":"pe","ru":"Перу"},{"id":"pl","ru":"Польша"},{"id":"pt","ru":"Португалия"},{"id":"pr","ru":"Пуэрто-Рико"},{"id":"kr","ru":"Республика Корея"},{"id":"re","ru":"Реюньон"},{"id":"ru","ru":"Россия"},{"id":"rw","ru":"Руанда"},{"id":"ro","ru":"Румыния"},{"id":"sv","ru":"Сальвадор"},{"id":"ws","ru":"Самоа"},{"id":"sm","ru":"Сан-Марино"},{"id":"st","ru":"Сан-Томе и Принсипи"},{"id":"sa","ru":"Саудовская Аравия"},{"id":"mk","ru":"Северная Македония"},{"id":"mp","ru":"Северные Марианские о-ва"},{"id":"sc","ru":"Сейшельские Острова"},{"id":"bl","ru":"Сен-Бартелеми"},{"id":"mf","ru":"Сен-Мартен"},{"id":"pm","ru":"Сен-Пьер и Микелон"},{"id":"sn","ru":"Сенегал"},{"id":"vc","ru":"Сент-Винсент и Гренадины"},{"id":"kn","ru":"Сент-Китс и Невис"},{"id":"lc","ru":"Сент-Люсия"},{"id":"rs","ru":"Сербия"},{"id":"sg","ru":"Сингапур"},{"id":"sx","ru":"Синт-Мартен"},{"id":"sy","ru":"Сирия"},{"id":"sk","ru":"Словакия"},{"id":"si","ru":"Словения"},{"id":"us","ru":"Соединенные Штаты"},{"id":"sb","ru":"Соломоновы Острова"},{"id":"so","ru":"Сомали"},{"id":"sd","ru":"Судан"},{"id":"sr","ru":"Суринам"},{"id":"sl","ru":"Сьерра-Леоне"},{"id":"tj","ru":"Таджикистан"},{"id":"th","ru":"Таиланд"},{"id":"tw","ru":"Тайвань"},{"id":"tz","ru":"Танзания"},{"id":"tg","ru":"Того"},{"id":"tk","ru":"Токелау"},{"id":"to","ru":"Тонга"},{"id":"tt","ru":"Тринидад и Тобаго"},{"id":"tv","ru":"Тувалу"},{"id":"tn","ru":"Тунис"},{"id":"tm","ru":"Туркменистан"},{"id":"tr","ru":"Турция"},{"id":"ug","ru":"Уганда"},{"id":"uz","ru":"Узбекистан"},{"id":"ua","ru":"Украина"},{"id":"wf","ru":"Уоллис и Футуна"},{"id":"uy","ru":"Уругвай"},{"id":"fo","ru":"Фарерские о-ва"},{"id":"fm","ru":"Федеративные Штаты Микронезии"},{"id":"fj","ru":"Фиджи"},{"id":"ph","ru":"Филиппины"},{"id":"fi","ru":"Финляндия"},{"id":"fk","ru":"Фолклендские о-ва"},{"id":"fr","ru":"Франция"},{"id":"gf","ru":"Французская Гвиана"},{"id":"pf","ru":"Французская Полинезия"},{"id":"tf","ru":"Французские Южные территории"},{"id":"hr","ru":"Хорватия"},{"id":"cf","ru":"Центрально-Африканская Республика"},{"id":"td","ru":"Чад"},{"id":"me","ru":"Черногория"},{"id":"cz","ru":"Чехия"},{"id":"cl","ru":"Чили"},{"id":"ch","ru":"Швейцария"},{"id":"se","ru":"Швеция"},{"id":"sj","ru":"Шпицберген и Ян-Майен"},{"id":"lk","ru":"Шри-Ланка"},{"id":"ec","ru":"Эквадор"},{"id":"gq","ru":"Экваториальная Гвинея"},{"id":"er","ru":"Эритрея"},{"id":"sz","ru":"Эсватини"},{"id":"ee","ru":"Эстония"},{"id":"et","ru":"Эфиопия"},{"id":"gs","ru":"Южная Георгия и Южные Сандвичевы о-ва"},{"id":"za","ru":"Южно-Африканская Республика"},{"id":"ss","ru":"Южный Судан"},{"id":"jm","ru":"Ямайка"},{"id":"jp","ru":"Япония"},{"id":"bv","ru":"о-в Буве"},{"id":"im","ru":"о-в Мэн"},{"id":"nf","ru":"о-в Норфолк"},{"id":"cx","ru":"о-в Рождества"},{"id":"sh","ru":"о-в Св. Елены"},{"id":"pn","ru":"о-ва Питкэрн"},{"id":"tc","ru":"о-ва Тёркс и Кайкос"},{"id":"hm","ru":"о-ва Херд и Макдональд"}];
+
+  const COUNTRY_NAME = {};
+  COUNTRIES.forEach(c => { COUNTRY_NAME[c.id] = c.ru; });
+
+  const countrySelect = document.getElementById('country-select');
+  COUNTRIES.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.ru;
+    countrySelect.appendChild(opt);
+  });
+
+  let svgEl = null;
+  let mapContainer = null;
+  let latestCountries = {};
+  let capitalXY = {};
+  let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
+  let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
+  const MIN_VB_WIDTH = 12;
+  let wasDragged = false;
+  let listenersAttached = false;
+
+  function parseViewBox(str) {
+    const parts = (str || '0 0 1010 666').trim().split(/\s+/).map(Number);
+    return { x: parts[0], y: parts[1], w: parts[2], h: parts[3] };
+  }
+
+  function viewBoxString(vb) {
+    return `${vb.x} ${vb.y} ${vb.w} ${vb.h}`;
+  }
+
+  function applyViewBox() {
+    if (!svgEl) return;
+    svgEl.setAttribute('viewBox', viewBoxString(currentVB));
+    const changed = Math.abs(currentVB.x - originalVB.x) > 0.5 ||
+      Math.abs(currentVB.y - originalVB.y) > 0.5 ||
+      Math.abs(currentVB.w - originalVB.w) > 0.5;
+    document.getElementById('back-btn').classList.toggle('visible', changed);
+  }
+
+  function clampPan() {
+    const marginX = currentVB.w * 0.9;
+    const marginY = currentVB.h * 0.9;
+    const minX = originalVB.x - marginX;
+    const maxX = originalVB.x + originalVB.w - currentVB.w + marginX;
+    const minY = originalVB.y - marginY;
+    const maxY = originalVB.y + originalVB.h - currentVB.h + marginY;
+    currentVB.x = Math.max(minX, Math.min(currentVB.x, maxX));
+    currentVB.y = Math.max(minY, Math.min(currentVB.y, maxY));
+  }
+
+  function zoomBy(factor, cx, cy) {
+    let newW = currentVB.w * factor;
+    newW = Math.max(MIN_VB_WIDTH, Math.min(newW, originalVB.w));
+    const newH = newW * (originalVB.h / originalVB.w);
+    const ratio = newW / currentVB.w;
+    currentVB = {
+      x: cx - (cx - currentVB.x) * ratio,
+      y: cy - (cy - currentVB.y) * ratio,
+      w: newW,
+      h: newH
+    };
+    clampPan();
+    applyViewBox();
+  }
+
+  function svgPointFromEvent(clientX, clientY) {
+    const rect = svgEl.getBoundingClientRect();
+    const scale = currentVB.w / rect.width;
+    return {
+      x: currentVB.x + (clientX - rect.left) * scale,
+      y: currentVB.y + (clientY - rect.top) * scale
+    };
+  }
+
+  function dist(t1, t2) {
+    return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+  }
+
+  function attachMapInteractions() {
+    if (listenersAttached || !mapContainer) return;
+    listenersAttached = true;
+
+    document.getElementById('zoom-in-btn').addEventListener('click', () => {
+      zoomBy(1 / 1.4, currentVB.x + currentVB.w / 2, currentVB.y + currentVB.h / 2);
+    });
+    document.getElementById('zoom-out-btn').addEventListener('click', () => {
+      zoomBy(1.4, currentVB.x + currentVB.w / 2, currentVB.y + currentVB.h / 2);
+    });
+
+    mapContainer.addEventListener('wheel', (e) => {
+      if (!svgEl) return;
+      e.preventDefault();
+      const p = svgPointFromEvent(e.clientX, e.clientY);
+      const factor = e.deltaY > 0 ? 1.15 : 1 / 1.15;
+      zoomBy(factor, p.x, p.y);
+    }, { passive: false });
+
+    mapContainer.addEventListener('dblclick', (e) => {
+      if (!svgEl) return;
+      const p = svgPointFromEvent(e.clientX, e.clientY);
+      zoomBy(1 / 1.8, p.x, p.y);
+    });
+
+    let dragging = false;
+    let dragStartClient = null;
+    let dragStartVB = null;
+    let dragMoved = 0;
+
+    mapContainer.addEventListener('mousedown', (e) => {
+      if (!svgEl) return;
+      dragging = true;
+      dragMoved = 0;
+      dragStartClient = { x: e.clientX, y: e.clientY };
+      dragStartVB = { ...currentVB };
+      mapContainer.classList.add('dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging || !svgEl) return;
+      const rect = svgEl.getBoundingClientRect();
+      const scale = dragStartVB.w / rect.width;
+      const dx = (e.clientX - dragStartClient.x) * scale;
+      const dy = (e.clientY - dragStartClient.y) * scale;
+      dragMoved = Math.max(dragMoved, Math.hypot(e.clientX - dragStartClient.x, e.clientY - dragStartClient.y));
+      currentVB.x = dragStartVB.x - dx;
+      currentVB.y = dragStartVB.y - dy;
+      clampPan();
+      applyViewBox();
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      mapContainer.classList.remove('dragging');
+      wasDragged = dragMoved > 5;
+    });
+
+    let touchMode = null;
+    let touchStartClient = null;
+    let touchStartVB = null;
+    let pinchStartDist = null;
+    let pinchMidSvg = null;
+    let touchMoved = 0;
+
+    mapContainer.addEventListener('touchstart', (e) => {
+      if (!svgEl) return;
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        touchMoved = 0;
+        touchStartClient = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        touchStartVB = { ...currentVB };
+      } else if (e.touches.length === 2) {
+        touchMode = 'pinch';
+        const [t1, t2] = e.touches;
+        pinchStartDist = dist(t1, t2);
+        touchStartVB = { ...currentVB };
+        const midX = (t1.clientX + t2.clientX) / 2;
+        const midY = (t1.clientY + t2.clientY) / 2;
+        pinchMidSvg = svgPointFromEvent(midX, midY);
+      }
+    }, { passive: false });
+
+    mapContainer.addEventListener('touchmove', (e) => {
+      if (!svgEl) return;
+      e.preventDefault();
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        const rect = svgEl.getBoundingClientRect();
+        const scale = touchStartVB.w / rect.width;
+        const dx = (e.touches[0].clientX - touchStartClient.x) * scale;
+        const dy = (e.touches[0].clientY - touchStartClient.y) * scale;
+        touchMoved = Math.max(touchMoved, Math.hypot(e.touches[0].clientX - touchStartClient.x, e.touches[0].clientY - touchStartClient.y));
+        currentVB.x = touchStartVB.x - dx;
+        currentVB.y = touchStartVB.y - dy;
+        clampPan();
+        applyViewBox();
+      } else if (touchMode === 'pinch' && e.touches.length === 2) {
+        const [t1, t2] = e.touches;
+        const d = dist(t1, t2);
+        const factor = pinchStartDist / d;
+        let newW = Math.max(MIN_VB_WIDTH, Math.min(touchStartVB.w * factor, originalVB.w));
+        const newH = newW * (originalVB.h / originalVB.w);
+        const ratio = newW / touchStartVB.w;
+        currentVB = {
+          x: pinchMidSvg.x - (pinchMidSvg.x - touchStartVB.x) * ratio,
+          y: pinchMidSvg.y - (pinchMidSvg.y - touchStartVB.y) * ratio,
+          w: newW,
+          h: newH
+        };
+        touchMoved = 999;
+        clampPan();
+        applyViewBox();
+      }
+    }, { passive: false });
+
+    mapContainer.addEventListener('touchend', (e) => {
+      wasDragged = touchMoved > 5;
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        touchMoved = 0;
+        touchStartClient = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        touchStartVB = { ...currentVB };
+      } else if (e.touches.length === 0) {
+        touchMode = null;
+      }
+    });
+  }
+
+  function submitLocation() {
+    const country = countrySelect.value;
+    const cityInput = document.getElementById('city-input');
+    const city = cityInput.value.trim();
+    const status = document.getElementById('submit-status');
+    const btn = document.getElementById('submit-btn');
+
+    if (!country) {
+      status.textContent = 'Сначала выбери страну.';
+      status.className = 'status-msg err';
+      return;
+    }
+    if (!city) {
+      status.textContent = 'Напиши свой город.';
+      status.className = 'status-msg err';
+      return;
+    }
+
+    btn.disabled = true;
+    status.textContent = 'Спасибо! Скоро появишься на карте.';
+    status.className = 'status-msg ok';
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'submit_location', country: country, city: city })
+    })
+      .then(r => r.json())
+      .then(data => {
+        btn.disabled = false;
+        if (data.ok) {
+          cityInput.value = '';
+          loadMap();
+        } else {
+          status.textContent = 'Что-то пошло не так, попробуй ещё раз.';
+          status.className = 'status-msg err';
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        status.textContent = 'Не удалось отправить, попробуй ещё раз.';
+        status.className = 'status-msg err';
+      });
+  }
+
+  function colorForCount(count) {
+    return 'rgb(45,44,91)';
+  }
+
+  function applyLocationData(countries) {
+    if (!svgEl) return;
+    const paths = svgEl.querySelectorAll('path[id]');
+    paths.forEach(path => {
+      const info = countries[path.id];
+      path.classList.remove('country-empty', 'country-active');
+      path.onclick = null;
+      if (info && info.count > 0) {
+        path.classList.add('country-active');
+        path.style.fill = colorForCount(info.count);
+        path.addEventListener('click', () => {
+          if (wasDragged) { wasDragged = false; return; }
+          showCountry(path.id, info);
+        });
+      } else {
+        path.classList.add('country-empty');
+        path.style.fill = '';
+      }
+    });
+  }
+
+  function showCapitalHeart(id, info) {
+    if (!svgEl) return;
+    let heart = svgEl.querySelector('#capital-heart');
+    if (heart) heart.remove();
+    const xy = capitalXY[id];
+    if (!xy || !info || !info.count) return;
+    const path = svgEl.querySelector(`path[id="${id}"]`);
+    const NS = 'http://www.w3.org/2000/svg';
+    const heartPath = "M16 29 C16 29 2 20 2 10 C2 4 7 0 12 0 C14 0 16 1 16 4 C16 1 18 0 20 0 C25 0 30 4 30 10 C30 20 16 29 16 29 Z";
+    const count = info.count;
+    const digits = String(count).length;
+    // Размер сердечка задаётся как доля от текущего зумированного viewBox
+    // (а не абсолютными SVG-юнитами), чтобы сердечко выглядело одинаково на
+    // экране независимо от размера страны.
+    const digitMult = { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.6 };
+    const fontRatio = { 1: 0.65, 2: 0.56, 3: 0.48, 4: 0.42 };
+    const mult = digitMult[digits] || digitMult[4];
+    const fRatio = fontRatio[digits] || fontRatio[4];
+    const viewMinDim = Math.min(currentVB.w, currentVB.h);
+    const baseFrac = 0.14;
+    const nativeHeartW = 28;
+    let targetWidth = viewMinDim * baseFrac * mult;
+    let scale = targetWidth / nativeHeartW;
+    let fontSize = targetWidth * fRatio;
+    // Предохранитель: сердечко не может быть больше самой страны.
+    if (path) {
+      const b = path.getBBox();
+      const minDim = Math.min(b.width, b.height);
+      const heartW = nativeHeartW * scale;
+      const maxAllowed = minDim * 0.7;
+      if (heartW > maxAllowed && maxAllowed > 0) {
+        const factor = maxAllowed / heartW;
+        scale *= factor;
+        fontSize *= factor;
+      }
+    }
+    // Минимальный размер шрифта на экране (px) - если предыдущие шаги сделали
+    // цифру нечитаемой (актуально для микрогосударств вроде Лихтенштейна или
+    // Сан-Марино), увеличиваем сердечко и шрифт заново, даже если из-за этого
+    // сердечко немного выйдет за границы страны - читаемость важнее.
+    const MIN_FONT_PX = 11;
+    const svgRect = svgEl.getBoundingClientRect();
+    if (svgRect.width > 0 && svgRect.height > 0) {
+      const pxPerUnit = Math.min(svgRect.width / currentVB.w, svgRect.height / currentVB.h);
+      const minFontSize = MIN_FONT_PX / pxPerUnit;
+      if (fontSize < minFontSize) {
+        const growFactor = minFontSize / fontSize;
+        fontSize = minFontSize;
+        scale *= growFactor;
+      }
+    }
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('id', 'capital-heart');
+    g.setAttribute('transform', 'translate(' + xy[0] + ',' + xy[1] + ')');
+    const hg = document.createElementNS(NS, 'g');
+    hg.setAttribute('transform', 'translate(' + (-16 * scale) + ',' + (-14.5 * scale) + ') scale(' + scale + ')');
+    const hp = document.createElementNS(NS, 'path');
+    hp.setAttribute('d', heartPath);
+    hp.setAttribute('style', 'fill:#E9CEF2');
+    hg.appendChild(hp);
+    g.appendChild(hg);
+    const txt = document.createElementNS(NS, 'text');
+    txt.setAttribute('x', '0');
+    txt.setAttribute('y', String(-3 * scale));
+    txt.setAttribute('text-anchor', 'middle');
+    txt.setAttribute('dominant-baseline', 'central');
+    txt.setAttribute('font-size', fontSize);
+    txt.setAttribute('font-weight', '700');
+    txt.setAttribute('fill', '#461359');
+    txt.setAttribute('font-family', 'Arial, sans-serif');
+    txt.textContent = count;
+    g.appendChild(txt);
+    svgEl.appendChild(g);
+  }
+
+  function hideCapitalHeart() {
+    if (!svgEl) return;
+    const heart = svgEl.querySelector('#capital-heart');
+    if (heart) heart.remove();
+  }
+
+  function showCountry(id, info) {
+    if (!svgEl) return;
+    const path = svgEl.querySelector(`path[id="${id}"]`);
+    if (!path) return;
+
+    const bbox = path.getBBox();
+    const padX = Math.max(bbox.width * 0.25, 6);
+    const padY = Math.max(bbox.height * 0.25, 6);
+    currentVB = { x: bbox.x - padX, y: bbox.y - padY, w: bbox.width + padX * 2, h: bbox.height + padY * 2 };
+    applyViewBox();
+    showCapitalHeart(id, info);
+
+    // Города этой страны показываем не в отдельной панели, а сразу в общем списке
+    // стран ниже - открываем его и разворачиваем/прокручиваем к нужной стране.
+    const listPanel = document.getElementById('country-list-panel');
+    listPanel.classList.add('visible');
+    updateToggleBtnText();
+
+    // Клик по стране на карте - однозначное намерение увидеть города именно этой
+    // страны, поэтому сворачиваем все остальные ранее открытые строки, чтобы не
+    // показывать вперемешку города нескольких стран сразу.
+    document.querySelectorAll('.country-row.expanded').forEach(r => {
+      r.classList.remove('expanded');
+      if (r.nextElementSibling) r.nextElementSibling.classList.remove('expanded');
+    });
+
+    const row = document.querySelector(`.country-row[data-country-id="${id}"]`);
+    if (row) {
+      const sub = row.nextElementSibling;
+      row.classList.add('expanded');
+      if (sub) sub.classList.add('expanded');
+      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      listPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function resetMap() {
+    currentVB = { ...originalVB };
+    applyViewBox();
+    hideCapitalHeart();
+  }
+
+  function loadLocationData() {
+    // Вызывается после собственной отправки читателя ("Отметиться") - здесь
+    // всегда идём в сеть за свежими данными (а не в кэш), иначе человек не
+    // увидит на карте только что добавленную самим собой точку.
+    return fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          latestCountries = data.countries || {};
+          setCachedLocations(latestCountries);
+          applyLocationData(latestCountries);
+          renderCountryList();
+        }
+      });
+  }
+
+  function buildCityListItems(info) {
+    const cities = Object.keys(info.cities).map(name => ({ name: name, count: info.cities[name] }));
+    cities.sort((a, b) => b.count - a.count);
+    return cities.map(c => {
+      const li = document.createElement('li');
+      const nameSpan = document.createElement('span');
+      nameSpan.appendChild(document.createTextNode(c.name));
+      li.appendChild(nameSpan);
+      const countSpan = document.createElement('span');
+      countSpan.className = 'city-count';
+      countSpan.textContent = c.count;
+      li.appendChild(countSpan);
+      return li;
+    });
+  }
+
+  function renderCountryList() {
+    const container = document.getElementById('country-accordion');
+    const entries = Object.keys(latestCountries)
+      .map(id => ({ id: id, count: latestCountries[id].count, name: COUNTRY_NAME[id] || id }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+
+    container.innerHTML = '';
+    if (!entries.length) {
+      const p = document.createElement('p');
+      p.className = 'country-list-empty';
+      p.textContent = 'Пока никто не отметился.';
+      container.appendChild(p);
+      updateToggleBtnText();
+      return;
+    }
+
+    entries.forEach(entry => {
+      const info = latestCountries[entry.id];
+
+      const row = document.createElement('div');
+      row.className = 'country-row';
+      row.dataset.countryId = entry.id;
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'name';
+      nameSpan.textContent = entry.name;
+      row.appendChild(nameSpan);
+
+      const rightSpan = document.createElement('span');
+      rightSpan.className = 'row-right';
+      const countSpan = document.createElement('span');
+      countSpan.className = 'count';
+      countSpan.textContent = entry.count;
+      rightSpan.appendChild(countSpan);
+      const chevron = document.createElement('span');
+      chevron.className = 'chevron';
+      chevron.textContent = '\u203a';
+      rightSpan.appendChild(chevron);
+      row.appendChild(rightSpan);
+
+      const sub = document.createElement('div');
+      sub.className = 'city-sublist';
+      const ul = document.createElement('ul');
+      buildCityListItems(info).forEach(li => ul.appendChild(li));
+      sub.appendChild(ul);
+
+      row.addEventListener('click', () => {
+        const willExpand = !sub.classList.contains('expanded');
+        sub.classList.toggle('expanded', willExpand);
+        row.classList.toggle('expanded', willExpand);
+      });
+
+      container.appendChild(row);
+      container.appendChild(sub);
+    });
+
+    updateToggleBtnText();
+  }
+
+  function updateToggleBtnText() {
+    const btn = document.getElementById('country-list-toggle-btn');
+    const panel = document.getElementById('country-list-panel');
+    const isVisible = panel.classList.contains('visible');
+    if (isVisible) {
+      btn.innerHTML = '<span style="text-decoration: underline;">Скрыть список стран</span>';
+    } else {
+      const count = Object.keys(latestCountries).length;
+      btn.innerHTML = '<span style="text-decoration: underline;">Список стран</span>: <strong>' + count + '</strong>';
+    }
+
+    const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
+    document.getElementById('total-readers-label').innerHTML = 'Всего Обожателей Языков: <strong>' + totalReaders + '</strong>';
+  }
+
+  document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
+    const panel = document.getElementById('country-list-panel');
+    const willShow = !panel.classList.contains('visible');
+    panel.classList.toggle('visible', willShow);
+    updateToggleBtnText();
+    if (willShow) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+
+  function loadMap() {
+    if (!svgEl) {
+      // Карта (SVG ~1.2MB) и данные о читателях (Apps Script) запускаются
+      // одновременно (оба запроса стартуют сразу, никто не ждёт своей очереди),
+      // но каждый результат применяется СРАЗУ, как только он готов - а не когда
+      // готовы оба. Раньше (Promise.all на оба сразу) человек не видел вообще
+      // ничего, пока не ответят оба запроса - а Apps Script на мобильном может
+      // быть медленным и непредсказуемым, из-за чего казалось, что всё стало
+      // работать заметно медленнее. Теперь карта появляется сразу же, как только
+      // скачался SVG (обычно это быстрее), а раскраска стран и список городов
+      // добавляются следом, когда/если Apps Script ответит - независимо от
+      // того, в каком порядке пришли ответы (см. tryApplyLocations ниже).
+      let locationsReady = false;
+
+      function tryApplyLocations() {
+        if (svgEl && locationsReady) {
+          applyLocationData(latestCountries);
+        }
+      }
+
+      fetch('/maps/capitals-xy.json')
+        .then(r => r.json())
+        .then(data => { capitalXY = data || {}; })
+        .catch(() => {});
+
+      fetch('/maps/world.svg')
+        .then(r => r.text())
+        .then(svgText => {
+          mapContainer = document.getElementById('map-svg-container');
+          mapContainer.innerHTML = svgText;
+          svgEl = mapContainer.querySelector('svg');
+          if (svgEl) {
+            originalVB = parseViewBox(svgEl.getAttribute('viewBox'));
+            currentVB = { ...originalVB };
+            svgEl.removeAttribute('height');
+            svgEl.removeAttribute('width');
+            attachMapInteractions();
+            document.querySelector('.map-stage').classList.add('loaded');
+            tryApplyLocations();
+          }
+        });
+
+      const cachedCountries = getCachedLocations();
+      if (cachedCountries) {
+        // Свежий кэш (моложе 30 секунд) есть - используем сразу, без похода
+        // в Apps Script. Список городов/раскраска карты появляются мгновенно.
+        latestCountries = cachedCountries;
+        renderCountryList();
+        locationsReady = true;
+        tryApplyLocations();
+      } else {
+        fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
+          .then(r => r.json())
+          .then(data => {
+            if (data.ok) {
+              latestCountries = data.countries || {};
+              setCachedLocations(latestCountries);
+              renderCountryList();
+              locationsReady = true;
+              tryApplyLocations();
+            }
+          });
+      }
+    } else {
+      loadLocationData();
+    }
+  }
+
+  loadMap();
+</script>
+
+<script>
+  const toTopBtn = document.getElementById('to-top');
+  window.addEventListener('scroll', () => {
+    toTopBtn.classList.toggle('visible', window.scrollY > 300);
+  });
+  function scrollToTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  toTopBtn.addEventListener('click', scrollToTop);
+  toTopBtn.addEventListener('touchend', scrollToTop);
+</script>
+
+</body>
+</html>
