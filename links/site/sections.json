@@ -1,120 +1,417 @@
 {
   "brendy": {
     "title": "Бренды",
-    "slugs": ["adik", "dublbukva", "ikea", "krossulya", "pryamikom", "spam", "mersedes", "slushay", "igraho", "remontutoni"]
+    "slugs": [
+      "adik",
+      "dublbukva",
+      "ikea",
+      "krossulya",
+      "pryamikom",
+      "spam",
+      "mersedes",
+      "slushay",
+      "igraho",
+      "remontutoni"
+    ]
   },
   "osobyeslova": {
     "title": "Особые слова",
-    "slugs": ["verlan", "babushkatsia", "veterinirovat", "komi", "kafune", "chechenskost", "tametogde"]
+    "slugs": [
+      "verlan",
+      "babushkatsia",
+      "veterinirovat",
+      "komi",
+      "kafune",
+      "chechenskost",
+      "tametogde"
+    ]
   },
   "strany": {
     "title": "Страны",
     "languages": {
-      "США": ["ulitsyssha", "iyunnadcatoe"],
-      "ирландия": ["prostoirlandtsy"],
-      "испания": ["neprostomariya"],
-      "туркменистан": ["turkmenskie"],
-      "турция": ["tseluyu"],
-      "швейцария": ["latinskayashveytsariya"],
-      "швеция": ["synkarla", "medvedberyoza"]
+      "США": [
+        "ulitsyssha",
+        "iyunnadcatoe"
+      ],
+      "ирландия": [
+        "prostoirlandtsy"
+      ],
+      "испания": [
+        "neprostomariya"
+      ],
+      "туркменистан": [
+        "turkmenskie"
+      ],
+      "турция": [
+        "tseluyu"
+      ],
+      "швейцария": [
+        "latinskayashveytsariya"
+      ],
+      "швеция": [
+        "synkarla",
+        "medvedberyoza"
+      ]
     }
   },
   "etimologiya": {
     "title": "Этимология",
-    "slugs": ["kartofel", "udarderevom", "gromkotiho", "azyibuki", "kruchonkisrynka", "robot", "hlebnoeuho", "dut", "letniemesyacy", "sedmayavodanakisele", "tyrboga", "pustynyasahara", "shlyapohlop", "igraho"]
+    "slugs": [
+      "kartofel",
+      "udarderevom",
+      "gromkotiho",
+      "azyibuki",
+      "kruchonkisrynka",
+      "robot",
+      "hlebnoeuho",
+      "dut",
+      "letniemesyacy",
+      "sedmayavodanakisele",
+      "tyrboga",
+      "pustynyasahara",
+      "shlyapohlop",
+      "igraho"
+    ]
   },
   "yazyki": {
     "title": "Языки",
     "languages": {
-      "абхазский": ["ppts"],
-      "аварский": ["tametogde"],
-      "адыгский": ["kak-dela"],
-      "албанский": ["shiptarskiy"],
-      "английский": ["iyunnadcatoe", "veterinirovat", "pryamikom", "bazovyymyach", "divannayakartoshka", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie", "dikiiobraz", "shibbolet"],
-      "арабский": ["pustynyasahara"],
-      "армянский": ["armyanktuaciya"],
-      "африкаанс": ["krossulya"],
-      "болгарский": ["moyushchiymedved"],
-      "бурятский": ["tyrboga"],
-      "венгерский": ["trisobaka", "glazzakroy"],
-      "голландский": ["dikiiobraz", "moyushchiymedved"],
-      "греческий": ["kak-dela"],
-      "датский": ["igraho"],
-      "иврит": ["shibbolet"],
-      "испанский": ["zanimatelnoesovpadenie", "zabiratvolosy"],
-      "итальянский": ["tiramenyasu", "dvuhnezaitsev", "kartofel", "gromkotiho", "zanimatelnoesovpadenie", "voodushevlenie"],
-      "китайский": ["yaytsoibanan", "rakushki"],
-      "коми": ["komi", "hlebnoeuho", "vodava"],
-      "кыргызский": ["tyrboga"],
-      "литовский": ["dikiiobraz"],
-      "монгольский": ["tyrboga"],
-      "мэнский": ["yazykfeniks"],
-      "навахо": ["navajo"],
-      "немецкий": ["dvoyako", "kruchonkisrynka", "nahnah", "kartofel", "kak-dela", "zanimatelnoesovpadenie", "kabelnyysalat", "morgenmuffel", "oskorblyonnayakolbasa", "slushay", "uvasestkozyol", "tsvetnayasobaka", "svinosobaka", "voodushevlenie", "dikiiobraz", "rukoobuv"],
-      "нидерландский": ["dikiiobraz", "moyushchiymedved"],
-      "норвежский": ["dvuhnezaitsev", "divannayakartoshka"],
-      "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
-      "персидский": ["lyuboviorgany"],
-      "польский": ["hlebnoeuho", "dvuhnezaitsev", "listopad"],
-      "португальский": ["kafune"],
-      "русинский": ["kak-dela"],
-      "русский": ["ovospriyatii"],
-      "сербский": ["srpskopismo"],
-      "словацкий": ["trampova", "poryadokbukv", "svsmbzglsnh"],
-      "сорбский": ["sorbskiy"],
-      "таджикский": ["zagadkatadzhikskiy"],
-      "турецкий": ["tyrboga", "tseluyu", "dvuhnezaitsev"],
-      "удмуртский": ["udmurtprivet", "hlebnoeuho"],
-      "украинский": ["kak-dela", "listopad", "shibbolet"],
-      "фарси": ["lyuboviorgany"],
-      "финский": ["mozgivgarderob", "divannayakartoshka"],
-      "французский": ["kakashektebe", "kodali", "verlan", "shlyapohlop", "kak-dela", "zanimatelnoesovpadenie", "voodushevlenie", "upastvyabloki"],
-      "хорватский": ["listopad"],
-      "черкесский": ["kak-dela"],
-      "чеченский": ["chechenskost"],
-      "чешский": ["zabavlyadlo", "trampova", "poryadokbukv", "svsmbzglsnh", "listopad"],
-      "шведский": ["babushkatsia", "divannayakartoshka", "dikiiobraz", "moyushchiymedved", "medvedberyoza"],
-      "эсперанто": ["zanimatelnoesovpadenie"],
-      "эстонский": ["kak-dela", "moyushchiymedved"]
+      "абхазский": [
+        "ppts"
+      ],
+      "аварский": [
+        "tametogde"
+      ],
+      "адыгский": [
+        "kak-dela"
+      ],
+      "албанский": [
+        "shiptarskiy"
+      ],
+      "английский": [
+        "iyunnadcatoe",
+        "veterinirovat",
+        "pryamikom",
+        "bazovyymyach",
+        "divannayakartoshka",
+        "kak-dela",
+        "zanimatelnoesovpadenie",
+        "voodushevlenie",
+        "dikiiobraz",
+        "shibbolet"
+      ],
+      "арабский": [
+        "pustynyasahara"
+      ],
+      "армянский": [
+        "armyanktuaciya"
+      ],
+      "африкаанс": [
+        "krossulya"
+      ],
+      "болгарский": [
+        "moyushchiymedved"
+      ],
+      "бурятский": [
+        "tyrboga"
+      ],
+      "венгерский": [
+        "trisobaka",
+        "glazzakroy"
+      ],
+      "голландский": [
+        "dikiiobraz",
+        "moyushchiymedved"
+      ],
+      "греческий": [
+        "kak-dela"
+      ],
+      "датский": [
+        "igraho"
+      ],
+      "иврит": [
+        "shibbolet"
+      ],
+      "испанский": [
+        "zanimatelnoesovpadenie",
+        "zabiratvolosy"
+      ],
+      "итальянский": [
+        "tiramenyasu",
+        "dvuhnezaitsev",
+        "kartofel",
+        "gromkotiho",
+        "zanimatelnoesovpadenie",
+        "voodushevlenie"
+      ],
+      "китайский": [
+        "yaytsoibanan",
+        "rakushki"
+      ],
+      "коми": [
+        "komi",
+        "hlebnoeuho",
+        "vodava"
+      ],
+      "кыргызский": [
+        "tyrboga"
+      ],
+      "литовский": [
+        "dikiiobraz"
+      ],
+      "монгольский": [
+        "tyrboga"
+      ],
+      "мэнский": [
+        "yazykfeniks"
+      ],
+      "навахо": [
+        "navajo"
+      ],
+      "немецкий": [
+        "dvoyako",
+        "kruchonkisrynka",
+        "nahnah",
+        "kartofel",
+        "kak-dela",
+        "zanimatelnoesovpadenie",
+        "kabelnyysalat",
+        "morgenmuffel",
+        "oskorblyonnayakolbasa",
+        "slushay",
+        "uvasestkozyol",
+        "tsvetnayasobaka",
+        "svinosobaka",
+        "voodushevlenie",
+        "dikiiobraz",
+        "rukoobuv"
+      ],
+      "нидерландский": [
+        "dikiiobraz",
+        "moyushchiymedved"
+      ],
+      "норвежский": [
+        "dvuhnezaitsev",
+        "divannayakartoshka"
+      ],
+      "осетинский": [
+        "sedmayavodanakisele",
+        "vrovensolntsu"
+      ],
+      "персидский": [
+        "lyuboviorgany"
+      ],
+      "польский": [
+        "hlebnoeuho",
+        "dvuhnezaitsev",
+        "listopad"
+      ],
+      "португальский": [
+        "kafune"
+      ],
+      "русинский": [
+        "kak-dela"
+      ],
+      "русский": [
+        "ovospriyatii"
+      ],
+      "сербский": [
+        "srpskopismo"
+      ],
+      "словацкий": [
+        "trampova",
+        "poryadokbukv",
+        "svsmbzglsnh"
+      ],
+      "сорбский": [
+        "sorbskiy"
+      ],
+      "таджикский": [
+        "zagadkatadzhikskiy"
+      ],
+      "турецкий": [
+        "tyrboga",
+        "tseluyu",
+        "dvuhnezaitsev"
+      ],
+      "удмуртский": [
+        "udmurtprivet",
+        "hlebnoeuho"
+      ],
+      "украинский": [
+        "kak-dela",
+        "listopad",
+        "shibbolet"
+      ],
+      "фарси": [
+        "lyuboviorgany"
+      ],
+      "финский": [
+        "mozgivgarderob",
+        "divannayakartoshka"
+      ],
+      "французский": [
+        "kakashektebe",
+        "kodali",
+        "verlan",
+        "shlyapohlop",
+        "kak-dela",
+        "zanimatelnoesovpadenie",
+        "voodushevlenie",
+        "upastvyabloki"
+      ],
+      "хорватский": [
+        "listopad"
+      ],
+      "черкесский": [
+        "kak-dela"
+      ],
+      "чеченский": [
+        "chechenskost"
+      ],
+      "чешский": [
+        "zabavlyadlo",
+        "trampova",
+        "poryadokbukv",
+        "svsmbzglsnh",
+        "listopad"
+      ],
+      "шведский": [
+        "babushkatsia",
+        "divannayakartoshka",
+        "dikiiobraz",
+        "moyushchiymedved",
+        "medvedberyoza"
+      ],
+      "эсперанто": [
+        "zanimatelnoesovpadenie"
+      ],
+      "эстонский": [
+        "kak-dela",
+        "moyushchiymedved"
+      ]
     }
   },
   "illyustraciiayu": {
     "title": "Иллюстрации Анны Юдиной",
-    "slugs": ["tsvetnayasobaka", "kakashektebe", "divannayakartoshka", "oskorblyonnayakolbasa", "kafune", "kabelnyysalat", "dikiiobraz", "zabiratvolosy", "udachi", "morgenmuffel", "mozgivgarderob", "uvasestkozyol", "yaytsoibanan", "glazzakroy", "ovospriyatii", "moyushchiymedved", "lyuboviorgany", "tametogde", "svinosobaka", "voodushevlenie", "rukoobuv", "upastvyabloki"]
+    "slugs": [
+      "tsvetnayasobaka",
+      "kakashektebe",
+      "divannayakartoshka",
+      "oskorblyonnayakolbasa",
+      "kafune",
+      "kabelnyysalat",
+      "dikiiobraz",
+      "zabiratvolosy",
+      "udachi",
+      "morgenmuffel",
+      "mozgivgarderob",
+      "uvasestkozyol",
+      "yaytsoibanan",
+      "glazzakroy",
+      "ovospriyatii",
+      "moyushchiymedved",
+      "lyuboviorgany",
+      "tametogde",
+      "svinosobaka",
+      "voodushevlenie",
+      "rukoobuv",
+      "upastvyabloki"
+    ]
   },
   "lingvistika": {
     "title": "Лингвистика",
-    "slugs": ["retronimy", "subbochayarabota", "pangramma", "familekt", "sillepsis", "dvoyako", "shibbolet"]
+    "slugs": [
+      "retronimy",
+      "subbochayarabota",
+      "pangramma",
+      "familekt",
+      "sillepsis",
+      "dvoyako",
+      "shibbolet"
+    ]
   },
   "igraslov": {
     "title": "Языковые шутки",
-    "slugs": ["bessmyslitsa", "nahnah", "okroshka", "azbukauchit"]
+    "slugs": [
+      "bessmyslitsa",
+      "nahnah",
+      "okroshka",
+      "azbukauchit",
+      "vladeyutremyayazykami"
+    ]
   },
   "zagadki": {
     "title": "Загадки",
-    "slugs": ["zagadkasuahili2", "zagadkatadzhikskiy"]
+    "slugs": [
+      "zagadkasuahili2",
+      "zagadkatadzhikskiy"
+    ]
   },
   "idiomy": {
     "title": "Идиомы",
     "languages": {
-      "английский": ["divannayakartoshka", "pryamikom", "bazovyymyach"],
-      "испанский": ["zabiratvolosy"],
-      "итальянский": ["dvuhnezaitsev", "udachi"],
-      "китайский": ["yaytsoibanan"],
-      "немецкий": ["oskorblyonnayakolbasa", "kabelnyysalat", "tsvetnayasobaka", "morgenmuffel", "uvasestkozyol", "svinosobaka"],
-      "норвежский": ["dvuhnezaitsev"],
-      "осетинский": ["sedmayavodanakisele", "vrovensolntsu"],
-      "персидский": ["lyuboviorgany"],
-      "польский": ["dvuhnezaitsev"],
-      "турецкий": ["dvuhnezaitsev", "tseluyu"],
-      "удмуртский": ["udmurtprivet"],
-      "фарси": ["lyuboviorgany"],
-      "финский": ["mozgivgarderob"],
-      "французский": ["kakashektebe", "upastvyabloki"]
+      "английский": [
+        "divannayakartoshka",
+        "pryamikom",
+        "bazovyymyach"
+      ],
+      "испанский": [
+        "zabiratvolosy"
+      ],
+      "итальянский": [
+        "dvuhnezaitsev",
+        "udachi"
+      ],
+      "китайский": [
+        "yaytsoibanan"
+      ],
+      "немецкий": [
+        "oskorblyonnayakolbasa",
+        "kabelnyysalat",
+        "tsvetnayasobaka",
+        "morgenmuffel",
+        "uvasestkozyol",
+        "svinosobaka"
+      ],
+      "норвежский": [
+        "dvuhnezaitsev"
+      ],
+      "осетинский": [
+        "sedmayavodanakisele",
+        "vrovensolntsu"
+      ],
+      "персидский": [
+        "lyuboviorgany"
+      ],
+      "польский": [
+        "dvuhnezaitsev"
+      ],
+      "турецкий": [
+        "dvuhnezaitsev",
+        "tseluyu"
+      ],
+      "удмуртский": [
+        "udmurtprivet"
+      ],
+      "фарси": [
+        "lyuboviorgany"
+      ],
+      "финский": [
+        "mozgivgarderob"
+      ],
+      "французский": [
+        "kakashektebe",
+        "upastvyabloki"
+      ]
     }
   },
   "toponimy": {
     "title": "Топонимы",
-    "slugs": ["pustynyasahara", "vodava", "ulitsyssha"]
+    "slugs": [
+      "pustynyasahara",
+      "vodava",
+      "ulitsyssha"
+    ]
   }
 }
