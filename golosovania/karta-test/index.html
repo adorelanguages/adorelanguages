@@ -608,6 +608,10 @@
     const thick = Math.max(0.15, Math.min(0.8, minDim * 0.4));
     path.style.stroke = '#461359';
     path.style.strokeWidth = thick;
+    // По умолчанию у SVG-обводок острые стыки (miter) - на мелких зигзагах
+    // упрощённой границы страны это даёт заострённые "шипы", из-за которых
+    // толщина обводки визуально скачет. Скруглённые стыки убирают этот эффект.
+    path.style.strokeLinejoin = 'round';
   }
 
   function deselectPath(path) {
@@ -615,6 +619,7 @@
     const saved = savedStrokeWidth.get(path.id);
     path.style.strokeWidth = saved !== undefined ? saved : '';
     path.style.stroke = '';
+    path.style.strokeLinejoin = '';
   }
   let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
   let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
