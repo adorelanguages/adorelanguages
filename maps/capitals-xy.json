@@ -1,0 +1,1773 @@
+{
+  "ad": {
+    "capital": "Andorra la Vella",
+    "clearance": 0.3,
+    "ru": "Андорра",
+    "x": 479.3,
+    "y": 331.5
+  },
+  "ae": {
+    "capital": "Abu Dhabi",
+    "clearance": 1,
+    "ru": "ОАЭ",
+    "x": 630.4,
+    "y": 392.6
+  },
+  "af": {
+    "capital": "Kabul",
+    "clearance": 6.5,
+    "ru": "Афганистан",
+    "x": 668.4,
+    "y": 357.5
+  },
+  "ag": {
+    "capital": "St. John's",
+    "clearance": 0.1,
+    "ru": "Антигуа и Барбуда",
+    "x": 301.3,
+    "y": 412.8
+  },
+  "ai": {
+    "capital": "The Valley",
+    "clearance": 0,
+    "ru": "Ангилья",
+    "x": 297.9,
+    "y": 411.2
+  },
+  "al": {
+    "capital": "Tirana",
+    "clearance": 1.9,
+    "ru": "Албания",
+    "x": 531.2,
+    "y": 338.2
+  },
+  "am": {
+    "capital": "Yerevan",
+    "clearance": 2.3,
+    "ru": "Армения",
+    "x": 600.1,
+    "y": 338.9
+  },
+  "ao": {
+    "capital": "Luanda",
+    "clearance": 3.5,
+    "ru": "Ангола",
+    "x": 515.2,
+    "y": 489
+  },
+  "ar": {
+    "capital": "Buenos Aires",
+    "clearance": 3.4,
+    "ru": "Аргентина",
+    "x": 309.8,
+    "y": 569.1
+  },
+  "as": {
+    "capital": "Pago Pago",
+    "clearance": 0,
+    "ru": "Американское Самоа",
+    "x": 1006.2,
+    "y": 503.2
+  },
+  "at": {
+    "capital": "Vienna",
+    "clearance": 3.8,
+    "ru": "Австрия",
+    "x": 517.7,
+    "y": 311.5
+  },
+  "au": {
+    "capital": "Canberra",
+    "clearance": 3.9,
+    "ru": "Австралия",
+    "x": 891.9,
+    "y": 572.1
+  },
+  "aw": {
+    "capital": "Oranjestad",
+    "clearance": 0.1,
+    "ru": "Аруба",
+    "x": 278.5,
+    "y": 427.7
+  },
+  "ax": {
+    "clearance": 0.1,
+    "ru": "Аландские о-ва",
+    "x": 530.7,
+    "y": 250
+  },
+  "az": {
+    "capital": "Baku",
+    "clearance": 3.4,
+    "ru": "Азербайджан",
+    "x": 610.2,
+    "y": 339.3
+  },
+  "ba": {
+    "capital": "Sarajevo",
+    "clearance": 1.8,
+    "ru": "Босния и Герцеговина",
+    "x": 525.5,
+    "y": 328.1
+  },
+  "bb": {
+    "capital": "Bridgetown",
+    "clearance": 0.1,
+    "ru": "Барбадос",
+    "x": 307.8,
+    "y": 425.8
+  },
+  "bd": {
+    "capital": "Dhaka",
+    "clearance": 3.3,
+    "ru": "Бангладеш",
+    "x": 728.1,
+    "y": 393.6
+  },
+  "be": {
+    "capital": "Brussels",
+    "clearance": 0.2,
+    "ru": "Бельгия",
+    "x": 486.7,
+    "y": 301.2
+  },
+  "bf": {
+    "capital": "Ouagadougou",
+    "clearance": 2.9,
+    "ru": "Буркина-Фасо",
+    "x": 472.3,
+    "y": 424
+  },
+  "bg": {
+    "capital": "Sofia",
+    "clearance": 3.4,
+    "ru": "Болгария",
+    "x": 541.3,
+    "y": 331
+  },
+  "bh": {
+    "capital": "Manama",
+    "clearance": 0.1,
+    "ru": "Бахрейн",
+    "x": 616.7,
+    "y": 387.7
+  },
+  "bi": {
+    "capital": "Bujumbura",
+    "clearance": 1.6,
+    "ru": "Бурунди",
+    "x": 558.8,
+    "y": 472.4
+  },
+  "bj": {
+    "capital": "Cotonou",
+    "clearance": 1.8,
+    "ru": "Бенин",
+    "x": 482.5,
+    "y": 435
+  },
+  "bl": {
+    "clearance": 0,
+    "ru": "Сен-Бартелеми",
+    "x": 298.5,
+    "y": 412.2
+  },
+  "bm": {
+    "capital": "Hamilton",
+    "clearance": -1,
+    "ru": "Бермудские о-ва",
+    "x": 293.1,
+    "y": 367.6
+  },
+  "bn": {
+    "capital": "Bandar Seri Begawan",
+    "clearance": 0.3,
+    "ru": "Бруней-Даруссалам",
+    "x": 796.6,
+    "y": 451.3
+  },
+  "bo": {
+    "capital": "La Paz",
+    "clearance": 8,
+    "ru": "Боливия",
+    "x": 288.2,
+    "y": 511
+  },
+  "bq": {
+    "capital": "Kralendijk",
+    "clearance": -1,
+    "ru": "Бонэйр, Синт-Эстатиус и Саба",
+    "x": 285.7,
+    "y": 423.5
+  },
+  "br": {
+    "capital": "Brasilia",
+    "clearance": 20.6,
+    "ru": "Бразилия",
+    "x": 344.7,
+    "y": 509.2
+  },
+  "bs": {
+    "capital": "Nassau",
+    "clearance": 0.1,
+    "ru": "Багамы",
+    "x": 255.5,
+    "y": 390.4
+  },
+  "bt": {
+    "capital": "Thimphu",
+    "clearance": 2,
+    "ru": "Бутан",
+    "x": 728,
+    "y": 382.7
+  },
+  "bv": {
+    "clearance": 0.1,
+    "ru": "о-в Буве",
+    "x": 484.5,
+    "y": 644.8
+  },
+  "bw": {
+    "capital": "Gaborone",
+    "clearance": 5.2,
+    "ru": "Ботсвана",
+    "x": 546.6,
+    "y": 528.4
+  },
+  "by": {
+    "capital": "Minsk",
+    "clearance": 3.9,
+    "ru": "Беларусь",
+    "x": 551.8,
+    "y": 290.2
+  },
+  "bz": {
+    "capital": "Belmopan",
+    "clearance": 1.3,
+    "ru": "Белиз",
+    "x": 226,
+    "y": 413.4
+  },
+  "ca": {
+    "capital": "Ottawa",
+    "clearance": 3.1,
+    "ru": "Канада",
+    "x": 260.6,
+    "y": 321
+  },
+  "cc": {
+    "clearance": -1,
+    "ru": "Кокосовые о-ва",
+    "x": 746.8,
+    "y": 497.1
+  },
+  "cd": {
+    "capital": "Kinshasa",
+    "clearance": 1.8,
+    "ru": "Конго - Киншаса",
+    "x": 520.7,
+    "y": 475.2
+  },
+  "cf": {
+    "capital": "Bangui",
+    "clearance": 3.1,
+    "ru": "Центрально-Африканская Республика",
+    "x": 527.7,
+    "y": 446.4
+  },
+  "cg": {
+    "capital": "Brazzaville",
+    "clearance": 3.2,
+    "ru": "Конго - Браззавиль",
+    "x": 518.8,
+    "y": 464.7
+  },
+  "ch": {
+    "capital": "Bern",
+    "clearance": 2.3,
+    "ru": "Швейцария",
+    "x": 497.5,
+    "y": 313.8
+  },
+  "ci": {
+    "capital": "Abidjan",
+    "clearance": 3.5,
+    "ru": "Кот-д’Ивуар",
+    "x": 462.3,
+    "y": 444.1
+  },
+  "ck": {
+    "capital": "Rarotonga",
+    "clearance": 0.1,
+    "ru": "Острова Кука",
+    "x": 26.4,
+    "y": 523.5
+  },
+  "cl": {
+    "capital": "Santiago",
+    "clearance": 2.7,
+    "ru": "Чили",
+    "x": 274.4,
+    "y": 569.6
+  },
+  "cm": {
+    "capital": "Yaounde",
+    "clearance": 6.4,
+    "ru": "Камерун",
+    "x": 509.5,
+    "y": 450.1
+  },
+  "cn": {
+    "capital": "Beijing",
+    "clearance": 9.7,
+    "ru": "Китай",
+    "x": 800,
+    "y": 341.8
+  },
+  "co": {
+    "capital": "Bogota",
+    "clearance": 4.3,
+    "ru": "Колумбия",
+    "x": 270,
+    "y": 446.4
+  },
+  "cr": {
+    "capital": "San Jose",
+    "clearance": 0.5,
+    "ru": "Коста-Рика",
+    "x": 239.7,
+    "y": 433.3
+  },
+  "cu": {
+    "capital": "Havana",
+    "clearance": 1.1,
+    "ru": "Куба",
+    "x": 250.7,
+    "y": 398.8
+  },
+  "cv": {
+    "capital": "Praia",
+    "clearance": 0.1,
+    "ru": "Кабо-Верде",
+    "x": 404.4,
+    "y": 414.8
+  },
+  "cw": {
+    "capital": "Willemstad",
+    "clearance": -1,
+    "ru": "Кюрасао",
+    "x": 281.4,
+    "y": 428.6
+  },
+  "cx": {
+    "clearance": 0,
+    "ru": "о-в Рождества",
+    "x": 771.4,
+    "y": 492.4
+  },
+  "cy": {
+    "capital": "Nicosia",
+    "clearance": 1,
+    "ru": "Кипр",
+    "x": 567.4,
+    "y": 358.7
+  },
+  "cz": {
+    "capital": "Prague",
+    "clearance": 4.2,
+    "ru": "Чехия",
+    "x": 515.3,
+    "y": 301.6
+  },
+  "de": {
+    "capital": "Berlin",
+    "clearance": 4.4,
+    "ru": "Германия",
+    "x": 506.9,
+    "y": 305
+  },
+  "dj": {
+    "capital": "Djibouti",
+    "clearance": 1.4,
+    "ru": "Джибути",
+    "x": 593.9,
+    "y": 430.6
+  },
+  "dk": {
+    "capital": "Copenhagen",
+    "clearance": 0.6,
+    "ru": "Дания",
+    "x": 508.4,
+    "y": 277
+  },
+  "dm": {
+    "capital": "Roseau",
+    "clearance": 0.2,
+    "ru": "Доминика",
+    "x": 302.7,
+    "y": 419.4
+  },
+  "do": {
+    "capital": "Santo Domingo",
+    "clearance": 0.1,
+    "ru": "Доминиканская Республика",
+    "x": 278.7,
+    "y": 407.4
+  },
+  "dz": {
+    "capital": "Algiers",
+    "clearance": 4.5,
+    "ru": "Алжир",
+    "x": 484.5,
+    "y": 356.9
+  },
+  "ec": {
+    "capital": "Quito",
+    "clearance": 3.7,
+    "ru": "Эквадор",
+    "x": 257.3,
+    "y": 464.9
+  },
+  "ee": {
+    "capital": "Tallinn",
+    "clearance": 2.2,
+    "ru": "Эстония",
+    "x": 547.4,
+    "y": 261.2
+  },
+  "eg": {
+    "capital": "Cairo",
+    "clearance": 3,
+    "ru": "Египет",
+    "x": 562.1,
+    "y": 373.2
+  },
+  "eh": {
+    "capital": "El Aaiun",
+    "clearance": 3,
+    "ru": "Западная Сахара",
+    "x": 436.8,
+    "y": 389
+  },
+  "er": {
+    "capital": "Asmara",
+    "clearance": 3.2,
+    "ru": "Эритрея",
+    "x": 581.7,
+    "y": 416.9
+  },
+  "es": {
+    "capital": "Madrid",
+    "clearance": 8.3,
+    "ru": "Испания",
+    "x": 464.1,
+    "y": 338.2
+  },
+  "et": {
+    "capital": "Addis Ababa",
+    "clearance": 10.3,
+    "ru": "Эфиопия",
+    "x": 585.2,
+    "y": 434.8
+  },
+  "fi": {
+    "capital": "Helsinki",
+    "clearance": 0.1,
+    "ru": "Финляндия",
+    "x": 547.7,
+    "y": 249.9
+  },
+  "fj": {
+    "capital": "Suva",
+    "clearance": 1,
+    "ru": "Фиджи",
+    "x": 974.2,
+    "y": 513.7
+  },
+  "fk": {
+    "capital": "Stanley",
+    "clearance": 0.1,
+    "ru": "Фолклендские о-ва",
+    "x": 305.5,
+    "y": 632.9
+  },
+  "fm": {
+    "capital": "Palikir",
+    "clearance": -1,
+    "ru": "Федеративные Штаты Микронезии",
+    "x": 919.3,
+    "y": 443.3
+  },
+  "fo": {
+    "capital": "Torshavn",
+    "clearance": 0.3,
+    "ru": "Фарерские о-ва",
+    "x": 455.8,
+    "y": 239.3
+  },
+  "fr": {
+    "capital": "Paris",
+    "clearance": 12.5,
+    "ru": "Франция",
+    "x": 480.4,
+    "y": 312.5
+  },
+  "ga": {
+    "capital": "Libreville",
+    "clearance": 3.3,
+    "ru": "Габон",
+    "x": 504.5,
+    "y": 463.4
+  },
+  "gb": {
+    "capital": "London",
+    "clearance": 4.5,
+    "ru": "Великобритания",
+    "x": 471.5,
+    "y": 294
+  },
+  "gd": {
+    "capital": "St. George's",
+    "clearance": 0.2,
+    "ru": "Гренада",
+    "x": 301.8,
+    "y": 428.9
+  },
+  "ge": {
+    "capital": "Tbilisi",
+    "clearance": 2.8,
+    "ru": "Грузия",
+    "x": 599.5,
+    "y": 333.7
+  },
+  "gf": {
+    "capital": "Cayenne",
+    "clearance": 2.4,
+    "ru": "Французская Гвиана",
+    "x": 325,
+    "y": 451.6
+  },
+  "gg": {
+    "capital": "St. Peter Port",
+    "clearance": 0.1,
+    "ru": "Гернси",
+    "x": 467.7,
+    "y": 303.5
+  },
+  "gh": {
+    "capital": "Accra",
+    "clearance": 3.4,
+    "ru": "Гана",
+    "x": 473,
+    "y": 443.5
+  },
+  "gi": {
+    "capital": "Gibraltar",
+    "clearance": 0,
+    "ru": "Гибралтар",
+    "x": 459.9,
+    "y": 354.7
+  },
+  "gl": {
+    "capital": "Nuuk",
+    "clearance": 6.9,
+    "ru": "Гренландия",
+    "x": 342.5,
+    "y": 239.7
+  },
+  "gm": {
+    "capital": "Banjul",
+    "clearance": 0.2,
+    "ru": "Гамбия",
+    "x": 429.9,
+    "y": 424.9
+  },
+  "gn": {
+    "capital": "Conakry",
+    "clearance": 3.3,
+    "ru": "Гвинея",
+    "x": 438.7,
+    "y": 432.3
+  },
+  "go": {
+    "clearance": 0,
+    "ru": "Острова Глорьёз",
+    "x": 607.6,
+    "y": 495.4
+  },
+  "gp": {
+    "capital": "Basse-Terre",
+    "clearance": 0,
+    "ru": "Гваделупа",
+    "x": 303,
+    "y": 417.8
+  },
+  "gq": {
+    "capital": "Malabo",
+    "clearance": 1.5,
+    "ru": "Экваториальная Гвинея",
+    "x": 503.9,
+    "y": 458.4
+  },
+  "gr": {
+    "capital": "Athens",
+    "clearance": 3.1,
+    "ru": "Греция",
+    "x": 539.7,
+    "y": 346.2
+  },
+  "gs": {
+    "clearance": -1,
+    "ru": "Южная Георгия и Южные Сандвичевы о-ва",
+    "x": 384.7,
+    "y": 654.1
+  },
+  "gt": {
+    "capital": "Guatemala City",
+    "clearance": 3.4,
+    "ru": "Гватемала",
+    "x": 220.5,
+    "y": 420.3
+  },
+  "gu": {
+    "capital": "Hagatna",
+    "clearance": 0,
+    "ru": "Гуам",
+    "x": 881.3,
+    "y": 425.1
+  },
+  "gw": {
+    "capital": "Bissau",
+    "clearance": 1.5,
+    "ru": "Гвинея-Бисау",
+    "x": 433.7,
+    "y": 429.1
+  },
+  "gy": {
+    "capital": "Georgetown",
+    "clearance": 3,
+    "ru": "Гайана",
+    "x": 308.6,
+    "y": 444.8
+  },
+  "hk": {
+    "capital": "Hong Kong",
+    "clearance": 0,
+    "ru": "Гонконг (САР)",
+    "x": 795.1,
+    "y": 398.9
+  },
+  "hm": {
+    "clearance": 0.3,
+    "ru": "о-ва Херд и Макдональд",
+    "x": 681.3,
+    "y": 638.5
+  },
+  "hn": {
+    "capital": "Tegucigalpa",
+    "clearance": 3.1,
+    "ru": "Гондурас",
+    "x": 231.9,
+    "y": 421.1
+  },
+  "hr": {
+    "capital": "Zagreb",
+    "clearance": 2.3,
+    "ru": "Хорватия",
+    "x": 521.6,
+    "y": 319.6
+  },
+  "ht": {
+    "capital": "Port-au-Prince",
+    "clearance": 1.8,
+    "ru": "Гаити",
+    "x": 271.7,
+    "y": 409.4
+  },
+  "hu": {
+    "capital": "Budapest",
+    "clearance": 3.1,
+    "ru": "Венгрия",
+    "x": 526.5,
+    "y": 315.8
+  },
+  "id": {
+    "capital": "Jakarta",
+    "clearance": 4.5,
+    "ru": "Индонезия",
+    "x": 787.1,
+    "y": 464.7
+  },
+  "ie": {
+    "capital": "Dublin",
+    "clearance": 0.7,
+    "ru": "Ирландия",
+    "x": 452.2,
+    "y": 292.2
+  },
+  "il": {
+    "capital": "Jerusalem",
+    "clearance": 0.8,
+    "ru": "Израиль",
+    "x": 574.5,
+    "y": 365.6
+  },
+  "im": {
+    "capital": "Douglas",
+    "clearance": 0.2,
+    "ru": "о-в Мэн",
+    "x": 462.1,
+    "y": 281.9
+  },
+  "in": {
+    "capital": "New Delhi",
+    "clearance": 6.5,
+    "ru": "Индия",
+    "x": 691.3,
+    "y": 375.5
+  },
+  "io": {
+    "clearance": 0,
+    "ru": "Британская территория в Индийском океане",
+    "x": 678.1,
+    "y": 483.4
+  },
+  "iq": {
+    "capital": "Baghdad",
+    "clearance": 3.3,
+    "ru": "Ирак",
+    "x": 599.2,
+    "y": 360.7
+  },
+  "ir": {
+    "capital": "Tehran",
+    "clearance": 3.1,
+    "ru": "Иран",
+    "x": 617.6,
+    "y": 355.3
+  },
+  "is": {
+    "capital": "Reykjavik",
+    "clearance": 3.8,
+    "ru": "Исландия",
+    "x": 424.2,
+    "y": 217.6
+  },
+  "it": {
+    "capital": "Rome",
+    "clearance": 3.3,
+    "ru": "Италия",
+    "x": 508.5,
+    "y": 330.2
+  },
+  "je": {
+    "capital": "St. Helier",
+    "clearance": 0.1,
+    "ru": "Джерси",
+    "x": 468.9,
+    "y": 304.6
+  },
+  "jm": {
+    "capital": "Kingston",
+    "clearance": 1,
+    "ru": "Ямайка",
+    "x": 258,
+    "y": 411.5
+  },
+  "jo": {
+    "capital": "Amman",
+    "clearance": 2.1,
+    "ru": "Иордания",
+    "x": 576.5,
+    "y": 370
+  },
+  "jp": {
+    "capital": "Tokyo",
+    "clearance": 2.6,
+    "ru": "Япония",
+    "x": 865.5,
+    "y": 355.1
+  },
+  "ju": {
+    "clearance": -1,
+    "ru": "Жуан-де-Нова",
+    "x": 594.9,
+    "y": 511.2
+  },
+  "ke": {
+    "capital": "Nairobi",
+    "clearance": 4.7,
+    "ru": "Кения",
+    "x": 580.6,
+    "y": 466.3
+  },
+  "kg": {
+    "capital": "Bishkek",
+    "clearance": 2.4,
+    "ru": "Киргизия",
+    "x": 682.9,
+    "y": 332.1
+  },
+  "kh": {
+    "capital": "Phnom Penh",
+    "clearance": 2.8,
+    "ru": "Камбоджа",
+    "x": 770.1,
+    "y": 428.2
+  },
+  "ki": {
+    "capital": "Tarawa",
+    "clearance": -1,
+    "ru": "Кирибати",
+    "x": 961.2,
+    "y": 460.7
+  },
+  "km": {
+    "capital": "Moroni",
+    "clearance": 0.1,
+    "ru": "Коморы",
+    "x": 596.5,
+    "y": 494.9
+  },
+  "kn": {
+    "capital": "Basseterre",
+    "clearance": -1,
+    "ru": "Сент-Китс и Невис",
+    "x": 299,
+    "y": 414.1
+  },
+  "kp": {
+    "capital": "Pyongyang",
+    "clearance": 3.6,
+    "ru": "КНДР",
+    "x": 829.2,
+    "y": 342.2
+  },
+  "kr": {
+    "capital": "Seoul",
+    "clearance": 4.3,
+    "ru": "Республика Корея",
+    "x": 833.9,
+    "y": 352.7
+  },
+  "kw": {
+    "capital": "Kuwait City",
+    "clearance": 1.5,
+    "ru": "Кувейт",
+    "x": 608.4,
+    "y": 376.3
+  },
+  "ky": {
+    "capital": "George Town",
+    "clearance": 0,
+    "ru": "Острова Кайман",
+    "x": 250.1,
+    "y": 406.9
+  },
+  "kz": {
+    "capital": "Astana",
+    "clearance": 26.1,
+    "ru": "Казахстан",
+    "x": 673.4,
+    "y": 306.6
+  },
+  "la": {
+    "capital": "Vientiane",
+    "clearance": 3.6,
+    "ru": "Лаос",
+    "x": 763.1,
+    "y": 408.6
+  },
+  "lb": {
+    "capital": "Beirut",
+    "clearance": 1,
+    "ru": "Ливан",
+    "x": 576.2,
+    "y": 361.2
+  },
+  "lc": {
+    "capital": "Castries",
+    "clearance": 0.2,
+    "ru": "Сент-Люсия",
+    "x": 303.8,
+    "y": 423.8
+  },
+  "li": {
+    "capital": "Vaduz",
+    "clearance": 0,
+    "ru": "Лихтенштейн",
+    "x": 501.7,
+    "y": 313.2
+  },
+  "lk": {
+    "capital": "Colombo",
+    "clearance": 2.8,
+    "ru": "Шри-Ланка",
+    "x": 701.8,
+    "y": 443.2
+  },
+  "lr": {
+    "capital": "Monrovia",
+    "clearance": 2,
+    "ru": "Либерия",
+    "x": 446.9,
+    "y": 442.3
+  },
+  "ls": {
+    "capital": "Maseru",
+    "clearance": 2.1,
+    "ru": "Лесото",
+    "x": 554.1,
+    "y": 549.5
+  },
+  "lt": {
+    "capital": "Vilnius",
+    "clearance": 2.4,
+    "ru": "Литва",
+    "x": 544.1,
+    "y": 280.2
+  },
+  "lu": {
+    "capital": "Luxembourg",
+    "clearance": 0.5,
+    "ru": "Люксембург",
+    "x": 492,
+    "y": 302.1
+  },
+  "lv": {
+    "capital": "Riga",
+    "clearance": 3.4,
+    "ru": "Латвия",
+    "x": 545.8,
+    "y": 268.8
+  },
+  "ly": {
+    "capital": "Tripoli",
+    "clearance": 5.7,
+    "ru": "Ливия",
+    "x": 513.7,
+    "y": 371.9
+  },
+  "ma": {
+    "capital": "Rabat",
+    "clearance": 3.7,
+    "ru": "Марокко",
+    "x": 459.9,
+    "y": 361.2
+  },
+  "mc": {
+    "capital": "Monaco",
+    "clearance": -1,
+    "ru": "Монако",
+    "x": 495.7,
+    "y": 326.9
+  },
+  "md": {
+    "capital": "Chisinau",
+    "clearance": 1.7,
+    "ru": "Молдова",
+    "x": 555.6,
+    "y": 313.3
+  },
+  "me": {
+    "capital": "Podgorica",
+    "clearance": 1.7,
+    "ru": "Черногория",
+    "x": 528.5,
+    "y": 330.2
+  },
+  "mf": {
+    "clearance": 0,
+    "ru": "Сен-Мартен",
+    "x": 297.9,
+    "y": 411.6
+  },
+  "mg": {
+    "capital": "Antananarivo",
+    "clearance": 3.7,
+    "ru": "Мадагаскар",
+    "x": 608.3,
+    "y": 519.1
+  },
+  "mh": {
+    "capital": "Majuro",
+    "clearance": -1,
+    "ru": "Маршалловы Острова",
+    "x": 956.3,
+    "y": 443
+  },
+  "mk": {
+    "capital": "Skopje",
+    "clearance": 2.5,
+    "ru": "Северная Македония",
+    "x": 535.9,
+    "y": 335
+  },
+  "ml": {
+    "capital": "Bamako",
+    "clearance": 3.8,
+    "ru": "Мали",
+    "x": 454.2,
+    "y": 423
+  },
+  "mm": {
+    "capital": "Nay Pyi Taw",
+    "clearance": 6.3,
+    "ru": "Мьянма (Бирма)",
+    "x": 744.9,
+    "y": 403.1
+  },
+  "mn": {
+    "capital": "Ulaanbaatar",
+    "clearance": 15.9,
+    "ru": "Монголия",
+    "x": 772.8,
+    "y": 317.2
+  },
+  "mo": {
+    "capital": "Macao",
+    "clearance": 0,
+    "ru": "Макао (САР)",
+    "x": 793.5,
+    "y": 399.3
+  },
+  "mp": {
+    "capital": "Saipan",
+    "clearance": 0,
+    "ru": "Северные Марианские о-ва",
+    "x": 883.5,
+    "y": 420.5
+  },
+  "mq": {
+    "capital": "Fort-de-France",
+    "clearance": 0.2,
+    "ru": "Мартиника",
+    "x": 303.6,
+    "y": 421.6
+  },
+  "mr": {
+    "capital": "Nouakchott",
+    "clearance": 2.2,
+    "ru": "Мавритания",
+    "x": 431.5,
+    "y": 406.2
+  },
+  "ms": {
+    "capital": "Brades Estate",
+    "clearance": 0.1,
+    "ru": "Монтсеррат",
+    "x": 300.4,
+    "y": 415.6
+  },
+  "mt": {
+    "capital": "Valletta",
+    "clearance": 0,
+    "ru": "Мальта",
+    "x": 515.2,
+    "y": 355.3
+  },
+  "mu": {
+    "capital": "Port Louis",
+    "clearance": 0.4,
+    "ru": "Маврикий",
+    "x": 636.4,
+    "y": 520.6
+  },
+  "mv": {
+    "capital": "Male",
+    "clearance": 0,
+    "ru": "Мальдивы",
+    "x": 681.2,
+    "y": 451.1
+  },
+  "mw": {
+    "capital": "Lilongwe",
+    "clearance": 2,
+    "ru": "Малави",
+    "x": 573.4,
+    "y": 506.9
+  },
+  "mx": {
+    "capital": "Mexico City",
+    "clearance": 1.9,
+    "ru": "Мексика",
+    "x": 198.8,
+    "y": 400.7
+  },
+  "my": {
+    "capital": "Kuala Lumpur",
+    "clearance": 2.3,
+    "ru": "Малайзия",
+    "x": 761.7,
+    "y": 453.9
+  },
+  "mz": {
+    "capital": "Maputo",
+    "clearance": 4.4,
+    "ru": "Мозамбик",
+    "x": 568.9,
+    "y": 531.2
+  },
+  "na": {
+    "capital": "Windhoek",
+    "clearance": 3.9,
+    "ru": "Намибия",
+    "x": 527.1,
+    "y": 531
+  },
+  "nc": {
+    "capital": "Noumea",
+    "clearance": 0.2,
+    "ru": "Новая Каледония",
+    "x": 939.5,
+    "y": 523.6
+  },
+  "ne": {
+    "capital": "Niamey",
+    "clearance": 3.6,
+    "ru": "Нигер",
+    "x": 482.9,
+    "y": 423.2
+  },
+  "nf": {
+    "clearance": 0,
+    "ru": "о-в Норфолк",
+    "x": 946.2,
+    "y": 547.7
+  },
+  "ng": {
+    "capital": "Abuja",
+    "clearance": 8.5,
+    "ru": "Нигерия",
+    "x": 497.8,
+    "y": 434.2
+  },
+  "ni": {
+    "capital": "Managua",
+    "clearance": 3.6,
+    "ru": "Никарагуа",
+    "x": 235.9,
+    "y": 425.9
+  },
+  "nl": {
+    "capital": "Amsterdam",
+    "clearance": 2.6,
+    "ru": "Нидерланды",
+    "x": 490.1,
+    "y": 291.1
+  },
+  "no": {
+    "capital": "Oslo",
+    "clearance": 8.4,
+    "ru": "Норвегия",
+    "x": 498,
+    "y": 250.4
+  },
+  "np": {
+    "capital": "Kathmandu",
+    "clearance": 2.8,
+    "ru": "Непал",
+    "x": 706.5,
+    "y": 378.6
+  },
+  "nr": {
+    "capital": "Nauru",
+    "clearance": 0,
+    "ru": "Науру",
+    "x": 943.4,
+    "y": 464.4
+  },
+  "nu": {
+    "capital": "Alofi",
+    "clearance": 0.2,
+    "ru": "Ниуэ",
+    "x": 1008.5,
+    "y": 517
+  },
+  "nz": {
+    "capital": "Wellington",
+    "clearance": 3.3,
+    "ru": "Новая Зеландия",
+    "x": 968.2,
+    "y": 583.5
+  },
+  "om": {
+    "capital": "Muscat",
+    "clearance": 3.4,
+    "ru": "Оман",
+    "x": 634.3,
+    "y": 399.7
+  },
+  "pa": {
+    "capital": "Panama City",
+    "clearance": 1.1,
+    "ru": "Панама",
+    "x": 255.4,
+    "y": 438.2
+  },
+  "pe": {
+    "capital": "Lima",
+    "clearance": 3.7,
+    "ru": "Перу",
+    "x": 263.1,
+    "y": 497.2
+  },
+  "pf": {
+    "capital": "Papeete",
+    "clearance": 0.3,
+    "ru": "Французская Полинезия",
+    "x": 55.2,
+    "y": 512.8
+  },
+  "pg": {
+    "capital": "Port Moresby",
+    "clearance": 3.5,
+    "ru": "Папуа — Новая Гвинея",
+    "x": 874.1,
+    "y": 479.8
+  },
+  "ph": {
+    "capital": "Manila",
+    "clearance": 2.8,
+    "ru": "Филиппины",
+    "x": 815.5,
+    "y": 415.4
+  },
+  "pk": {
+    "capital": "Islamabad",
+    "clearance": 3,
+    "ru": "Пакистан",
+    "x": 679.3,
+    "y": 360
+  },
+  "pl": {
+    "capital": "Warsaw",
+    "clearance": 3.4,
+    "ru": "Польша",
+    "x": 531.3,
+    "y": 300.9
+  },
+  "pm": {
+    "capital": "Saint-Pierre",
+    "clearance": -1,
+    "ru": "Сен-Пьер и Микелон",
+    "x": 317,
+    "y": 314.2
+  },
+  "pn": {
+    "clearance": 0,
+    "ru": "о-ва Питкэрн",
+    "x": 114.8,
+    "y": 533
+  },
+  "pr": {
+    "capital": "San Juan",
+    "clearance": 0.7,
+    "ru": "Пуэрто-Рико",
+    "x": 287.9,
+    "y": 411.2
+  },
+  "ps": {
+    "capital": "Jerusalem",
+    "clearance": 0.8,
+    "ru": "Палестинские территории",
+    "x": 573.9,
+    "y": 368.1
+  },
+  "pt": {
+    "capital": "Lisbon",
+    "clearance": 3,
+    "ru": "Португалия",
+    "x": 451.6,
+    "y": 344.2
+  },
+  "pw": {
+    "capital": "Koror",
+    "clearance": -1,
+    "ru": "Палау",
+    "x": 853.1,
+    "y": 441.6
+  },
+  "py": {
+    "capital": "Asuncion",
+    "clearance": 3.2,
+    "ru": "Парагвай",
+    "x": 318.3,
+    "y": 538.1
+  },
+  "qa": {
+    "capital": "Doha",
+    "clearance": 1,
+    "ru": "Катар",
+    "x": 618.5,
+    "y": 389.8
+  },
+  "re": {
+    "capital": "Saint-Denis",
+    "clearance": 0.6,
+    "ru": "Реюньон",
+    "x": 630.8,
+    "y": 523.2
+  },
+  "ro": {
+    "capital": "Bucharest",
+    "clearance": 3.9,
+    "ru": "Румыния",
+    "x": 546.5,
+    "y": 322.7
+  },
+  "rs": {
+    "capital": "Belgrade",
+    "clearance": 1.9,
+    "ru": "Сербия",
+    "x": 531.3,
+    "y": 325.2
+  },
+  "ru": {
+    "capital": "Moscow",
+    "clearance": 5.6,
+    "ru": "Россия",
+    "x": 578.5,
+    "y": 292.1
+  },
+  "rw": {
+    "capital": "Kigali",
+    "clearance": 1.5,
+    "ru": "Руанда",
+    "x": 558.7,
+    "y": 468.3
+  },
+  "sa": {
+    "capital": "Riyadh",
+    "clearance": 7.7,
+    "ru": "Саудовская Аравия",
+    "x": 606.3,
+    "y": 387.1
+  },
+  "sb": {
+    "capital": "Honiara",
+    "clearance": 0.4,
+    "ru": "Соломоновы Острова",
+    "x": 923.7,
+    "y": 490
+  },
+  "sc": {
+    "capital": "Victoria",
+    "clearance": -1,
+    "ru": "Сейшельские Острова",
+    "x": 630.5,
+    "y": 476
+  },
+  "sd": {
+    "capital": "Khartoum",
+    "clearance": 11.4,
+    "ru": "Судан",
+    "x": 567.3,
+    "y": 414.8
+  },
+  "se": {
+    "capital": "Stockholm",
+    "clearance": 5.1,
+    "ru": "Швеция",
+    "x": 516.1,
+    "y": 268
+  },
+  "sg": {
+    "capital": "Singapore",
+    "clearance": 0.2,
+    "ru": "Сингапур",
+    "x": 766.3,
+    "y": 459.1
+  },
+  "sh": {
+    "capital": "Jamestown",
+    "clearance": -1,
+    "ru": "о-в Св. Елены",
+    "x": 462.8,
+    "y": 510.4
+  },
+  "si": {
+    "capital": "Ljubljana",
+    "clearance": 2,
+    "ru": "Словения",
+    "x": 516.5,
+    "y": 318
+  },
+  "sj": {
+    "clearance": 3.3,
+    "ru": "Шпицберген и Ян-Майен",
+    "x": 520.6,
+    "y": 111.6
+  },
+  "sk": {
+    "capital": "Bratislava",
+    "clearance": 2.2,
+    "ru": "Словакия",
+    "x": 525.5,
+    "y": 308.5
+  },
+  "sl": {
+    "capital": "Freetown",
+    "clearance": 3.2,
+    "ru": "Сьерра-Леоне",
+    "x": 441.8,
+    "y": 438.9
+  },
+  "sm": {
+    "capital": "San Marino",
+    "clearance": 0.1,
+    "ru": "Сан-Марино",
+    "x": 509.9,
+    "y": 326.1
+  },
+  "sn": {
+    "capital": "Dakar",
+    "clearance": 4,
+    "ru": "Сенегал",
+    "x": 431.7,
+    "y": 420.1
+  },
+  "so": {
+    "capital": "Mogadishu",
+    "clearance": 3.4,
+    "ru": "Сомали",
+    "x": 601.3,
+    "y": 453.8
+  },
+  "sr": {
+    "capital": "Paramaribo",
+    "clearance": 1.4,
+    "ru": "Суринам",
+    "x": 320.1,
+    "y": 447.6
+  },
+  "ss": {
+    "capital": "Juba",
+    "clearance": 5.1,
+    "ru": "Южный Судан",
+    "x": 565.5,
+    "y": 447.5
+  },
+  "st": {
+    "capital": "Sao Tome",
+    "clearance": 0.3,
+    "ru": "Сан-Томе и Принсипи",
+    "x": 493.4,
+    "y": 462.2
+  },
+  "sv": {
+    "capital": "San Salvador",
+    "clearance": 1.2,
+    "ru": "Сальвадор",
+    "x": 224.5,
+    "y": 423.8
+  },
+  "sx": {
+    "capital": "Philipsburg",
+    "clearance": -1,
+    "ru": "Синт-Мартен",
+    "x": 297.9,
+    "y": 411.8
+  },
+  "sy": {
+    "capital": "Damascus",
+    "clearance": 3.6,
+    "ru": "Сирия",
+    "x": 580.1,
+    "y": 358.7
+  },
+  "sz": {
+    "capital": "Mbabane",
+    "clearance": 1.8,
+    "ru": "Эсватини",
+    "x": 563.2,
+    "y": 539.7
+  },
+  "tc": {
+    "capital": "Cockburn Town",
+    "clearance": 0.1,
+    "ru": "о-ва Тёркс и Кайкос",
+    "x": 271.9,
+    "y": 400.7
+  },
+  "td": {
+    "capital": "N'Djamena",
+    "clearance": 3.3,
+    "ru": "Чад",
+    "x": 518.7,
+    "y": 425
+  },
+  "tf": {
+    "clearance": -1,
+    "ru": "Французские Южные территории",
+    "x": 646.4,
+    "y": 616.3
+  },
+  "tg": {
+    "capital": "Lome",
+    "clearance": 1.5,
+    "ru": "Того",
+    "x": 477.9,
+    "y": 442.1
+  },
+  "th": {
+    "capital": "Bangkok",
+    "clearance": 3.2,
+    "ru": "Таиланд",
+    "x": 757.6,
+    "y": 421.6
+  },
+  "tj": {
+    "capital": "Dushanbe",
+    "clearance": 3.7,
+    "ru": "Таджикистан",
+    "x": 669.7,
+    "y": 345.2
+  },
+  "tk": {
+    "capital": "Tokelau",
+    "clearance": -1,
+    "ru": "Токелау",
+    "x": 1003,
+    "y": 488
+  },
+  "tl": {
+    "capital": "Dili",
+    "clearance": 0.8,
+    "ru": "Восточный Тимор",
+    "x": 828,
+    "y": 487.7
+  },
+  "tm": {
+    "capital": "Ashgabat",
+    "clearance": 2,
+    "ru": "Туркменистан",
+    "x": 637.9,
+    "y": 346.8
+  },
+  "tn": {
+    "capital": "Tunis",
+    "clearance": 3.4,
+    "ru": "Тунис",
+    "x": 501.9,
+    "y": 356.8
+  },
+  "to": {
+    "capital": "Nuku'alofa",
+    "clearance": -1,
+    "ru": "Тонга",
+    "x": 999.2,
+    "y": 523.4
+  },
+  "tr": {
+    "capital": "Ankara",
+    "clearance": 5,
+    "ru": "Турция",
+    "x": 566.4,
+    "y": 340.4
+  },
+  "tt": {
+    "capital": "Port of Spain",
+    "clearance": 0.6,
+    "ru": "Тринидад и Тобаго",
+    "x": 302.9,
+    "y": 433.9
+  },
+  "tv": {
+    "capital": "Funafuti",
+    "clearance": -1,
+    "ru": "Тувалу",
+    "x": 979.4,
+    "y": 490.8
+  },
+  "tw": {
+    "capital": "Taipei",
+    "clearance": 0.7,
+    "ru": "Тайвань",
+    "x": 816.3,
+    "y": 391.1
+  },
+  "tz": {
+    "capital": "Dodoma",
+    "clearance": 6.7,
+    "ru": "Танзания",
+    "x": 578,
+    "y": 481.2
+  },
+  "ua": {
+    "capital": "Kyiv",
+    "clearance": 3.1,
+    "ru": "Украина",
+    "x": 559,
+    "y": 308.2
+  },
+  "ug": {
+    "capital": "Kampala",
+    "clearance": 2.1,
+    "ru": "Уганда",
+    "x": 568.6,
+    "y": 461.3
+  },
+  "um-dq": {
+    "clearance": 0,
+    "ru": "Остров Джарвис",
+    "x": 25.8,
+    "y": 464
+  },
+  "um-fq": {
+    "clearance": -1,
+    "ru": "Остров Бейкер",
+    "x": 990,
+    "y": 462.3
+  },
+  "um-hq": {
+    "clearance": 0,
+    "ru": "Остров Хауленд",
+    "x": 989.5,
+    "y": 460.7
+  },
+  "um-jq": {
+    "clearance": -1,
+    "ru": "Атолл Джонстон",
+    "x": 1009.4,
+    "y": 415.6
+  },
+  "um-mq": {
+    "clearance": 0,
+    "ru": "Острова Мидуэй",
+    "x": 987.4,
+    "y": 380.9
+  },
+  "um-wq": {
+    "clearance": 0,
+    "ru": "Остров Уэйк",
+    "x": 942.6,
+    "y": 408.1
+  },
+  "us": {
+    "capital": "Washington D.C.",
+    "clearance": 7.3,
+    "ru": "Соединенные Штаты",
+    "x": 259.1,
+    "y": 341.6
+  },
+  "uy": {
+    "capital": "Montevideo",
+    "clearance": 4.2,
+    "ru": "Уругвай",
+    "x": 320.4,
+    "y": 562.5
+  },
+  "uz": {
+    "capital": "Tashkent",
+    "clearance": 3,
+    "ru": "Узбекистан",
+    "x": 663.9,
+    "y": 340.4
+  },
+  "va": {
+    "capital": "Vatican City",
+    "clearance": 0,
+    "ru": "Ватикан",
+    "x": 509.8,
+    "y": 333.9
+  },
+  "vc": {
+    "capital": "Kingstown",
+    "clearance": -1,
+    "ru": "Сент-Винсент и Гренадины",
+    "x": 303,
+    "y": 426.3
+  },
+  "ve": {
+    "capital": "Caracas",
+    "clearance": 5.8,
+    "ru": "Венесуэла",
+    "x": 287.9,
+    "y": 439
+  },
+  "vg": {
+    "capital": "Road Town",
+    "clearance": -1,
+    "ru": "Виргинские о-ва (Великобритания)",
+    "x": 293.9,
+    "y": 410.2
+  },
+  "vi": {
+    "capital": "Charlotte Amalie",
+    "clearance": 0.1,
+    "ru": "Виргинские о-ва (США)",
+    "x": 293.2,
+    "y": 412.6
+  },
+  "vn": {
+    "capital": "Hanoi",
+    "clearance": 2.1,
+    "ru": "Вьетнам",
+    "x": 771.9,
+    "y": 399.3
+  },
+  "vu": {
+    "capital": "Port Vila",
+    "clearance": 0.3,
+    "ru": "Вануату",
+    "x": 943.7,
+    "y": 506.5
+  },
+  "wf": {
+    "capital": "Matu-Utu",
+    "clearance": -1,
+    "ru": "Уоллис и Футуна",
+    "x": 988,
+    "y": 501.7
+  },
+  "ws": {
+    "capital": "Apia",
+    "clearance": 0.4,
+    "ru": "Самоа",
+    "x": 1001.3,
+    "y": 501.3
+  },
+  "xk": {
+    "capital": "Pristina",
+    "clearance": 1.6,
+    "ru": "Косово",
+    "x": 533.5,
+    "y": 331.4
+  },
+  "ye": {
+    "capital": "Sanaa",
+    "clearance": 2,
+    "ru": "Йемен",
+    "x": 600,
+    "y": 415.6
+  },
+  "yt": {
+    "capital": "Mamoudzou",
+    "clearance": 0.2,
+    "ru": "Майотта",
+    "x": 601.6,
+    "y": 499
+  },
+  "za": {
+    "capital": "Cape Town",
+    "clearance": 3,
+    "ru": "Южно-Африканская Республика",
+    "x": 531.2,
+    "y": 563
+  },
+  "zm": {
+    "capital": "Lusaka",
+    "clearance": 3.7,
+    "ru": "Замбия",
+    "x": 555.1,
+    "y": 504.6
+  },
+  "zw": {
+    "capital": "Harare",
+    "clearance": 3.2,
+    "ru": "Зимбабве",
+    "x": 564,
+    "y": 516.1
+  }
+}
