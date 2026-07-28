@@ -253,7 +253,7 @@
   #map-svg-container path {
     fill: rgb(230,229,240);
     stroke: #ffffff;
-    stroke-width: 0.3;
+    stroke-width: 0.05;
     transition: fill 0.2s;
   }
   #map-svg-container path.country-active {
@@ -850,7 +850,7 @@
       const b = path.getBBox();
       const minDim = Math.min(b.width, b.height);
       const cap = minDim * 0.15;
-      if (cap < 0.3) {
+      if (cap < 0.05) {
         path.style.strokeWidth = Math.max(cap, 0.02);
       }
     });
