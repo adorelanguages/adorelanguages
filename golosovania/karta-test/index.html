@@ -253,7 +253,7 @@
   #map-svg-container path {
     fill: rgb(230,229,240);
     stroke: #ffffff;
-    stroke-width: 0.6;
+    stroke-width: 0.3;
     transition: fill 0.2s;
   }
   #map-svg-container path.country-active {
@@ -599,6 +599,7 @@
   let mapContainer = null;
   let latestCountries = {};
   let capitalXY = {};
+  let selectedCountryId = null;
   let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
   let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
   const MIN_VB_WIDTH = 12;
@@ -865,51 +866,14 @@
     if (heart) heart.remove();
     const xy = capitalXY[id];
     if (!xy || !info || !info.count) return;
-    const path = svgEl.querySelector(`path[id="${id}"]`);
     const NS = 'http://www.w3.org/2000/svg';
     const heartPath = "M16 29 C16 29 2 20 2 10 C2 4 7 0 12 0 C14 0 16 1 16 4 C16 1 18 0 20 0 C25 0 30 4 30 10 C30 20 16 29 16 29 Z";
-    const count = info.count;
-    const digits = String(count).length;
-    // Размер сердечка задаётся как доля от текущего зумированного viewBox
-    // (а не абсолютными SVG-юнитами), чтобы сердечко выглядело одинаково на
-    // экране независимо от размера страны.
-    const digitMult = { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.6 };
-    const fontRatio = { 1: 0.65, 2: 0.56, 3: 0.48, 4: 0.42 };
-    const mult = digitMult[digits] || digitMult[4];
-    const fRatio = fontRatio[digits] || fontRatio[4];
-    const viewMinDim = Math.min(currentVB.w, currentVB.h);
-    const baseFrac = 0.14;
+    // Одинаковый фиксированный размер для всех стран (в родных SVG-юнитах
+    // карты) - в полтора раза меньше, чем был размер сердечка на Франции при
+    // прежней (зависящей от зума) логике.
     const nativeHeartW = 28;
-    let targetWidth = viewMinDim * baseFrac * mult;
-    let scale = targetWidth / nativeHeartW;
-    let fontSize = targetWidth * fRatio;
-    // Предохранитель: сердечко не может быть больше самой страны.
-    if (path) {
-      const b = path.getBBox();
-      const minDim = Math.min(b.width, b.height);
-      const heartW = nativeHeartW * scale;
-      const maxAllowed = minDim * 0.7;
-      if (heartW > maxAllowed && maxAllowed > 0) {
-        const factor = maxAllowed / heartW;
-        scale *= factor;
-        fontSize *= factor;
-      }
-    }
-    // Минимальный размер шрифта на экране (px) - если предыдущие шаги сделали
-    // цифру нечитаемой (актуально для микрогосударств вроде Лихтенштейна или
-    // Сан-Марино), увеличиваем сердечко и шрифт заново, даже если из-за этого
-    // сердечко немного выйдет за границы страны - читаемость важнее.
-    const MIN_FONT_PX = 11;
-    const svgRect = svgEl.getBoundingClientRect();
-    if (svgRect.width > 0 && svgRect.height > 0) {
-      const pxPerUnit = Math.min(svgRect.width / currentVB.w, svgRect.height / currentVB.h);
-      const minFontSize = MIN_FONT_PX / pxPerUnit;
-      if (fontSize < minFontSize) {
-        const growFactor = minFontSize / fontSize;
-        fontSize = minFontSize;
-        scale *= growFactor;
-      }
-    }
+    const FIXED_HEART_WIDTH = 5.52;
+    const scale = FIXED_HEART_WIDTH / nativeHeartW;
     const g = document.createElementNS(NS, 'g');
     g.setAttribute('id', 'capital-heart');
     g.setAttribute('transform', 'translate(' + xy.x + ',' + xy.y + ')');
@@ -917,20 +881,9 @@
     hg.setAttribute('transform', 'translate(' + (-16 * scale) + ',' + (-14.5 * scale) + ') scale(' + scale + ')');
     const hp = document.createElementNS(NS, 'path');
     hp.setAttribute('d', heartPath);
-    hp.setAttribute('style', 'fill:#E9CEF2');
+    hp.setAttribute('style', 'fill:#461359');
     hg.appendChild(hp);
     g.appendChild(hg);
-    const txt = document.createElementNS(NS, 'text');
-    txt.setAttribute('x', '0');
-    txt.setAttribute('y', String(-3 * scale));
-    txt.setAttribute('text-anchor', 'middle');
-    txt.setAttribute('dominant-baseline', 'central');
-    txt.setAttribute('font-size', fontSize);
-    txt.setAttribute('font-weight', '700');
-    txt.setAttribute('fill', '#461359');
-    txt.setAttribute('font-family', 'Arial, sans-serif');
-    txt.textContent = count;
-    g.appendChild(txt);
     svgEl.appendChild(g);
   }
 
@@ -944,6 +897,16 @@
     if (!svgEl) return;
     const path = svgEl.querySelector(`path[id="${id}"]`);
     if (!path) return;
+
+    if (selectedCountryId && selectedCountryId !== id) {
+      const prevPath = svgEl.querySelector(`path[id="${selectedCountryId}"]`);
+      const prevInfo = latestCountries[selectedCountryId];
+      if (prevPath) {
+        prevPath.style.fill = (prevInfo && prevInfo.count > 0) ? colorForCount(prevInfo.count) : '';
+      }
+    }
+    selectedCountryId = id;
+    path.style.fill = '#E9CEF2';
 
     const bbox = path.getBBox();
     const padX = Math.max(bbox.width * 0.25, 6);
@@ -978,6 +941,14 @@
   }
 
   function resetMap() {
+    if (selectedCountryId) {
+      const prevPath = svgEl && svgEl.querySelector(`path[id="${selectedCountryId}"]`);
+      const prevInfo = latestCountries[selectedCountryId];
+      if (prevPath) {
+        prevPath.style.fill = (prevInfo && prevInfo.count > 0) ? colorForCount(prevInfo.count) : '';
+      }
+      selectedCountryId = null;
+    }
     currentVB = { ...originalVB };
     applyViewBox();
     hideCapitalHeart();
