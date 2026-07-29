@@ -253,7 +253,7 @@
   #map-svg-container path {
     fill: rgb(230,229,240);
     stroke: #ffffff;
-    stroke-width: 0.6;
+    stroke-width: 0.05;
     transition: fill 0.2s;
   }
   #map-svg-container path.country-active {
@@ -594,6 +594,34 @@
   let svgEl = null;
   let mapContainer = null;
   let latestCountries = {};
+  let selectedCountryId = null;
+  const savedStrokeWidth = new Map();
+
+  function selectPath(path) {
+    savedStrokeWidth.set(path.id, path.style.strokeWidth || '');
+    const b = path.getBBox();
+    const minDim = Math.min(b.width, b.height);
+    const thick = Math.max(0.15, Math.min(0.8, minDim * 0.4));
+    path.style.stroke = '#461359';
+    path.style.strokeWidth = thick;
+    // По умолчанию у SVG-обводок острые стыки (miter) - на мелких зигзагах
+    // упрощённой границы страны это даёт заострённые "шипы", из-за которых
+    // толщина обводки визуально скачет. Скруглённые стыки убирают этот эффект.
+    path.style.strokeLinejoin = 'round';
+    // У соседних стран - свои отдельные фигуры с собственной (тонкой) обводкой
+    // по той же общей границе. Та из них, что идёт ПОЗЖЕ в файле, рисуется
+    // поверх и перекрывает нашу толстую обводку на этом участке. Поднимаем
+    // выбранную страну в конец SVG, чтобы её обводка всегда была сверху.
+    path.parentNode.appendChild(path);
+  }
+
+  function deselectPath(path) {
+    if (!path) return;
+    const saved = savedStrokeWidth.get(path.id);
+    path.style.strokeWidth = saved !== undefined ? saved : '';
+    path.style.stroke = '';
+    path.style.strokeLinejoin = '';
+  }
   let originalVB = { x: 0, y: 0, w: 1010, h: 666 };
   let currentVB = { x: 0, y: 0, w: 1010, h: 666 };
   const MIN_VB_WIDTH = 12;
@@ -833,6 +861,24 @@
     return 'rgb(45,44,91)';
   }
 
+  function thinBordersForTinyCountries() {
+    // Обводка между странами - 0.05 юнита фиксированно (см. CSS). Для очень
+    // маленьких стран (Сан-Марино, Ватикан, Лихтенштейн и т.п.) даже такая
+    // тонкая обводка может перекрывать всю страну. Здесь сужаем обводку
+    // персонально для таких стран - не больше 15% от меньшей стороны bbox
+    // страны - чтобы при зуме была видна синяя заливка.
+    if (!svgEl) return;
+    const paths = svgEl.querySelectorAll('path[id]');
+    paths.forEach(path => {
+      const b = path.getBBox();
+      const minDim = Math.min(b.width, b.height);
+      const cap = minDim * 0.15;
+      if (cap < 0.05) {
+        path.style.strokeWidth = Math.max(cap, 0.02);
+      }
+    });
+  }
+
   function applyLocationData(countries) {
     if (!svgEl) return;
     const paths = svgEl.querySelectorAll('path[id]');
@@ -858,6 +904,18 @@
     if (!svgEl) return;
     const path = svgEl.querySelector(`path[id="${id}"]`);
     if (!path) return;
+
+    if (selectedCountryId && selectedCountryId !== id) {
+      const prevPath = svgEl.querySelector(`path[id="${selectedCountryId}"]`);
+      const prevInfo = latestCountries[selectedCountryId];
+      if (prevPath) {
+        prevPath.style.fill = (prevInfo && prevInfo.count > 0) ? colorForCount(prevInfo.count) : '';
+        deselectPath(prevPath);
+      }
+    }
+    selectedCountryId = id;
+    path.style.fill = '#E9CEF2';
+    selectPath(path);
 
     const bbox = path.getBBox();
     const padX = Math.max(bbox.width * 0.25, 6);
@@ -891,6 +949,15 @@
   }
 
   function resetMap() {
+    if (selectedCountryId) {
+      const prevPath = svgEl && svgEl.querySelector(`path[id="${selectedCountryId}"]`);
+      const prevInfo = latestCountries[selectedCountryId];
+      if (prevPath) {
+        prevPath.style.fill = (prevInfo && prevInfo.count > 0) ? colorForCount(prevInfo.count) : '';
+        deselectPath(prevPath);
+      }
+      selectedCountryId = null;
+    }
     currentVB = { ...originalVB };
     applyViewBox();
   }
@@ -1042,6 +1109,7 @@
             svgEl.removeAttribute('height');
             svgEl.removeAttribute('width');
             attachMapInteractions();
+            thinBordersForTinyCountries();
             document.querySelector('.map-stage').classList.add('loaded');
             tryApplyLocations();
           }
