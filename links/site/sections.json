@@ -145,7 +145,8 @@
         "kartofel",
         "gromkotiho",
         "zanimatelnoesovpadenie",
-        "voodushevlenie"
+        "voodushevlenie",
+        "buratino"
       ],
       "китайский": [
         "yaytsoibanan",
@@ -419,6 +420,12 @@
       "pustynyasahara",
       "vodava",
       "ulitsyssha"
+    ]
+  },
+  "knigi": {
+    "title": "Книги",
+    "slugs": [
+      "buratino"
     ]
   }
 }
