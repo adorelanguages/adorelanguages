@@ -102,7 +102,8 @@
         "zanimatelnoesovpadenie",
         "voodushevlenie",
         "dikiiobraz",
-        "shibbolet"
+        "shibbolet",
+        "fanatleksiki"
       ],
       "арабский": [
         "pustynyasahara"
@@ -427,7 +428,8 @@
     "title": "Книги",
     "slugs": [
       "buratino",
-      "zekoknigi"
+      "zekoknigi",
+      "fanatleksiki"
     ]
   }
 }
