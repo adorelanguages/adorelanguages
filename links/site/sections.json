@@ -31,7 +31,8 @@
     "languages": {
       "США": [
         "ulitsyssha",
-        "iyunnadcatoe"
+        "iyunnadcatoe",
+        "zekoknigi"
       ],
       "ирландия": [
         "prostoirlandtsy"
@@ -425,7 +426,8 @@
   "knigi": {
     "title": "Книги",
     "slugs": [
-      "buratino"
+      "buratino",
+      "zekoknigi"
     ]
   }
 }
