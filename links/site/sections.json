@@ -121,21 +121,24 @@
         "krossulya"
       ],
       "болгарский": [
-        "moyushchiymedved"
+        "moyushchiymedved",
+        "sobaka"
       ],
       "бурятский": [
         "tyrboga"
       ],
       "венгерский": [
         "trisobaka",
-        "glazzakroy"
+        "glazzakroy",
+        "sobaka"
       ],
       "голландский": [
         "dikiiobraz",
         "moyushchiymedved"
       ],
       "греческий": [
-        "kak-dela"
+        "kak-dela",
+        "sobaka"
       ],
       "датский": [
         "igraho"
@@ -155,11 +158,13 @@
         "zanimatelnoesovpadenie",
         "voodushevlenie",
         "buratino",
-        "margarita"
+        "margarita",
+        "sobaka"
       ],
       "китайский": [
         "yaytsoibanan",
-        "rakushki"
+        "rakushki",
+        "sobaka"
       ],
       "коми": [
         "komi",
@@ -312,6 +317,9 @@
       "баскский": [
         "predlogi",
         "polnoygrudyu"
+      ],
+      "казахский": [
+        "sobaka"
       ]
     }
   },
