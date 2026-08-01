@@ -107,7 +107,8 @@
         "voodushevlenie",
         "dikiiobraz",
         "shibbolet",
-        "fanatleksiki"
+        "fanatleksiki",
+        "predlogi"
       ],
       "арабский": [
         "pustynyasahara"
@@ -244,7 +245,8 @@
       "турецкий": [
         "tyrboga",
         "tseluyu",
-        "dvuhnezaitsev"
+        "dvuhnezaitsev",
+        "predlogi"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -305,6 +307,9 @@
       ],
       "малагасийский": [
         "madagaskarskiy"
+      ],
+      "баскский": [
+        "predlogi"
       ]
     }
   },
