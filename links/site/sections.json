@@ -458,5 +458,18 @@
       "fanatleksiki",
       "malenkiyprints"
     ]
+  },
+  "edanapitki": {
+    "title": "Еда, напитки",
+    "slugs": [
+      "dut",
+      "pasta",
+      "kartofel",
+      "kruchonkisrynka",
+      "kodali",
+      "hlebnoeuho",
+      "tiramenyasu",
+      "margarita"
+    ]
   }
 }
