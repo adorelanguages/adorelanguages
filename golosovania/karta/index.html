@@ -1117,25 +1117,33 @@
 
       const cachedCountries = getCachedLocations();
       if (cachedCountries) {
-        // Свежий кэш (моложе 30 секунд) есть - используем сразу, без похода
-        // в Apps Script. Список городов/раскраска карты появляются мгновенно.
+        // Свежий кэш (моложе 30 секунд) есть - используем сразу, чтобы не
+        // показывать пустой экран, пока грузится карта. НО: sessionStorage
+        // переживает обычное обновление страницы (F5) в той же вкладке, поэтому
+        // раньше кэш использовался ВМЕСТО похода в Apps Script - из-за этого
+        // при обновлении страницы в течение 30 секунд после предыдущей загрузки
+        // человек видел старые данные, и обновление помогало только на второй
+        // раз (когда кэш уже протухал). Поэтому кэш теперь только предзаполняет
+        // экран для мгновенного отклика, а свежий запрос ниже уходит в сеть
+        // всегда, независимо от наличия кэша, и подменяет данные, когда придёт
+        // ответ - см. также tryApplyLocations().
         latestCountries = cachedCountries;
         renderCountryList();
         locationsReady = true;
         tryApplyLocations();
-      } else {
-        fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
-          .then(r => r.json())
-          .then(data => {
-            if (data.ok) {
-              latestCountries = data.countries || {};
-              setCachedLocations(latestCountries);
-              renderCountryList();
-              locationsReady = true;
-              tryApplyLocations();
-            }
-          });
       }
+
+      fetch(`${API_URL}?action=get_locations&_=${Date.now()}`, { cache: 'no-store' })
+        .then(r => r.json())
+        .then(data => {
+          if (data.ok) {
+            latestCountries = data.countries || {};
+            setCachedLocations(latestCountries);
+            renderCountryList();
+            locationsReady = true;
+            tryApplyLocations();
+          }
+        });
     } else {
       loadLocationData();
     }
