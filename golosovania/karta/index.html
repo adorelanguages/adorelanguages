@@ -7,6 +7,11 @@
 <meta name="description" content="Карта читателей блога «Обожаю Языки»: отметь свою страну и город, чтобы появиться на карте.">
 <link rel="canonical" href="https://adorelanguages.com/golosovania/karta/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<!-- Данные читателей грузятся с Apps Script (script.google.com) - соединение
+     заранее устанавливается, чтобы не терять время на DNS/TLS в момент,
+     когда JS реально отправит fetch за get_locations. -->
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="dns-prefetch" href="https://script.google.com">
 
 <style>
   @font-face { font-family: 'Factora'; src: url('/FACTORA-REGULAR.OTF'); font-weight: normal; }
