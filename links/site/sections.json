@@ -116,7 +116,8 @@
         "pustynyasahara"
       ],
       "армянский": [
-        "armyanktuaciya"
+        "armyanktuaciya",
+        "sobakahozyainaneuznaet"
       ],
       "африкаанс": [
         "krossulya"
@@ -352,7 +353,8 @@
       "rukoobuv",
       "upastvyabloki",
       "plyuviofil",
-      "ushnoycherv"
+      "ushnoycherv",
+      "sobakahozyainaneuznaet"
     ]
   },
   "lingvistika": {
@@ -444,6 +446,9 @@
       "французский": [
         "kakashektebe",
         "upastvyabloki"
+      ],
+      "армянский": [
+        "sobakahozyainaneuznaet"
       ]
     }
   },
