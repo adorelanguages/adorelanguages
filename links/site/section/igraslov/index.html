@@ -41,10 +41,21 @@
   }
   .home-button .arrow { margin-right: 4px; }
 
+  .title-block { min-width: 0; margin: 0 0 8px; }
+
   h1 {
     font-size: 1.8em;
     font-family: 'Factora', Georgia, serif;
-    margin: 0 0 8px;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-family: 'Factora', Georgia, serif;
+    font-style: italic;
+    color: rgb(45, 44, 91);
+    opacity: 0.7;
+    white-space: nowrap;
+    margin: 2px 0 0;
   }
 
   .toggle {
@@ -126,7 +137,10 @@
 <div class="wrap">
 
   <div class="topbar">
-    <h1 id="title">Языковые шутки</h1>
+    <div class="title-block">
+      <h1 id="title">Языковые шутки</h1>
+      <div class="subtitle" id="subtitle">(в основном не мои)</div>
+    </div>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
 
@@ -143,6 +157,30 @@
 <a href="#" class="to-top" id="to-top" aria-label="Наверх">↑</a>
 
 <script>
+  // Подзаголовок "(в основном не мои)" не должен быть шире заголовка, включая
+  // скобки - размер шрифта подгоняется под фактическую отрисованную ширину h1
+  // (а не подбирается на глаз фиксированным числом), чтобы не разъехаться при
+  // другом рендеринге шрифта/зуме. Пересчитывается и после загрузки шрифта
+  // Factora (иначе на fallback-шрифте ширины будут другими), и при resize.
+  function fitSubtitleWidth() {
+    const h1 = document.getElementById('title');
+    const sub = document.getElementById('subtitle');
+    if (!h1 || !sub) return;
+    const titleFontSize = parseFloat(getComputedStyle(h1).fontSize);
+    sub.style.fontSize = titleFontSize + 'px';
+    const h1Width = h1.getBoundingClientRect().width;
+    const subWidth = sub.getBoundingClientRect().width;
+    if (subWidth > h1Width) {
+      sub.style.fontSize = (titleFontSize * (h1Width / subWidth)) + 'px';
+    }
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitSubtitleWidth);
+  } else {
+    fitSubtitleWidth();
+  }
+  window.addEventListener('resize', fitSubtitleWidth);
+
   const toTopBtn = document.getElementById('to-top');
   window.addEventListener('scroll', () => {
     toTopBtn.classList.toggle('visible', window.scrollY > 300);
