@@ -181,11 +181,9 @@
   }
   .related-columns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 20px;
-  }
-  @media (max-width: 480px) {
-    .related-columns { grid-template-columns: 1fr; }
+    grid-template-columns: minmax(0, max-content) minmax(0, max-content);
+    gap: 0 28px;
+    max-width: 100%;
   }
 </style>
 </head>
