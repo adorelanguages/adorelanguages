@@ -179,6 +179,14 @@
   .related a {
     color: rgb(45,44,91);
   }
+  .related-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+  }
+  @media (max-width: 480px) {
+    .related-columns { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 
@@ -198,18 +206,22 @@
 
     <div class="related">
     <p class="related-title">Разделы:</p>
-    <ul>
-      <li><a href="/links/site/section/idiomy/?lang=греческий">Идиомы: греческий</a></li>
-      <li><a href="/links/site/section/idiomy/?lang=английский">Идиомы: английский</a></li>
-      <li><a href="/links/site/section/idiomy/?lang=итальянский">Идиомы: итальянский</a></li>
-      <li><a href="/links/site/section/idiomy/?lang=исландский">Идиомы: исландский</a></li>
-      <li><a href="/links/site/section/idiomy/?lang=финский">Идиомы: финский</a></li>
-      <li><a href="/links/site/section/yazyki/?lang=греческий">Языки: греческий</a></li>
-      <li><a href="/links/site/section/yazyki/?lang=английский">Языки: английский</a></li>
-      <li><a href="/links/site/section/yazyki/?lang=итальянский">Языки: итальянский</a></li>
-      <li><a href="/links/site/section/yazyki/?lang=исландский">Языки: исландский</a></li>
-      <li><a href="/links/site/section/yazyki/?lang=финский">Языки: финский</a></li>
-    </ul>
+    <div class="related-columns">
+      <ul>
+        <li><a href="/links/site/section/idiomy/?lang=греческий">Идиомы: греческий</a></li>
+        <li><a href="/links/site/section/idiomy/?lang=английский">Идиомы: английский</a></li>
+        <li><a href="/links/site/section/idiomy/?lang=итальянский">Идиомы: итальянский</a></li>
+        <li><a href="/links/site/section/idiomy/?lang=исландский">Идиомы: исландский</a></li>
+        <li><a href="/links/site/section/idiomy/?lang=финский">Идиомы: финский</a></li>
+      </ul>
+      <ul>
+        <li><a href="/links/site/section/yazyki/?lang=греческий">Языки: греческий</a></li>
+        <li><a href="/links/site/section/yazyki/?lang=английский">Языки: английский</a></li>
+        <li><a href="/links/site/section/yazyki/?lang=итальянский">Языки: итальянский</a></li>
+        <li><a href="/links/site/section/yazyki/?lang=исландский">Языки: исландский</a></li>
+        <li><a href="/links/site/section/yazyki/?lang=финский">Языки: финский</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="toggle">
