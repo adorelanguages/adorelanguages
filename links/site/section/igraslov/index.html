@@ -163,22 +163,44 @@
   // (а не подбирается на глаз фиксированным числом), чтобы не разъехаться при
   // другом рендеринге шрифта/зуме. Пересчитывается и после загрузки шрифта
   // Factora (иначе на fallback-шрифте ширины будут другими), и при resize.
+  //
+  // НАСТОЯЩАЯ причина, из-за которой подзаголовок раз за разом оказывался
+  // шире заголовка на телефонах: заголовок "Языковые шутки" на узких экранах
+  // переносится в 2 строки (заголовок - блочный элемент, а .title-block
+  // сжимается flex-контейнером из-за фиксированной ширины кнопки "На главную
+  // страницу"). У БЛОЧНОГО элемента getBoundingClientRect()/getClientRects()
+  // всегда возвращают ширину ЕГО СОБСТВЕННОГО БОКСА (т.е. ширину, которую ему
+  // выделил flex-родитель), а НЕ фактическую ширину видимых глифов самой
+  // длинной строки текста внутри - а слово, на котором произошёл перенос,
+  // почти никогда не доходит ровно до правого края бокса. В результате
+  // подзаголовок подгонялся под ширину пустого бокса, а не под реальную
+  // видимую ширину слова "Языковые" - и оказывался заметно шире того, что
+  // человек реально видит глазами. По той же причине scrollWidth здесь не
+  // спасает: если после уменьшения шрифта текст подзаголовка становится УЖЕ
+  // бокса, scrollWidth возвращает ширину бокса (max(clientWidth, contentWidth)),
+  // а не суженного текста.
+  //
+  // Правильное и надёжное решение - Range.getClientRects(): в отличие от
+  // блочного элемента, диапазон (Range), охватывающий текстовые узлы,
+  // возвращает один DOMRect на каждую визуально отрисованную строку с её
+  // РЕАЛЬНОЙ шириной глифов, независимо от ширины охватывающего блочного
+  // бокса. Используется и для заголовка (может быть в 1 или 2 строки), и
+  // для подзаголовка (всегда в 1 строку благодаря white-space: nowrap).
+  function trueTextWidth(el) {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const rects = range.getClientRects();
+    if (!rects.length) return el.getBoundingClientRect().width;
+    return Math.max.apply(null, Array.from(rects).map(function (r) { return r.width; }));
+  }
   function fitSubtitleWidth() {
     const h1 = document.getElementById('title');
     const sub = document.getElementById('subtitle');
     if (!h1 || !sub) return;
     const titleFontSize = parseFloat(getComputedStyle(h1).fontSize);
     sub.style.fontSize = titleFontSize + 'px';
-    const h1Width = h1.getBoundingClientRect().width;
-    // ВАЖНО: не getBoundingClientRect() - на мобильном .title-block сжимается
-    // родительским flex-контейнером (min-width:0) до ширины заголовка ДО того,
-    // как посчитан нужный размер шрифта подзаголовка - из-за этого
-    // getBoundingClientRect() у подзаголовка возвращает уже обрезанную ширину
-    // бокса, а не реальную ширину текста с white-space:nowrap, и текст
-    // вылезал за пределы блока (наезжал на кнопку "На главную страницу").
-    // scrollWidth считает истинную ширину содержимого независимо от того,
-    // что сам бокс сжат снаружи.
-    const subWidth = sub.scrollWidth;
+    const h1Width = trueTextWidth(h1);
+    const subWidth = trueTextWidth(sub);
     if (subWidth > h1Width) {
       sub.style.fontSize = (titleFontSize * (h1Width / subWidth)) + 'px';
     }
@@ -198,12 +220,31 @@
     document.fonts.ready.then(fitSubtitleWidth);
   }
   window.addEventListener('resize', fitSubtitleWidth);
+  window.addEventListener('orientationchange', fitSubtitleWidth);
+  window.addEventListener('load', fitSubtitleWidth);
   if (window.ResizeObserver) {
     const titleEl = document.getElementById('title');
     // Наблюдаем именно за h1, а не за subtitle - иначе собственные изменения
     // размера подзаголовка запускали бы наблюдатель по кругу.
     new ResizeObserver(() => fitSubtitleWidth()).observe(titleEl);
   }
+  // requestAnimationFrame дважды подряд - надёжный способ дождаться, пока
+  // браузер реально завершит layout/paint (в отличие от document.fonts.ready,
+  // который гарантирует только загрузку файла шрифта, но не факт, что layout
+  // уже пересчитан с его учётом).
+  requestAnimationFrame(() => requestAnimationFrame(fitSubtitleWidth));
+  // Подстраховка: ни один из перечисленных выше обработчиков не даёт 100%
+  // гарантии сработать на любом реальном телефоне (ResizeObserver ведёт себя
+  // непредсказуемо в некоторых браузерах, сворачивание адресной строки не
+  // всегда бросает resize и т.п.) - поэтому в первые секунды после загрузки
+  // страницы просто пересчитываем несколько раз подряд с небольшим
+  // интервалом, а затем останавливаемся, чтобы не тратить ресурсы впустую.
+  let fitAttempts = 0;
+  const fitInterval = setInterval(() => {
+    fitSubtitleWidth();
+    fitAttempts++;
+    if (fitAttempts >= 20) clearInterval(fitInterval);
+  }, 150);
 
   const toTopBtn = document.getElementById('to-top');
   window.addEventListener('scroll', () => {
