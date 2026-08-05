@@ -169,7 +169,15 @@
     const titleFontSize = parseFloat(getComputedStyle(h1).fontSize);
     sub.style.fontSize = titleFontSize + 'px';
     const h1Width = h1.getBoundingClientRect().width;
-    const subWidth = sub.getBoundingClientRect().width;
+    // ВАЖНО: не getBoundingClientRect() - на мобильном .title-block сжимается
+    // родительским flex-контейнером (min-width:0) до ширины заголовка ДО того,
+    // как посчитан нужный размер шрифта подзаголовка - из-за этого
+    // getBoundingClientRect() у подзаголовка возвращает уже обрезанную ширину
+    // бокса, а не реальную ширину текста с white-space:nowrap, и текст
+    // вылезал за пределы блока (наезжал на кнопку "На главную страницу").
+    // scrollWidth считает истинную ширину содержимого независимо от того,
+    // что сам бокс сжат снаружи.
+    const subWidth = sub.scrollWidth;
     if (subWidth > h1Width) {
       sub.style.fontSize = (titleFontSize * (h1Width / subWidth)) + 'px';
     }
