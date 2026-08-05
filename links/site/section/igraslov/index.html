@@ -183,12 +183,27 @@
       sub.style.fontSize = (titleFontSize * (h1Width / subWidth)) + 'px';
     }
   }
+  // Один запуск в правильный момент (после document.fonts.ready) не всегда
+  // надёжен на реальных телефонах: тулбар браузера может схлопнуться/
+  // раскрыться уже ПОСЛЕ первой отрисовки и изменить реальную ширину
+  // .title-block, а на десктопе окно можно просто растянуть/сжать - в обоих
+  // случаях нужен пересчёт, а полагаться на одно единственное срабатывание
+  // resize ненадёжно. Поэтому вместо (или в дополнение к) ручных обработчиков
+  // используется ResizeObserver прямо на заголовке - он сам уведомляет о
+  // любом изменении фактической ширины h1, от какой бы причины оно ни было
+  // (загрузка шрифта, resize окна, изменение вьюпорта на мобильном,
+  // поворот экрана), и пересчитывает подзаголовок каждый раз заново.
+  fitSubtitleWidth();
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(fitSubtitleWidth);
-  } else {
-    fitSubtitleWidth();
   }
   window.addEventListener('resize', fitSubtitleWidth);
+  if (window.ResizeObserver) {
+    const titleEl = document.getElementById('title');
+    // Наблюдаем именно за h1, а не за subtitle - иначе собственные изменения
+    // размера подзаголовка запускали бы наблюдатель по кругу.
+    new ResizeObserver(() => fitSubtitleWidth()).observe(titleEl);
+  }
 
   const toTopBtn = document.getElementById('to-top');
   window.addEventListener('scroll', () => {
