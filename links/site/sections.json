@@ -183,7 +183,8 @@
         "tyrboga"
       ],
       "литовский": [
-        "dikiiobraz"
+        "dikiiobraz",
+        "kgnomikam"
       ],
       "монгольский": [
         "tyrboga"
@@ -370,7 +371,8 @@
       "upastvyabloki",
       "plyuviofil",
       "ushnoycherv",
-      "sobakahozyainaneuznaet"
+      "sobakahozyainaneuznaet",
+      "kgnomikam"
     ]
   },
   "lingvistika": {
@@ -479,6 +481,9 @@
       ],
       "исландский": [
         "tyomnyyles"
+      ],
+      "литовский": [
+        "kgnomikam"
       ]
     }
   },
