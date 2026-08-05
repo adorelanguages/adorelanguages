@@ -79,7 +79,8 @@
       "tyrboga",
       "pustynyasahara",
       "shlyapohlop",
-      "igraho"
+      "igraho",
+      "safari"
     ]
   },
   "yazyki": {
@@ -113,7 +114,8 @@
         "ushnoycherv"
       ],
       "арабский": [
-        "pustynyasahara"
+        "pustynyasahara",
+        "safari"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -324,6 +326,9 @@
       ],
       "казахский": [
         "sobaka"
+      ],
+      "суахили": [
+        "safari"
       ]
     }
   },
