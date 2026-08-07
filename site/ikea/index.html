@@ -180,6 +180,86 @@
   .related a {
     color: rgb(45,44,91);
   }
+
+  .top-row-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .share-btn {
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 0.95em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    background: #fff;
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .share-btn:hover {
+    background: rgb(45,44,91);
+    color: #fff;
+  }
+
+  .share-panel {
+    display: none;
+    margin: 16px 0 20px;
+  }
+  .share-panel.open {
+    display: block;
+  }
+  .share-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px 8px;
+    max-width: 320px;
+  }
+  .share-grid a {
+    text-decoration: none;
+    color: rgb(45,44,91);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .share-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .share-label {
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 11px;
+    text-align: center;
+  }
+  .share-copy-btn {
+    margin-top: 14px;
+    width: 100%;
+    max-width: 320px;
+    font-family: -apple-system, Segoe UI, sans-serif;
+    font-size: 12px;
+    padding: 9px;
+    border-radius: 999px;
+    border: 1px solid rgb(45,44,91);
+    background: #fff;
+    color: rgb(45,44,91);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
 </style>
 </head>
 
@@ -188,7 +268,24 @@
 
   <div class="top-row">
     <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
-    <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Добавить этот пост в любимые посты</span><span class="star star-2">&#9733;</span></a>
+    <div class="top-row-buttons">
+      <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Добавить этот пост в любимые посты</span><span class="star star-2">&#9733;</span></a>
+      <button class="share-btn" id="share-btn" type="button">↗ Поделиться</button>
+    </div>
+  </div>
+
+  <div class="share-panel" id="share-panel">
+    <div class="share-grid">
+      <a href="#" id="share-whatsapp" target="_blank" rel="noopener"><span class="share-icon" style="background:#25D366"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#fff" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1l-2.2 2.3z"/></svg></span><span class="share-label">WhatsApp</span></a>
+      <a href="#" id="share-messenger" target="_blank" rel="noopener"><span class="share-icon" style="background:#0084FF"><svg viewBox="0 0 24 24" width="20" height="20"><polygon fill="#fff" points="13,3 5,14 11,14 9,21 19,9 12,9"/></svg></span><span class="share-label">Messenger</span></a>
+      <a href="#" id="share-x" target="_blank" rel="noopener"><span class="share-icon" style="background:rgb(45,44,91)"><svg viewBox="0 0 24 24" width="18" height="18"><line x1="5" y1="5" x2="19" y2="19" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="share-label">X</span></a>
+      <a href="#" id="share-facebook" target="_blank" rel="noopener"><span class="share-icon" style="background:#1877F2"><svg viewBox="0 0 24 24" width="20" height="20"><text x="12" y="17" font-size="15" font-weight="bold" text-anchor="middle" fill="#fff" font-family="Georgia, serif">f</text></svg></span><span class="share-label">Facebook</span></a>
+      <a href="#" id="share-instagram"><span class="share-icon" style="background:#E1306C"><svg viewBox="0 0 24 24" width="20" height="20"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="16.3" cy="7.7" r="1" fill="#fff"/></svg></span><span class="share-label">Instagram</span></a>
+      <a href="#" id="share-telegram" target="_blank" rel="noopener"><span class="share-icon" style="background:#26A5E4"><svg viewBox="0 0 24 24" width="20" height="20"><polygon fill="#fff" points="2,12 22,4 15,20 11,13"/></svg></span><span class="share-label">Telegram</span></a>
+      <a href="#" id="share-viber"><span class="share-icon" style="background:#7360F2"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#fff" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1l-2.2 2.3z"/></svg></span><span class="share-label">Viber</span></a>
+      <a href="#" id="share-email"><span class="share-icon" style="background:#888780"><svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.6"/><polyline points="3,6 12,14 21,6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span><span class="share-label">Email</span></a>
+    </div>
+    <button class="share-copy-btn" id="share-copy-btn" type="button"><span id="share-copy-label">Скопировать ссылку</span></button>
   </div>
 
   <img class="post-img" src="/images/posts/ikea.png" alt="ИКЕА – это акроним.">
@@ -261,6 +358,79 @@
     } catch (err) {}
     window.location.href = 'https://adorelanguages.com/golosovania/hitlist/';
   });
+})();
+</script>
+
+<script>
+(function() {
+  var shareBtn = document.getElementById('share-btn');
+  var sharePanel = document.getElementById('share-panel');
+  if (shareBtn && sharePanel) {
+    shareBtn.addEventListener('click', function() {
+      sharePanel.classList.toggle('open');
+    });
+  }
+
+  var canonicalEl = document.querySelector('link[rel="canonical"]');
+  var pageUrl = canonicalEl ? canonicalEl.href : window.location.href;
+  var pageTitle = document.title.split(' – ')[0];
+  try {
+    var ld = document.querySelector('script[type="application/ld+json"]');
+    if (ld) {
+      var data = JSON.parse(ld.textContent);
+      if (data && data.headline) pageTitle = data.headline;
+    }
+  } catch (e) {}
+  var shareText = pageTitle + ' – Обожаю Языки';
+
+  var links = {
+    'share-whatsapp': 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + pageUrl),
+    'share-messenger': 'fb-messenger://share?link=' + encodeURIComponent(pageUrl),
+    'share-x': 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(shareText),
+    'share-facebook': 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl),
+    'share-telegram': 'https://t.me/share/url?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(shareText),
+    'share-viber': 'viber://forward?text=' + encodeURIComponent(shareText + ' ' + pageUrl),
+    'share-email': 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent(pageUrl)
+  };
+  Object.keys(links).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.href = links[id];
+  });
+
+  function copyLink() {
+    var done = function() {
+      var label = document.getElementById('share-copy-label');
+      if (label) {
+        var old = label.textContent;
+        label.textContent = 'Скопировано!';
+        setTimeout(function() { label.textContent = old; }, 1500);
+      }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pageUrl).then(done).catch(done);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = pageUrl;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+  }
+
+  var copyBtn = document.getElementById('share-copy-btn');
+  if (copyBtn) copyBtn.addEventListener('click', copyLink);
+
+  var igBtn = document.getElementById('share-instagram');
+  if (igBtn) {
+    igBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      copyLink();
+    });
+  }
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->
