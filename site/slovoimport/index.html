@@ -429,6 +429,19 @@
       copyLink();
     });
   }
+
+  // Мобильное приложение Facebook часто перехватывает ссылку sharer.php через
+  // Universal Links / App Links и открывает само приложение, но не всегда
+  // корректно подхватывает параметр u= для создания поста - это известное
+  // ограничение на стороне самого Facebook, а не баг сайта. Подстраховываемся:
+  // копируем ссылку в буфер параллельно с переходом, чтобы её можно было
+  // вставить вручную, если приложение не подставило её само.
+  var fbBtn = document.getElementById('share-facebook');
+  if (fbBtn) {
+    fbBtn.addEventListener('click', function() {
+      copyLink();
+    });
+  }
   var viberBtn = document.getElementById('share-viber');
 })();
 </script>
