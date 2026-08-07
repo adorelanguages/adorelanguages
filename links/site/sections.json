@@ -64,6 +64,9 @@
       ],
       "мексика": [
         "pokoyotit"
+      ],
+      "пакистан": [
+        "pakistan"
       ]
     }
   },
@@ -234,7 +237,8 @@
         "vrovensolntsu"
       ],
       "персидский": [
-        "lyuboviorgany"
+        "lyuboviorgany",
+        "pakistan"
       ],
       "польский": [
         "hlebnoeuho",
@@ -351,6 +355,9 @@
       ],
       "исландский": [
         "tyomnyyles"
+      ],
+      "урду": [
+        "pakistan"
       ]
     }
   },
@@ -511,7 +518,8 @@
       "pustynyasahara",
       "vodava",
       "ulitsyssha",
-      "lesglubokiy"
+      "lesglubokiy",
+      "pakistan"
     ]
   },
   "knigi": {
