@@ -298,7 +298,8 @@
         "kak-dela",
         "zanimatelnoesovpadenie",
         "voodushevlenie",
-        "upastvyabloki"
+        "upastvyabloki",
+        "nenashibarany"
       ],
       "хорватский": [
         "listopad"
@@ -479,13 +480,15 @@
       ],
       "французский": [
         "kakashektebe",
-        "upastvyabloki"
+        "upastvyabloki",
+        "nenashibarany"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
       ],
       "русский": [
-        "dvabelmesa"
+        "dvabelmesa",
+        "nenashibarany"
       ],
       "греческий": [
         "tyomnyyles"
