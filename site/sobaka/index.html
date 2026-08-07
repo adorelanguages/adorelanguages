@@ -179,6 +179,12 @@
   .related a {
     color: rgb(45,44,91);
   }
+  .related-columns {
+    display: grid;
+    grid-template-columns: minmax(0, max-content) minmax(0, max-content);
+    gap: 0 28px;
+    max-width: 100%;
+  }
 </style>
 </head>
 
@@ -200,14 +206,18 @@
 
     <div class="related">
     <p class="related-title">Разделы:</p>
-    <ul>
+    <div class="related-columns">
+      <ul>
       <li><a href="/links/site/section/yazyki/?lang=венгерский">Языки: венгерский</a></li>
       <li><a href="/links/site/section/yazyki/?lang=болгарский">Языки: болгарский</a></li>
       <li><a href="/links/site/section/yazyki/?lang=итальянский">Языки: итальянский</a></li>
+      </ul>
+      <ul>
       <li><a href="/links/site/section/yazyki/?lang=казахский">Языки: казахский</a></li>
       <li><a href="/links/site/section/yazyki/?lang=китайский">Языки: китайский</a></li>
       <li><a href="/links/site/section/yazyki/?lang=греческий">Языки: греческий</a></li>
-    </ul>
+      </ul>
+    </div>
   </div>
 
   <div class="toggle">
