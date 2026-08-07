@@ -305,7 +305,8 @@
         "listopad"
       ],
       "черкесский": [
-        "kak-dela"
+        "kak-dela",
+        "lesglubokiy"
       ],
       "чеченский": [
         "chechenskost"
@@ -509,7 +510,8 @@
     "slugs": [
       "pustynyasahara",
       "vodava",
-      "ulitsyssha"
+      "ulitsyssha",
+      "lesglubokiy"
     ]
   },
   "knigi": {
