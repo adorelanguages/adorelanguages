@@ -338,7 +338,8 @@
         "polnoygrudyu"
       ],
       "казахский": [
-        "sobaka"
+        "sobaka",
+        "ktoslizal"
       ],
       "суахили": [
         "safari"
@@ -380,7 +381,8 @@
       "ushnoycherv",
       "sobakahozyainaneuznaet",
       "kgnomikam",
-      "pokoyotit"
+      "pokoyotit",
+      "ktoslizal"
     ]
   },
   "lingvistika": {
@@ -493,6 +495,9 @@
       ],
       "литовский": [
         "kgnomikam"
+      ],
+      "казахский": [
+        "ktoslizal"
       ]
     }
   },
