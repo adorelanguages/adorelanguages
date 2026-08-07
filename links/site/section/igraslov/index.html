@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Языковые шутки – Обожаю Языки</title>
+<title>Игра слов – Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Игра слов, каламбуры и языковые шутки на русском и других языках.">
 
@@ -139,8 +139,8 @@
 
   <div class="topbar">
     <div class="title-block">
-      <h1 id="title">Языковые шутки</h1>
-      <div class="subtitle" id="subtitle">(в основном не мои)</div>
+      <h1 id="title">Игра слов</h1>
+      <div class="subtitle" id="subtitle">Автор – не я</div>
     </div>
     <a class="home-button" href="https://adorelanguages.com"><span class="arrow">←</span>На главную<br>страницу</a>
   </div>
@@ -299,7 +299,7 @@
     const slugs = section.slugs || [];
     const posts = allPosts.filter(p => slugs.includes(p.slug));
 
-    document.getElementById('title').textContent = `Языковые шутки`;
+    document.getElementById('title').textContent = `Игра слов`;
 
     if (posts.length === 0) {
       document.getElementById('empty-msg').style.display = 'block';
