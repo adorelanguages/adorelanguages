@@ -25,7 +25,8 @@
       "chechenskost",
       "tametogde",
       "plyuviofil",
-      "polnoygrudyu"
+      "polnoygrudyu",
+      "sukoblyavanie"
     ]
   },
   "strany": {
@@ -259,7 +260,8 @@
         "storitsey"
       ],
       "сербский": [
-        "srpskopismo"
+        "srpskopismo",
+        "sukoblyavanie"
       ],
       "словацкий": [
         "trampova",
