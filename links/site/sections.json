@@ -132,11 +132,13 @@
         "lyubovutki",
         "shkurakoshki",
         "kraynekratko",
-        "druzhochek"
+        "druzhochek",
+        "medovyymesyats"
       ],
       "арабский": [
         "pustynyasahara",
-        "safari"
+        "safari",
+        "medovyymesyats"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -193,7 +195,8 @@
         "tyomnyyles",
         "pitsazanuda",
         "nikapustysebe",
-        "moskva"
+        "moskva",
+        "medovyymesyats"
       ],
       "китайский": [
         "yaytsoibanan",
@@ -240,7 +243,8 @@
         "rukoobuv",
         "ushnoycherv",
         "zavtrak",
-        "polroditeley"
+        "polroditeley",
+        "medovyymesyats"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -280,7 +284,8 @@
       ],
       "сербский": [
         "srpskopismo",
-        "sukoblyavanie"
+        "sukoblyavanie",
+        "medovyymesyats"
       ],
       "словацкий": [
         "trampova",
@@ -424,7 +429,8 @@
       "ktoslizal",
       "pitsazanuda",
       "shkurakoshki",
-      "druzhochek"
+      "druzhochek",
+      "medovyymesyats"
     ]
   },
   "lingvistika": {
