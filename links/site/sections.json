@@ -69,6 +69,9 @@
       ],
       "пакистан": [
         "pakistan"
+      ],
+      "болгария": [
+        "horovodogolod"
       ]
     }
   },
@@ -153,7 +156,8 @@
       "болгарский": [
         "moyushchiymedved",
         "sobaka",
-        "laskovyebolgary"
+        "laskovyebolgary",
+        "horovodogolod"
       ],
       "бурятский": [
         "tyrboga"
@@ -444,7 +448,8 @@
       "pitsazanuda",
       "shkurakoshki",
       "druzhochek",
-      "medovyymesyats"
+      "medovyymesyats",
+      "horovodogolod"
     ]
   },
   "lingvistika": {
