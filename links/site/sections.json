@@ -163,7 +163,8 @@
         "horovodogolod"
       ],
       "бурятский": [
-        "tyrboga"
+        "tyrboga",
+        "dvaipolovina"
       ],
       "венгерский": [
         "trisobaka",
@@ -399,7 +400,8 @@
       ],
       "баскский": [
         "predlogi",
-        "polnoygrudyu"
+        "polnoygrudyu",
+        "dvaipolovina"
       ],
       "казахский": [
         "sobaka",
@@ -419,6 +421,9 @@
       ],
       "узбекский": [
         "uzbekiivy"
+      ],
+      "грузинский": [
+        "dvaipolovina"
       ]
     }
   },
