@@ -147,7 +147,8 @@
       "арабский": [
         "pustynyasahara",
         "safari",
-        "medovyymesyats"
+        "medovyymesyats",
+        "nuitvar"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -217,7 +218,8 @@
         "yaytsoibanan",
         "rakushki",
         "sobaka",
-        "yazykmamy"
+        "yazykmamy",
+        "nuitvar"
       ],
       "коми": [
         "komi",
@@ -328,7 +330,8 @@
         "predlogi",
         "nibelmesa",
         "bardak",
-        "yazykmamy"
+        "yazykmamy",
+        "nuitvar"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -426,6 +429,9 @@
       ],
       "грузинский": [
         "dvaipolovina"
+      ],
+      "тайский": [
+        "nuitvar"
       ]
     }
   },
