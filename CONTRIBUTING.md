@@ -153,7 +153,7 @@
      названия через « / »), а не одно название.**
 10. **Обновить `links/site/sections.json`**, если пост относится к разделу(ам)** – для «простых»
     разделов (`brendy`, `osobyeslova`, `etimologiya`, `illyustraciiayu`, `lingvistika`,
-    `igraslov`, `zagadki`, `toponimy`, `knigi`, `edanapitki` – все с плоским массивом `"slugs"`)
+    `igraslov`, `zagadki`, `toponimy`, `knigi`, `edanapitki`, `rasteniya` – все с плоским массивом `"slugs"`)
     добавить slug в их `"slugs"` массив; для `strany`, `idiomy` и `yazyki` (у всех трёх объект
     `"languages"`, а не `"slugs"` – `strany` группирует по стране, `idiomy`/`yazyki` по языку)
     добавить slug в массив нужного ключа – `<раздел>.languages.<страна_или_язык>`, создав этот
