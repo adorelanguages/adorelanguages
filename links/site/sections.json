@@ -652,7 +652,32 @@
   "rasteniya": {
     "title": "Растения",
     "slugs": [
-      "romashka"
+      "romashka",
+      "kartofel"
+    ]
+  },
+  "zhivotnye": {
+    "title": "Животные",
+    "slugs": [
+      "sobaka",
+      "dikiiobraz",
+      "svinosobaka",
+      "lvinayadolya",
+      "sobakahozyainaneuznaet",
+      "pokoyotit",
+      "krossulya",
+      "ushnoycherv",
+      "dvuhnezaitsev",
+      "tsvetnayasobaka",
+      "shkurakoshki",
+      "nuitvar",
+      "ktoslizal",
+      "nenashibarany",
+      "skotchterer",
+      "uvasestkozyol",
+      "zooanatomiya",
+      "moyushchiymedved",
+      "horovodogolod"
     ]
   }
 }
