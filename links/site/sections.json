@@ -197,7 +197,8 @@
         "zabiratvolosy",
         "pokoyotit",
         "zavtrak",
-        "svadbazavtra"
+        "svadbazavtra",
+        "datnedat"
       ],
       "итальянский": [
         "tiramenyasu",
@@ -215,7 +216,8 @@
         "nikapustysebe",
         "moskva",
         "medovyymesyats",
-        "yazykmamy"
+        "yazykmamy",
+        "datnedat"
       ],
       "китайский": [
         "yaytsoibanan",
@@ -267,7 +269,8 @@
         "polroditeley",
         "medovyymesyats",
         "yazykmamy",
-        "fokuhila"
+        "fokuhila",
+        "datnedat"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -291,7 +294,8 @@
         "listopad",
         "takiepirogi",
         "yazykmamy",
-        "svadbazavtra"
+        "svadbazavtra",
+        "datnedat"
       ],
       "португальский": [
         "kafune",
@@ -370,7 +374,8 @@
         "takiepirogi",
         "druzhochek",
         "obmanchivo",
-        "yazykmamy"
+        "yazykmamy",
+        "datnedat"
       ],
       "хорватский": [
         "listopad",
@@ -539,14 +544,16 @@
       ],
       "испанский": [
         "zabiratvolosy",
-        "pokoyotit"
+        "pokoyotit",
+        "datnedat"
       ],
       "итальянский": [
         "dvuhnezaitsev",
         "udachi",
         "tyomnyyles",
         "pitsazanuda",
-        "nikapustysebe"
+        "nikapustysebe",
+        "datnedat"
       ],
       "китайский": [
         "yaytsoibanan"
@@ -558,7 +565,8 @@
         "morgenmuffel",
         "uvasestkozyol",
         "svinosobaka",
-        "ushnoycherv"
+        "ushnoycherv",
+        "datnedat"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -571,7 +579,8 @@
         "lyuboviorgany"
       ],
       "польский": [
-        "dvuhnezaitsev"
+        "dvuhnezaitsev",
+        "datnedat"
       ],
       "турецкий": [
         "dvuhnezaitsev",
@@ -592,7 +601,8 @@
       "французский": [
         "kakashektebe",
         "upastvyabloki",
-        "nenashibarany"
+        "nenashibarany",
+        "datnedat"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
