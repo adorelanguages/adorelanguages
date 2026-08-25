@@ -186,6 +186,40 @@
     max-width: 100%;
   }
 
+  .vote-cta-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 8px 0 28px;
+  }
+  .vote-cta {
+    display: inline-block;
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: rgb(45,44,91);
+    background: rgb(244,219,206);
+    padding: 14px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .vote-cta-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .vote-cta-ring rect {
+    fill: none;
+    stroke: rgb(45,44,91);
+    stroke-width: 2;
+    stroke-dasharray: 7 6;
+    animation: march 0.7s linear infinite;
+  }
+  @keyframes march {
+    to { stroke-dashoffset: -13; }
+  }
+
   .top-row-buttons {
     display: flex;
     gap: 8px;
@@ -322,12 +356,18 @@
 
   <img class="post-img" src="/images/posts/oksyumoronyvminiatyurishche.png" alt="Оксюмороны в миниатюрище – примеры однословных оксюморонов">
 
+  <div class="vote-cta-wrap">
+    <a class="vote-cta" id="vote-cta-btn" href="https://adorelanguages.com/golosovania/oksyumoronyvminiatyurishche/">Голосовать →</a>
+    <svg class="vote-cta-ring" id="vote-cta-ring"><rect id="vote-cta-rect"/></svg>
+  </div>
+
   <!--SECTIONS-->
 
     <div class="related">
-    <p class="related-title">Раздел:</p>
+    <p class="related-title">Разделы:</p>
     <ul>
       <li><a href="/links/site/section/lingvistika/">Лингвистика</a></li>
+      <li><a href="/golosovania/oksyumoronyvminiatyurishche/">Голосования</a></li>
     </ul>
   </div>
 
@@ -341,6 +381,30 @@
   </div>
 
 </div>
+
+<script>
+  function sizeVoteCtaRing() {
+    var btn = document.getElementById('vote-cta-btn');
+    var svg = document.getElementById('vote-cta-ring');
+    var rect = document.getElementById('vote-cta-rect');
+    if (!btn || !svg || !rect) return;
+    var w = btn.offsetWidth;
+    var h = btn.offsetHeight;
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    rect.setAttribute('x', 1);
+    rect.setAttribute('y', 1);
+    rect.setAttribute('width', Math.max(w - 2, 0));
+    rect.setAttribute('height', Math.max(h - 2, 0));
+    rect.setAttribute('rx', h / 2);
+    rect.setAttribute('ry', h / 2);
+  }
+  sizeVoteCtaRing();
+  window.addEventListener('resize', sizeVoteCtaRing);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sizeVoteCtaRing);
+  }
+</script>
 
 <script>
 (function() {
