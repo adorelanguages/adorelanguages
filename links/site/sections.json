@@ -441,6 +441,9 @@
       ],
       "тайский": [
         "nuitvar"
+      ],
+      "тагальский": [
+        "infix"
       ]
     }
   },
@@ -496,7 +499,8 @@
       "predlogi",
       "rodstvenniki",
       "portmanto",
-      "oksyumoronyvminiatyurishche"
+      "oksyumoronyvminiatyurishche",
+      "infix"
     ]
   },
   "igraslov": {
