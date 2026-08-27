@@ -147,7 +147,8 @@
         "medovyymesyats",
         "yazykmamy",
         "romashka",
-        "shestisem"
+        "shestisem",
+        "budemzdorovy"
       ],
       "арабский": [
         "pustynyasahara",
@@ -176,7 +177,8 @@
         "trisobaka",
         "glazzakroy",
         "sobaka",
-        "yazykmamy"
+        "yazykmamy",
+        "budemzdorovy"
       ],
       "голландский": [
         "dikiiobraz",
@@ -219,7 +221,8 @@
         "moskva",
         "medovyymesyats",
         "yazykmamy",
-        "datnedat"
+        "datnedat",
+        "budemzdorovy"
       ],
       "китайский": [
         "yaytsoibanan",
@@ -297,13 +300,15 @@
         "takiepirogi",
         "yazykmamy",
         "svadbazavtra",
-        "datnedat"
+        "datnedat",
+        "budemzdorovy"
       ],
       "португальский": [
         "kafune",
         "zavtrak",
         "takiepirogi",
-        "ayvelad"
+        "ayvelad",
+        "budemzdorovy"
       ],
       "русинский": [
         "kak-dela"
@@ -378,7 +383,8 @@
         "obmanchivo",
         "yazykmamy",
         "datnedat",
-        "kastet"
+        "kastet",
+        "budemzdorovy"
       ],
       "хорватский": [
         "listopad",
@@ -440,7 +446,8 @@
         "uzbekiivy"
       ],
       "грузинский": [
-        "dvaipolovina"
+        "dvaipolovina",
+        "budemzdorovy"
       ],
       "тайский": [
         "nuitvar"
