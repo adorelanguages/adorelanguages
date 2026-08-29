@@ -11,10 +11,86 @@
     <loc>https://adorelanguages.com/links/site/</loc>
   </url>
   <url>
+    <loc>https://adorelanguages.com/links/site/all/</loc>
+  </url>
+  <url>
     <loc>https://adorelanguages.com/links/fb/</loc>
   </url>
   <url>
+    <loc>https://adorelanguages.com/links/fb/all/</loc>
+  </url>
+  <url>
     <loc>https://adorelanguages.com/tags/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/golosovania/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/sozdateli/</loc>
+  </url>
+
+  <!-- Section pages -->
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/brendy/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/edanapitki/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/etimologiya/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/idiomy/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/igraslov/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/illyustraciiayu/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/knigi/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/lingvistika/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/osobyeslova/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/rasteniya/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/strany/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/toponimy/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/yazyki/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/zagadki/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/links/site/section/zhivotnye/</loc>
+  </url>
+
+  <!-- Golosovania pages -->
+  <url>
+    <loc>https://adorelanguages.com/golosovania/hitlist/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/golosovania/idei/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/golosovania/karta/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/golosovania/odnimslovom/</loc>
+  </url>
+  <url>
+    <loc>https://adorelanguages.com/golosovania/oksyumoronyvminiatyurishche/</loc>
   </url>
 
   <!-- Site posts -->
