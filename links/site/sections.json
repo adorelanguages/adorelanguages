@@ -205,7 +205,8 @@
         "zavtrak",
         "svadbazavtra",
         "datnedat",
-        "sovershennye"
+        "sovershennye",
+        "vremyaipogoda"
       ],
       "итальянский": [
         "tiramenyasu",
@@ -226,7 +227,8 @@
         "yazykmamy",
         "datnedat",
         "budemzdorovy",
-        "sovershennye"
+        "sovershennye",
+        "vremyaipogoda"
       ],
       "китайский": [
         "yaytsoibanan",
@@ -313,7 +315,8 @@
         "zavtrak",
         "takiepirogi",
         "ayvelad",
-        "budemzdorovy"
+        "budemzdorovy",
+        "vremyaipogoda"
       ],
       "русинский": [
         "kak-dela"
@@ -392,11 +395,13 @@
         "kastet",
         "budemzdorovy",
         "zont",
-        "sovershennye"
+        "sovershennye",
+        "vremyaipogoda"
       ],
       "хорватский": [
         "listopad",
-        "teloslavyanina"
+        "teloslavyanina",
+        "vremyaipogoda"
       ],
       "черкесский": [
         "kak-dela",
