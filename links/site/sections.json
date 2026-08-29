@@ -152,7 +152,8 @@
         "romashka",
         "shestisem",
         "budemzdorovy",
-        "burgery"
+        "burgery",
+        "nemoepite"
       ],
       "арабский": [
         "pustynyasahara",
@@ -285,7 +286,8 @@
         "fokuhila",
         "datnedat",
         "germanizmi",
-        "burgery"
+        "burgery",
+        "nemoepite"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -576,7 +578,8 @@
         "tyomnyyles",
         "zooanatomiya",
         "shkurakoshki",
-        "shestisem"
+        "shestisem",
+        "nemoepite"
       ],
       "испанский": [
         "zabiratvolosy",
@@ -602,7 +605,8 @@
         "uvasestkozyol",
         "svinosobaka",
         "ushnoycherv",
-        "datnedat"
+        "datnedat",
+        "nemoepite"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -698,7 +702,8 @@
       "pitsazanuda",
       "ayvelad",
       "sovershennye",
-      "burgery"
+      "burgery",
+      "nemoepite"
     ]
   },
   "rasteniya": {
