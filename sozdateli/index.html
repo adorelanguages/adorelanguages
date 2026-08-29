@@ -105,6 +105,19 @@
     flex-shrink: 0;
     opacity: 0.8;
   }
+
+  @media (min-width: 700px) {
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 48px;
+    }
+    .name-role { text-align: left; }
+    .creator-name { font-size: 1.35em; }
+    .creator-role { font-size: 1.05em; margin-bottom: 0; }
+  }
 </style>
 </head>
 
@@ -121,9 +134,11 @@
 
     <div class="creator-card" style="background: #E9CEF2;">
       <div class="avatar" style="background: rgb(45,44,91); color: #E9CEF2;">ВВ</div>
-      <div>
-        <div class="creator-name">Вадим Вильгельми</div>
-        <div class="creator-role">Концепция и тексты</div>
+      <div class="info">
+        <div class="name-role">
+          <div class="creator-name">Вадим Вильгельми</div>
+          <div class="creator-role">Концепция и тексты</div>
+        </div>
         <a class="creator-link" href="mailto:adore.languages@gmail.com" style="color: rgb(45,44,91); border: 1px solid rgb(45,44,91);"><i class="fa-solid fa-envelope"></i> e-mail</a>
       </div>
       <i class="fa-solid fa-pen-nib role-icon" style="color: rgb(45,44,91);"></i>
@@ -131,9 +146,11 @@
 
     <div class="creator-card" style="background: #F4DBCE;">
       <div class="avatar" style="background: rgb(45,44,91); color: #F4DBCE;">АЮ</div>
-      <div>
-        <div class="creator-name">Анна Юдина</div>
-        <div class="creator-role">Авторские иллюстрации</div>
+      <div class="info">
+        <div class="name-role">
+          <div class="creator-name">Анна Юдина</div>
+          <div class="creator-role">Авторские иллюстрации</div>
+        </div>
         <a class="creator-link" href="https://instagram.com/ancka_you" target="_blank" rel="noopener" style="color: rgb(45,44,91); border: 1px solid rgb(45,44,91);"><i class="fa-brands fa-instagram"></i> @ancka_you</a>
       </div>
       <i class="fa-solid fa-palette role-icon" style="color: rgb(45,44,91);"></i>
@@ -141,9 +158,11 @@
 
     <div class="creator-card" style="background: rgb(70,19,89);">
       <div class="avatar" style="background: rgb(129,239,135); color: rgb(70,19,89);">ИН</div>
-      <div>
-        <div class="creator-name" style="color: rgb(129,239,135);">Илья Наумов</div>
-        <div class="creator-role" style="color: rgb(129,239,135);">Брендинг и шрифт</div>
+      <div class="info">
+        <div class="name-role">
+          <div class="creator-name" style="color: rgb(129,239,135);">Илья Наумов</div>
+          <div class="creator-role" style="color: rgb(129,239,135);">Брендинг и шрифт</div>
+        </div>
         <a class="creator-link" href="https://intervaltype.com" target="_blank" rel="noopener" style="color: rgb(129,239,135); border: 1px solid rgb(129,239,135);"><i class="fa-solid fa-globe"></i> intervaltype.com</a>
       </div>
       <i class="fa-solid fa-swatchbook role-icon" style="color: rgb(129,239,135);"></i>
