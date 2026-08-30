@@ -294,7 +294,8 @@
       "нидерландский": [
         "dikiiobraz",
         "moyushchiymedved",
-        "zont"
+        "zont",
+        "metamorfozy"
       ],
       "норвежский": [
         "dvuhnezaitsev",
@@ -384,7 +385,8 @@
       "финский": [
         "mozgivgarderob",
         "divannayakartoshka",
-        "tyomnyyles"
+        "tyomnyyles",
+        "metamorfozy"
       ],
       "французский": [
         "kakashektebe",
@@ -426,7 +428,8 @@
         "trampova",
         "poryadokbukv",
         "svsmbzglsnh",
-        "listopad"
+        "listopad",
+        "metamorfozy"
       ],
       "шведский": [
         "babushkatsia",
@@ -452,7 +455,8 @@
       ],
       "казахский": [
         "sobaka",
-        "ktoslizal"
+        "ktoslizal",
+        "metamorfozy"
       ],
       "суахили": [
         "safari"
@@ -478,6 +482,9 @@
       ],
       "тагальский": [
         "infix"
+      ],
+      "румынский": [
+        "metamorfozy"
       ]
     }
   },
@@ -643,7 +650,8 @@
       ],
       "финский": [
         "mozgivgarderob",
-        "tyomnyyles"
+        "tyomnyyles",
+        "metamorfozy"
       ],
       "французский": [
         "kakashektebe",
@@ -669,7 +677,17 @@
         "kgnomikam"
       ],
       "казахский": [
-        "ktoslizal"
+        "ktoslizal",
+        "metamorfozy"
+      ],
+      "нидерландский": [
+        "metamorfozy"
+      ],
+      "чешский": [
+        "metamorfozy"
+      ],
+      "румынский": [
+        "metamorfozy"
       ]
     }
   },
