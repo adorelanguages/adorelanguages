@@ -235,19 +235,11 @@
     }
 
     @media (max-width: 699px) {
-      .banner { max-height: 160px; }
+      body { display: flex; flex-direction: column; min-height: 100vh; }
 
-      .container { padding: 14px 20px 30px; }
+      .container { flex: 1; display: flex; flex-direction: column; }
 
-      p.desc { margin-bottom: 14px; }
-
-      .search-row { margin-bottom: 16px; }
-
-      .search-button { width: 76px; height: 76px; font-size: 0.9em; }
-
-      .social-row { margin-bottom: 14px; }
-
-      .bottom-row { margin-top: 8px; }
+      .bottom-row { margin-top: auto; padding-top: 20px; }
     }
   </style>
 
