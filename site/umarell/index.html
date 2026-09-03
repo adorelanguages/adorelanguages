@@ -186,6 +186,44 @@
     max-width: 100%;
   }
 
+  .gallery-thumbs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-top: 4px;
+  }
+  .gallery-thumb {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #d8d6e8;
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,19,40,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  .lightbox-overlay.visible {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
   .top-row-buttons {
     display: flex;
     gap: 8px;
@@ -326,6 +364,13 @@
     <li>В 2007 году вышла книга Umarell, в 2018 году этим любопытным старичкам посвятили площадь в Болонье, а в 2020 году умарелл появился в комиксе про Микки Мауса.</li>
     <li>Интервью с автором нового понятия <a href="https://www.raffaelegaito.com/umarells-intervista-masotti/">здесь</a>.</li>
     <li>Определения в словарях <a href="https://www.treccani.it/vocabolario/umarell_(Neologismi)/?search=umar%C3%A8ll">здесь</a> и <a href="https://www.bibliotecasalaborsa.it/bolognaonline/events/umarell_nel_vocabolario_zingarelli">здесь</a>.</li>
+    <li>Вот ещё иллюстрации<span class="gallery-thumbs">
+      <img class="gallery-thumb" src="/images/posts/umarell-foto/1-thumb.jpg" data-full="/images/posts/umarell-foto/1.jpg" alt="Умарелл – ещё фото 1">
+      <img class="gallery-thumb" src="/images/posts/umarell-foto/2-thumb.jpg" data-full="/images/posts/umarell-foto/2.jpg" alt="Умарелл – ещё фото 2">
+      <img class="gallery-thumb" src="/images/posts/umarell-foto/3-thumb.jpg" data-full="/images/posts/umarell-foto/3.jpg" alt="Умарелл – ещё фото 3">
+      <img class="gallery-thumb" src="/images/posts/umarell-foto/4-thumb.jpg" data-full="/images/posts/umarell-foto/4.jpg" alt="Умарелл – ещё фото 4">
+      <img class="gallery-thumb" src="/images/posts/umarell-foto/5-thumb.jpg" data-full="/images/posts/umarell-foto/5.jpg" alt="Умарелл – ещё фото 5">
+    </span></li>
   </ul>
 
   <!--SECTIONS-->
@@ -348,6 +393,30 @@
   </div>
 
 </div>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <img src="" alt="" id="lightbox-img">
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('lightbox-overlay');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.gallery-thumb').forEach(function(thumb) {
+    thumb.addEventListener('click', function() {
+      lightboxImg.src = thumb.getAttribute('data-full');
+      lightboxImg.alt = thumb.alt;
+      lightbox.classList.add('visible');
+    });
+  });
+  lightbox.addEventListener('click', function() {
+    lightbox.classList.remove('visible');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') lightbox.classList.remove('visible');
+  });
+})();
+</script>
 
 <script>
 (function() {
