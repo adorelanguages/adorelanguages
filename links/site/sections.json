@@ -28,7 +28,8 @@
       "polnoygrudyu",
       "sukoblyavanie",
       "fokuhila",
-      "umarell"
+      "umarell",
+      "tsundoku"
     ]
   },
   "strany": {
@@ -493,6 +494,9 @@
       ],
       "румынский": [
         "metamorfozy"
+      ],
+      "японский": [
+        "tsundoku"
       ]
     }
   },
@@ -730,7 +734,8 @@
       "buratino",
       "zekoknigi",
       "fanatleksiki",
-      "malenkiyprints"
+      "malenkiyprints",
+      "tsundoku"
     ]
   },
   "edanapitki": {
