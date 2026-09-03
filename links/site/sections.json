@@ -119,7 +119,8 @@
       "адыгский": [
         "kak-dela",
         "lesglubokiy",
-        "adygiicherkesy"
+        "adygiicherkesy",
+        "tsenaibol"
       ],
       "албанский": [
         "shiptarskiy"
@@ -305,7 +306,8 @@
       ],
       "осетинский": [
         "sedmayavodanakisele",
-        "vrovensolntsu"
+        "vrovensolntsu",
+        "tsenaibol"
       ],
       "персидский": [
         "lyuboviorgany",
@@ -410,7 +412,8 @@
         "zont",
         "sovershennye",
         "vremyaipogoda",
-        "podlozhitkrolika"
+        "podlozhitkrolika",
+        "tsenaibol"
       ],
       "хорватский": [
         "listopad",
@@ -420,7 +423,8 @@
       "черкесский": [
         "kak-dela",
         "lesglubokiy",
-        "adygiicherkesy"
+        "adygiicherkesy",
+        "tsenaibol"
       ],
       "чеченский": [
         "chechenskost"
@@ -633,7 +637,8 @@
       ],
       "осетинский": [
         "sedmayavodanakisele",
-        "vrovensolntsu"
+        "vrovensolntsu",
+        "tsenaibol"
       ],
       "персидский": [
         "lyuboviorgany"
@@ -664,7 +669,8 @@
         "upastvyabloki",
         "nenashibarany",
         "datnedat",
-        "podlozhitkrolika"
+        "podlozhitkrolika",
+        "tsenaibol"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
@@ -694,6 +700,12 @@
       ],
       "румынский": [
         "metamorfozy"
+      ],
+      "адыгский": [
+        "tsenaibol"
+      ],
+      "черкесский": [
+        "tsenaibol"
       ]
     }
   },
