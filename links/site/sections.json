@@ -106,7 +106,8 @@
       "kastet",
       "zont",
       "sovershennye",
-      "germanizmi"
+      "germanizmi",
+      "yugovostok"
     ]
   },
   "yazyki": {
@@ -295,7 +296,8 @@
         "germanizmi",
         "burgery",
         "nemoepite",
-        "taktikasalyami"
+        "taktikasalyami",
+        "yugovostok"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -498,6 +500,9 @@
       ],
       "японский": [
         "tsundoku"
+      ],
+      "латынь": [
+        "yugovostok"
       ]
     }
   },
@@ -736,7 +741,8 @@
       "pakistan",
       "stranopisanie",
       "moskva",
-      "burgery"
+      "burgery",
+      "yugovostok"
     ]
   },
   "knigi": {
