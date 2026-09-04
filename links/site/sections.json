@@ -159,7 +159,8 @@
         "budemzdorovy",
         "burgery",
         "nemoepite",
-        "dorogovato"
+        "dorogovato",
+        "germanskayasmes"
       ],
       "арабский": [
         "pustynyasahara",
@@ -297,13 +298,15 @@
         "burgery",
         "nemoepite",
         "taktikasalyami",
-        "yugovostok"
+        "yugovostok",
+        "germanskayasmes"
       ],
       "нидерландский": [
         "dikiiobraz",
         "moyushchiymedved",
         "zont",
-        "metamorfozy"
+        "metamorfozy",
+        "germanskayasmes"
       ],
       "норвежский": [
         "dvuhnezaitsev",
@@ -567,7 +570,8 @@
       "chastotaslov",
       "redkoeleto",
       "adygiicherkesy",
-      "oksyumoron"
+      "oksyumoron",
+      "germanskayasmes"
     ]
   },
   "igraslov": {
