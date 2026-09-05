@@ -167,7 +167,8 @@
         "dorogovato",
         "germanskayasmes",
         "kost",
-        "ponaehalitut"
+        "ponaehalitut",
+        "vdvuhshagah"
       ],
       "арабский": [
         "pustynyasahara",
@@ -197,7 +198,8 @@
         "glazzakroy",
         "sobaka",
         "yazykmamy",
-        "budemzdorovy"
+        "budemzdorovy",
+        "vdvuhshagah"
       ],
       "голландский": [
         "dikiiobraz",
@@ -307,7 +309,8 @@
         "taktikasalyami",
         "yugovostok",
         "germanskayasmes",
-        "kost"
+        "kost",
+        "vdvuhshagah"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -324,7 +327,8 @@
       "осетинский": [
         "sedmayavodanakisele",
         "vrovensolntsu",
-        "tsenaibol"
+        "tsenaibol",
+        "vdvuhshagah"
       ],
       "персидский": [
         "lyuboviorgany",
@@ -338,7 +342,8 @@
         "yazykmamy",
         "svadbazavtra",
         "datnedat",
-        "budemzdorovy"
+        "budemzdorovy",
+        "vdvuhshagah"
       ],
       "португальский": [
         "kafune",
@@ -521,6 +526,9 @@
       ],
       "шерпский": [
         "sherpa"
+      ],
+      "ногайский": [
+        "vdvuhshagah"
       ]
     }
   },
@@ -643,7 +651,8 @@
         "shkurakoshki",
         "shestisem",
         "nemoepite",
-        "dorogovato"
+        "dorogovato",
+        "vdvuhshagah"
       ],
       "испанский": [
         "zabiratvolosy",
@@ -672,7 +681,8 @@
         "ushnoycherv",
         "datnedat",
         "nemoepite",
-        "taktikasalyami"
+        "taktikasalyami",
+        "vdvuhshagah"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -680,14 +690,16 @@
       "осетинский": [
         "sedmayavodanakisele",
         "vrovensolntsu",
-        "tsenaibol"
+        "tsenaibol",
+        "vdvuhshagah"
       ],
       "персидский": [
         "lyuboviorgany"
       ],
       "польский": [
         "dvuhnezaitsev",
-        "datnedat"
+        "datnedat",
+        "vdvuhshagah"
       ],
       "турецкий": [
         "dvuhnezaitsev",
@@ -748,6 +760,12 @@
       ],
       "черкесский": [
         "tsenaibol"
+      ],
+      "ногайский": [
+        "vdvuhshagah"
+      ],
+      "венгерский": [
+        "vdvuhshagah"
       ]
     }
   },
