@@ -29,7 +29,8 @@
       "sukoblyavanie",
       "fokuhila",
       "umarell",
-      "tsundoku"
+      "tsundoku",
+      "sherpa"
     ]
   },
   "strany": {
@@ -78,6 +79,9 @@
       ],
       "узбекистан": [
         "uzbekiivy"
+      ],
+      "непал": [
+        "sherpa"
       ]
     }
   },
@@ -509,6 +513,12 @@
       ],
       "латынь": [
         "yugovostok"
+      ],
+      "тибетский": [
+        "sherpa"
+      ],
+      "шерпский": [
+        "sherpa"
       ]
     }
   },
