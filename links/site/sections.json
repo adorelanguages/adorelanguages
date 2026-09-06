@@ -256,7 +256,8 @@
         "rakushki",
         "sobaka",
         "yazykmamy",
-        "nuitvar"
+        "nuitvar",
+        "mandarinskiy"
       ],
       "коми": [
         "komi",
@@ -857,7 +858,9 @@
   "sport": {
     "title": "Спорт",
     "slugs": [
-      "shahimat"
+      "shahimat",
+      "bazovyymyach",
+      "lyubovutki"
     ]
   }
 }
