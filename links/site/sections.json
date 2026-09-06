@@ -173,7 +173,8 @@
         "pustynyasahara",
         "safari",
         "medovyymesyats",
-        "nuitvar"
+        "nuitvar",
+        "kaksobaka"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -389,7 +390,8 @@
         "nibelmesa",
         "bardak",
         "yazykmamy",
-        "nuitvar"
+        "nuitvar",
+        "kaksobaka"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -435,7 +437,8 @@
         "sovershennye",
         "vremyaipogoda",
         "podlozhitkrolika",
-        "tsenaibol"
+        "tsenaibol",
+        "kaksobaka"
       ],
       "хорватский": [
         "listopad",
@@ -571,7 +574,8 @@
       "podlozhitkrolika",
       "dorogovato",
       "tsundoku",
-      "oksyumoron"
+      "oksyumoron",
+      "kaksobaka"
     ]
   },
   "lingvistika": {
@@ -723,7 +727,8 @@
         "nenashibarany",
         "datnedat",
         "podlozhitkrolika",
-        "tsenaibol"
+        "tsenaibol",
+        "kaksobaka"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
@@ -765,6 +770,9 @@
       ],
       "венгерский": [
         "vdvuhshagah"
+      ],
+      "арабский": [
+        "kaksobaka"
       ]
     }
   },
@@ -841,7 +849,8 @@
       "moyushchiymedved",
       "horovodogolod",
       "zaykiskotikami",
-      "podlozhitkrolika"
+      "podlozhitkrolika",
+      "kaksobaka"
     ]
   }
 }
