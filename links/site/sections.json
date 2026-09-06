@@ -363,7 +363,8 @@
         "zharenaya",
         "teloslavyanina",
         "romashka",
-        "nesoglasie"
+        "nesoglasie",
+        "shahimat"
       ],
       "сербский": [
         "srpskopismo",
@@ -851,6 +852,12 @@
       "zaykiskotikami",
       "podlozhitkrolika",
       "kaksobaka"
+    ]
+  },
+  "sport": {
+    "title": "Спорт",
+    "slugs": [
+      "shahimat"
     ]
   }
 }
