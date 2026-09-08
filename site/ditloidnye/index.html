@@ -210,6 +210,24 @@
     margin: 12px 0 0;
   }
 
+  .numbered-list {
+    list-style: none;
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #1f1e2e;
+    margin: 12px 0 0;
+    padding: 0;
+  }
+  .numbered-list li {
+    display: flex;
+  }
+  .numbered-list .num {
+    min-width: 30px;
+    flex-shrink: 0;
+    text-align: left;
+  }
+
   .top-row-buttons {
     display: flex;
     gap: 8px;
@@ -352,33 +370,33 @@
 
   <details class="answer-spoiler">
     <summary>Показать подсказки</summary>
-    <ol class="bullets">
-      <li>разговор</li>
-      <li>зайцев</li>
-      <li>короба</li>
-      <li>стороны</li>
-      <li>пальцев</li>
-      <li>пятниц</li>
-      <li>пальцев</li>
-      <li>буквы</li>
-      <li>недели</li>
-      <li>центов</li>
+    <ol class="numbered-list">
+      <li><span class="num">1)</span><span>разговор</span></li>
+      <li><span class="num">2)</span><span>зайцев</span></li>
+      <li><span class="num">3)</span><span>короба</span></li>
+      <li><span class="num">4)</span><span>стороны</span></li>
+      <li><span class="num">5)</span><span>пальцев</span></li>
+      <li><span class="num">6)</span><span>пятниц</span></li>
+      <li><span class="num">7)</span><span>пальцев</span></li>
+      <li><span class="num">8)</span><span>буквы</span></li>
+      <li><span class="num">9)</span><span>недели</span></li>
+      <li><span class="num">10)</span><span>центов</span></li>
     </ol>
   </details>
 
   <details class="answer-spoiler">
     <summary>Показать правильные ответы</summary>
-    <ol class="bullets">
-      <li>Разговор один на один</li>
-      <li>Убить двух зайцев</li>
-      <li>Наплести с три короба</li>
-      <li>На все четыре стороны</li>
-      <li>Как свои пять пальцев</li>
-      <li>Семь пятниц на неделе</li>
-      <li>Десять пальцев на руках</li>
-      <li>Тридцать три буквы в алфавите</li>
-      <li>Пятьдесят две недели в году</li>
-      <li>Сто центов в долларе</li>
+    <ol class="numbered-list">
+      <li><span class="num">1)</span><span>Разговор один на один</span></li>
+      <li><span class="num">2)</span><span>Убить двух зайцев</span></li>
+      <li><span class="num">3)</span><span>Наплести с три короба</span></li>
+      <li><span class="num">4)</span><span>На все четыре стороны</span></li>
+      <li><span class="num">5)</span><span>Как свои пять пальцев</span></li>
+      <li><span class="num">6)</span><span>Семь пятниц на неделе</span></li>
+      <li><span class="num">7)</span><span>Десять пальцев на руках</span></li>
+      <li><span class="num">8)</span><span>Тридцать три буквы в алфавите</span></li>
+      <li><span class="num">9)</span><span>Пятьдесят две недели в году</span></li>
+      <li><span class="num">10)</span><span>Сто центов в долларе</span></li>
     </ol>
   </details>
 
