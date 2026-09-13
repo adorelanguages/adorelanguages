@@ -113,7 +113,8 @@
       "zont",
       "sovershennye",
       "germanizmi",
-      "yugovostok"
+      "yugovostok",
+      "chernota"
     ]
   },
   "yazyki": {
@@ -135,6 +136,7 @@
         "shiptarskiy"
       ],
       "английский": [
+        "pitsy",
         "iyunnadcatoe",
         "veterinirovat",
         "pryamikom",
@@ -196,6 +198,7 @@
         "dvaipolovina"
       ],
       "венгерский": [
+        "pitsy",
         "trisobaka",
         "glazzakroy",
         "sobaka",
@@ -231,6 +234,7 @@
         "zhechresnicy"
       ],
       "итальянский": [
+        "pitsy",
         "tiramenyasu",
         "dvuhnezaitsev",
         "kartofel",
@@ -254,6 +258,9 @@
         "dorogovato",
         "umarell"
       ],
+      "каталанский": [
+        "pitsy"
+      ],
       "китайский": [
         "yaytsoibanan",
         "rakushki",
@@ -274,6 +281,9 @@
         "dikiiobraz",
         "kgnomikam"
       ],
+      "мальтийский": [
+        "pitsy"
+      ],
       "монгольский": [
         "tyrboga"
       ],
@@ -284,6 +294,7 @@
         "navajo"
       ],
       "немецкий": [
+        "pitsy",
         "dvoyako",
         "kruchonkisrynka",
         "nahnah",
@@ -325,6 +336,7 @@
         "kost"
       ],
       "норвежский": [
+        "pitsy",
         "dvuhnezaitsev",
         "divannayakartoshka"
       ],
@@ -339,6 +351,7 @@
         "pakistan"
       ],
       "польский": [
+        "pitsy",
         "hlebnoeuho",
         "dvuhnezaitsev",
         "listopad",
@@ -377,6 +390,7 @@
         "yazykmamy"
       ],
       "словацкий": [
+        "pitsy",
         "trampova",
         "poryadokbukv",
         "svsmbzglsnh"
@@ -416,6 +430,7 @@
         "pakistan"
       ],
       "финский": [
+        "pitsy",
         "mozgivgarderob",
         "divannayakartoshka",
         "tyomnyyles",
@@ -460,6 +475,7 @@
         "chechenskost"
       ],
       "чешский": [
+        "pitsy",
         "zabavlyadlo",
         "trampova",
         "poryadokbukv",
@@ -468,6 +484,7 @@
         "metamorfozy"
       ],
       "шведский": [
+        "pitsy",
         "babushkatsia",
         "divannayakartoshka",
         "dikiiobraz",
@@ -797,7 +814,8 @@
       "stranopisanie",
       "moskva",
       "burgery",
-      "yugovostok"
+      "yugovostok",
+      "chernota"
     ]
   },
   "knigi": {
@@ -827,7 +845,8 @@
       "sovershennye",
       "burgery",
       "nemoepite",
-      "spam"
+      "spam",
+      "pitsy"
     ]
   },
   "rasteniya": {
