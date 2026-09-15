@@ -555,7 +555,8 @@
         "vdvuhshagah"
       ],
       "жестовые языки": [
-        "zhestislovo"
+        "zhestislovo",
+        "lingvoprosiki1"
       ]
     }
   },
@@ -893,6 +894,12 @@
       "shahimat",
       "bazovyymyach",
       "lyubovutki"
+    ]
+  },
+  "lingvoprosiki": {
+    "title": "Лингвопросики",
+    "slugs": [
+      "lingvoprosiki1"
     ]
   }
 }
