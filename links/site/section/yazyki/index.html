@@ -49,6 +49,12 @@
     margin: 0 0 8px;
   }
 
+  @media (max-width: 480px) {
+    h1 .lang-name {
+      display: block;
+    }
+  }
+
   .toggle {
     margin: 20px 0 16px;
     font-size: 0.95em;
@@ -297,8 +303,12 @@
     }
     const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
 
-    document.getElementById('title').textContent =
-      lang ? `Языки: ${lang}` : `Языки`;
+    const titleEl = document.getElementById('title');
+    if (lang) {
+      titleEl.innerHTML = `Языки: <span class="lang-name">${lang}</span>`;
+    } else {
+      titleEl.textContent = 'Языки';
+    }
 
     const grid = document.getElementById('post-grid');
     grid.innerHTML = '';
