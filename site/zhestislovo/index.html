@@ -186,6 +186,40 @@
     max-width: 100%;
   }
 
+  .answer-spoiler {
+    margin: 0 0 22px;
+    border: 1px solid rgb(45,44,91);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .answer-spoiler summary {
+    cursor: pointer;
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(45,44,91);
+    list-style: none;
+  }
+  .answer-spoiler summary::-webkit-details-marker {
+    display: none;
+  }
+  .answer-spoiler summary::after {
+    content: ' \25BE';
+  }
+  .answer-spoiler[open] summary::after {
+    content: ' \25B4';
+  }
+  .answer-spoiler ul.bullets {
+    margin: 12px 0 0;
+  }
+  .answer-spoiler p.spoiler-note {
+    font-family: 'Factora', Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #1f1e2e;
+    margin: 16px 0 0;
+  }
+
   .top-row-buttons {
     display: flex;
     gap: 8px;
@@ -324,12 +358,18 @@
 
   <!-- Нет комментария – SEO‑текст скрыт -->
 
+  <details class="answer-spoiler">
+    <summary>Показать ответ</summary>
+    <p class="spoiler-note">Оба жеста обозначают латинскую букву «В». Наверху – на британском жестовом языке, внизу – на американском.</p>
+  </details>
+
   <!--SECTIONS-->
 
   <div class="related">
-    <p class="related-title">Раздел:</p>
+    <p class="related-title">Разделы:</p>
     <ul>
       <li><a href="/links/site/section/yazyki/?lang=жестовые%20языки">Языки: жестовые языки</a></li>
+      <li><a href="/links/site/section/zagadki/">Загадки</a></li>
     </ul>
   </div>
 
