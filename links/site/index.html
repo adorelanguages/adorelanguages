@@ -140,6 +140,8 @@
     .vote-cta-row {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
       margin: 4px 0 26px;
     }
     .vote-cta-wrap {
@@ -225,14 +227,18 @@
       <a class="vote-cta" id="vote-cta-btn" href="https://adorelanguages.com/golosovania/">Голосования</a>
       <svg class="vote-cta-ring" id="vote-cta-ring"><rect id="vote-cta-rect"/></svg>
     </div>
+    <div class="vote-cta-wrap">
+      <a class="vote-cta" id="lingvoprosiki-cta-btn" href="/links/site/section/lingvoprosiki/">Лингвопросики</a>
+      <svg class="vote-cta-ring" id="lingvoprosiki-cta-ring"><rect id="lingvoprosiki-cta-rect"/></svg>
+    </div>
   </div>
 
   <script>
     (function () {
-      function sizeVoteCtaRing() {
-        var btn = document.getElementById('vote-cta-btn');
-        var svg = document.getElementById('vote-cta-ring');
-        var rect = document.getElementById('vote-cta-rect');
+      function sizeCtaRing(btnId, svgId, rectId) {
+        var btn = document.getElementById(btnId);
+        var svg = document.getElementById(svgId);
+        var rect = document.getElementById(rectId);
         if (!btn || !svg || !rect) return;
         var w = btn.offsetWidth;
         var h = btn.offsetHeight;
@@ -245,10 +251,14 @@
         rect.setAttribute('rx', h / 2);
         rect.setAttribute('ry', h / 2);
       }
-      sizeVoteCtaRing();
-      window.addEventListener('resize', sizeVoteCtaRing);
+      function sizeAllCtaRings() {
+        sizeCtaRing('vote-cta-btn', 'vote-cta-ring', 'vote-cta-rect');
+        sizeCtaRing('lingvoprosiki-cta-btn', 'lingvoprosiki-cta-ring', 'lingvoprosiki-cta-rect');
+      }
+      sizeAllCtaRings();
+      window.addEventListener('resize', sizeAllCtaRings);
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(sizeVoteCtaRing);
+        document.fonts.ready.then(sizeAllCtaRings);
       }
     })();
   </script>
