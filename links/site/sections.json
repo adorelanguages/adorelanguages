@@ -171,7 +171,8 @@
         "germanskayasmes",
         "kost",
         "ponaehalitut",
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "resheniya"
       ],
       "арабский": [
         "pustynyasahara",
@@ -231,7 +232,8 @@
         "datnedat",
         "sovershennye",
         "vremyaipogoda",
-        "zhechresnicy"
+        "zhechresnicy",
+        "resheniya"
       ],
       "итальянский": [
         "pitsy",
@@ -256,7 +258,8 @@
         "sovershennye",
         "vremyaipogoda",
         "dorogovato",
-        "umarell"
+        "umarell",
+        "resheniya"
       ],
       "каталанский": [
         "pitsy"
@@ -325,7 +328,8 @@
         "yugovostok",
         "germanskayasmes",
         "kost",
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "resheniya"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -344,7 +348,8 @@
         "sedmayavodanakisele",
         "vrovensolntsu",
         "tsenaibol",
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "resheniya"
       ],
       "персидский": [
         "lyuboviorgany",
@@ -410,7 +415,8 @@
         "bardak",
         "yazykmamy",
         "nuitvar",
-        "kaksobaka"
+        "kaksobaka",
+        "resheniya"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -458,7 +464,8 @@
         "vremyaipogoda",
         "podlozhitkrolika",
         "tsenaibol",
-        "kaksobaka"
+        "kaksobaka",
+        "resheniya"
       ],
       "хорватский": [
         "listopad",
@@ -557,6 +564,9 @@
       "жестовые языки": [
         "zhestislovo",
         "lingvoprosiki1"
+      ],
+      "азербайджанский": [
+        "resheniya"
       ]
     }
   },
