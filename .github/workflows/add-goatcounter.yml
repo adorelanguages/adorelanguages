@@ -1,0 +1,76 @@
+name: Add GoatCounter tracking script
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  add-goatcounter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Insert GoatCounter script and share-button click tracking
+        run: |
+          python3 - <<'PYEOF'
+          import pathlib
+
+          CF_LINE = """<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->"""
+          GC_LINE = """<!-- GoatCounter Web Analytics --><script data-goatcounter="https://adorelanguages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><!-- End GoatCounter Web Analytics -->"""
+
+          # id of each share element -> GoatCounter event name to record on click
+          SHARE_EVENTS = {
+              'share-whatsapp': 'share-whatsapp',
+              'share-messenger': 'share-messenger',
+              'share-x': 'share-x',
+              'share-facebook': 'share-facebook',
+              'share-instagram': 'share-instagram',
+              'share-telegram': 'share-telegram',
+              'share-viber': 'share-viber',
+              'share-email': 'share-email',
+              'share-btn': 'share-panel-open',
+              'share-copy-btn': 'share-copy-link',
+          }
+
+          files_changed = 0
+          attrs_added = 0
+          for path in pathlib.Path('.').rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              if CF_LINE in text and GC_LINE not in text:
+                  text = text.replace(CF_LINE, CF_LINE + '\n' + GC_LINE, 1)
+
+              for id_, event in SHARE_EVENTS.items():
+                  old = f'id="{id_}"'
+                  new = f'id="{id_}" data-goatcounter-click="{event}"'
+                  if new in text:
+                      continue
+                  if old in text:
+                      text = text.replace(old, new, 1)
+                      attrs_added += 1
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  files_changed += 1
+
+          print(f'Files changed: {files_changed}, share-click attributes added: {attrs_added}')
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Add GoatCounter tracking script and share-button click events"
+          git push
