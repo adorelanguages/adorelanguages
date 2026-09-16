@@ -114,7 +114,8 @@
       "sovershennye",
       "germanizmi",
       "yugovostok",
-      "chernota"
+      "chernota",
+      "apelsiniya"
     ]
   },
   "yazyki": {
@@ -133,7 +134,8 @@
         "tsenaibol"
       ],
       "албанский": [
-        "shiptarskiy"
+        "shiptarskiy",
+        "apelsiniya"
       ],
       "английский": [
         "pitsy",
@@ -179,7 +181,8 @@
         "safari",
         "medovyymesyats",
         "nuitvar",
-        "kaksobaka"
+        "kaksobaka",
+        "apelsiniya"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -214,7 +217,8 @@
       "греческий": [
         "kak-dela",
         "sobaka",
-        "tyomnyyles"
+        "tyomnyyles",
+        "apelsiniya"
       ],
       "датский": [
         "igraho"
@@ -416,7 +420,8 @@
         "yazykmamy",
         "nuitvar",
         "kaksobaka",
-        "resheniya"
+        "resheniya",
+        "apelsiniya"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -535,7 +540,8 @@
       ],
       "грузинский": [
         "dvaipolovina",
-        "budemzdorovy"
+        "budemzdorovy",
+        "apelsiniya"
       ],
       "тайский": [
         "nuitvar"
@@ -566,7 +572,8 @@
         "lingvoprosiki1"
       ],
       "азербайджанский": [
-        "resheniya"
+        "resheniya",
+        "apelsiniya"
       ]
     }
   },
@@ -831,7 +838,8 @@
       "moskva",
       "burgery",
       "yugovostok",
-      "chernota"
+      "chernota",
+      "apelsiniya"
     ]
   },
   "knigi": {
@@ -862,7 +870,8 @@
       "burgery",
       "nemoepite",
       "spam",
-      "pitsy"
+      "pitsy",
+      "apelsiniya"
     ]
   },
   "rasteniya": {
