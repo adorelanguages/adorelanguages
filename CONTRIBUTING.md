@@ -664,7 +664,39 @@ CSS/HTML/JS из любого недавнего поста (например `s
   зависимость на сайте, который и так уже старается быть максимально самодостаточным (шрифт Factora
   тоже захостен локально, а не через Google Fonts).
 
+**Аналитика и трекинг кликов (GoatCounter) – ОБЯЗАТЕЛЬНО для КАЖДОГО нового поста.** Сразу после
+`<!-- Cloudflare Web Analytics -->` (перед `</body>`) идёт вторая строка – обе аналитики работают
+параллельно, Cloudflare пока не убираем:
+```html
+<!-- GoatCounter Web Analytics --><script data-goatcounter="https://adorelanguages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><!-- End GoatCounter Web Analytics -->
+```
+Кроме этого, у КАЖДОГО из 10 интерактивных элементов блока «Поделиться» должен стоять атрибут
+`data-goatcounter-click="<имя-события>"` (без него GoatCounter считает только просмотры страницы, но
+не клики по конкретным кнопкам – а именно это Вадиму и нужно):
+- `id="share-btn"` → `data-goatcounter-click="share-panel-open"`
+- `id="share-whatsapp"` → `data-goatcounter-click="share-whatsapp"`
+- `id="share-messenger"` → `data-goatcounter-click="share-messenger"`
+- `id="share-x"` → `data-goatcounter-click="share-x"`
+- `id="share-facebook"` → `data-goatcounter-click="share-facebook"`
+- `id="share-instagram"` → `data-goatcounter-click="share-instagram"`
+- `id="share-telegram"` → `data-goatcounter-click="share-telegram"`
+- `id="share-viber"` → `data-goatcounter-click="share-viber"`
+- `id="share-email"` → `data-goatcounter-click="share-email"`
+- `id="share-copy-btn"` → `data-goatcounter-click="share-copy-link"`
+
+Оба этих момента уже присутствуют в любом посте, скопированном ПОСЛЕ 16 сентября 2026 (например
+`site/resheniya/index.html`, `site/postpropovtor/index.html`, `site/apelsiniya/index.html`) – при
+копировании шаблона с одного из этих недавних постов ничего добавлять вручную не нужно. Но если
+копировать структуру со СТАРОГО поста (см. список выше, до массового обновления) – обязательно
+проверить и добавить вручную обе вещи, иначе новый пост не попадёт в статистику GoatCounter вообще
+(ни просмотры, ни клики).
+
 Правило внедрено разом на все посты, существовавшие на момент записи (122 файла на тот момент).
+GoatCounter (вторая строка аналитики + все 10 атрибутов `data-goatcounter-click`) добавлен отдельным
+разовым GitHub Actions workflow сразу на все 224 поста и 255 страниц сайта 16 сентября 2026 (см.
+историю чата, файл `.github/workflows/add-goatcounter.yml` можно удалить – он больше не нужен,
+разовая задача выполнена, но безвреден, если оставить: при повторном запуске просто ничего не
+меняет).
 
 ## Карта читателей (`/golosovania/karta/`)
 
