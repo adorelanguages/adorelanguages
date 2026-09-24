@@ -179,7 +179,8 @@
         "vdvuhshagah",
         "resheniya",
         "biskvit",
-        "tostperdyu"
+        "tostperdyu",
+        "podsnezhnik"
       ],
       "арабский": [
         "pustynyasahara",
@@ -219,7 +220,8 @@
       "голландский": [
         "dikiiobraz",
         "moyushchiymedved",
-        "ktoeto"
+        "ktoeto",
+        "podsnezhnik"
       ],
       "греческий": [
         "kak-dela",
@@ -229,7 +231,8 @@
         "allo"
       ],
       "датский": [
-        "igraho"
+        "igraho",
+        "podsnezhnik"
       ],
       "иврит": [
         "shibbolet",
@@ -247,7 +250,8 @@
         "vremyaipogoda",
         "zhechresnicy",
         "resheniya",
-        "allo"
+        "allo",
+        "stydobushka"
       ],
       "итальянский": [
         "pitsy",
@@ -276,7 +280,8 @@
         "resheniya",
         "biskvit",
         "allo",
-        "vozdastsya"
+        "vozdastsya",
+        "podsnezhnik"
       ],
       "каталанский": [
         "pitsy"
@@ -347,7 +352,8 @@
         "kost",
         "vdvuhshagah",
         "resheniya",
-        "ktoeto"
+        "ktoeto",
+        "stydobushka"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -356,7 +362,8 @@
         "metamorfozy",
         "germanskayasmes",
         "kost",
-        "ktoeto"
+        "ktoeto",
+        "podsnezhnik"
       ],
       "норвежский": [
         "pitsy",
@@ -461,7 +468,8 @@
         "mozgivgarderob",
         "divannayakartoshka",
         "tyomnyyles",
-        "metamorfozy"
+        "metamorfozy",
+        "stydobushka"
       ],
       "французский": [
         "kakashektebe",
@@ -512,7 +520,8 @@
         "poryadokbukv",
         "svsmbzglsnh",
         "listopad",
-        "metamorfozy"
+        "metamorfozy",
+        "podsnezhnik"
       ],
       "шведский": [
         "pitsy",
@@ -541,7 +550,8 @@
       "казахский": [
         "sobaka",
         "ktoslizal",
-        "metamorfozy"
+        "metamorfozy",
+        "kazahskayaposlovitsa"
       ],
       "суахили": [
         "safari"
@@ -643,7 +653,8 @@
       "kaksobaka",
       "zhechresnicy",
       "vozdastsya",
-      "lohmatyydesert"
+      "lohmatyydesert",
+      "kazahskayaposlovitsa"
     ]
   },
   "lingvistika": {
@@ -701,7 +712,8 @@
       "divan",
       "bratcy",
       "zapahgari",
-      "vsebrosit"
+      "vsebrosit",
+      "uchitelnitsarusskogo"
     ]
   },
   "zagadki": {
@@ -908,7 +920,8 @@
     "title": "Растения",
     "slugs": [
       "romashka",
-      "kartofel"
+      "kartofel",
+      "podsnezhnik"
     ]
   },
   "zhivotnye": {
@@ -936,7 +949,8 @@
       "zaykiskotikami",
       "podlozhitkrolika",
       "kaksobaka",
-      "svadbazavtra"
+      "svadbazavtra",
+      "surovyyneyming"
     ]
   },
   "sport": {
