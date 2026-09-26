@@ -192,7 +192,8 @@
       ],
       "армянский": [
         "armyanktuaciya",
-        "sobakahozyainaneuznaet"
+        "sobakahozyainaneuznaet",
+        "lingvoprosiki2"
       ],
       "африкаанс": [
         "krossulya"
@@ -964,7 +965,8 @@
   "lingvoprosiki": {
     "title": "Лингвопросики",
     "slugs": [
-      "lingvoprosiki1"
+      "lingvoprosiki1",
+      "lingvoprosiki2"
     ]
   }
 }
