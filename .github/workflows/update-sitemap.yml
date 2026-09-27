@@ -6,7 +6,9 @@ on:
     paths:
       - 'links/site/posts.json'
       - 'links/fb/posts.json'
+      - 'links/site/section/**'
       - 'scripts/generate_sitemap.py'
+      - 'scripts/ping_indexnow.py'
   workflow_dispatch: {}
 
 permissions:
@@ -18,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,6 +32,9 @@ jobs:
         run: python3 scripts/generate_sitemap.py
 
       - name: Ping IndexNow (Yandex)
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
         run: python3 scripts/ping_indexnow.py
 
       - name: Commit changes if any
