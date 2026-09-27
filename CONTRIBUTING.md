@@ -244,8 +244,25 @@ CSS (добавить в `<style>` страницы поста, после пр�
 Правило применено (по состоянию на момент записи) к постам: `tyomnyyles`, `dikiiobraz`,
 `divannayakartoshka`, `dvuhnezaitsev`, `hlebnoeuho`, `kak-dela`, `kartofel`, `listopad`,
 `moyushchiymedved`, `predlogi`, `shibbolet`, `sobaka`, `tyrboga`, `ushnoycherv`, `voodushevlenie`,
-`zanimatelnoesovpadenie`. При добавлении НОВОГО поста – если в его блоке `.related` оказывается
-больше 3 ссылок, сразу оформлять двумя колонками по этой же схеме, а не как плоский список.
+`zanimatelnoesovpadenie`, `ktoslizal`, `nenashibarany`, `nipuhanipera`, `sobakahozyainaneuznaet`,
+`svinosobaka`, `tsvetnayasobaka`, `uvasestkozyol`. При добавлении НОВОГО поста – если в его блоке
+`.related` оказывается больше 3 ссылок, сразу оформлять двумя колонками по этой же схеме, а не как
+плоский список.
+
+**Разметка `.related-columns` без CSS-правила – реальный баг, повторившийся минимум на 7 постах
+(`ktoslizal`, `nenashibarany`, `nipuhanipera`, `sobakahozyainaneuznaet`, `svinosobaka`,
+`tsvetnayasobaka`, `uvasestkozyol`; обнаружено в сентябре 2026, когда Вадим прислал скриншот
+опубликованной страницы `nipuhanipera` и на нём список «Разделы:» отображался ОДНОЙ колонкой
+вместо двух).** Причина – эти посты были собраны на основе шаблона (`sobakahozyainaneuznaet`),
+в котором сама разметка `<div class="related-columns">` в `.related` есть, а CSS-правило
+`.related-columns { display: grid; ... }` в `<style>` – нет (та же природа ошибки, что и с
+`.answer-spoiler` выше: разметка скопирована, стиль – нет, а без грид-CSS браузер просто
+показывает два `<ul>` друг под другом как один плоский список). Все 7 постов исправлены (CSS-
+правило добавлено в `<style>` после `.related a`). **Поэтому после сборки поста с блоком
+`.related-columns` – обязательно проверить командой** `grep -c "\.related-columns {" site/<slug>/index.html`
+**(должно быть ≥1), а не только** `grep "related-columns"` **(это найдёт и голую разметку без
+стиля) – наличие разметки не гарантирует наличие стилей.** Брать за образец шаблона для
+двухколоночного блока лучше `dikiiobraz` (CSS точно на месте), а не `sobakahozyainaneuznaet`.
 
 **Длинные названия разделов – всегда последними в списке, ВНЕ ЗАВИСИМОСТИ от того, 1 это
 колонка или 2.** Если название ссылки длинное (текст ссылки больше 20 символов – например,
