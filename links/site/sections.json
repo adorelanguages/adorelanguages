@@ -184,7 +184,9 @@
         "tostperdyu",
         "podsnezhnik",
         "nipuhanipera",
-        "napomoshch"
+        "napomoshch",
+        "robokop",
+        "tolstayaledi"
       ],
       "арабский": [
         "pustynyasahara",
@@ -203,7 +205,8 @@
       ],
       "африкаанс": [
         "krossulya",
-        "verblyudokon"
+        "verblyudokon",
+        "robokop"
       ],
       "болгарский": [
         "moyushchiymedved",
@@ -260,7 +263,8 @@
         "zhechresnicy",
         "resheniya",
         "allo",
-        "stydobushka"
+        "stydobushka",
+        "kolbasopovodok"
       ],
       "итальянский": [
         "pitsy",
@@ -457,7 +461,8 @@
         "kaksobaka",
         "resheniya",
         "apelsiniya",
-        "allo"
+        "allo",
+        "utyuzhitgolovu"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -674,7 +679,10 @@
       "prygatspetuhanaosla",
       "pisatmimotsvetochnogogorshka",
       "zitspinkler",
-      "verblyudokon"
+      "verblyudokon",
+      "utyuzhitgolovu",
+      "tolstayaledi",
+      "kolbasopovodok"
     ]
   },
   "lingvistika": {
@@ -764,13 +772,15 @@
         "nemoepite",
         "dorogovato",
         "vdvuhshagah",
-        "nipuhanipera"
+        "nipuhanipera",
+        "tolstayaledi"
       ],
       "испанский": [
         "zabiratvolosy",
         "pokoyotit",
         "datnedat",
-        "zhechresnicy"
+        "zhechresnicy",
+        "kolbasopovodok"
       ],
       "итальянский": [
         "dvuhnezaitsev",
@@ -824,7 +834,8 @@
       "турецкий": [
         "dvuhnezaitsev",
         "tseluyu",
-        "nibelmesa"
+        "nibelmesa",
+        "utyuzhitgolovu"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -943,7 +954,8 @@
       "biskvit",
       "tostperdyu",
       "tsenabukvy",
-      "lohmatyydesert"
+      "lohmatyydesert",
+      "kolbasopovodok"
     ]
   },
   "rasteniya": {
@@ -981,7 +993,8 @@
       "kaksobaka",
       "svadbazavtra",
       "surovyyneyming",
-      "verblyudokon"
+      "verblyudokon",
+      "kolbasopovodok"
     ]
   },
   "sport": {
