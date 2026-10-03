@@ -6,15 +6,44 @@ Regenerates sitemap.xml from the site's source of truth:
 - golosovania/<slug>/            -> /golosovania/{slug}/         (auto-discovered)
 plus a fixed list of static/catalog pages.
 
+Each <url> also gets a <lastmod>, taken from the real last-commit date of its
+underlying index.html (`git log -1 --format=%cI -- <path>`) — not a made-up
+"now" timestamp. A page whose file isn't committed yet (new, uncommitted) is
+written without <lastmod> rather than a guessed date.
+
 Run automatically by .github/workflows/update-sitemap.yml on every push to main
 that touches links/site/posts.json, links/fb/posts.json, links/site/section/**,
 golosovania/**, sozdateli/**, or this script.
 """
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://adorelanguages.com"
+
+
+def last_commit_date(relpath):
+    """Return the ISO-8601 commit date of the last commit touching relpath, or None."""
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", relpath],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError:
+        return None
+    date = result.stdout.strip()
+    return date or None
+
+
+def url_block(loc, relpath=None):
+    lastmod = last_commit_date(relpath) if relpath else None
+    if lastmod:
+        return f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{lastmod}</lastmod>\n  </url>"
+    return f"  <url>\n    <loc>{loc}</loc>\n  </url>"
 
 STATIC_PAGES = [
     "/",
@@ -54,24 +83,28 @@ def build_sitemap():
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         "",
         "  <!-- Homepage -->",
-        f"  <url>\n    <loc>{BASE}/</loc>\n  </url>",
+        url_block(f"{BASE}/", "index.html"),
         "",
         "  <!-- Catalog pages -->",
     ]
     for page in STATIC_PAGES[1:]:
-        lines.append(f"  <url>\n    <loc>{BASE}{page}</loc>\n  </url>")
+        relpath = page.strip("/") + "/index.html"
+        lines.append(url_block(f"{BASE}{page}", relpath))
 
     lines += ["", "  <!-- Section pages -->"]
     for page in section_pages:
-        lines.append(f"  <url>\n    <loc>{BASE}{page}</loc>\n  </url>")
+        relpath = page.strip("/") + "/index.html"
+        lines.append(url_block(f"{BASE}{page}", relpath))
 
     lines += ["", "  <!-- Golosovania pages -->"]
     for page in golosovania_pages:
-        lines.append(f"  <url>\n    <loc>{BASE}{page}</loc>\n  </url>")
+        relpath = page.strip("/") + "/index.html"
+        lines.append(url_block(f"{BASE}{page}", relpath))
 
     lines += ["", "  <!-- Site posts -->"]
     for slug in site_slugs:
-        lines.append(f"  <url>\n    <loc>{BASE}/site/{slug}/</loc>\n  </url>")
+        relpath = f"site/{slug}/index.html"
+        lines.append(url_block(f"{BASE}/site/{slug}/", relpath))
 
     lines += ["", "</urlset>", ""]
     return "\n".join(lines)
