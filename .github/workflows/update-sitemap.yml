@@ -7,6 +7,8 @@ on:
       - 'links/site/posts.json'
       - 'links/fb/posts.json'
       - 'links/site/section/**'
+      - 'golosovania/**'
+      - 'sozdateli/**'
       - 'scripts/generate_sitemap.py'
       - 'scripts/ping_indexnow.py'
   workflow_dispatch: {}
