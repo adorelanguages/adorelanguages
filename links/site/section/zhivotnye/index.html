@@ -145,7 +145,7 @@
     <a href="/links/site/all/">Все посты</a>
   </div>
 
-  <div class="grid" id="post-grid"></div>
+  <div class="grid" id="post-grid"><a class="card" data-bg="blue" href="/site/sobaka/"><img src="/images/posts/sobaka.png" alt="Собака" loading="lazy"></a><a class="card" data-bg="pink" href="/site/dikiiobraz/"><img src="/images/posts/dikiiobraz.png" alt="Дикий образ" loading="lazy"></a><a class="card" data-bg="pink" href="/site/svinosobaka/"><img src="/images/posts/svinosobaka.png" alt="Свинособака" loading="lazy"></a><a class="card" data-bg="green" href="/site/lvinayadolya/"><img src="/images/posts/lvinayadolya.png" alt="Львиная доля" loading="lazy"></a><a class="card" data-bg="pink" href="/site/sobakahozyainaneuznaet/"><img src="/images/posts/sobakahozyainaneuznaet.png" alt="Собака хозяина не узнает" loading="lazy"></a><a class="card" data-bg="pink" href="/site/pokoyotit/"><img src="/images/posts/pokoyotit.png" alt="Покойотить?" loading="lazy"></a><a class="card" data-bg="lilac" href="/site/krossulya/"><img src="/images/posts/krossulya.png" alt="Кроссуля" loading="lazy"></a><a class="card" data-bg="pink" href="/site/ushnoycherv/"><img src="/images/posts/ushnoycherv.png" alt="Ушной червь" loading="lazy"></a><a class="card" data-bg="lilac" href="/site/dvuhnezaitsev/"><img src="/images/posts/dvuhnezaitsev.png" alt="Двух не зайцев" loading="lazy"></a><a class="card" data-bg="green" href="/site/tsvetnayasobaka/"><img src="/images/posts/tsvetnayasobaka.png" alt="Цветная собака" loading="lazy"></a><a class="card" data-bg="pink" href="/site/shkurakoshki/"><img src="/images/posts/shkurakoshki.png" alt="Шкура кошки" loading="lazy"></a><a class="card" data-bg="pink" href="/site/nuitvar/"><img src="/images/posts/nuitvar.png" alt="Ну и тварь!" loading="lazy"></a><a class="card" data-bg="pink" href="/site/ktoslizal/"><img src="/images/posts/ktoslizal.png" alt="Кто слизал?" loading="lazy"></a><a class="card" data-bg="blue" href="/site/nenashibarany/"><img src="/images/posts/nenashibarany.png" alt="Не наши бараны" loading="lazy"></a><a class="card" data-bg="green" href="/site/skotchterer/"><img src="/images/posts/skotchterer.png" alt="Скотч-терьер" loading="lazy"></a><a class="card" data-bg="pink" href="/site/uvasestkozyol/"><img src="/images/posts/uvasestkozyol.png" alt="У вас есть козёл?" loading="lazy"></a><a class="card" data-bg="pink" href="/site/zooanatomiya/"><img src="/images/posts/zooanatomiya.png" alt="Зооанатомия" loading="lazy"></a><a class="card" data-bg="pink" href="/site/moyushchiymedved/"><img src="/images/posts/moyushchiymedved.png" alt="Моющий медведь" loading="lazy"></a><a class="card" data-bg="pink" href="/site/horovodogolod/"><img src="/images/posts/horovodogolod.png" alt="Хороводоголод" loading="lazy"></a><a class="card" data-bg="blue" href="/site/zaykiskotikami/"><img src="/images/posts/zaykiskotikami.png" alt="Зайки с котиками" loading="lazy"></a><a class="card" data-bg="pink" href="/site/podlozhitkrolika/"><img src="/images/posts/podlozhitkrolika.png" alt="Подложить кролика" loading="lazy"></a><a class="card" data-bg="pink" href="/site/kaksobaka/"><img src="/images/posts/kaksobaka.png" alt="Как собака" loading="lazy"></a><a class="card" data-bg="lilac" href="/site/svadbazavtra/"><img src="/images/posts/svadbazavtra.png" alt="Свадьба – завтра" loading="lazy"></a><a class="card" data-bg="lilac" href="/site/surovyyneyming/"><img src="/images/posts/surovyyneyming.png" alt="Суровый нейминг" loading="lazy"></a><a class="card" data-bg="pink" href="/site/verblyudokon/"><img src="/images/posts/verblyudokon.png" alt="Верблюдоконь" loading="lazy"></a><a class="card" data-bg="pink" href="/site/kolbasopovodok/"><img src="/images/posts/kolbasopovodok.png" alt="Колбасоповодок" loading="lazy"></a></div>
   <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов – скоро появятся!</p>
 
 </div>
@@ -167,62 +167,36 @@
 
 <script>
   const COLOR_ORDER = ['pink', 'lilac', 'blue', 'green'];
+  const grid = document.getElementById('post-grid');
+  const cards = Array.from(grid.children);
+  const emptyMsg = document.getElementById('empty-msg');
+  if (emptyMsg) emptyMsg.style.display = cards.length === 0 ? 'block' : 'none';
 
-  function colorRespectingShuffle(posts) {
-    const buckets = { pink: [], lilac: [], blue: [], green: [] };
-    posts.forEach(p => buckets[p.bg].push(p));
-    Object.values(buckets).forEach(arr => {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    });
-    const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
-    const result = [];
-    let colorIdx = 0;
-    let remaining = posts.length;
-    while (remaining > 0) {
-      let placed = false;
-      for (let attempt = 0; attempt < 4; attempt++) {
-        const color = COLOR_ORDER[colorIdx % 4];
-        colorIdx++;
-        if (pointers[color] < buckets[color].length) {
-          result.push(buckets[color][pointers[color]++]);
-          remaining--;
-          placed = true;
-          break;
-        }
-      }
-      if (!placed) break;
+  const buckets = { pink: [], lilac: [], blue: [], green: [] };
+  cards.forEach(c => buckets[c.dataset.bg].push(c));
+  Object.values(buckets).forEach(arr => {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return result;
-  }
-
-  Promise.all([
-    fetch('/links/site/sections.json').then(r => r.json()),
-    fetch('/links/site/posts.json').then(r => r.json())
-  ]).then(([sections, allPosts]) => {
-    const section = sections['zhivotnye'];
-    const slugs = section.slugs || [];
-    const posts = allPosts.filter(p => slugs.includes(p.slug));
-
-    document.getElementById('title').textContent = `Животные`;
-
-    if (posts.length === 0) {
-      document.getElementById('empty-msg').style.display = 'block';
-      return;
-    }
-
-    const ordered = colorRespectingShuffle(posts);
-    const grid = document.getElementById('post-grid');
-    ordered.forEach(p => {
-      const card = document.createElement('a');
-      card.className = 'card';
-      card.href = `/site/${p.slug}/`;
-      card.innerHTML = `<img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">`;
-      grid.appendChild(card);
-    });
   });
+  const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
+  let colorIdx = 0;
+  let remaining = cards.length;
+  while (remaining > 0) {
+    let placed = false;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const color = COLOR_ORDER[colorIdx % 4];
+      colorIdx++;
+      if (pointers[color] < buckets[color].length) {
+        grid.appendChild(buckets[color][pointers[color]++]);
+        remaining--;
+        placed = true;
+        break;
+      }
+    }
+    if (!placed) break;
+  }
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->
