@@ -5,11 +5,14 @@ on:
     branches: [main]
     paths:
       - 'links/site/posts.json'
+      - 'links/site/sections.json'
       - 'links/fb/posts.json'
       - 'links/site/section/**'
+      - 'links/site/all/index.html'
       - 'golosovania/**'
       - 'sozdateli/**'
       - 'scripts/generate_sitemap.py'
+      - 'scripts/generate_static_grids.py'
       - 'scripts/ping_indexnow.py'
   workflow_dispatch: {}
 
@@ -30,6 +33,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Regenerate static post grids
+        run: python3 scripts/generate_static_grids.py
+
       - name: Regenerate sitemap.xml
         run: python3 scripts/generate_sitemap.py
 
@@ -41,12 +47,12 @@ jobs:
 
       - name: Commit changes if any
         run: |
-          if git diff --quiet -- sitemap.xml scripts/.indexnow_state.json; then
+          if git diff --quiet -- sitemap.xml scripts/.indexnow_state.json links/site/all/index.html links/site/section/; then
             echo "Nothing to commit."
           else
             git config user.name "sitemap-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add sitemap.xml scripts/.indexnow_state.json
-            git commit -m "Auto-update sitemap.xml and IndexNow state"
+            git add sitemap.xml scripts/.indexnow_state.json links/site/all/index.html links/site/section/
+            git commit -m "Auto-update sitemap.xml, static post grids, and IndexNow state"
             git push
           fi
