@@ -35,7 +35,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FLAT_SECTIONS = [
     "brendy", "osobyeslova", "etimologiya", "illyustraciiayu", "lingvistika",
     "igraslov", "zagadki", "toponimy", "knigi", "edanapitki", "rasteniya",
-    "zhivotnye", "sport", "lingvoprosiki",
+    "zhivotnye", "sport", "lingvoprosiki", "interaktivnyeposty",
 ]
 
 NEW_SCRIPT_BLOCK = """<script>
