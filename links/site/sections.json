@@ -1011,5 +1011,12 @@
       "lingvoprosiki1",
       "lingvoprosiki2"
     ]
+  },
+  "interaktivnyeposty": {
+    "title": "Интерактивные посты",
+    "slugs": [
+      "oksyumoronyvminiatyurishche",
+      "odnimslovom"
+    ]
   }
 }
