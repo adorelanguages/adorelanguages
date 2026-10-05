@@ -29,15 +29,29 @@
 - `links/site/section/<key>/index.html` – страница одного раздела.
 - `links/site/all/index.html`, `links/fb/all/index.html` – общая лента всех постов.
 - `links/site/index.html` – страница поиска по тегам/названию + список всех разделов.
-- `scripts/generate_sitemap.py`, `scripts/ping_indexnow.py` – запускаются GitHub Action'ом
-  (`.github/workflows/update-sitemap.yml`) автоматически при пуше в `links/site/posts.json`,
-  `links/fb/posts.json` или любой файл внутри `links/site/section/**` – **sitemap.xml обновлять
-  руками не нужно**, бот сам закоммитит. `ping_indexnow.py` при этом пингует IndexNow (расходится
-  сразу по Yandex, Bing и остальным участникам протокола) для двух видов URL: новых постов (диф по
-  `posts.json` против `scripts/.indexnow_state.json`) и изменившихся страниц разделов (диф `git
-  diff` по коммитам самого пуша) – **т.е. правку текста на странице раздела (как в `etimologiya`,
-  сентябрь 2026) больше не нужно вручную пинговать через IndexNow – это теперь произойдёт само
-  при пуше.** Ручной пинг (см. ниже) остаётся резервным способом на случай сбоя автопинга.
+- `scripts/generate_static_grids.py`, `scripts/generate_sitemap.py`, `scripts/ping_indexnow.py` –
+  **все три** запускаются GitHub Action'ом (`.github/workflows/update-sitemap.yml`) автоматически
+  при пуше в `links/site/posts.json`, `links/fb/posts.json` или любой файл внутри
+  `links/site/section/**` (см. сам workflow-файл – список путей-триггеров может измениться, он
+  источник истины, а не этот абзац) – **ни `sitemap.xml`, ни пре-рендеренные карточки постов в
+  `links/site/section/<key>/index.html`, ни `links/site/all/index.html` обновлять руками не
+  нужно**, бот пересобирает все три скриптом и коммитит одним коммитом «Auto-update sitemap.xml,
+  static post grids, and IndexNow state» (обычно в течение ~1 минуты после пуша). **Практическое
+  следствие для шага 10 (добавление поста в `sections.json`)**: после того как слаг добавлен в
+  нужный `"slugs"`-массив (или `languages`-ключ) и запушен, НЕ нужно отдельно запускать
+  `generate_static_grids.py` локально и доставлять Вадиму получившиеся файлы
+  `links/site/section/<key>/index.html` / `links/site/all/index.html` – это лишний шаг, бот сделает
+  его сам (было по ошибке сделано вручную при публикации поста `brayl`/`zagadkaprogoroda` в октябре
+  2026 – 10 файлов вместо 6, Вадим справедливо спросил, почему так много). Минимальный набор файлов
+  для нового поста – `fb/<slug>/index.html`, `site/<slug>/index.html`, `images/posts/<slug>.png`,
+  `links/fb/posts.json`, `links/site/posts.json`, `links/site/sections.json` (6 файлов), разделные
+  страницы и `all/index.html` в этот список не входят. `ping_indexnow.py` при этом пингует IndexNow
+  (расходится сразу по Yandex, Bing и остальным участникам протокола) для двух видов URL: новых
+  постов (диф по `posts.json` против `scripts/.indexnow_state.json`) и изменившихся страниц разделов
+  (диф `git diff` по коммитам самого пуша) – т.е. правку текста на странице раздела (как в
+  `etimologiya`, сентябрь 2026) больше не нужно вручную пинговать через IndexNow – это теперь
+  произойдёт само при пуше. Ручной пинг (см. ниже) остаётся резервным способом на случай сбоя
+  автопинга.
 
 ## Как добавить новый пост – пошагово
 
