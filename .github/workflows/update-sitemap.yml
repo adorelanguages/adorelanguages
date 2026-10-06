@@ -19,6 +19,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-sitemap-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-sitemap:
     runs-on: ubuntu-latest
@@ -49,10 +53,32 @@ jobs:
         run: |
           if git diff --quiet -- sitemap.xml scripts/.indexnow_state.json links/site/all/index.html links/site/section/; then
             echo "Nothing to commit."
-          else
-            git config user.name "sitemap-bot"
-            git config user.email "actions@users.noreply.github.com"
-            git add sitemap.xml scripts/.indexnow_state.json links/site/all/index.html links/site/section/
-            git commit -m "Auto-update sitemap.xml, static post grids, and IndexNow state"
-            git push
+            exit 0
           fi
+
+          git config user.name "sitemap-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sitemap.xml scripts/.indexnow_state.json links/site/all/index.html links/site/section/
+          git commit -m "Auto-update sitemap.xml, static post grids, and IndexNow state"
+
+          # Пуш может быть отклонён (non-fast-forward), если кто-то (человек через
+          # GitHub-веб-интерфейс или параллельный запуск этого же workflow) успел
+          # запушить свой коммит в main, пока этот job считал диф. Эти правки
+          # затрагивают только автогенерируемые файлы (sitemap.xml, карточки
+          # разделов, .indexnow_state.json), которые человек руками не трогает,
+          # поэтому rebase поверх свежего main проходит без конфликтов – просто
+          # повторяем попытку несколько раз вместо того, чтобы падать с первого
+          # отказа.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Запушено с попытки $attempt."
+              exit 0
+            fi
+            echo "Пуш отклонён (попытка $attempt из 5), подтягиваю свежий main и пробую снова..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((attempt * 3))
+          done
+
+          echo "::error::Не удалось запушить после 5 попыток – нужна ручная проверка."
+          exit 1
