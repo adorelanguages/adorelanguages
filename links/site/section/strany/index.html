@@ -168,7 +168,7 @@
 
   <div class="languages" id="languages"></div>
 
-  <div class="grid" id="post-grid"></div>
+  <div class="grid" id="post-grid"><a class="card" data-bg="green" data-langs="туркменистан" href="/site/turkmenskie/"><img src="/images/posts/turkmenskie.png" alt="Туркменские" loading="lazy"></a><a class="card" data-bg="blue" data-langs="швеция" href="/site/synkarla/"><img src="/images/posts/synkarla.png" alt="Сын Карла" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="швейцария" href="/site/latinskayashveytsariya/"><img src="/images/posts/latinskayashveytsariya.png" alt="Латинская Швейцария" loading="lazy"></a><a class="card" data-bg="pink" data-langs="турция" href="/site/tseluyu/"><img src="/images/posts/tseluyu.png" alt="Целую" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/ulitsyssha/"><img src="/images/posts/ulitsyssha.png" alt="Улицы США" loading="lazy"></a><a class="card" data-bg="blue" data-langs="ирландия" href="/site/prostoirlandtsy/"><img src="/images/posts/prostoirlandtsy.png" alt="Просто ирландцы" loading="lazy"></a><a class="card" data-bg="green" data-langs="испания" href="/site/neprostomariya/"><img src="/images/posts/neprostomariya.png" alt="Не просто Мария" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/iyunnadcatoe/"><img src="/images/posts/iyunnadcatoe.png" alt="Июньнадцатое" loading="lazy"></a><a class="card" data-bg="green" data-langs="швеция" href="/site/medvedberyoza/"><img src="/images/posts/medvedberyoza.png" alt="Медведь Берёза" loading="lazy"></a><a class="card" data-bg="green" data-langs="мадагаскар" href="/site/madagaskarskiy/"><img src="/images/posts/madagaskarskiy.png" alt="Мадагаскарский" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/zekoknigi/"><img src="/images/posts/zekoknigi.png" alt="Зекокниги" loading="lazy"></a><a class="card" data-bg="green" data-langs="италия" href="/site/margarita/"><img src="/images/posts/margarita.png" alt="Маргарита" loading="lazy"></a><a class="card" data-bg="pink" data-langs="мексика" href="/site/pokoyotit/"><img src="/images/posts/pokoyotit.png" alt="Покойотить?" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="швеция" href="/site/shvedskoe/"><img src="/images/posts/shvedskoe.png" alt="Шведское?" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="пакистан" href="/site/pakistan/"><img src="/images/posts/pakistan.png" alt="Пакистан" loading="lazy"></a><a class="card" data-bg="pink" data-langs="болгария" href="/site/horovodogolod/"><img src="/images/posts/horovodogolod.png" alt="Хороводоголод" loading="lazy"></a><a class="card" data-bg="green" data-langs="узбекистан" href="/site/uzbekiivy/"><img src="/images/posts/uzbekiivy.png" alt="Узбеки и Вы" loading="lazy"></a><a class="card" data-bg="blue" data-langs="США" href="/site/slovotelefona/"><img src="/images/posts/slovotelefona.png" alt="Слово телефона" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="непал" href="/site/sherpa/"><img src="/images/posts/sherpa.png" alt="Шерпа" loading="lazy"></a><a class="card" data-bg="green" data-langs="австралия|новая зеландия" href="/site/pavlova/"><img src="/images/posts/pavlova.png" alt="Павлова" loading="lazy"></a></div>
   <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
 
 </div>
@@ -191,9 +191,9 @@
 <script>
   const COLOR_ORDER = ['pink', 'lilac', 'blue', 'green'];
 
-  function colorRespectingShuffle(posts) {
+  function colorRespectingShuffle(cards) {
     const buckets = { pink: [], lilac: [], blue: [], green: [] };
-    posts.forEach(p => buckets[p.bg].push(p));
+    cards.forEach(c => buckets[c.dataset.bg].push(c));
     Object.values(buckets).forEach(arr => {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -203,7 +203,7 @@
     const pointers = { pink: 0, lilac: 0, blue: 0, green: 0 };
     const result = [];
     let colorIdx = 0;
-    let remaining = posts.length;
+    let remaining = cards.length;
     while (remaining > 0) {
       let placed = false;
       for (let attempt = 0; attempt < 4; attempt++) {
@@ -221,71 +221,61 @@
     return result;
   }
 
-  let LANGUAGES = {};
-  let ALL_POSTS = [];
+  const grid = document.getElementById('post-grid');
+  const emptyMsg = document.getElementById('empty-msg');
+  const ALL_CARDS = Array.from(grid.children);
+
+  // Reverse index built from the data-langs baked into each card by
+  // generate_filtered_grids.py — replaces the old fetch('sections.json').
+  const LANG_TO_CARDS = {};
+  ALL_CARDS.forEach(card => {
+    (card.dataset.langs || '').split('|').filter(Boolean).forEach(lang => {
+      (LANG_TO_CARDS[lang] = LANG_TO_CARDS[lang] || []).push(card);
+    });
+  });
+  const LANG_NAMES = Object.keys(LANG_TO_CARDS).sort((a, b) => a.localeCompare(b, 'ru'));
 
   function renderGrid(lang) {
-    let slugs;
-    if (lang && LANGUAGES[lang]) {
-      slugs = LANGUAGES[lang];
-    } else {
-      slugs = [...new Set(Object.values(LANGUAGES).flat())];
-    }
-    const posts = ALL_POSTS.filter(p => slugs.includes(p.slug));
+    const cards = (lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS;
 
     document.getElementById('title').textContent =
       lang ? `Страны: ${lang.charAt(0).toUpperCase() + lang.slice(1)}` : `Страны`;
 
-    const grid = document.getElementById('post-grid');
-    grid.innerHTML = '';
-    document.getElementById('empty-msg').style.display = posts.length === 0 ? 'block' : 'none';
+    emptyMsg.style.display = cards.length === 0 ? 'block' : 'none';
 
-    const ordered = colorRespectingShuffle(posts);
-    ordered.forEach(p => {
-      const card = document.createElement('a');
-      card.className = 'card';
-      card.href = `/site/${p.slug}/`;
-      card.innerHTML = `<img src="/images/posts/${p.slug}.png" alt="${p.title}" loading="lazy">`;
-      grid.appendChild(card);
-    });
+    const ordered = colorRespectingShuffle(cards);
+    const shown = new Set(ordered);
+    ALL_CARDS.forEach(c => { c.style.display = shown.has(c) ? '' : 'none'; });
+    ordered.forEach(c => grid.appendChild(c));
   }
 
-  Promise.all([
-    fetch('/links/site/sections.json').then(r => r.json()),
-    fetch('/links/site/posts.json').then(r => r.json())
-  ]).then(([sections, allPosts]) => {
-    LANGUAGES = sections.strany.languages;
-    ALL_POSTS = allPosts;
+  const params = new URLSearchParams(location.search);
+  const currentLang = params.get('lang');
 
-    const langNames = Object.keys(LANGUAGES).sort((a, b) => a.localeCompare(b, 'ru'));
-    const params = new URLSearchParams(location.search);
-    const currentLang = params.get('lang');
-
-    const langContainer = document.getElementById('languages');
-    langNames.forEach(lang => {
-      const btn = document.createElement('button');
-      btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-      if (lang === currentLang) btn.classList.add('active');
-      btn.addEventListener('click', () => {
-        const url = new URL(location.href);
-        if (btn.classList.contains('active')) {
-          btn.classList.remove('active');
-          url.searchParams.delete('lang');
-          history.pushState({}, '', url);
-          renderGrid(null);
-        } else {
-          [...langContainer.children].forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          url.searchParams.set('lang', lang);
-          history.pushState({}, '', url);
-          renderGrid(lang);
-        }
-      });
-      langContainer.appendChild(btn);
+  const langContainer = document.getElementById('languages');
+  LANG_NAMES.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
+    if (lang === currentLang) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      const url = new URL(location.href);
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active');
+        url.searchParams.delete('lang');
+        history.pushState({}, '', url);
+        renderGrid(null);
+      } else {
+        [...langContainer.children].forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        url.searchParams.set('lang', lang);
+        history.pushState({}, '', url);
+        renderGrid(lang);
+      }
     });
-
-    renderGrid(currentLang);
+    langContainer.appendChild(btn);
   });
+
+  renderGrid(currentLang);
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->
