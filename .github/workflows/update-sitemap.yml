@@ -13,6 +13,7 @@ on:
       - 'sozdateli/**'
       - 'scripts/generate_sitemap.py'
       - 'scripts/generate_static_grids.py'
+      - 'scripts/generate_filtered_grids.py'
       - 'scripts/ping_indexnow.py'
   workflow_dispatch: {}
 
@@ -39,6 +40,9 @@ jobs:
 
       - name: Regenerate static post grids
         run: python3 scripts/generate_static_grids.py
+
+      - name: Regenerate filtered post grids
+        run: python3 scripts/generate_filtered_grids.py
 
       - name: Regenerate sitemap.xml
         run: python3 scripts/generate_sitemap.py
