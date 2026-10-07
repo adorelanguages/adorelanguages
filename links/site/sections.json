@@ -84,6 +84,12 @@
       ],
       "непал": [
         "sherpa"
+      ],
+      "австралия": [
+        "pavlova"
+      ],
+      "новая зеландия": [
+        "pavlova"
       ]
     }
   },
@@ -121,7 +127,8 @@
       "kamikadze",
       "burkini",
       "verblyudokon",
-      "zagadkaprogoroda"
+      "zagadkaprogoroda",
+      "pavlova"
     ]
   },
   "yazyki": {
@@ -187,7 +194,8 @@
         "nipuhanipera",
         "napomoshch",
         "robokop",
-        "tolstayaledi"
+        "tolstayaledi",
+        "pavlova"
       ],
       "арабский": [
         "pustynyasahara",
@@ -227,7 +235,8 @@
         "yazykmamy",
         "budemzdorovy",
         "vdvuhshagah",
-        "stereotipy"
+        "stereotipy",
+        "udareniya"
       ],
       "голландский": [
         "dikiiobraz",
@@ -409,7 +418,8 @@
         "svadbazavtra",
         "datnedat",
         "budemzdorovy",
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "udareniya"
       ],
       "португальский": [
         "kafune",
@@ -494,7 +504,8 @@
         "divannayakartoshka",
         "tyomnyyles",
         "metamorfozy",
-        "stydobushka"
+        "stydobushka",
+        "udareniya"
       ],
       "французский": [
         "kakashektebe",
@@ -524,7 +535,8 @@
         "tostperdyu",
         "lohmatyydesert",
         "prygatspetuhanaosla",
-        "napomoshch"
+        "napomoshch",
+        "udareniya"
       ],
       "хорватский": [
         "listopad",
@@ -572,7 +584,11 @@
       "баскский": [
         "predlogi",
         "polnoygrudyu",
-        "dvaipolovina"
+        "dvaipolovina",
+        "baskskiy"
+      ],
+      "лезгинский": [
+        "udareniya"
       ],
       "казахский": [
         "sobaka",
@@ -718,7 +734,8 @@
       "postpropovtor",
       "tsenabukvy",
       "fatika",
-      "raznonimy"
+      "raznonimy",
+      "udareniya"
     ]
   },
   "igraslov": {
@@ -967,7 +984,8 @@
       "tostperdyu",
       "tsenabukvy",
       "lohmatyydesert",
-      "kolbasopovodok"
+      "kolbasopovodok",
+      "pavlova"
     ]
   },
   "rasteniya": {
