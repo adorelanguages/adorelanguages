@@ -798,12 +798,14 @@
   // .home-btn is always positioned by this script (never by CSS flex),
   // so .hitlist-btn alone defines the row's natural height on mobile -
   // matching the 8px gap used before "Поделиться" on every other post
-  // page. Home sits centered between the rating pill's right edge and
-  // the true edge of the screen (mobile: the body's edge; desktop:
-  // the content column's own edge, since .wrap is centered there).
-  // On wide screens "Поделиться" additionally moves up into the top
-  // row, positioned exactly midway between the pill and the home
-  // button; on narrow screens it stays in normal flow below.
+  // page. On mobile, home sits centered between the rating pill's right
+  // edge and the true edge of the screen (the body's edge). On desktop,
+  // home instead keeps a small fixed gap from the content column's own
+  // right edge (.wrap), so it doesn't drift far from the edge on wide
+  // windows the way centering-in-remaining-space would. On wide screens
+  // "Поделиться" additionally moves up into the top row, positioned
+  // exactly midway between the pill and the home button (wherever home
+  // ends up); on narrow screens it stays in normal flow below.
   var wrap = document.getElementById('topRowWrap');
   var pill = document.getElementById('hitlist-btn');
   var home = document.getElementById('homeBtn');
@@ -811,6 +813,7 @@
   var wrapEl = document.querySelector('.wrap');
   var mq = window.matchMedia('(min-width: 600px)');
   var HOME_SIZE = 52;
+  var HOME_EDGE_GAP = 20;
   // Minimum breathing room to leave on each side of "Поделиться" when
   // centering it between the pill and the home button. If the gap is
   // too narrow for that (can happen right around the breakpoint, where
@@ -843,7 +846,9 @@
       : document.body.getBoundingClientRect().right;
     var pillRightRel = pillRect.right - wrapRect.left;
     var edgeRel = edgeRef - wrapRect.left;
-    var homeLeftRel = pillRightRel + (edgeRel - pillRightRel - HOME_SIZE) / 2;
+    var homeLeftRel = desktop
+      ? edgeRel - HOME_SIZE - HOME_EDGE_GAP
+      : pillRightRel + (edgeRel - pillRightRel - HOME_SIZE) / 2;
 
     home.style.left = homeLeftRel + 'px';
     home.style.top = (pillCenterY - HOME_SIZE / 2) + 'px';
