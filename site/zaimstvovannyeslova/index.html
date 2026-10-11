@@ -212,6 +212,8 @@
   }
   .answer-spoiler ul.bullets {
     margin: 12px 0 0;
+    padding-left: 0;
+    list-style: none;
   }
   .answer-spoiler p.spoiler-note {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
@@ -399,23 +401,29 @@
     stroke: #d84343;
     fill: rgba(216, 67, 67, 0.16);
   }
-  .solved-banner {
-    border-radius: 14px;
-    background: #e3f8ed;
-    border: 1px solid rgba(31, 157, 100, 0.35);
-    padding: 16px 18px;
-    margin: 0 0 22px;
-    font-family: 'Factora', Georgia, serif;
-    font-weight: 800;
-    font-size: 17px;
+  .crossword-status.solved,
+  .crossword-status.solved strong {
     color: #1f9d64;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity .35s ease, transform .35s ease;
   }
-  .solved-banner.show {
-    opacity: 1;
-    transform: translateY(0);
+  .status-bravo {
+    font-weight: bold;
+  }
+  .number-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .cell-number {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Factora', Georgia, serif;
+    font-weight: 700;
+    font-size: 4.6cqw;
+    color: rgb(45, 44, 91);
   }
   .clues {
     font-family: 'Factora', Georgia, 'Times New Roman', serif;
@@ -432,7 +440,8 @@
   }
   .clues ul {
     margin: 0 0 16px;
-    padding-left: 20px;
+    padding-left: 0;
+    list-style: none;
   }
   .clues ul:last-child { margin-bottom: 0; }
 </style>
@@ -466,15 +475,14 @@
   <div class="share-toast" id="share-toast"></div>
 
   <p class="crossword-lede">Впиши слово в каждую строку или столбец кроссворда. Рамка вокруг слова станет зелёной, если оно верное, и красной – если нет.</p>
-  <p class="crossword-status">Отгадано слов: <strong id="solvedCount">0</strong> из <strong id="totalCount">6</strong></p>
+  <p class="crossword-status" id="statusLine">Отгадано слов: <strong id="solvedCount">0</strong> из <strong id="totalCount">6</strong><span class="status-bravo" id="statusBravo"></span></p>
 
   <div class="board-wrap">
     <img class="card-img" id="cardImg" src="/images/posts/zaimstvovannyeslova.png" alt="Заимствованные слова. Кроссворд: сетка из шести пересекающихся слов, пронумерованных от 1 до 6.">
     <svg class="outline-layer" id="outlineLayer" viewBox="0 0 756 756" preserveAspectRatio="none"></svg>
+    <div class="number-layer" id="numberLayer"></div>
     <div class="input-layer" id="inputLayer"></div>
   </div>
-
-  <div class="solved-banner" id="banner">Браво! Все ответы – верные!</div>
 
   <div class="clues">
     <h2>По горизонтали</h2>
@@ -568,6 +576,7 @@
 
   var inputLayer = document.getElementById('inputLayer');
   var outlineLayer = document.getElementById('outlineLayer');
+  var numberLayer = document.getElementById('numberLayer');
   var inputs = {};
 
   Object.keys(cellIndex).forEach(function(key){
@@ -605,6 +614,49 @@
     outlineEls[w.id] = el;
   });
 
+  // Clue numbers, drawn ourselves (the printed numbers on the card are too
+  // small to read): to the left of the first letter for an across word, or
+  // above the top cell for a down word, each sized in its own blank cell
+  // when one is free there, or in a same-size box just outside the grid
+  // when the word starts at the very edge.
+  function numberBoxFor(w){
+    if (w.dir === 'across'){
+      var leftCol = w.col - 1;
+      var occupied = leftCol >= 1 && cellIndex[w.row + ',' + leftCol];
+      var cellW = COL_LINES[w.col] - COL_LINES[w.col - 1];
+      var x1, x2;
+      if (leftCol >= 1 && !occupied){
+        x1 = COL_LINES[leftCol - 1]; x2 = COL_LINES[leftCol];
+      } else {
+        x2 = COL_LINES[w.col - 1]; x1 = x2 - cellW;
+      }
+      return { x: x1, y: ROW_LINES[w.row - 1], width: x2 - x1, height: ROW_LINES[w.row] - ROW_LINES[w.row - 1] };
+    } else {
+      var topRow = w.row - 1;
+      var occupied = topRow >= 1 && cellIndex[topRow + ',' + w.col];
+      var cellH = ROW_LINES[w.row] - ROW_LINES[w.row - 1];
+      var y1, y2;
+      if (topRow >= 1 && !occupied){
+        y1 = ROW_LINES[topRow - 1]; y2 = ROW_LINES[topRow];
+      } else {
+        y2 = ROW_LINES[w.row - 1]; y1 = y2 - cellH;
+      }
+      return { x: COL_LINES[w.col - 1], y: y1, width: COL_LINES[w.col] - COL_LINES[w.col - 1], height: y2 - y1 };
+    }
+  }
+
+  WORDS.forEach(function(w){
+    var box = numberBoxFor(w);
+    var num = document.createElement('div');
+    num.className = 'cell-number';
+    num.textContent = w.id;
+    num.style.left = (box.x / 756 * 100) + '%';
+    num.style.top = (box.y / 756 * 100) + '%';
+    num.style.width = (box.width / 756 * 100) + '%';
+    num.style.height = (box.height / 756 * 100) + '%';
+    numberLayer.appendChild(num);
+  });
+
   function normalize(s){
     return s.toUpperCase().replace(/Ё/g, 'Е');
   }
@@ -618,7 +670,8 @@
     return prev ? (prev.row + ',' + prev.col) : null;
   }
 
-  var banner = document.getElementById('banner');
+  var statusLine = document.getElementById('statusLine');
+  var statusBravoEl = document.getElementById('statusBravo');
   var solvedCountEl = document.getElementById('solvedCount');
 
   function checkWord(w){
@@ -637,7 +690,9 @@
     WORDS.forEach(checkWord);
     var solved = WORDS.filter(function(w){ return outlineEls[w.id].classList.contains('correct'); }).length;
     solvedCountEl.textContent = solved;
-    banner.classList.toggle('show', solved === WORDS.length);
+    var allSolved = solved === WORDS.length;
+    statusLine.classList.toggle('solved', allSolved);
+    statusBravoEl.textContent = allSolved ? ' Браво!' : '';
   }
 
   var typingWord = null;
