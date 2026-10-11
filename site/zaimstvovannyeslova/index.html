@@ -405,6 +405,10 @@
     font-family: 'Factora', Georgia, serif;
     font-weight: 700;
     font-size: 4.6cqw;
+    /* Factora's own metrics push a browser's default input text-centering
+       toward the top of the box; line-height:1 removes that built-in
+       offset so the letter sits centered in its cell. */
+    line-height: 1;
     color: rgb(45, 44, 91);
     padding: 0;
     border-radius: 2px;
