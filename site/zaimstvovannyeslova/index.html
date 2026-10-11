@@ -53,14 +53,24 @@
 
   .wrap { max-width: 640px; margin: 0 auto; }
 
+  /* margin-right cancels the body's own 20px side padding so the home
+     button centers against the true screen edge, not just the content
+     column's inner edge. */
   .top-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    row-gap: 10px;
+    margin-right: -20px;
     margin-bottom: 14px;
   }
 
+  .hitlist-btn { order: 1; }
+
   .home-zone {
+    order: 2;
     flex: 1 1 auto;
+    min-width: 68px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,6 +88,25 @@
     flex-shrink: 0;
   }
   .home-btn svg { display: block; }
+
+  /* forces a line break after the home button on narrow screens, so
+     "Поделиться" drops to its own row; on wide screens it's hidden and
+     the share button rejoins the top row instead (see media query below) */
+  .row-break { order: 3; flex-basis: 100%; width: 0; height: 0; }
+
+  .top-row .share-btn { order: 4; }
+
+  @media (min-width: 600px) {
+    .row-break { display: none; }
+    /* on wide screens .wrap itself gets centered with its own side
+       margins, so the -20px screen-edge trick is no longer appropriate:
+       the home button should stay within the content column like
+       everything else on the page. */
+    .top-row { margin-right: 0; }
+    .top-row .hitlist-btn { margin-right: 8px; }
+    .top-row .share-btn { order: 2; }
+    .home-zone { order: 3; }
+  }
 
   .hitlist-btn {
     font-family: -apple-system, Segoe UI, sans-serif;
@@ -227,13 +256,6 @@
     margin: 16px 0 0;
   }
 
-  .top-row-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 20px;
-  }
 
   .share-btn {
     font-family: -apple-system, Segoe UI, sans-serif;
@@ -471,9 +493,7 @@
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10v9a1 1 0 0 0 1 1H10a.5.5 0 0 0 .5-.5V15a1.5 1.5 0 0 1 3 0v4.5a.5.5 0 0 0 .5.5h3.5a1 1 0 0 0 1-1v-9" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-  </div>
-
-  <div class="top-row-buttons">
+    <div class="row-break" aria-hidden="true"></div>
     <button class="share-btn" id="share-btn" data-goatcounter-click="share-panel-open" type="button">↗ Поделиться</button>
   </div>
 
