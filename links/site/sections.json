@@ -128,7 +128,8 @@
       "burkini",
       "verblyudokon",
       "zagadkaprogoroda",
-      "pavlova"
+      "pavlova",
+      "alipapa"
     ]
   },
   "yazyki": {
@@ -195,7 +196,8 @@
         "napomoshch",
         "robokop",
         "tolstayaledi",
-        "pavlova"
+        "pavlova",
+        "babieleto"
       ],
       "арабский": [
         "pustynyasahara",
@@ -205,7 +207,11 @@
         "kaksobaka",
         "apelsiniya",
         "chastichasa",
-        "burkini"
+        "burkini",
+        "alipapa"
+      ],
+      "белорусский": [
+        "letobabok"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -221,7 +227,8 @@
         "moyushchiymedved",
         "sobaka",
         "laskovyebolgary",
-        "horovodogolod"
+        "horovodogolod",
+        "babieleto"
       ],
       "бурятский": [
         "tyrboga",
@@ -274,7 +281,8 @@
         "resheniya",
         "allo",
         "stydobushka",
-        "kolbasopovodok"
+        "kolbasopovodok",
+        "schitatvoron"
       ],
       "итальянский": [
         "pitsy",
@@ -380,7 +388,8 @@
         "stydobushka",
         "nipuhanipera",
         "prygatspetuhanaosla",
-        "zitspinkler"
+        "zitspinkler",
+        "letobabok"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -406,7 +415,8 @@
       ],
       "персидский": [
         "lyuboviorgany",
-        "pakistan"
+        "pakistan",
+        "alipapa"
       ],
       "польский": [
         "pitsy",
@@ -419,7 +429,8 @@
         "datnedat",
         "budemzdorovy",
         "vdvuhshagah",
-        "udareniya"
+        "udareniya",
+        "letobabok"
       ],
       "португальский": [
         "kafune",
@@ -492,11 +503,13 @@
         "shibbolet",
         "bezdomnov",
         "zont",
-        "germanizmi"
+        "germanizmi",
+        "letobabok"
       ],
       "фарси": [
         "lyuboviorgany",
-        "pakistan"
+        "pakistan",
+        "alipapa"
       ],
       "финский": [
         "pitsy",
@@ -505,7 +518,8 @@
         "tyomnyyles",
         "metamorfozy",
         "stydobushka",
-        "udareniya"
+        "udareniya",
+        "babieleto"
       ],
       "французский": [
         "kakashektebe",
@@ -536,7 +550,9 @@
         "lohmatyydesert",
         "prygatspetuhanaosla",
         "napomoshch",
-        "udareniya"
+        "udareniya",
+        "zamykayakrug",
+        "babieleto"
       ],
       "хорватский": [
         "listopad",
@@ -560,7 +576,8 @@
         "svsmbzglsnh",
         "listopad",
         "metamorfozy",
-        "podsnezhnik"
+        "podsnezhnik",
+        "schitatvoron"
       ],
       "шведский": [
         "pitsy",
@@ -801,14 +818,22 @@
         "dorogovato",
         "vdvuhshagah",
         "nipuhanipera",
-        "tolstayaledi"
+        "tolstayaledi",
+        "babieleto"
+      ],
+      "белорусский": [
+        "letobabok"
+      ],
+      "болгарский": [
+        "babieleto"
       ],
       "испанский": [
         "zabiratvolosy",
         "pokoyotit",
         "datnedat",
         "zhechresnicy",
-        "kolbasopovodok"
+        "kolbasopovodok",
+        "schitatvoron"
       ],
       "итальянский": [
         "dvuhnezaitsev",
@@ -840,7 +865,8 @@
         "vdvuhshagah",
         "nipuhanipera",
         "prygatspetuhanaosla",
-        "zitspinkler"
+        "zitspinkler",
+        "letobabok"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -857,7 +883,11 @@
       "польский": [
         "dvuhnezaitsev",
         "datnedat",
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "letobabok"
+      ],
+      "украинский": [
+        "letobabok"
       ],
       "турецкий": [
         "dvuhnezaitsev",
@@ -875,7 +905,8 @@
       "финский": [
         "mozgivgarderob",
         "tyomnyyles",
-        "metamorfozy"
+        "metamorfozy",
+        "babieleto"
       ],
       "французский": [
         "kakashektebe",
@@ -885,7 +916,8 @@
         "podlozhitkrolika",
         "tsenaibol",
         "kaksobaka",
-        "prygatspetuhanaosla"
+        "prygatspetuhanaosla",
+        "babieleto"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
@@ -911,7 +943,8 @@
         "metamorfozy"
       ],
       "чешский": [
-        "metamorfozy"
+        "metamorfozy",
+        "schitatvoron"
       ],
       "румынский": [
         "metamorfozy"
@@ -958,7 +991,8 @@
       "fanatleksiki",
       "malenkiyprints",
       "tsundoku",
-      "ditloid"
+      "ditloid",
+      "alipapa"
     ]
   },
   "edanapitki": {
