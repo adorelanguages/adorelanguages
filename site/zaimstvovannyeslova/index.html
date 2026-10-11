@@ -55,22 +55,29 @@
 
   .top-row {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 14px;
   }
 
-  .back {
-    font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 13px;
-    color: #fff;
-    background: rgb(45,44,91);
-    padding: 9px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    display: inline-block;
+  .home-zone {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .home-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgb(45,44,91);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .home-btn svg { display: block; }
 
   .hitlist-btn {
     font-family: -apple-system, Segoe UI, sans-serif;
@@ -94,9 +101,6 @@
     font-size: 1.3em;
     line-height: 1;
     animation: star-blink 1.6s ease-in-out infinite;
-  }
-  .hitlist-btn .star-2 {
-    animation-delay: 0.8s;
   }
   @keyframes star-blink {
     0%, 100% { opacity: 1; }
@@ -228,6 +232,7 @@
     gap: 8px;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 20px;
   }
 
   .share-btn {
@@ -460,11 +465,16 @@
 <div class="wrap">
 
   <div class="top-row">
-    <a class="back" href="https://adorelanguages.com">← На главную страницу</a>
-    <div class="top-row-buttons">
-      <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Повысить рейтинг этого поста</span><span class="star star-2">&#9733;</span></a>
-      <button class="share-btn" id="share-btn" data-goatcounter-click="share-panel-open" type="button">↗ Поделиться</button>
+    <a class="hitlist-btn" href="#" id="hitlist-btn"><span class="star star-1">&#9733;</span><span class="label">Повысить рейтинг этого поста</span></a>
+    <div class="home-zone">
+      <a class="home-btn" href="https://adorelanguages.com" aria-label="На главную страницу">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10v9a1 1 0 0 0 1 1H10a.5.5 0 0 0 .5-.5V15a1.5 1.5 0 0 1 3 0v4.5a.5.5 0 0 0 .5.5h3.5a1 1 0 0 0 1-1v-9" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
+  </div>
+
+  <div class="top-row-buttons">
+    <button class="share-btn" id="share-btn" data-goatcounter-click="share-panel-open" type="button">↗ Поделиться</button>
   </div>
 
   <div class="share-panel" id="share-panel">
