@@ -337,13 +337,22 @@
   }
   .crossword-status {
     font-family: -apple-system, Segoe UI, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     color: rgb(90,88,130);
     margin: 0 0 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    transition: background .3s ease, border-color .3s ease, padding .3s ease;
   }
   .crossword-status strong {
     color: rgb(45,44,91);
     font-variant-numeric: tabular-nums;
+  }
+  .crossword-status.solved {
+    background: #e3f8ed;
+    border-color: rgba(31, 157, 100, 0.35);
+    padding: 10px 14px;
   }
   .board-wrap {
     position: relative;
@@ -692,7 +701,7 @@
     solvedCountEl.textContent = solved;
     var allSolved = solved === WORDS.length;
     statusLine.classList.toggle('solved', allSolved);
-    statusBravoEl.textContent = allSolved ? ' Браво!' : '';
+    statusBravoEl.textContent = allSolved ? ' – Браво!' : '';
   }
 
   var typingWord = null;
