@@ -234,17 +234,17 @@ REEL_SCRIPT_BODY = """
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {{
       reelItems.forEach(item => {{ item.style.display = 'flex'; item.classList.remove('dim'); }});
-      // Restore whatever the reel is currently centered on, rather than
-      // leaving the grid stuck on a stale "no match" state from the search
-      // that just got cleared.
-      const closest = centeredItem();
-      if (closest) {{
-        markActive(closest);
-        renderGrid(closest.dataset.lang);
-      }} else {{
-        markActive(null);
-        renderGrid(null);
-      }}
+      // Clearing the search should feel exactly like a fresh visit to this
+      // page — nothing selected, every post shown, reel back at the top —
+      // not a silent snap to whatever the reel happens to be centered on.
+      suppressAutoSelect = true;
+      reel.scrollTo({{ top: 0, behavior: 'smooth' }});
+      markActive(null);
+      renderGrid(null);
+      const url = new URL(location.href);
+      url.searchParams.delete('lang');
+      history.pushState({{}}, '', url);
+      setTimeout(() => {{ suppressAutoSelect = false; }}, 400);
       return;
     }}
     let firstMatch = null;
