@@ -70,8 +70,10 @@ SHUFFLE_JS = """<script>
 # --- idiomy / yazyki / strany: reel + search widget ------------------------
 
 REEL_SCRIPT_BODY = """
-  function renderGrid(lang) {{
-    const cards = (lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS;
+  function renderGrid(lang, cardsOverride) {{
+    const cards = cardsOverride !== undefined
+      ? cardsOverride
+      : ((lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS);
 
 {title_update}
 
@@ -169,6 +171,17 @@ REEL_SCRIPT_BODY = """
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {{
       reelItems.forEach(item => {{ item.style.display = 'flex'; item.classList.remove('dim'); }});
+      // Restore whatever the reel is currently centered on, rather than
+      // leaving the grid stuck on a stale "no match" state from the search
+      // that just got cleared.
+      const closest = centeredItem();
+      if (closest) {{
+        markActive(closest);
+        renderGrid(closest.dataset.lang);
+      }} else {{
+        markActive(null);
+        renderGrid(null);
+      }}
       return;
     }}
     let firstMatch = null;
@@ -183,6 +196,12 @@ REEL_SCRIPT_BODY = """
       firstMatch.scrollIntoView({{ block: 'center', behavior: 'smooth' }});
       selectLang(firstMatch.dataset.lang, true);
       setTimeout(() => {{ suppressAutoSelect = false; }}, 400);
+    }} else {{
+      // Nothing matches the search query (e.g. a language/country that has
+      // no posts yet) — show no cards at all instead of silently leaving
+      // whatever was selected before the search on screen.
+      markActive(null);
+      renderGrid(null, []);
     }}
   }});
 
