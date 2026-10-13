@@ -173,15 +173,27 @@ REEL_SCRIPT_BODY = """
     }}, 180);
   }});
 
-  // iOS Safari auto-scrolls the whole page to center a focused input above
-  // the keyboard, even when the input (and everything above it) was already
-  // fully visible — that's the "page jumps down" effect. Safari skips that
-  // auto-scroll when the focused element isn't visible at the exact moment
-  // focus happens, so toggling opacity to 0 and restoring it a tick later
-  // suppresses the jump without any visible flicker or layout change.
-  searchInput.addEventListener('focus', () => {{
-    searchInput.style.opacity = '0';
-    setTimeout(() => {{ searchInput.style.opacity = '1'; }});
+  // iOS Safari auto-scrolls the whole page to bring a focused input above
+  // the keyboard, even when it (and everything above it) was already fully
+  // visible — that's the "page jumps down" effect. A first attempt — making
+  // the input invisible for one tick around focus — didn't suppress this on
+  // a real iPhone. What's documented to work more reliably: intercept the
+  // tap before the native focus fires, move the input off-screen with a
+  // transform, focus it there (Safari has nothing worth scrolling to, since
+  // the input isn't at its real position yet), then snap the transform back
+  // immediately — the input is already focused by the time it reappears, so
+  // nothing visibly moves except the keyboard sliding up. Only intercepts a
+  // touch tap (mouse/keyboard focus on desktop is unaffected), and only when
+  // the field isn't already focused, so tapping again to reposition the
+  // caret while typing still works normally.
+  searchInput.addEventListener('touchend', (e) => {{
+    if (document.activeElement === searchInput) return;
+    e.preventDefault();
+    searchInput.style.transform = 'translateY(-2000px)';
+    searchInput.focus();
+    requestAnimationFrame(() => {{
+      searchInput.style.transform = '';
+    }});
   }});
 
   searchInput.addEventListener('input', () => {{
