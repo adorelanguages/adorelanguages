@@ -173,6 +173,17 @@ REEL_SCRIPT_BODY = """
     }}, 180);
   }});
 
+  // iOS Safari auto-scrolls the whole page to center a focused input above
+  // the keyboard, even when the input (and everything above it) was already
+  // fully visible — that's the "page jumps down" effect. Safari skips that
+  // auto-scroll when the focused element isn't visible at the exact moment
+  // focus happens, so toggling opacity to 0 and restoring it a tick later
+  // suppresses the jump without any visible flicker or layout change.
+  searchInput.addEventListener('focus', () => {{
+    searchInput.style.opacity = '0';
+    setTimeout(() => {{ searchInput.style.opacity = '1'; }});
+  }});
+
   searchInput.addEventListener('input', () => {{
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {{
