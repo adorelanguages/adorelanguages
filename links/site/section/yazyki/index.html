@@ -402,6 +402,14 @@
   let scrollEndTimer;
   reel.addEventListener('scroll', () => {
     if (suppressAutoSelect) return;
+    // While the search box has text, the search input alone drives selection.
+    // A smooth-scroll animation kicked off by an earlier keystroke (e.g. a
+    // scrollIntoView toward a match several items away) can still be
+    // settling well after suppressAutoSelect's timeout has lifted and the
+    // user has kept typing — without this guard, this handler would then
+    // re-select that stale item and silently undo whatever the search logic
+    // has since decided (including a correct "no matches" empty state).
+    if (searchInput.value.trim()) return;
     const closest = centeredItem();
     markActive(closest);
     clearTimeout(scrollEndTimer);
