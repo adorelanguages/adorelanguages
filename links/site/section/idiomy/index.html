@@ -431,6 +431,40 @@
     });
   });
 
+  // Suppressing the native jump above also removes the only thing that used
+  // to bring the input above the keyboard at all — without it, the keyboard
+  // is left covering the field. Replace that with one smooth, measured
+  // scroll of our own, timed to the keyboard's real height (visualViewport
+  // fires 'resize' once it finishes opening) rather than Safari's abrupt,
+  // over-eager jump: move exactly enough to clear the keyboard plus a small
+  // margin, nothing more, and only when the field is actually covered (e.g.
+  // not needed at all in landscape or on a tall enough screen).
+  function scrollInputAboveKeyboard() {
+    if (!window.visualViewport) return;
+    const rect = searchInput.getBoundingClientRect();
+    const margin = 16;
+    const overflow = rect.bottom - window.visualViewport.height + margin;
+    if (overflow > 0) {
+      window.scrollBy({ top: overflow, left: 0, behavior: 'smooth' });
+    }
+  }
+
+  let vvResizeHandler = null;
+  searchInput.addEventListener('focus', () => {
+    if (!window.visualViewport) return;
+    vvResizeHandler = () => scrollInputAboveKeyboard();
+    window.visualViewport.addEventListener('resize', vvResizeHandler);
+    // The viewport can already have finished resizing by the time focus
+    // fires (order isn't guaranteed), so also check once on a short delay.
+    setTimeout(scrollInputAboveKeyboard, 350);
+  });
+  searchInput.addEventListener('blur', () => {
+    if (vvResizeHandler) {
+      window.visualViewport.removeEventListener('resize', vvResizeHandler);
+      vvResizeHandler = null;
+    }
+  });
+
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {
