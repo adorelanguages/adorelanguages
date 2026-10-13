@@ -315,7 +315,7 @@
 
     const titleEl = document.getElementById('title');
     if (lang) {
-      titleEl.innerHTML = `Страны: <span class="lang-name">${lang}</span>`;
+      titleEl.innerHTML = `Страны: <span class="lang-name">${displayName(lang)}</span>`;
     } else {
       titleEl.textContent = 'Страны';
     }
@@ -344,7 +344,7 @@
   });
 
   function displayName(lang) {
-    return lang.charAt(0).toUpperCase() + lang.slice(1);
+    return lang.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
 
   function buildReel(langNames) {

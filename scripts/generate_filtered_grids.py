@@ -100,9 +100,7 @@ REEL_SCRIPT_BODY = """
     reel.scrollBy({{ top: ITEM_HEIGHT, behavior: 'smooth' }});
   }});
 
-  function displayName(lang) {{
-    return lang.charAt(0).toUpperCase() + lang.slice(1);
-  }}
+{display_name_fn}
 
   function buildReel(langNames) {{
     reel.innerHTML = '';
@@ -238,10 +236,23 @@ TITLE_UPDATE_YAZYKI = """    const titleEl = document.getElementById('title');
 
 TITLE_UPDATE_STRANY = """    const titleEl = document.getElementById('title');
     if (lang) {
-      titleEl.innerHTML = `Страны: <span class="lang-name">${lang}</span>`;
+      titleEl.innerHTML = `Страны: <span class="lang-name">${displayName(lang)}</span>`;
     } else {
       titleEl.textContent = 'Страны';
     }"""
+
+# Idiomy/yazyki: language names are common nouns in Russian ("армянский",
+# "жестовые языки") — only the first word is capitalized for display.
+DISPLAY_NAME_FIRST_WORD = """  function displayName(lang) {
+    return lang.charAt(0).toUpperCase() + lang.slice(1);
+  }"""
+
+# Strany: country names are proper nouns, and a multi-word country name
+# capitalizes every word ("новая зеландия" -> "Новая Зеландия"); a name
+# that's already all-caps (e.g. "США") is left untouched by this logic.
+DISPLAY_NAME_EVERY_WORD = """  function displayName(lang) {
+    return lang.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }"""
 
 
 def load_json(relpath):
@@ -306,11 +317,17 @@ def main():
         ]
 
         if key == "idiomy":
-            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_IDIOMY)
+            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(
+                title_update=TITLE_UPDATE_IDIOMY, display_name_fn=DISPLAY_NAME_FIRST_WORD
+            )
         elif key == "yazyki":
-            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_YAZYKI)
+            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(
+                title_update=TITLE_UPDATE_YAZYKI, display_name_fn=DISPLAY_NAME_FIRST_WORD
+            )
         elif key == "strany":
-            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_STRANY)
+            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(
+                title_update=TITLE_UPDATE_STRANY, display_name_fn=DISPLAY_NAME_EVERY_WORD
+            )
         else:
             raise AssertionError(key)
 
