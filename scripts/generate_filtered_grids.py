@@ -93,6 +93,59 @@ REEL_SCRIPT_BODY = """
   let reelItems = [];
   let suppressAutoSelect = false;
 
+  // Several places need to hold suppressAutoSelect while they move the reel
+  // themselves, then release it once their own move is done — a search
+  // match, clearing the search, and the page's own initial scroll into
+  // position. Each used to schedule its own independent
+  // "setTimeout(..., someFixedMs)" to flip the flag back off. That's a
+  // trap: if a second such action starts before the first one's timer has
+  // fired, the OLD timer still fires later and blindly clears the flag the
+  // NEW action is relying on, re-arming the reel's 'scroll' listener while
+  // the new action's own scroll animation is still moving — which then
+  // "auto-selects" whatever the reel happens to be passing through at that
+  // moment. Routing every hold/release through these two functions ensures
+  // starting a new hold always cancels whatever the previous one left
+  // pending, so a stale release can never fire after the fact.
+  let suppressReleaseTimer = null;
+  let suppressReleaseScrollHandler = null;
+  function cancelPendingSuppressRelease() {{
+    if (suppressReleaseTimer) {{
+      clearTimeout(suppressReleaseTimer);
+      suppressReleaseTimer = null;
+    }}
+    if (suppressReleaseScrollHandler) {{
+      reel.removeEventListener('scroll', suppressReleaseScrollHandler);
+      suppressReleaseScrollHandler = null;
+    }}
+  }}
+  // For a move whose duration is predictable enough (a short hop to a
+  // nearby match, the instant initial-load positioning).
+  function releaseSuppressionAfter(ms) {{
+    cancelPendingSuppressRelease();
+    suppressReleaseTimer = setTimeout(() => {{
+      suppressAutoSelect = false;
+      suppressReleaseTimer = null;
+    }}, ms);
+  }}
+  // For a move whose distance (and so duration) varies — e.g. scrolling the
+  // whole reel back to the top from wherever a search had left it. Waits
+  // for the reel's own scroll events to actually stop for a bit, instead of
+  // guessing a duration that a long scroll could still be running past.
+  function releaseSuppressionOnceReelSettles() {{
+    cancelPendingSuppressRelease();
+    let settleTimer;
+    suppressReleaseScrollHandler = () => {{
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {{
+        suppressAutoSelect = false;
+        reel.removeEventListener('scroll', suppressReleaseScrollHandler);
+        suppressReleaseScrollHandler = null;
+      }}, 180);
+    }};
+    reel.addEventListener('scroll', suppressReleaseScrollHandler);
+    suppressReleaseScrollHandler(); // also covers an already-settled reel
+  }}
+
   arrowUp.addEventListener('click', () => {{
     reel.scrollBy({{ top: -ITEM_HEIGHT, behavior: 'smooth' }});
   }});
@@ -244,7 +297,10 @@ REEL_SCRIPT_BODY = """
       const url = new URL(location.href);
       url.searchParams.delete('lang');
       history.pushState({{}}, '', url);
-      setTimeout(() => {{ suppressAutoSelect = false; }}, 400);
+      // Scrolling the whole reel back to the top can take a while on a long
+      // reel (more if a previous match's own scroll was still in flight) —
+      // wait for it to actually settle rather than guessing a duration.
+      releaseSuppressionOnceReelSettles();
       return;
     }}
     let firstMatch = null;
@@ -258,7 +314,7 @@ REEL_SCRIPT_BODY = """
       suppressAutoSelect = true;
       firstMatch.scrollIntoView({{ block: 'center', behavior: 'smooth' }});
       selectLang(firstMatch.dataset.lang, true);
-      setTimeout(() => {{ suppressAutoSelect = false; }}, 400);
+      releaseSuppressionAfter(400);
     }} else {{
       // Nothing matches the search query (e.g. a language/country that has
       // no posts yet) — show no cards at all instead of silently leaving
@@ -286,7 +342,7 @@ REEL_SCRIPT_BODY = """
     markActive(null);
     renderGrid(null);
   }}
-  setTimeout(() => {{ suppressAutoSelect = false; }}, 300);
+  releaseSuppressionAfter(300);
 </script>"""
 
 TITLE_UPDATE_IDIOMY = """    document.getElementById('title').textContent =
