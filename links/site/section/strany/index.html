@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Страны – Обожаю Языки</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Языковые факты и курьёзы, связанные со странами мира – с фильтром по стране.">
+<meta name="description" content="Языковые факты и курьёзы, связанные со странами мира – с поиском и барабаном для быстрого выбора страны.">
 <link rel="canonical" href="https://adorelanguages.com/links/site/section/strany/">
 
 <style>
@@ -44,6 +44,12 @@
     margin: 0 0 8px;
   }
 
+  @media (max-width: 480px) {
+    h1 .lang-name {
+      display: block;
+    }
+  }
+
   .section-intro {
     font-size: 1em;
     line-height: 1.5;
@@ -64,25 +70,91 @@
     display: inline-block;
   }
 
-  .languages {
-    margin: 0 0 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .languages button {
-    font-family: 'Factora', Georgia, serif;
-    font-size: 0.9em;
-    padding: 8px 14px;
+  .lang-search {
+    width: 100%;
+    height: 40px;
     border-radius: 999px;
     border: 1px solid rgb(45, 44, 91);
-    background: #fff;
+    padding: 0 18px;
+    font-size: 0.95em;
     color: rgb(45, 44, 91);
-    cursor: pointer;
+    font-family: 'Factora', Georgia, serif;
+    margin: 8px 0 12px;
   }
-  .languages button.active {
-    background: rgb(45, 44, 91);
-    color: #fff;
+  .lang-search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(45, 44, 91, 0.15);
+  }
+
+  .reel-wrap {
+    position: relative;
+    width: 300px;
+    height: 132px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+  }
+  .reel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reel-arrow.up {
+    left: 4px;
+  }
+  .reel-arrow.down {
+    right: 4px;
+  }
+  .reel-arrow::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+  }
+  .reel-arrow.up::before {
+    border-bottom: 8px solid rgb(45, 44, 91);
+  }
+  .reel-arrow.down::before {
+    border-top: 8px solid rgb(45, 44, 91);
+  }
+  .reel {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    padding: 44px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .reel::-webkit-scrollbar { display: none; }
+
+  .reel-item {
+    scroll-snap-align: center;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color: rgb(45, 44, 91);
+    opacity: 0.35;
+    transition: opacity 0.15s ease, font-size 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .reel-item.active {
+    opacity: 1;
+    font-size: 1.15em;
+    font-weight: bold;
+  }
+  .reel-item.dim {
+    opacity: 0.12;
   }
 
   .grid {
@@ -161,10 +233,16 @@
     <a href="/links/site/all/">Все посты</a>
   </div>
 
-  <div class="languages" id="languages"></div>
+  <div class="reel-wrap">
+    <div class="reel-arrow up"></div>
+    <div class="reel-arrow down"></div>
+    <div class="reel" id="reel"></div>
+  </div>
+
+  <input type="text" class="lang-search" id="lang-search" placeholder="Найти страну...">
 
   <div class="grid" id="post-grid"><a class="card" data-bg="green" data-langs="туркменистан" href="/site/turkmenskie/"><img src="/images/posts/turkmenskie.png" alt="Туркменские" loading="lazy"></a><a class="card" data-bg="blue" data-langs="швеция" href="/site/synkarla/"><img src="/images/posts/synkarla.png" alt="Сын Карла" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="швейцария" href="/site/latinskayashveytsariya/"><img src="/images/posts/latinskayashveytsariya.png" alt="Латинская Швейцария" loading="lazy"></a><a class="card" data-bg="pink" data-langs="турция" href="/site/tseluyu/"><img src="/images/posts/tseluyu.png" alt="Целую" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/ulitsyssha/"><img src="/images/posts/ulitsyssha.png" alt="Улицы США" loading="lazy"></a><a class="card" data-bg="blue" data-langs="ирландия" href="/site/prostoirlandtsy/"><img src="/images/posts/prostoirlandtsy.png" alt="Просто ирландцы" loading="lazy"></a><a class="card" data-bg="green" data-langs="испания" href="/site/neprostomariya/"><img src="/images/posts/neprostomariya.png" alt="Не просто Мария" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/iyunnadcatoe/"><img src="/images/posts/iyunnadcatoe.png" alt="Июньнадцатое" loading="lazy"></a><a class="card" data-bg="green" data-langs="швеция" href="/site/medvedberyoza/"><img src="/images/posts/medvedberyoza.png" alt="Медведь Берёза" loading="lazy"></a><a class="card" data-bg="green" data-langs="мадагаскар" href="/site/madagaskarskiy/"><img src="/images/posts/madagaskarskiy.png" alt="Мадагаскарский" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="США" href="/site/zekoknigi/"><img src="/images/posts/zekoknigi.png" alt="Зекокниги" loading="lazy"></a><a class="card" data-bg="green" data-langs="италия" href="/site/margarita/"><img src="/images/posts/margarita.png" alt="Маргарита" loading="lazy"></a><a class="card" data-bg="pink" data-langs="мексика" href="/site/pokoyotit/"><img src="/images/posts/pokoyotit.png" alt="Покойотить?" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="швеция" href="/site/shvedskoe/"><img src="/images/posts/shvedskoe.png" alt="Шведское?" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="пакистан" href="/site/pakistan/"><img src="/images/posts/pakistan.png" alt="Пакистан" loading="lazy"></a><a class="card" data-bg="pink" data-langs="болгария" href="/site/horovodogolod/"><img src="/images/posts/horovodogolod.png" alt="Хороводоголод" loading="lazy"></a><a class="card" data-bg="green" data-langs="узбекистан" href="/site/uzbekiivy/"><img src="/images/posts/uzbekiivy.png" alt="Узбеки и Вы" loading="lazy"></a><a class="card" data-bg="blue" data-langs="США" href="/site/slovotelefona/"><img src="/images/posts/slovotelefona.png" alt="Слово телефона" loading="lazy"></a><a class="card" data-bg="lilac" data-langs="непал" href="/site/sherpa/"><img src="/images/posts/sherpa.png" alt="Шерпа" loading="lazy"></a><a class="card" data-bg="green" data-langs="австралия|новая зеландия" href="/site/pavlova/"><img src="/images/posts/pavlova.png" alt="Павлова" loading="lazy"></a></div>
-  <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов на этом языке.</p>
+  <p class="empty" id="empty-msg" style="display:none;">Пока здесь нет постов об этой стране.</p>
 
 </div>
 
@@ -233,8 +311,12 @@
   function renderGrid(lang) {
     const cards = (lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS;
 
-    document.getElementById('title').textContent =
-      lang ? `Страны: ${lang.charAt(0).toUpperCase() + lang.slice(1)}` : `Страны`;
+    const titleEl = document.getElementById('title');
+    if (lang) {
+      titleEl.innerHTML = `Страны: <span class="lang-name">${lang.charAt(0).toUpperCase() + lang.slice(1)}</span>`;
+    } else {
+      titleEl.textContent = 'Страны';
+    }
 
     emptyMsg.style.display = cards.length === 0 ? 'block' : 'none';
 
@@ -244,33 +326,128 @@
     ordered.forEach(c => grid.appendChild(c));
   }
 
-  const params = new URLSearchParams(location.search);
-  const currentLang = params.get('lang');
+  const reel = document.getElementById('reel');
+  const searchInput = document.getElementById('lang-search');
+  const arrowUp = document.querySelector('.reel-arrow.up');
+  const arrowDown = document.querySelector('.reel-arrow.down');
+  const ITEM_HEIGHT = 44;
+  let reelItems = [];
+  let suppressAutoSelect = false;
 
-  const langContainer = document.getElementById('languages');
-  LANG_NAMES.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-    if (lang === currentLang) btn.classList.add('active');
-    btn.addEventListener('click', () => {
-      const url = new URL(location.href);
-      if (btn.classList.contains('active')) {
-        btn.classList.remove('active');
-        url.searchParams.delete('lang');
-        history.pushState({}, '', url);
-        renderGrid(null);
-      } else {
-        [...langContainer.children].forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        url.searchParams.set('lang', lang);
-        history.pushState({}, '', url);
-        renderGrid(lang);
-      }
-    });
-    langContainer.appendChild(btn);
+  arrowUp.addEventListener('click', () => {
+    reel.scrollBy({ top: -ITEM_HEIGHT, behavior: 'smooth' });
+  });
+  arrowDown.addEventListener('click', () => {
+    reel.scrollBy({ top: ITEM_HEIGHT, behavior: 'smooth' });
   });
 
-  renderGrid(currentLang);
+  function displayName(lang) {
+    return lang.charAt(0).toUpperCase() + lang.slice(1);
+  }
+
+  function buildReel(langNames) {
+    reel.innerHTML = '';
+    reelItems = [];
+
+    langNames.forEach(lang => {
+      const div = document.createElement('div');
+      div.className = 'reel-item';
+      div.textContent = displayName(lang);
+      div.dataset.lang = lang;
+      reel.appendChild(div);
+      reelItems.push(div);
+    });
+
+    reelItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        selectLang(item.dataset.lang, true);
+      });
+    });
+  }
+
+  function markActive(activeItem) {
+    reelItems.forEach(item => item.classList.remove('active'));
+    if (activeItem) activeItem.classList.add('active');
+  }
+
+  function selectLang(lang, updateHistory) {
+    renderGrid(lang);
+    if (updateHistory) {
+      const url = new URL(location.href);
+      url.searchParams.set('lang', lang);
+      history.pushState({}, '', url);
+    }
+    const activeItem = reelItems.find(item => item.dataset.lang === lang);
+    markActive(activeItem);
+  }
+
+  function centeredItem() {
+    const reelRect = reel.getBoundingClientRect();
+    const centerY = reelRect.top + reelRect.height / 2;
+    let closest = null;
+    let minDist = Infinity;
+    reelItems.forEach(item => {
+      if (item.style.display === 'none') return;
+      const r = item.getBoundingClientRect();
+      const itemCenter = r.top + r.height / 2;
+      const dist = Math.abs(itemCenter - centerY);
+      if (dist < minDist) { minDist = dist; closest = item; }
+    });
+    return closest;
+  }
+
+  let scrollEndTimer;
+  reel.addEventListener('scroll', () => {
+    if (suppressAutoSelect) return;
+    const closest = centeredItem();
+    markActive(closest);
+    clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(() => {
+      if (closest) selectLang(closest.dataset.lang, true);
+    }, 180);
+  });
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (!q) {
+      reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
+      return;
+    }
+    let firstMatch = null;
+    reelItems.forEach(item => {
+      const matches = item.textContent.toLowerCase().includes(q);
+      item.style.display = 'flex';
+      item.classList.toggle('dim', !matches);
+      if (matches && !firstMatch) firstMatch = item;
+    });
+    if (firstMatch) {
+      suppressAutoSelect = true;
+      firstMatch.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      selectLang(firstMatch.dataset.lang, true);
+      setTimeout(() => { suppressAutoSelect = false; }, 400);
+    }
+  });
+
+  buildReel(LANG_NAMES);
+
+  const params = new URLSearchParams(location.search);
+  const currentLang = params.get('lang');
+  const targetItem = (currentLang && LANG_TO_CARDS[currentLang])
+    ? reelItems.find(item => item.dataset.lang === currentLang)
+    : null;
+
+  suppressAutoSelect = true;
+  if (targetItem) {
+    targetItem.scrollIntoView({ block: 'center', behavior: 'instant' });
+    markActive(targetItem);
+    renderGrid(currentLang);
+  } else {
+    reel.scrollTo({ top: 0, behavior: 'auto' });
+    markActive(null);
+    renderGrid(null);
+  }
+  setTimeout(() => { suppressAutoSelect = false; }, 300);
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->
