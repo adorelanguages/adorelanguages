@@ -311,8 +311,12 @@
   function renderGrid(lang) {
     const cards = (lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS;
 
-    document.getElementById('title').textContent =
-      lang ? `Страны: ${lang.charAt(0).toUpperCase() + lang.slice(1)}` : `Страны`;
+    const titleEl = document.getElementById('title');
+    if (lang) {
+      titleEl.innerHTML = `Страны: <span class="lang-name">${lang}</span>`;
+    } else {
+      titleEl.textContent = 'Страны';
+    }
 
     emptyMsg.style.display = cards.length === 0 ? 'block' : 'none';
 
@@ -322,33 +326,128 @@
     ordered.forEach(c => grid.appendChild(c));
   }
 
-  const params = new URLSearchParams(location.search);
-  const currentLang = params.get('lang');
+  const reel = document.getElementById('reel');
+  const searchInput = document.getElementById('lang-search');
+  const arrowUp = document.querySelector('.reel-arrow.up');
+  const arrowDown = document.querySelector('.reel-arrow.down');
+  const ITEM_HEIGHT = 44;
+  let reelItems = [];
+  let suppressAutoSelect = false;
 
-  const langContainer = document.getElementById('languages');
-  LANG_NAMES.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-    if (lang === currentLang) btn.classList.add('active');
-    btn.addEventListener('click', () => {
-      const url = new URL(location.href);
-      if (btn.classList.contains('active')) {
-        btn.classList.remove('active');
-        url.searchParams.delete('lang');
-        history.pushState({}, '', url);
-        renderGrid(null);
-      } else {
-        [...langContainer.children].forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        url.searchParams.set('lang', lang);
-        history.pushState({}, '', url);
-        renderGrid(lang);
-      }
-    });
-    langContainer.appendChild(btn);
+  arrowUp.addEventListener('click', () => {
+    reel.scrollBy({ top: -ITEM_HEIGHT, behavior: 'smooth' });
+  });
+  arrowDown.addEventListener('click', () => {
+    reel.scrollBy({ top: ITEM_HEIGHT, behavior: 'smooth' });
   });
 
-  renderGrid(currentLang);
+  function displayName(lang) {
+    return lang.charAt(0).toUpperCase() + lang.slice(1);
+  }
+
+  function buildReel(langNames) {
+    reel.innerHTML = '';
+    reelItems = [];
+
+    langNames.forEach(lang => {
+      const div = document.createElement('div');
+      div.className = 'reel-item';
+      div.textContent = displayName(lang);
+      div.dataset.lang = lang;
+      reel.appendChild(div);
+      reelItems.push(div);
+    });
+
+    reelItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        selectLang(item.dataset.lang, true);
+      });
+    });
+  }
+
+  function markActive(activeItem) {
+    reelItems.forEach(item => item.classList.remove('active'));
+    if (activeItem) activeItem.classList.add('active');
+  }
+
+  function selectLang(lang, updateHistory) {
+    renderGrid(lang);
+    if (updateHistory) {
+      const url = new URL(location.href);
+      url.searchParams.set('lang', lang);
+      history.pushState({}, '', url);
+    }
+    const activeItem = reelItems.find(item => item.dataset.lang === lang);
+    markActive(activeItem);
+  }
+
+  function centeredItem() {
+    const reelRect = reel.getBoundingClientRect();
+    const centerY = reelRect.top + reelRect.height / 2;
+    let closest = null;
+    let minDist = Infinity;
+    reelItems.forEach(item => {
+      if (item.style.display === 'none') return;
+      const r = item.getBoundingClientRect();
+      const itemCenter = r.top + r.height / 2;
+      const dist = Math.abs(itemCenter - centerY);
+      if (dist < minDist) { minDist = dist; closest = item; }
+    });
+    return closest;
+  }
+
+  let scrollEndTimer;
+  reel.addEventListener('scroll', () => {
+    if (suppressAutoSelect) return;
+    const closest = centeredItem();
+    markActive(closest);
+    clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(() => {
+      if (closest) selectLang(closest.dataset.lang, true);
+    }, 180);
+  });
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (!q) {
+      reelItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('dim'); });
+      return;
+    }
+    let firstMatch = null;
+    reelItems.forEach(item => {
+      const matches = item.textContent.toLowerCase().includes(q);
+      item.style.display = 'flex';
+      item.classList.toggle('dim', !matches);
+      if (matches && !firstMatch) firstMatch = item;
+    });
+    if (firstMatch) {
+      suppressAutoSelect = true;
+      firstMatch.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      selectLang(firstMatch.dataset.lang, true);
+      setTimeout(() => { suppressAutoSelect = false; }, 400);
+    }
+  });
+
+  buildReel(LANG_NAMES);
+
+  const params = new URLSearchParams(location.search);
+  const currentLang = params.get('lang');
+  const targetItem = (currentLang && LANG_TO_CARDS[currentLang])
+    ? reelItems.find(item => item.dataset.lang === currentLang)
+    : null;
+
+  suppressAutoSelect = true;
+  if (targetItem) {
+    targetItem.scrollIntoView({ block: 'center', behavior: 'instant' });
+    markActive(targetItem);
+    renderGrid(currentLang);
+  } else {
+    reel.scrollTo({ top: 0, behavior: 'auto' });
+    markActive(null);
+    renderGrid(null);
+  }
+  setTimeout(() => { suppressAutoSelect = false; }, 300);
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c5e23ae9ee4d4676a54181e8052d5ca0"}'></script><!-- End Cloudflare Web Analytics -->

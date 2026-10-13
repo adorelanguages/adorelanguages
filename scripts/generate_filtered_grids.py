@@ -13,8 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-BUTTON_SECTIONS = ["strany"]
-REEL_SECTIONS = ["idiomy", "yazyki"]
+REEL_SECTIONS = ["idiomy", "yazyki", "strany"]
 
 GRID_RE = re.compile(r'<div class="grid" id="post-grid">.*?</div>', re.S)
 
@@ -68,53 +67,7 @@ SHUFFLE_JS = """<script>
   const LANG_NAMES = Object.keys(LANG_TO_CARDS).sort((a, b) => a.localeCompare(b, 'ru'));
 """
 
-# --- strany: button filters ------------------------------------------------
-
-BUTTONS_SCRIPT = SHUFFLE_JS + """
-  function renderGrid(lang) {
-    const cards = (lang && LANG_TO_CARDS[lang]) ? LANG_TO_CARDS[lang] : ALL_CARDS;
-
-    document.getElementById('title').textContent =
-      lang ? `Страны: ${lang.charAt(0).toUpperCase() + lang.slice(1)}` : `Страны`;
-
-    emptyMsg.style.display = cards.length === 0 ? 'block' : 'none';
-
-    const ordered = colorRespectingShuffle(cards);
-    const shown = new Set(ordered);
-    ALL_CARDS.forEach(c => { c.style.display = shown.has(c) ? '' : 'none'; });
-    ordered.forEach(c => grid.appendChild(c));
-  }
-
-  const params = new URLSearchParams(location.search);
-  const currentLang = params.get('lang');
-
-  const langContainer = document.getElementById('languages');
-  LANG_NAMES.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.textContent = lang.charAt(0).toUpperCase() + lang.slice(1);
-    if (lang === currentLang) btn.classList.add('active');
-    btn.addEventListener('click', () => {
-      const url = new URL(location.href);
-      if (btn.classList.contains('active')) {
-        btn.classList.remove('active');
-        url.searchParams.delete('lang');
-        history.pushState({}, '', url);
-        renderGrid(null);
-      } else {
-        [...langContainer.children].forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        url.searchParams.set('lang', lang);
-        history.pushState({}, '', url);
-        renderGrid(lang);
-      }
-    });
-    langContainer.appendChild(btn);
-  });
-
-  renderGrid(currentLang);
-</script>"""
-
-# --- idiomy / yazyki: reel + search widget ---------------------------------
+# --- idiomy / yazyki / strany: reel + search widget ------------------------
 
 REEL_SCRIPT_BODY = """
   function renderGrid(lang) {{
@@ -264,6 +217,13 @@ TITLE_UPDATE_YAZYKI = """    const titleEl = document.getElementById('title');
       titleEl.textContent = 'Языки';
     }"""
 
+TITLE_UPDATE_STRANY = """    const titleEl = document.getElementById('title');
+    if (lang) {
+      titleEl.innerHTML = `Страны: <span class="lang-name">${lang}</span>`;
+    } else {
+      titleEl.textContent = 'Страны';
+    }"""
+
 
 def load_json(relpath):
     return json.loads((ROOT / relpath).read_text(encoding="utf-8"))
@@ -318,7 +278,7 @@ def main():
 
     changed = []
 
-    for key in BUTTON_SECTIONS + REEL_SECTIONS:
+    for key in REEL_SECTIONS:
         languages = sections[key]["languages"]
         rev = reverse_index(languages)
 
@@ -326,12 +286,12 @@ def main():
             (post, rev[post["slug"]]) for post in posts if post["slug"] in rev
         ]
 
-        if key in BUTTON_SECTIONS:
-            new_script = BUTTONS_SCRIPT
-        elif key == "idiomy":
+        if key == "idiomy":
             new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_IDIOMY)
         elif key == "yazyki":
             new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_YAZYKI)
+        elif key == "strany":
+            new_script = SHUFFLE_JS + REEL_SCRIPT_BODY.format(title_update=TITLE_UPDATE_STRANY)
         else:
             raise AssertionError(key)
 
