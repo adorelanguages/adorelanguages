@@ -131,7 +131,8 @@
       "pavlova",
       "alipapa",
       "zaimstvovaniya",
-      "bezvolos"
+      "bezvolos",
+      "navyazannoe"
     ]
   },
   "yazyki": {
@@ -199,7 +200,8 @@
         "robokop",
         "tolstayaledi",
         "pavlova",
-        "babieleto"
+        "babieleto",
+        "navyazannoe"
       ],
       "арабский": [
         "pustynyasahara",
@@ -736,7 +738,9 @@
       "tolstayaledi",
       "kolbasopovodok",
       "schitatvoron",
-      "mneetokolbasa"
+      "mneetokolbasa",
+      "navyazannoe",
+      "ditloidnye"
     ]
   },
   "lingvistika": {
@@ -1007,7 +1011,8 @@
       "malenkiyprints",
       "tsundoku",
       "ditloid",
-      "alipapa"
+      "alipapa",
+      "netlenka"
     ]
   },
   "edanapitki": {
