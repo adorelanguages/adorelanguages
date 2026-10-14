@@ -1,0 +1,63 @@
+name: Update karta snapshot
+
+# Раз в день (а не на каждый push, как update-sitemap.yml) - данные читателей
+# на карте меняются постепенно, запускать на каждый коммит смысла нет.
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-karta-snapshot-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-karta-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Regenerate karta snapshot
+        run: python3 scripts/generate_karta_snapshot.py
+
+      - name: Commit changes if any
+        run: |
+          if git diff --quiet -- golosovania/karta/index.html; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+
+          git config user.name "sitemap-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add golosovania/karta/index.html
+          git commit -m "Auto-update karta snapshot for search engines"
+
+          # Та же логика повторных попыток, что и в update-sitemap.yml - пуш
+          # может быть отклонён, если кто-то успел закоммитить в main, пока
+          # этот job работал. Правки затрагивают только снэпшот внутри
+          # KARTA_SNAPSHOT-маркеров, человек руками его не трогает, поэтому
+          # rebase поверх свежего main проходит без конфликтов.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Запушено с попытки $attempt."
+              exit 0
+            fi
+            echo "Пуш отклонён (попытка $attempt из 5), подтягиваю свежий main и пробую снова..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((attempt * 3))
+          done
+
+          echo "::error::Не удалось запушить после 5 попыток – нужна ручная проверка."
+          exit 1
