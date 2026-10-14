@@ -51,7 +51,6 @@ STATIC_PAGES = [
     "/links/site/all/",
     "/links/fb/",
     "/links/fb/all/",
-    "/tags/",
     "/golosovania/",
     "/sozdateli/",
 ]

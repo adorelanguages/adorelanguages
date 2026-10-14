@@ -1410,3 +1410,5 @@ viewBox (`currentVB`, устанавливается в `showCountry()` непо
 `maps/capitals-xy.json` уже готовы, пересборка - это только повторить хук в
 `showCountry()`/`resetMap()` и функции `showCapitalHeart()`/`hideCapitalHeart()`, описанные по
 коду в самом прототипе).
+
+- **`/tags/` (служебная страница частот тегов) намеренно не индексируется (октябрь 2026).** В `tags/index.html` стоит `<meta name="robots" content="noindex">`, а `/tags/` убрана из списка `STATIC_PAGES` в `scripts/generate_sitemap.py`, т. е. её нет в `sitemap.xml`. Причина: Google держал её в «Crawled – currently not indexed» (~14 слов статического текста, всё содержимое рисует JS, внутренних ссылок на неё нет), а для блога она ценности в поиске не имеет. **Не блокировать её в `robots.txt`** – иначе робот не увидит `noindex` и страница может остаться в списке. Если когда-нибудь понадобится вернуть в индекс – убрать `<meta name="robots">` и вернуть `"/tags/"` в `STATIC_PAGES`.
