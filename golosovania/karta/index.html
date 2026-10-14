@@ -97,6 +97,25 @@
     margin: 0 0 8px;
   }
 
+  .country-summary-line {
+    font-family: 'Factora', Georgia, serif;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: rgb(45,44,91);
+    background: rgb(244,244,255);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin: 0 0 8px;
+  }
+  /* Пусто (нет данных о читателях) - полностью скрываем, а не показываем
+     пустой цветной прямоугольник. Эта строка заполняется и статическим
+     снэпшотом (scripts/generate_karta_snapshot.py), и JS при живой загрузке
+     страницы (updateSummaryLine()) - оба просто оставляют элемент пустым,
+     когда показывать нечего, и :empty делает всё остальное сам. */
+  .country-summary-line:empty {
+    display: none;
+  }
+
   .submit-box {
     background: rgb(244,244,255);
     border-radius: 16px;
@@ -473,6 +492,8 @@
 
   <p class="lead">А где ты обожаешь языки? Отметь свою страну и город – и покажи, как много нас по всему миру.</p>
 
+  <p class="country-summary-line" id="country-summary-line"><!-- KARTA_SNAPSHOT:SUMMARY:START --><!-- KARTA_SNAPSHOT:SUMMARY:END --></p>
+
   <div class="submit-box">
     <h2>Отметиться на карте</h2>
     <div class="field-row">
@@ -508,7 +529,7 @@
         <span class="col-country">Страны и<br>города</span>
         <span class="col-readers">Обожателей Языков</span>
       </div>
-      <div id="country-accordion"></div>
+      <div id="country-accordion"><!-- KARTA_SNAPSHOT:ACCORDION:START --><!-- KARTA_SNAPSHOT:ACCORDION:END --></div>
     </div>
   </div>
 
@@ -1033,18 +1054,29 @@
       buildCityListItems(info).forEach(li => ul.appendChild(li));
       sub.appendChild(ul);
 
-      row.addEventListener('click', () => {
-        const willExpand = !sub.classList.contains('expanded');
-        sub.classList.toggle('expanded', willExpand);
-        row.classList.toggle('expanded', willExpand);
-      });
-
       container.appendChild(row);
       container.appendChild(sub);
     });
 
     updateToggleBtnText();
   }
+
+  // Разворачивание/сворачивание городов страны обрабатывается ОДНИМ
+  // делегированным слушателем на контейнере, а не отдельным слушателем на
+  // каждой строке, - чтобы клик работал одинаково и для строк, которые
+  // построил renderCountryList() (после удачного fetch), и для строк
+  // статического снэпшота на странице при первой загрузке (см.
+  // scripts/generate_karta_snapshot.py), которые JS мог и не успеть/не
+  // смочь перестроить (например, если fetch к Apps Script не удался).
+  document.getElementById('country-accordion').addEventListener('click', (e) => {
+    const row = e.target.closest('.country-row');
+    if (!row) return;
+    const sub = row.nextElementSibling;
+    if (!sub || !sub.classList.contains('city-sublist')) return;
+    const willExpand = !sub.classList.contains('expanded');
+    sub.classList.toggle('expanded', willExpand);
+    row.classList.toggle('expanded', willExpand);
+  });
 
   function updateToggleBtnText() {
     const btn = document.getElementById('country-list-toggle-btn');
@@ -1059,6 +1091,38 @@
 
     const totalReaders = Object.keys(latestCountries).reduce((sum, id) => sum + (latestCountries[id].count || 0), 0);
     document.getElementById('total-readers-label').innerHTML = 'Всего Обожателей Языков: <strong>' + totalReaders + '</strong>';
+
+    updateSummaryLine(totalReaders);
+  }
+
+  // Строка-саммари рядом с .lead - статический снэпшот (см.
+  // scripts/generate_karta_snapshot.py) показывает поисковику текст с
+  // реальными числами ещё до выполнения JS; здесь та же функция сразу
+  // перезаписывает её свежими живыми данными для настоящих посетителей.
+  // Намеренно избегаем склонения названий стран по падежам (т.е. не "больше
+  // всего в Германии, США и Испании") и согласования числительных с
+  // существительными (не "3 страны" / "5 стран") - то и другое ломается на
+  // отдельных случаях при генерации на бэкенде. Вместо этого - формат
+  // "Подпись: число", как уже на этой странице ("Всего Обожателей Языков: N"),
+  // и простой список названий в именительном падеже через запятую.
+  function updateSummaryLine(totalReaders) {
+    const el = document.getElementById('country-summary-line');
+    if (!el) return;
+    const ids = Object.keys(latestCountries);
+    if (!totalReaders || !ids.length) {
+      el.innerHTML = '';
+      return;
+    }
+    let out = 'Стран на карте: <strong>' + ids.length + '</strong> · Обожателей Языков: <strong>' + totalReaders + '</strong>.';
+    if (ids.length >= 2) {
+      const top = ids
+        .map(id => ({ name: COUNTRY_NAME[id] || id, count: latestCountries[id].count || 0 }))
+        .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'ru'))
+        .slice(0, 3)
+        .map(c => c.name);
+      out += '<br>Больше всего участников: ' + top.join(', ') + '.';
+    }
+    el.innerHTML = out;
   }
 
   document.getElementById('country-list-toggle-btn').addEventListener('click', () => {
