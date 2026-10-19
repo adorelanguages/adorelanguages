@@ -643,7 +643,8 @@
         "kazahskayaposlovitsa"
       ],
       "суахили": [
-        "safari"
+        "safari",
+        "zagadka"
       ],
       "татарский": [
         "dvabelmesa"
@@ -760,7 +761,8 @@
       "navyazannoe",
       "ditloidnye",
       "malyshedush",
-      "ruoanlaittojuoma"
+      "ruoanlaittojuoma",
+      "zagadka"
     ]
   },
   "lingvistika": {
@@ -836,7 +838,8 @@
       "zhestislovo",
       "zagadkaprogoroda",
       "zhabykmysham",
-      "zaimstvovaniya"
+      "zaimstvovaniya",
+      "zagadka"
     ]
   },
   "idiomy": {
