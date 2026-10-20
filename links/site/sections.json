@@ -516,7 +516,8 @@
         "resheniya",
         "apelsiniya",
         "allo",
-        "utyuzhitgolovu"
+        "utyuzhitgolovu",
+        "stany"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -841,7 +842,8 @@
       "zagadkaprogoroda",
       "zhabykmysham",
       "zaimstvovaniya",
-      "zagadka"
+      "zagadka",
+      "stany"
     ]
   },
   "idiomy": {
@@ -1027,7 +1029,8 @@
       "yugovostok",
       "chernota",
       "apelsiniya",
-      "zagadkaprogoroda"
+      "zagadkaprogoroda",
+      "stany"
     ]
   },
   "knigi": {
