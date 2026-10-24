@@ -11,7 +11,8 @@
       "mersedes",
       "slushay",
       "igraho",
-      "remontutoni"
+      "remontutoni",
+      "spuskatshtany"
     ]
   },
   "osobyeslova": {
@@ -136,7 +137,9 @@
       "zaimstvovaniya",
       "bezvolos",
       "navyazannoe",
-      "semtyabr"
+      "semtyabr",
+      "morozhenoe",
+      "spuskatshtany"
     ]
   },
   "yazyki": {
@@ -365,7 +368,8 @@
         "pitsy"
       ],
       "монгольский": [
-        "tyrboga"
+        "tyrboga",
+        "poluhorosho"
       ],
       "мэнский": [
         "yazykfeniks"
@@ -417,7 +421,9 @@
         "zhabykmysham",
         "dvahokkeya",
         "buhgalteribyustgalter",
-        "svinyutebe"
+        "svinyutebe",
+        "letushki",
+        "spuskatshtany"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -590,7 +596,8 @@
         "babieleto",
         "bezvolos",
         "chihatnalyubov",
-        "vilozhki"
+        "vilozhki",
+        "morozhenoe"
       ],
       "хорватский": [
         "listopad",
@@ -775,7 +782,8 @@
       "ruoanlaittojuoma",
       "zagadka",
       "vnoge",
-      "svinyutebe"
+      "svinyutebe",
+      "spuskatshtany"
     ]
   },
   "lingvistika": {
@@ -838,7 +846,9 @@
       "bratcy",
       "zapahgari",
       "vsebrosit",
-      "uchitelnitsarusskogo"
+      "uchitelnitsarusskogo",
+      "mikrobiolog",
+      "vcherasegodnyazavtra"
     ]
   },
   "zagadki": {
@@ -929,7 +939,8 @@
         "letobabok",
         "mneetokolbasa",
         "zhabykmysham",
-        "svinyutebe"
+        "svinyutebe",
+        "spuskatshtany"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -1045,7 +1056,9 @@
       "chernota",
       "apelsiniya",
       "zagadkaprogoroda",
-      "stany"
+      "stany",
+      "morozhenoe",
+      "spuskatshtany"
     ]
   },
   "knigi": {
@@ -1089,7 +1102,8 @@
       "pavlova",
       "nemyasozhe",
       "mneetokolbasa",
-      "neochevidno"
+      "neochevidno",
+      "morozhenoe"
     ]
   },
   "rasteniya": {
