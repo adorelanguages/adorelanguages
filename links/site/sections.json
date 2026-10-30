@@ -608,7 +608,8 @@
         "chihatnalyubov",
         "vilozhki",
         "morozhenoe",
-        "vodaizkyolna"
+        "vodaizkyolna",
+        "frantsuzyine"
       ],
       "хорватский": [
         "listopad",
@@ -729,6 +730,9 @@
       ],
       "брайль": [
         "brayl"
+      ],
+      "каракалпакский": [
+        "sobralsyaiushyol"
       ]
     }
   },
@@ -862,7 +866,8 @@
       "uchitelnitsarusskogo",
       "mikrobiolog",
       "vcherasegodnyazavtra",
-      "kashavgolove"
+      "kashavgolove",
+      "severnayakoreya"
     ]
   },
   "zagadki": {
@@ -1052,6 +1057,9 @@
       ],
       "арабский": [
         "kaksobaka"
+      ],
+      "каракалпакский": [
+        "sobralsyaiushyol"
       ]
     }
   },
