@@ -82,6 +82,21 @@
     opacity: 0.7;
   }
 </style>
+<!-- nostat: служебные заходы с ?nostat=1 не считаются в GoatCounter (см. CONTRIBUTING.md) -->
+<script>
+(function () {
+  try {
+    var marked = /[?&]nostat(=|&|#|$)/.test(location.search);
+    if (marked) sessionStorage.setItem('nostat', '1');
+    if (marked || sessionStorage.getItem('nostat') === '1') {
+      window.goatcounter = window.goatcounter || {};
+      window.goatcounter.no_onload = true;
+      window.goatcounter.no_events = true;
+      window.__nostat = true;
+    }
+  } catch (e) {}
+})();
+</script>
 </head>
 
 <body>

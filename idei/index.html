@@ -6,6 +6,21 @@
   <meta name="description" content="Предложи свою идею для нового поста в блоге «Обожаю Языки» и проголосуй за идеи других читателей.">
   <meta http-equiv="refresh" content="0; url=https://adorelanguages.com/golosovania/idei/">
   <link rel="canonical" href="https://adorelanguages.com/golosovania/idei/">
+<!-- nostat: служебные заходы с ?nostat=1 не считаются в GoatCounter (см. CONTRIBUTING.md) -->
+<script>
+(function () {
+  try {
+    var marked = /[?&]nostat(=|&|#|$)/.test(location.search);
+    if (marked) sessionStorage.setItem('nostat', '1');
+    if (marked || sessionStorage.getItem('nostat') === '1') {
+      window.goatcounter = window.goatcounter || {};
+      window.goatcounter.no_onload = true;
+      window.goatcounter.no_events = true;
+      window.__nostat = true;
+    }
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
   <p>Redirecting to <a href="https://adorelanguages.com/golosovania/idei/">https://adorelanguages.com/golosovania/idei/</a>…</p>
