@@ -12,7 +12,8 @@
       "slushay",
       "igraho",
       "remontutoni",
-      "vodaizkyolna"
+      "vodaizkyolna",
+      "asiks"
     ]
   },
   "osobyeslova": {
@@ -146,7 +147,8 @@
       "morozhenoe",
       "vodaizkyolna",
       "dvizhuha",
-      "okolosoroka"
+      "okolosoroka",
+      "asiks"
     ]
   },
   "yazyki": {
@@ -288,7 +290,8 @@
         "tyomnyyles",
         "apelsiniya",
         "allo",
-        "zadkadychnye"
+        "zadkadychnye",
+        "vtulussovoi"
       ],
       "датский": [
         "igraho",
@@ -440,7 +443,8 @@
         "spuskatshtany",
         "vodaizkyolna",
         "dvizhuha",
-        "yazykdlyavseh"
+        "yazykdlyavseh",
+        "vtulussovoi"
       ],
       "нидерландский": [
         "dikiiobraz",
@@ -715,7 +719,8 @@
         "neochevidno"
       ],
       "латынь": [
-        "yugovostok"
+        "yugovostok",
+        "asiks"
       ],
       "тибетский": [
         "sherpa"
@@ -969,7 +974,8 @@
         "mneetokolbasa",
         "zhabykmysham",
         "svinyutebe",
-        "spuskatshtany"
+        "spuskatshtany",
+        "vtulussovoi"
       ],
       "норвежский": [
         "dvuhnezaitsev"
@@ -1031,7 +1037,8 @@
       ],
       "греческий": [
         "tyomnyyles",
-        "zadkadychnye"
+        "zadkadychnye",
+        "vtulussovoi"
       ],
       "исландский": [
         "tyomnyyles"
