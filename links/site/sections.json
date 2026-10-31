@@ -35,7 +35,9 @@
       "ditloid",
       "titivill",
       "malyshedush",
-      "ruoanlaittojuoma"
+      "ruoanlaittojuoma",
+      "pupki",
+      "potselodrug"
     ]
   },
   "strany": {
@@ -217,7 +219,10 @@
         "malyshedush",
         "vilozhki",
         "chasikipalchiki",
-        "dvizhuha"
+        "dvizhuha",
+        "pupki",
+        "potselodrug",
+        "kengurinyisud"
       ],
       "арабский": [
         "pustynyasahara",
@@ -267,7 +272,8 @@
         "budemzdorovy",
         "vdvuhshagah",
         "stereotipy",
-        "udareniya"
+        "udareniya",
+        "potselodrug"
       ],
       "голландский": [
         "dikiiobraz",
@@ -800,7 +806,9 @@
       "vnoge",
       "svinyutebe",
       "spuskatshtany",
-      "letushki"
+      "letushki",
+      "pupki",
+      "kengurinyisud"
     ]
   },
   "lingvistika": {
@@ -904,7 +912,9 @@
         "vdvuhshagah",
         "nipuhanipera",
         "tolstayaledi",
-        "babieleto"
+        "babieleto",
+        "potselodrug",
+        "kengurinyisud"
       ],
       "белорусский": [
         "letobabok"
@@ -1053,7 +1063,8 @@
         "vdvuhshagah"
       ],
       "венгерский": [
-        "vdvuhshagah"
+        "vdvuhshagah",
+        "potselodrug"
       ],
       "арабский": [
         "kaksobaka"
@@ -1166,7 +1177,8 @@
       "verblyudokon",
       "kolbasopovodok",
       "zhabykmysham",
-      "svinyutebe"
+      "svinyutebe",
+      "kengurinyisud"
     ]
   },
   "sport": {
