@@ -150,7 +150,8 @@
       "okolosoroka",
       "asiks",
       "alimenty",
-      "klyuvszadi"
+      "klyuvszadi",
+      "kiosk"
     ]
   },
   "yazyki": {
@@ -480,7 +481,8 @@
       "персидский": [
         "lyuboviorgany",
         "pakistan",
-        "alipapa"
+        "alipapa",
+        "kiosk"
       ],
       "польский": [
         "pitsy",
@@ -556,7 +558,8 @@
         "apelsiniya",
         "allo",
         "utyuzhitgolovu",
-        "stany"
+        "stany",
+        "kiosk"
       ],
       "удмуртский": [
         "udmurtprivet",
@@ -575,7 +578,8 @@
       "фарси": [
         "lyuboviorgany",
         "pakistan",
-        "alipapa"
+        "alipapa",
+        "kiosk"
       ],
       "финский": [
         "pitsy",
