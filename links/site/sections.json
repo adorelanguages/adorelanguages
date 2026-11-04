@@ -151,7 +151,9 @@
       "asiks",
       "alimenty",
       "klyuvszadi",
-      "kiosk"
+      "kiosk",
+      "sobanikuly",
+      "altibas"
     ]
   },
   "yazyki": {
@@ -362,7 +364,8 @@
         "svinyutebe",
         "okolosoroka",
         "alimenty",
-        "klyuvszadi"
+        "klyuvszadi",
+        "altibas"
       ],
       "каталанский": [
         "pitsy",
@@ -735,7 +738,8 @@
       "латынь": [
         "yugovostok",
         "asiks",
-        "alimenty"
+        "alimenty",
+        "sobanikuly"
       ],
       "тибетский": [
         "sherpa"
@@ -857,7 +861,8 @@
       "fatika",
       "raznonimy",
       "udareniya",
-      "petigovorit"
+      "petigovorit",
+      "afrikanskoe"
     ]
   },
   "igraslov": {
@@ -1205,7 +1210,8 @@
       "svinyutebe",
       "kengurinyisud",
       "mahatkoshkoi",
-      "klyuvszadi"
+      "klyuvszadi",
+      "sobanikuly"
     ]
   },
   "sport": {
