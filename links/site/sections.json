@@ -153,7 +153,9 @@
       "klyuvszadi",
       "kiosk",
       "sobanikuly",
-      "altibas"
+      "altibas",
+      "lesikury",
+      "okei"
     ]
   },
   "yazyki": {
@@ -230,7 +232,9 @@
         "pupki",
         "potselodrug",
         "kengurinyisud",
-        "mahatkoshkoi"
+        "mahatkoshkoi",
+        "koza",
+        "okei"
       ],
       "арабский": [
         "pustynyasahara",
@@ -297,7 +301,8 @@
         "apelsiniya",
         "allo",
         "zadkadychnye",
-        "vtulussovoi"
+        "vtulussovoi",
+        "lesikury"
       ],
       "датский": [
         "igraho",
@@ -521,7 +526,8 @@
         "teloslavyanina",
         "romashka",
         "nesoglasie",
-        "shahimat"
+        "shahimat",
+        "lesikury"
       ],
       "сербский": [
         "srpskopismo",
@@ -1214,7 +1220,8 @@
       "kengurinyisud",
       "mahatkoshkoi",
       "klyuvszadi",
-      "sobanikuly"
+      "sobanikuly",
+      "koza"
     ]
   },
   "sport": {
