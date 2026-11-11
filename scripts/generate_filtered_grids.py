@@ -303,12 +303,32 @@ REEL_SCRIPT_BODY = """
       releaseSuppressionOnceReelSettles();
       return;
     }}
+    // Which language to jump to: an exact name beats one that starts with
+    // the query, which beats one where a later word starts with it, which
+    // beats a match somewhere inside a word. Without this ranking "рус" or
+    // even "русский" picked "Белорусский" (it comes first alphabetically
+    // and contains "русский"), and "Русский" could not be found by search
+    // (reported by Vadim 11.11.2026).
+    const matchRank = text => {{
+      if (text === q) return 0;
+      if (text.startsWith(q)) return 1;
+      const words = [...'-–/()'].reduce((t, c) => t.split(c).join(' '), text).split(' ');
+      if (words.some(w => w && w.startsWith(q))) return 2;
+      return text.includes(q) ? 3 : 4;
+    }};
     let firstMatch = null;
+    let bestRank = 4;
     reelItems.forEach(item => {{
-      const matches = item.textContent.toLowerCase().includes(q);
+      const rank = matchRank(item.textContent.trim().toLowerCase());
+      const matches = rank < 4;
       item.style.display = 'flex';
       item.classList.toggle('dim', !matches);
-      if (matches && !firstMatch) firstMatch = item;
+      // Equal rank: the shorter name wins, so "рус" lands on "Русский"
+      // rather than "Русинский".
+      if (rank < bestRank || (rank === bestRank && rank < 4 &&
+          item.textContent.trim().length < firstMatch.textContent.trim().length)) {{
+        bestRank = rank; firstMatch = item;
+      }}
     }});
     if (firstMatch) {{
       suppressAutoSelect = true;
