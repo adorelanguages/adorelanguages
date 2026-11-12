@@ -75,7 +75,8 @@
         "madagaskarskiy"
       ],
       "италия": [
-        "margarita"
+        "margarita",
+        "prazdnavgust"
       ],
       "мексика": [
         "pokoyotit"
@@ -236,7 +237,8 @@
         "mahatkoshkoi",
         "koza",
         "okei",
-        "nuliinoliki"
+        "nuliinoliki",
+        "50ottenkov"
       ],
       "арабский": [
         "pustynyasahara",
@@ -253,7 +255,8 @@
       ],
       "белорусский": [
         "letobabok",
-        "vilozhki"
+        "vilozhki",
+        "slavyanskiyavgust"
       ],
       "армянский": [
         "armyanktuaciya",
@@ -373,7 +376,8 @@
         "okolosoroka",
         "alimenty",
         "klyuvszadi",
-        "altibas"
+        "altibas",
+        "prazdnavgust"
       ],
       "каталанский": [
         "pitsy",
@@ -507,7 +511,8 @@
         "budemzdorovy",
         "vdvuhshagah",
         "udareniya",
-        "letobabok"
+        "letobabok",
+        "slavyanskiyavgust"
       ],
       "португальский": [
         "kafune",
@@ -584,7 +589,8 @@
         "bezdomnov",
         "zont",
         "germanizmi",
-        "letobabok"
+        "letobabok",
+        "slavyanskiyavgust"
       ],
       "фарси": [
         "lyuboviorgany",
@@ -644,13 +650,15 @@
         "frantsuzyine",
         "alimenty",
         "klyuvszadi",
-        "yory"
+        "yory",
+        "yazykvkarmane"
       ],
       "хорватский": [
         "listopad",
         "teloslavyanina",
         "vremyaipogoda",
-        "bolhorvatov"
+        "bolhorvatov",
+        "slavyanskiyavgust"
       ],
       "черкесский": [
         "kak-dela",
@@ -670,7 +678,8 @@
         "listopad",
         "metamorfozy",
         "podsnezhnik",
-        "schitatvoron"
+        "schitatvoron",
+        "slavyanskiyavgust"
       ],
       "шведский": [
         "pitsy",
@@ -842,7 +851,8 @@
       "letushki",
       "pupki",
       "kengurinyisud",
-      "mahatkoshkoi"
+      "mahatkoshkoi",
+      "yazykvkarmane"
     ]
   },
   "lingvistika": {
@@ -953,7 +963,8 @@
         "babieleto",
         "potselodrug",
         "kengurinyisud",
-        "mahatkoshkoi"
+        "mahatkoshkoi",
+        "50ottenkov"
       ],
       "белорусский": [
         "letobabok"
@@ -1060,7 +1071,8 @@
         "tsenaibol",
         "kaksobaka",
         "prygatspetuhanaosla",
-        "babieleto"
+        "babieleto",
+        "yazykvkarmane"
       ],
       "армянский": [
         "sobakahozyainaneuznaet"
