@@ -101,6 +101,9 @@
       ],
       "германия": [
         "yazykdlyavseh"
+      ],
+      "норвегия": [
+        "poslevirkoly"
       ]
     }
   },
@@ -500,7 +503,8 @@
         "pitsy",
         "dvuhnezaitsev",
         "divannayakartoshka",
-        "zhenchinamushchina"
+        "zhenchinamushchina",
+        "poslevirkoly"
       ],
       "осетинский": [
         "sedmayavodanakisele",
@@ -1054,7 +1058,8 @@
         "kakubityi"
       ],
       "норвежский": [
-        "dvuhnezaitsev"
+        "dvuhnezaitsev",
+        "poslevirkoly"
       ],
       "осетинский": [
         "sedmayavodanakisele",
@@ -1281,7 +1286,8 @@
       "bazovyymyach",
       "lyubovutki",
       "dvahokkeya",
-      "kriket"
+      "kriket",
+      "poslevirkoly"
     ]
   },
   "lingvoprosiki": {
